@@ -5,13 +5,18 @@
     import { page } from "$app/state";
     import "./layout.css";
     import favicon from "$lib/assets/favicon.svg";
+    import Navbar from "$lib/components/ui/Navbar.svelte";
+    import { ModeWatcher } from "mode-watcher";
 
     let { children } = $props();
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
+<ModeWatcher defaultMode="dark" />
+
 <ParaglideJS {i18n}>
+    <Navbar />
     {@render children()}
     <div style="display:none">
         {#each availableLanguageTags as locale}
