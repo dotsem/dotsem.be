@@ -1,0 +1,8 @@
+---
+title: Hallo Wereld
+slug: hello-world
+---
+
+# Hallo Wereld
+
+Dit is een voorbeeldproject met mdsvex.
