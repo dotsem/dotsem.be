@@ -46,7 +46,9 @@
             </h1>
             <p class="sm:text-right text-center text-xl">{hero_subtitle()}</p>
             <div class="flex gap-4 sm:justify-end justify-center">
-                <Button class="px-8 font-bold">{hero_button_main()}</Button>
+                <Button class="px-8 font-bold" href="#profile"
+                    >{hero_button_main()}</Button
+                >
                 <Button class="px-8 font-bold" variant="secondary"
                     >{hero_button_secondary()}</Button
                 >
