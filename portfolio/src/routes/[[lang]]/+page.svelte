@@ -21,7 +21,7 @@
 <Hero />
 <Profile />
 
-<section class="px-3 my-8 py-8 bg-card w-full">
+<section class="px-3 my-8 py-8 bg-card w-full slanted">
     <div class="container mx-auto">
         <div class="prose dark:prose-invert max-w-none mb-8">
             <h2 class="text-center">{projects_highlighted_title()}</h2>
@@ -44,4 +44,6 @@
     </div>
 </section>
 
-<ContactForm />
+<section class="container mx-auto max-w-xl mb-12 px-4 md:px-0 py-10">
+    <ContactForm />
+</section>
