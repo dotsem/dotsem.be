@@ -44,6 +44,9 @@
     </div>
 </section>
 
-<section class="container mx-auto max-w-xl mb-12 px-4 md:px-0 py-10">
+<section
+    id="contact"
+    class="container mx-auto max-w-xl mb-12 px-4 md:px-0 py-10"
+>
     <ContactForm />
 </section>

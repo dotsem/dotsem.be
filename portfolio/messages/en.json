@@ -1,5 +1,7 @@
 {
-	"hello_world": "Hello, {name} from en!",
+	"navbar_profile": "My Profile",
+	"navbar_projects": "My Projects",
+	"navbar_contact": "Contact me",
 	"hero_title": "Hi, I'm Sem!",
 	"hero_subtitle": "Software engineer with a passion for building cool stuff.",
 	"hero_button_main": "Discover more",

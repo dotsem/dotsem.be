@@ -1,5 +1,7 @@
 {
-	"hello_world": "Hello, {name} from nl!",
+	"navbar_profile": "Mijn Profiel",
+	"navbar_projects": "Mijn Projecten",
+	"navbar_contact": "Contacteer mij",
 	"hero_title": "Hoi, ik ben Sem!",
 	"hero_subtitle": "Software engineer met een passie voor het bouwen van coole dingen.",
 	"hero_button_main": "Ontdek meer",
