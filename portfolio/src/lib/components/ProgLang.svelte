@@ -194,7 +194,6 @@
 <style>
     .prog-lang {
         padding: 4px 12px;
-        margin: 5px 5px;
         border-radius: 10px;
         display: flex;
         align-items: center;

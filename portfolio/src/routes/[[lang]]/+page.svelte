@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { Button } from "$lib/components/ui/button";
     import Hero from "./Hero.svelte";
     import Profile from "$lib/components/profile/Profile.svelte";
+    import ProjectCard from "$lib/components/ProjectCard.svelte";
     import {
         projects_highlighted_title,
         projects_highlighted_description,
     } from "$lib/paraglide/messages.js";
     import * as Carousel from "$lib/components/ui/carousel";
-    import * as Card from "$lib/components/ui/card";
+
+    let { data } = $props();
+    const highlightedProjects = $derived(
+        data.projects.filter((p) => p.highlighted),
+    );
 </script>
 
 <Hero />
@@ -23,17 +27,9 @@
         <div class="relative px-4 md:px-12">
             <Carousel.Root opts={{ align: "center" }}>
                 <Carousel.Content class="ms-0 gap-4">
-                    {#each Array(3) as _}
+                    {#each highlightedProjects as project}
                         <Carousel.Item class="basis-auto lg:p-4">
-                            <Card.Root
-                                class="border-2 border-dashed flex items-center justify-center opacity-50 w-80 h-96 bg-background/50"
-                            >
-                                <Card.Content class="p-0">
-                                    <span class="text-muted-foreground"
-                                        >Project Card</span
-                                    >
-                                </Card.Content>
-                            </Card.Root>
+                            <ProjectCard {project} />
                         </Carousel.Item>
                     {/each}
                 </Carousel.Content>
