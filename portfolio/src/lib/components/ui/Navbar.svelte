@@ -6,7 +6,9 @@
     } from "$lib/paraglide/runtime.js";
 </script>
 
-<nav class="flex justify-between px-10">
+<nav
+    class="flex justify-between px-10 bg-card h-16 py-0 items-center fixed w-full top-0 z-50"
+>
     dotsem
 
     <div>
@@ -18,8 +20,12 @@
 <style>
     nav {
         a {
-            color: var(--text-primary);
+            color: var(--secondary);
             text-decoration: underline;
+
+            &:hover {
+                color: var(--secondary-hover);
+            }
         }
     }
 </style>

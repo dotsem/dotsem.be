@@ -17,7 +17,7 @@
 
 <ParaglideJS {i18n}>
     <Navbar />
-    {@render children()}
+    <main class="pt-16">{@render children()}</main>
     <div style="display:none">
         {#each availableLanguageTags as locale}
             <a href={i18n.resolveRoute(page.url.pathname, locale)}>
