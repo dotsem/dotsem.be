@@ -7,6 +7,7 @@
     import favicon from "$lib/assets/favicon.svg";
     import Navbar from "$lib/components/ui/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
+    import Footer from "$lib/components/Footer.svelte";
 
     let { children } = $props();
 </script>
@@ -35,4 +36,5 @@
             </a>
         {/each}
     </div>
+    <Footer />
 </ParaglideJS>

@@ -7,7 +7,7 @@
 </script>
 
 <nav
-    class="flex justify-between px-10 bg-card h-16 py-0 items-center fixed w-full top-0 z-50"
+    class="flex justify-between px-10 h-16 py-0 items-center fixed w-full top-0 z-50"
 >
     dotsem
 
@@ -19,6 +19,10 @@
 
 <style>
     nav {
+        background: var(--header-footer-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
         a {
             color: var(--secondary);
             text-decoration: underline;

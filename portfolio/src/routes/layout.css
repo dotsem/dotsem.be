@@ -64,6 +64,12 @@
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
+  --header-footer-bg: linear-gradient(70deg,
+      rgba(37, 30, 24, 0.7),
+      rgba(26, 25, 23, 0.7),
+      rgba(19, 32, 19, 0.7),
+      rgba(19, 32, 19, 0.7),
+      rgba(26, 25, 23, 0.7));
 }
 
 .dark {

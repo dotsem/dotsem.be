@@ -36,5 +36,8 @@
 	"contact_email_placeholder": "How can I reach you?",
 	"contact_message_label": "Message",
 	"contact_message_placeholder": "What is your message?",
-	"contact_button_send": "Send Message"
+	"contact_button_send": "Send Message",
+	"footer_copyright": "Copyright © {year} Sem Van Broekhoven",
+	"footer_credits": "Made with ❤️ by",
+	"footer_email": "contact me via email"
 }
