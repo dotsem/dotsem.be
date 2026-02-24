@@ -2,13 +2,17 @@
     import Hero from "../../lib/components/Hero.svelte";
     import Profile from "$lib/components/profile/Profile.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
+    import ContactForm from "$lib/components/ContactForm.svelte";
     import {
         projects_highlighted_title,
         projects_highlighted_description,
     } from "$lib/paraglide/messages.js";
     import * as Carousel from "$lib/components/ui/carousel";
+    import type { Project } from "$lib/projects";
+    import type { ProjectMeta } from "$lib/projects";
 
     let { data } = $props();
+
     const highlightedProjects = $derived(
         data.projects.filter((p) => p.highlighted),
     );
@@ -39,3 +43,5 @@
         </div>
     </div>
 </section>
+
+<ContactForm />

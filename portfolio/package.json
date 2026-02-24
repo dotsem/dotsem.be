@@ -40,6 +40,8 @@
 	},
 	"dependencies": {
 		"@inlang/paraglide-sveltekit": "^0.16.1",
-		"mode-watcher": "^1.1.0"
+		"mode-watcher": "^1.1.0",
+		"svelte-sonner": "^1.0.7",
+		"zod": "^4.3.6"
 	}
 }

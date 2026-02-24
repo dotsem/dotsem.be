@@ -27,5 +27,14 @@
 	"profile_uni_content_1": "Studeren voor een Bachelor in Toegepaste Informatica",
 	"profile_save": "Opslaan",
 	"projects_highlighted_title": "Uitgelichte projecten",
-	"projects_highlighted_description": "Hier zijn enkele van mijn favoriete projecten waaraan ik heb gewerkt."
+	"projects_highlighted_description": "Hier zijn enkele van mijn favoriete projecten waaraan ik heb gewerkt.",
+	"contact_title": "Contact",
+	"contact_subtitle": "Vul het onderstaande formulier in en ik neem contact met je op.",
+	"contact_name_label": "Naam",
+	"contact_name_placeholder": "Wat is je naam?",
+	"contact_email_label": "E-mail",
+	"contact_email_placeholder": "Hoe kan ik je bereiken?",
+	"contact_message_label": "Bericht",
+	"contact_message_placeholder": "Wat is je bericht?",
+	"contact_button_send": "Verstuur bericht"
 }
