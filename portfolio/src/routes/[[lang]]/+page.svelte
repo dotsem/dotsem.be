@@ -20,7 +20,7 @@
             <p class="text-center">{projects_highlighted_description()}</p>
         </div>
 
-        <div class="relative px-12">
+        <div class="relative px-4 md:px-12">
             <Carousel.Root opts={{ align: "center" }}>
                 <Carousel.Content class="ms-0 gap-4">
                     {#each Array(3) as _}
@@ -37,8 +37,8 @@
                         </Carousel.Item>
                     {/each}
                 </Carousel.Content>
-                <Carousel.Previous class="md:hidden" />
-                <Carousel.Next class="md:hidden" />
+                <Carousel.Previous class="-left-2 md:-left-12" />
+                <Carousel.Next class="-right-2 md:-right-12" />
             </Carousel.Root>
         </div>
     </div>
