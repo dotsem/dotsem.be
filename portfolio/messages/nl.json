@@ -5,7 +5,7 @@
 	"hero_button_main": "Ontdek meer",
 	"hero_button_secondary": "Bekijk mijn CV",
 	"profile_title": "Mijn digitaal profiel",
-	"profile_description": "Ik ben 18 jaar oud en heb een passie voor programmeren gevonden. Ik ben al van jongs af aan aan het experimenteren met technologie. Momenteel maak ik graag projecten met een variëteit aan programmeertalen.",
+	"profile_description": "Ik ben {age} jaar oud en heb een passie voor programmeren gevonden. Ik ben al van jongs af aan aan het experimenteren met technologie. Momenteel maak ik graag projecten met een variëteit aan programmeertalen.",
 	"profile_tools_fav": "Mijn favoriete talen",
 	"profile_tools_prog": "Programmeertalen",
 	"profile_tools_os": "Besturingssystemen",
@@ -25,5 +25,7 @@
 	"profile_uni_title": "Universiteit",
 	"profile_uni_content_0": "1ste jaar Toegepaste Informatica bij Thomas More",
 	"profile_uni_content_1": "Studeren voor een Bachelor in Toegepaste Informatica",
-	"profile_save": "Opslaan"
+	"profile_save": "Opslaan",
+	"projects_highlighted_title": "Uitgelichte projecten",
+	"projects_highlighted_description": "Hier zijn enkele van mijn favoriete projecten waaraan ik heb gewerkt."
 }

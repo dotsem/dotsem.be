@@ -3,7 +3,7 @@
     import ProgLang from "$lib/components/ProgLang.svelte";
     import MeImage from "$lib/assets/me.png";
     import * as m from "$lib/paraglide/messages.js";
-
+    import { calculateAge } from "$lib/utils";
     let experienceContent = $derived([
         m.profile_experience_content_0(),
         m.profile_experience_content_1(),
@@ -21,10 +21,12 @@
         m.profile_uni_content_0(),
         m.profile_uni_content_1(),
     ]);
+
+    let age = calculateAge("2006-06-12");
 </script>
 
-<div id="profile" class="container mx-auto my-8">
-    <div class="profile-column">
+<div id="profile" class="mx-auto my-8 min-h-screen container">
+    <div class="profile-column prose dark:prose-invert max-w-none">
         <!-- -->
         <!-- header -->
         <!-- -->
@@ -50,11 +52,11 @@
         <!-- -->
         <div id="profile-about" class="grid-flex glossy-tile">
             <p>
-                {m.profile_description()}
+                {m.profile_description({ age })}
             </p>
         </div>
     </div>
-    <div class="profile-column">
+    <div class="profile-column prose dark:prose-invert max-w-none">
         <div id="profile-skills" class="glossy-tile">
             <!-- -->
             <!-- skills -->
@@ -62,25 +64,25 @@
             <h3><i class="fa-solid fa-star"></i> {m.profile_tools_fav()}</h3>
             <div class="skill-wrapper">
                 <ProgLang name="py"></ProgLang>
-                <ProgLang name="sql"></ProgLang>
                 <ProgLang name="flutter"></ProgLang>
                 <ProgLang name="dart"></ProgLang>
                 <ProgLang name="svelte"></ProgLang>
                 <ProgLang name="ts"></ProgLang>
                 <ProgLang name="css"></ProgLang>
+                <ProgLang name="rust"></ProgLang>
+                <ProgLang name="postgresql"></ProgLang>
             </div>
 
             <h3><i class="fa-solid fa-code"></i> {m.profile_tools_prog()}</h3>
             <div class="skill-wrapper">
                 <ProgLang name="js"></ProgLang>
                 <ProgLang name="html"></ProgLang>
+                <ProgLang name="laravel"></ProgLang>
+                <ProgLang name="sql"></ProgLang>
                 <ProgLang name="php"></ProgLang>
-                <ProgLang name="angular"></ProgLang>
-                <ProgLang name="thymeleaf"></ProgLang>
                 <ProgLang name="java"></ProgLang>
                 <ProgLang name="cpp"></ProgLang>
                 <ProgLang name="go"></ProgLang>
-                <ProgLang name="openGL"></ProgLang>
                 <ProgLang name="pygame"></ProgLang>
             </div>
             <h3>
@@ -90,8 +92,6 @@
             <div class="skill-wrapper">
                 <ProgLang name="linux"></ProgLang>
                 <ProgLang name="windows"></ProgLang>
-                <ProgLang name="archlinux"></ProgLang>
-                <ProgLang name="ubuntu"></ProgLang>
             </div>
             <h3>
                 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -102,6 +102,8 @@
                 <ProgLang name="docker"></ProgLang>
                 <ProgLang name="vscode"></ProgLang>
                 <ProgLang name="raspberrypi"></ProgLang>
+                <ProgLang name="github"></ProgLang>
+                <ProgLang name="figma"></ProgLang>
             </div>
         </div>
         <!-- -->
@@ -131,7 +133,7 @@
         </div>
     </div>
 
-    <div class="profile-column">
+    <div class="profile-column prose dark:prose-invert max-w-none">
         <!-- -->
         <!-- experience -->
         <!-- -->

@@ -5,7 +5,7 @@
 	"hero_button_main": "Discover more",
 	"hero_button_secondary": "View my CV",
 	"profile_title": "My digital profile",
-	"profile_description": "I'm 18 years old and have found love in programming. I've been experimenting with technology from a young age. Currently I like to make projects with a variety of programming languages.",
+	"profile_description": "I'm {age} years old and have found love in programming. I've been experimenting with technology from a young age. Currently I like to make projects with a variety of programming languages.",
 	"profile_tools_fav": "My favorite languages",
 	"profile_tools_prog": "Programming languages",
 	"profile_tools_os": "Operating systems",
@@ -25,5 +25,7 @@
 	"profile_uni_title": "University",
 	"profile_uni_content_0": "1st year of Applied Computer Science at Thomas More",
 	"profile_uni_content_1": "Studying for a Bachelor in Applied Computer Science",
-	"profile_save": "Save"
+	"profile_save": "Save",
+	"projects_highlighted_title": "Highlighted projects",
+	"projects_highlighted_description": "Here are some of my favorite projects I've worked on."
 }
