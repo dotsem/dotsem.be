@@ -49,8 +49,10 @@
                 <Button class="px-8 font-bold" href="#profile"
                     >{hero_button_main()}</Button
                 >
-                <Button class="px-8 font-bold" variant="secondary"
-                    >{hero_button_secondary()}</Button
+                <Button
+                    class="px-8 font-bold"
+                    href="#contact"
+                    variant="secondary">{hero_button_secondary()}</Button
                 >
             </div>
         </div>
