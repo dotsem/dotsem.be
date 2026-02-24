@@ -55,6 +55,9 @@
             </div>
         </div>
     </div>
+    <div
+        class="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-t from-background to-transparent"
+    ></div>
 </div>
 
 <style>
