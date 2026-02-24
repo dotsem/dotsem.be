@@ -7,6 +7,8 @@
 
 * {
   scroll-behavior: smooth;
+  /* navbar height (64px) + 8px padding */
+  scroll-padding-top: 70px;
 }
 
 :root {
