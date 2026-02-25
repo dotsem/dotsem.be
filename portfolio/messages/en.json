@@ -43,5 +43,7 @@
 	"footer_credits": "Made with ❤️ by",
 	"footer_email": "contact me via email",
 	"projects_empty_title": "Under construction... or forgotten?",
-	"projects_empty_description": "The documentation for this project is still in the making. I'm probably distracted by a shiny new framework. Check back later!"
+	"projects_empty_description": "The documentation for this project is still in the making. I'm probably distracted by a shiny new framework. Check back later!",
+	"contact_success": "Message sent successfully! Thank you.",
+	"contact_error": "Something went wrong. Please try again or message me via LinkedIn."
 }

@@ -9,6 +9,8 @@
         contact_message_label,
         contact_message_placeholder,
         contact_button_send,
+        contact_success,
+        contact_error,
     } from "$lib/paraglide/messages.js";
 
     let status = $state("idle"); // 'idle' | 'sending' | 'success' | 'error'
@@ -112,13 +114,13 @@
             <div
                 class="p-3 rounded-md bg-green-500/10 text-green-500 text-sm border border-green-500/20"
             >
-                Message sent successfully! Thank you.
+                {contact_success()}
             </div>
         {:else if status === "error"}
             <div
                 class="p-3 rounded-md bg-red-500/10 text-red-500 text-sm border border-red-500/20"
             >
-                Something went wrong. Please try again or email me directly.
+                {contact_error()}
             </div>
         {/if}
 
