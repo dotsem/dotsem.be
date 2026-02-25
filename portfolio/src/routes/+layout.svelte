@@ -31,7 +31,7 @@
     <main class="pt-16">{@render children()}</main>
     <div style="display:none">
         {#each availableLanguageTags as locale}
-            <a href={i18n.resolveRoute(page.url.pathname, locale)}>
+            <a href={i18n.resolveRoute(i18n.route(page.url.pathname), locale)}>
                 {locale}
             </a>
         {/each}
