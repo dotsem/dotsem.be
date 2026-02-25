@@ -18,6 +18,11 @@
     );
 </script>
 
+<svelte:head>
+    <title>Sem Van Broekhoven</title>
+    <meta name="description" content="Portfolio of Sem Van Broekhoven" />
+</svelte:head>
+
 <Hero />
 <Profile />
 
