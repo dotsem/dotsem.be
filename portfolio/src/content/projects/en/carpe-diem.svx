@@ -1,0 +1,10 @@
+---
+title: Carpe Diem
+slug: carpe-diem
+image: /projects/Carpe-diem/logo.png
+description: A handy planning app to plan day by day and track your projects.
+languages:
+  - dart
+  - flutter
+highlighted: true
+---

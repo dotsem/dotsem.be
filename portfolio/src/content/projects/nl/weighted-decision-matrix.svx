@@ -1,0 +1,9 @@
+---
+title: Weighted Decision Matrix
+slug: weighted-decision-matrix
+image: /projects/Weighted-decision-matrix/logo.png
+description: Een handige website om makkelijk weighted decision matrices te maken en te exporteren naar markdown.
+languages:
+  - svelte
+highlighted: true
+---

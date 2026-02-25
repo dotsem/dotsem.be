@@ -41,5 +41,7 @@
 	"contact_button_send": "Send Message",
 	"footer_copyright": "Copyright © {year} Sem Van Broekhoven",
 	"footer_credits": "Made with ❤️ by",
-	"footer_email": "contact me via email"
+	"footer_email": "contact me via email",
+	"projects_empty_title": "Under construction... or forgotten?",
+	"projects_empty_description": "The documentation for this project is still in the making. I'm probably distracted by a shiny new framework. Check back later!"
 }

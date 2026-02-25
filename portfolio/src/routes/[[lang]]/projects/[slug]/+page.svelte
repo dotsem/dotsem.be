@@ -1,10 +1,11 @@
 <script lang="ts">
     import ProgLang from "$lib/components/ProgLang.svelte";
-    import { getProjectBySlug } from "$lib/projects";
+    import * as m from "$lib/paraglide/messages";
+    import HardHat from "@lucide/svelte/icons/hard-hat";
 
     let { data } = $props();
 
-    const project = $derived(getProjectBySlug(data.lang, data.slug));
+    const Component = $derived(data.metadata.component);
 </script>
 
 <svelte:head>
@@ -40,9 +41,19 @@
 </div>
 
 <article class="prose dark:prose-invert lg:prose-xl mx-auto py-10 px-4 md:px-0">
-    {#await project then p}
-        {#if p}
-            <p.component />
-        {/if}
-    {/await}
+    {#if data.metadata.hasContent}
+        <Component />
+    {:else}
+        <div
+            class="flex flex-col items-center justify-center py-20 text-center opacity-70"
+        >
+            <i class="fa-solid fa-hard-hat fa-bounce text-6xl"></i>
+            <h2 class="text-3xl font-bold m-0 mb-4 mt-8">
+                {m.projects_empty_title()}
+            </h2>
+            <p class="text-xl max-w-lg m-0">
+                {m.projects_empty_description()}
+            </p>
+        </div>
+    {/if}
 </article>

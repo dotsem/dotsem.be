@@ -1,0 +1,11 @@
+---
+title: StrateGO
+slug: stratego
+image: /projects/stratego/logo.png
+description: Een stratego spel dat je laat spelen tegen verschillende AI's of zelfs je eigen AI traint.
+languages:
+  - svelte
+  - go
+  - postgresql
+highlighted: true
+---
