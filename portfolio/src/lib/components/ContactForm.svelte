@@ -10,6 +10,36 @@
         contact_message_placeholder,
         contact_button_send,
     } from "$lib/paraglide/messages.js";
+
+    let status = $state("idle"); // 'idle' | 'sending' | 'success' | 'error'
+
+    async function handleSubmit(event: SubmitEvent) {
+        event.preventDefault();
+        status = "sending";
+
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams(formData as any).toString(),
+            });
+
+            if (response.ok) {
+                status = "success";
+                form.reset();
+            } else {
+                status = "error";
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            status = "error";
+        }
+    }
 </script>
 
 <div class="bg-card rounded-xl shadow-sm border p-6 md:p-8">
@@ -26,6 +56,7 @@
         data-netlify="true"
         netlify-honeypot="bot-field"
         class="space-y-4"
+        onsubmit={handleSubmit}
     >
         <input type="hidden" name="form-name" value="contact" />
         <p hidden>
@@ -41,6 +72,7 @@
                 id="name"
                 name="name"
                 required
+                disabled={status === "sending"}
                 class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder={contact_name_placeholder()}
             />
@@ -55,6 +87,7 @@
                 id="email"
                 name="email"
                 required
+                disabled={status === "sending"}
                 class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder={contact_email_placeholder()}
             />
@@ -68,17 +101,33 @@
                 id="message"
                 name="message"
                 required
+                disabled={status === "sending"}
                 rows="4"
                 class="flex min-h-[80px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder={contact_message_placeholder()}
             ></textarea>
         </div>
 
+        {#if status === "success"}
+            <div
+                class="p-3 rounded-md bg-green-500/10 text-green-500 text-sm border border-green-500/20"
+            >
+                Message sent successfully! Thank you.
+            </div>
+        {:else if status === "error"}
+            <div
+                class="p-3 rounded-md bg-red-500/10 text-red-500 text-sm border border-red-500/20"
+            >
+                Something went wrong. Please try again or email me directly.
+            </div>
+        {/if}
+
         <button
             type="submit"
+            disabled={status === "sending"}
             class="inline-flex w-full items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 mt-2"
         >
-            {contact_button_send()}
+            {status === "sending" ? "Sending..." : contact_button_send()}
         </button>
     </form>
 </div>
