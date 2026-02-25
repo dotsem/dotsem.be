@@ -1,0 +1,31 @@
+---
+title: Waaiburg Mobile App
+slug: waaiburg-app
+image: /projects/Waaiburg-app/logo.png
+description: Performance analysis, updates & new features for the Waaiburg mobile app.
+languages:
+  - flutter
+  - dart
+highlighted: false
+---
+
+# Waaiburg Mobile App
+
+One of the projects I worked on in Digital Innovation was the Waaiburg mobile app. 
+The app already existed, but the client requested the addition of a customizable avatar.
+
+## The Avatar
+
+The avatar is a 2D character that can be customized by the user. 
+The user can change the color of the hair, eyes, nose, mouth, and body. 
+The user can also change the shape of the hair, eyes, nose, mouth, and body.
+
+## Performance Updates
+
+While working on the project I noticed that the app could be optimized.
+I started by analyzing the app and found that the app was not using the latest version of flutter.
+I updated the app to the latest version of flutter and optimized the app.
+
+Then I added content & image caching, this improved the performance of the app significantly.
+
+I also updated the "levensboom" interface by adding the feature to answer multiple questions per growth stage in one page.

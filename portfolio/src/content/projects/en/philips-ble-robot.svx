@@ -1,0 +1,19 @@
+---
+title: Philips BLE Robot
+slug: philips-ble-robot
+image: /projects/Philips-BLE-robot/logo.png
+description: A project made during my internship at Philips Eindhoven. Combining their embedded bluetooth library to control a simple robot via bluetooth via a custom mobile app.
+languages:
+  - cpp
+  - dart
+  - flutter
+highlighted: true
+---
+
+# Philips BLE Robot
+
+During my 2 week internship at Philips Eindhoven, 
+I was tasked use the [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main) 
+library, a heapless C++ library for embedded systems, to control a simple robot via Bluetooth. 
+
+The next step was to create a mobile application to control the robot. I used Flutter for this purpose. 

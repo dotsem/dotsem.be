@@ -1,0 +1,28 @@
+---
+title: Smart Jack
+slug: smart-jack
+image: /projects/Smart-jack/logo.jpg
+description: An IOT project including an custom blackjack game made with pygame, running on a raspberry pi. It includes an eID card reader to identify the player.
+languages:
+  - pygame
+  - raspberrypi
+  - py
+highlighted: true
+---
+
+# Smart Jack
+
+> the Smart Blackjack Table
+
+Smart Jack is a project I made during my first year of college. It is a blackjack game that is controlled by a raspberry pi. It includes an eID card reader to identify the player. 
+It features a custom python game made with pygame. It is optimized to run on a raspberry pi 4 while retaining a smooth 60fps experience.
+
+## Features
+
+- Custom blackjack algorithm
+- Smooth animations
+- eID card reader integration
+- Buttons for hit, stand, double down, split
+- Buttons controlled via bluetooth
+- Grafana dashboard for statistics
+

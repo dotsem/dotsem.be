@@ -1,0 +1,31 @@
+---
+title: Waaiburg Mobiele App
+slug: waaiburg-app
+image: /projects/Waaiburg-app/logo.png
+description: Performance analyse, updates & nieuwe features voor de Waaiburg mobiele app.
+languages:
+  - flutter
+  - dart
+highlighted: false
+---
+
+# Waaiburg Mobiele App
+
+Een van de projecten die ik heb gemaakt tijdens mijn eerste jaar van de hogeschool was de Waaiburg mobiele app. 
+De app bestond al, maar de klant vroeg om de toevoeging van een aanpasbare avatar.
+
+## De Avatar
+
+De avatar is een 2D karakter dat door de gebruiker kan worden aangepast. 
+De gebruiker kan de kleur van het haar, de ogen, de neus, de mond en het lichaam veranderen. 
+De gebruiker kan ook de vorm van het haar, de ogen, de neus, de mond en het lichaam veranderen.
+
+## Performance Updates
+
+Terwijl ik aan het project werkte, merkte ik dat de app geoptimaliseerd kon worden.
+Ik begon met het analyseren van de app en ontdekte dat de app niet de nieuwste versie van flutter gebruikte.
+Ik heb de app bijgewerkt naar de nieuwste versie van flutter en de app geoptimaliseerd.
+
+Toen voegde ik content & image caching toe, dit verbeterde de prestaties van de app aanzienlijk.
+
+Ik heb ook de "levensboom" interface bijgewerkt door de functie toe te voegen om meerdere vragen per groeifase op één pagina te beantwoorden.

@@ -1,0 +1,19 @@
+---
+title: Philips BLE Robot
+slug: philips-ble-robot
+image: /projects/Philips-BLE-robot/logo.png
+description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun embedded bluetooth library gecombineerd met een custom mobiele app om een simpele robot via bluetooth aan te sturen.
+languages:
+  - cpp
+  - dart
+  - flutter
+highlighted: true
+---
+
+# Philips BLE Robot
+
+Tijdens mijn 2 weekse stage bij Philips Eindhoven, 
+werd ik ingezet om de [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main) 
+library, een heapless C++ library voor embedded systemen, te gebruiken om een simpele robot via Bluetooth aan te sturen. 
+
+De volgende stap was om een mobiele applicatie te maken om de robot aan te sturen. Ik heb hiervoor Flutter gebruikt. 
