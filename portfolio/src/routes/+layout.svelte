@@ -5,7 +5,7 @@
     import { page } from "$app/state";
     import "./layout.css";
     import favicon from "$lib/assets/favicon.png";
-    import Navbar from "$lib/components/ui/Navbar.svelte";
+    import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
 
