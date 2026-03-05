@@ -1,0 +1,9 @@
+---
+title: {title}
+slug: {slug}
+image: /projects/{slug}/logo.png
+description: 
+languages:
+
+highlighted: false
+---
