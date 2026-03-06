@@ -163,6 +163,88 @@
             fullName: "Windows",
             color: "#0078D6", // Windows blue
         },
+        k8s: {
+            deviconName: "kubernetes",
+            fullName: "Kubernetes",
+            color: "#326CE5", // Kubernetes blue
+        },
+        bash: {
+            deviconName: "bash",
+            fullName: "Bash",
+            color: "#4EAA25", // Bash green
+        },
+        arch: {
+            deviconName: "archlinux",
+            fullName: "Arch Linux",
+            color: "#1793D1", // Arch Linux blue
+        },
+        django: {
+            deviconName: "django",
+            fullName: "Django",
+            color: "#092E20", // Django green
+        },
+        git: {
+            deviconName: "git",
+            fullName: "Git",
+            color: "#F05032", // Git orange
+        },
+        markdown: {
+            deviconName: "markdown",
+            fullName: "Markdown",
+            color: "#0091FF", // Markdown blue
+        },
+        nano: {
+            deviconName: "nano",
+            fullName: "Nano",
+            color: "#0091FF", // Nano blue
+        },
+        neovim: {
+            deviconName: "neovim",
+            fullName: "Neovim",
+            color: "#39B012", // Neovim green
+        },
+        nixos: {
+            deviconName: "nixos",
+            fullName: "NixOS",
+            color: "#7300FF", // NixOS purple
+        },
+        proxmox: {
+            deviconName: "proxmox",
+            fullName: "Proxmox",
+            color: "#F06E32", // Proxmox orange
+        },
+        uml: {
+            deviconName: "unifiedmodelinglanguage",
+            fullName: "UML",
+            color: "#FCC624", // UML yellow
+            darkText: true,
+        },
+        supabase: {
+            deviconName: "supabase",
+            fullName: "Supabase",
+            color: "#3ECF8E", // Supabase green
+            darkText: true,
+        },
+        debian: {
+            deviconName: "debian",
+            fullName: "Debian",
+            color: "#A80030", // Debian red
+        },
+        grafana: {
+            deviconName: "grafana",
+            fullName: "Grafana",
+            color: "#F06E32", // Grafana orange
+        },
+        gitlab: {
+            deviconName: "gitlab",
+            fullName: "GitLab",
+            color: "#F06E32", // GitLab orange
+        },
+        bun: {
+            deviconName: "bun",
+            fullName: "Bun",
+            color: "#000000", // Bun black
+        },
         unknown: {
             deviconName: "bub",
             fullName: "Unknown",

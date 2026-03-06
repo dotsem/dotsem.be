@@ -184,6 +184,78 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+
+  @keyframes who-image-border {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes who-image-popup {
+    0% {
+      clip-path: inset(0 0 100% 0);
+      transform: translateY(100%);
+    }
+
+    100% {
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0%);
+    }
+  }
+}
+
+@layer components {
+  .glossy-tile {
+    background-color: var(--card);
+    backdrop-filter: blur(var(--blur-sm));
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .glossy-tile:hover {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--primary) 2px 2px 16px 0px;
+  }
+
+  /* Profile Animations */
+  #profile-who-image-container {
+    img {
+      clip-path: inset(0 0 100% 0);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    &.ob-show>img {
+      animation: who-image-popup 1200ms forwards ease-in-out;
+      animation-delay: 800ms;
+    }
+
+    &.ob-hide>img {
+      transform: scaleX(0);
+    }
+
+    &.ob-show>div {
+      animation: who-image-border 800ms forwards ease-in-out;
+    }
+
+    &.ob-hide>div {
+      clip-path: inset(0 0 100% 0);
+      transform: translateY(100%);
+    }
+
+    >div {
+      width: 80%;
+      height: 5px;
+      transform: scaleX(0);
+      background-color: var(--secondary);
+    }
+  }
 }
 
 @layer base {
