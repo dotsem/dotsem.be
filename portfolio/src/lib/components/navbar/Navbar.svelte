@@ -22,7 +22,7 @@
 >
     <a
         href={i18n.resolveRoute("/", currentLang)}
-        class="font-bold text-primary text-5xl">dotsem.</a
+        class="font-bold no-underline text-primary text-5xl">dotsem.</a
     >
 
     {#if width > 900}

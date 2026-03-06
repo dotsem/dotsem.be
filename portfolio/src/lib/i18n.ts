@@ -14,6 +14,14 @@ export const i18n = createI18n(runtime, {
         '/projects/[slug]': {
             en: '/projects/[slug]',
             nl: '/projecten/[slug]'
+        },
+        '/cookies': {
+            en: '/cookies',
+            nl: '/cookies'
+        },
+        '/privacy': {
+            en: '/privacy',
+            nl: '/privacy'
         }
     },
     prefixDefaultLanguage: 'always'

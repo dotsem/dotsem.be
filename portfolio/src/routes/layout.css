@@ -265,6 +265,15 @@
 
   body {
     @apply bg-background text-foreground;
+    height: 100%;
+  }
+
+  html {
+    height: 100%;
+  }
+
+  a {
+    @apply text-secondary transition-all duration-300 hover:text-primary hover:decoration-primary decoration-secondary/50 underline decoration-2;
   }
 
   .prose {

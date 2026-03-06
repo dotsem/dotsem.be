@@ -28,11 +28,5 @@
     .nav-links a {
         padding-left: 1rem;
         padding-right: 1rem;
-        color: var(--secondary);
-        text-decoration: underline;
-
-        &:hover {
-            color: var(--secondary-hover);
-        }
     }
 </style>

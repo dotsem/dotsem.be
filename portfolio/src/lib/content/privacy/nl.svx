@@ -1,0 +1,43 @@
+# Privacybeleid
+*Laatst bijgewerkt: 6 maart 2026*
+
+## 1. Inleiding
+Ik hecht veel waarde aan uw privacy en zet me in voor de bescherming van uw persoonlijke gegevens. Dit beleid beschrijft hoe ik met uw informatie omga wanneer u mijn website bezoekt of mijn diensten inschakelt voor web-, app- of aangepaste softwareontwikkeling.
+
+## 2. Gegevens die ik verzamel
+Als individuele ontwikkelaar verzamel ik alleen de minimale hoeveelheid gegevens die nodig is om mijn diensten te verlenen:
+
+- **Contactgegevens:** Naam, e-mailadres en eventuele projectdetails die u verstrekt via mijn contactformulier of e-mail.
+- **Technische Gegevens:** IP-adres, browsertype en gebruiksgegevens (verzameld via cookies) om de prestaties van de website te verbeteren.
+- **Projectgegevens:** Technische specificaties en assets die worden gedeeld tijdens de ontwikkeling van uw software.
+
+## 3. Hoe ik uw gegevens gebruik
+Ik gebruik uw informatie uitsluitend voor:
+- Communicatie met u over uw vragen of lopende projecten.
+- Ontwikkelen, testen en implementeren van uw software, website of app.
+- Facturering en administratieve doeleinden.
+- Het verbeteren van de gebruikerservaring van mijn website.
+
+## 4. Gegevensopslag en Beveiliging
+Ik implementeer beveiligingsmaatregelen die voldoen aan de industriestandaard om uw gegevens te beschermen.
+
+- **Infrastructuur:** Mijn website en databases worden gehost in beveiligde, gecontaineriseerde omgevingen.
+- **Derden:** Ik kan gebruikmaken van vertrouwde diensten van derden voor hosting of analyse. Deze aanbieders hebben hun eigen strikte privacy-normen.
+- **Gegevenseigendom:** U behoudt de volledige eigendom van het intellectuele eigendom en de gegevens verbonden aan uw softwareprojecten.
+
+## 5. Gegevens delen
+Ik verkoop, verhandel of verhuur uw persoonlijke informatie niet aan derden. Ik deel gegevens alleen wanneer dit nodig is om:
+- Te voldoen aan wettelijke verplichtingen.
+- Gebruik te maken van tools van derden die vereist zijn voor uw project (bijv. cloudhostingproviders).
+
+## 6. Uw Rechten
+Afhankelijk van uw locatie heeft u de volgende rechten:
+- **Toegang:** Een kopie opvragen van de gegevens die ik over u bewaar.
+- **Correctie:** Verzoeken dat ik onjuiste informatie corrigeer.
+- **Verwijdering:** Verzoeken dat ik uw persoonlijke gegevens verwijder.
+- **Overdraagbaarheid:** Een overdracht van uw gegevens naar een andere aanbieder aanvragen.
+
+## 7. Contact
+Als u vragen heeft over dit Privacybeleid, neem dan contact met mij op via:
+- **E-mail:** Niet beschikbaar momenteel
+- **Bedrijf:** dotsem

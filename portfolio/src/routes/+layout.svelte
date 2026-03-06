@@ -8,6 +8,7 @@
     import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
+    import CookieConsent from "$lib/components/cookie-consent/CookieConsent.svelte";
 
     let { children } = $props();
 </script>
@@ -27,14 +28,22 @@
 <ModeWatcher defaultMode="dark" />
 
 <ParaglideJS {i18n}>
-    <Navbar />
-    <main class="pt-16">{@render children()}</main>
-    <div style="display:none">
-        {#each availableLanguageTags as locale}
-            <a href={i18n.resolveRoute(i18n.route(page.url.pathname), locale)}>
-                {locale}
-            </a>
-        {/each}
+    <div class="flex flex-col min-h-screen">
+        <Navbar />
+        <main class="pt-16 flex-1">{@render children()}</main>
+        <div style="display:none">
+            {#each availableLanguageTags as locale}
+                <a
+                    href={i18n.resolveRoute(
+                        i18n.route(page.url.pathname),
+                        locale,
+                    )}
+                >
+                    {locale}
+                </a>
+            {/each}
+        </div>
+        <Footer />
     </div>
-    <Footer />
+    <CookieConsent />
 </ParaglideJS>

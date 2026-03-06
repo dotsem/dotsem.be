@@ -45,5 +45,19 @@
 	"projects_empty_title": "In aanbouw... of vergeten?",
 	"projects_empty_description": "De documentatie voor dit project is nog in de maak. Ik ben waarschijnlijk afgeleid door een glimmend nieuw framework. Kom later nog eens terug!",
 	"contact_success": "Bericht succesvol verzonden! Bedankt.",
-	"contact_error": "Er ging iets mis. Probeer het opnieuw of stuur me een bericht via LinkedIn."
+	"contact_error": "Er ging iets mis. Probeer het opnieuw of stuur me een bericht via LinkedIn.",
+	"cookie_banner_title": "Cookie Instellingen",
+	"cookie_banner_message": "Ik gebruik cookies om uw ervaring te verbeteren en uw taalvoorkeur te onthouden.",
+	"cookie_banner_accept": "Accepteren",
+	"cookie_banner_decline": "Weigeren",
+	"cookie_banner_more": "Meer informatie",
+	"cookie_page_title": "Cookie Privacy",
+	"cookie_page_description": "Informatie over hoe we cookies gebruiken op deze website.",
+	"cookie_list_title": "Cookies die we gebruiken",
+	"cookie_list_inlang": "Taalvoorkeur",
+	"cookie_list_inlang_desc": "Wordt gebruikt om uw geselecteerde taal te onthouden bij volgende bezoeken.",
+	"cookie_list_consent": "Cookie Toestemming",
+	"cookie_list_consent_desc": "Wordt gebruikt om te onthouden of u ons cookiebeleid heeft geaccepteerd of geweigerd.",
+	"privacy_page_title": "Privacybeleid",
+	"privacy_page_description": "Informatie over het privacybeleid van deze website."
 }

@@ -1,13 +1,15 @@
 <script lang="ts">
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
     import { Button } from "./ui/button";
     import {
         footer_copyright,
         footer_credits,
         footer_email,
     } from "$lib/paraglide/messages";
+    import { i18n } from "$lib/i18n";
 
-    let isContactPage = $derived($page.url.pathname === "/contact");
+    let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
+    let isContactPage = $derived(page.url.pathname === "/contact");
 </script>
 
 <footer>
@@ -15,39 +17,46 @@
         <p>{footer_copyright({ year: new Date().getFullYear() })}</p>
         <p>
             {footer_credits()}
-            <a href="/about-me" class="underline">Sem Van Broekhoven</a>
+            <a href="/about-me" class="font-bold">Sem Van Broekhoven</a>
         </p>
     </div>
-    {#if !isContactPage}
-        <div class="contact">
-            <!-- <Button href="/contact">{footer_email}</Button> -->
-            <div class="socials">
-                <a
-                    href="https://github.com/dotsem"
-                    target="_blank"
-                    aria-label="Github"><i class="fa-brands fa-github"></i></a
-                >
-                <a
-                    href="https://www.linkedin.com/in/sem-van-broekhoven/"
-                    target="_blank"
-                    aria-label="LinkedIn"
-                    ><i class="fa-brands fa-linkedin"></i></a
-                >
-                <a
-                    href="https://www.instagram.com/sem_van_broekhoven/"
-                    target="_blank"
-                    aria-label="Instagram"
-                    ><i class="fa-brands fa-instagram"></i></a
-                >
-                <a
-                    href="https://www.facebook.com/profile.php?id=100089528472654"
-                    target="_blank"
-                    aria-label="Facebook"
-                    ><i class="fa-brands fa-facebook"></i></a
-                >
+    <div class="flex justify-center flex-col gap-2">
+        {#if !isContactPage}
+            <div class="contact">
+                <!-- <Button href="/contact">{footer_email}</Button> -->
+                <div class="socials">
+                    <a
+                        href="https://github.com/dotsem"
+                        target="_blank"
+                        aria-label="Github"
+                        ><i class="fa-brands fa-github"></i></a
+                    >
+                    <a
+                        href="https://www.linkedin.com/in/sem-van-broekhoven/"
+                        target="_blank"
+                        aria-label="LinkedIn"
+                        ><i class="fa-brands fa-linkedin"></i></a
+                    >
+                    <a
+                        href="https://www.instagram.com/sem_van_broekhoven/"
+                        target="_blank"
+                        aria-label="Instagram"
+                        ><i class="fa-brands fa-instagram"></i></a
+                    >
+                    <a
+                        href="https://www.facebook.com/profile.php?id=100089528472654"
+                        target="_blank"
+                        aria-label="Facebook"
+                        ><i class="fa-brands fa-facebook"></i></a
+                    >
+                </div>
             </div>
+        {/if}
+        <div class="flex gap-4">
+            <a href={i18n.resolveRoute("/cookies", currentLang)}>Cookies</a>
+            <a href={i18n.resolveRoute("/privacy", currentLang)}>Privacy</a>
         </div>
-    {/if}
+    </div>
 
     <div id="footer-filler" class="slanted"></div>
 </footer>
@@ -77,17 +86,6 @@
 
                 p {
                     padding: 4px 0;
-                }
-
-                a {
-                    transition: color 500ms;
-                    color: var(--secondary);
-                    font-weight: 800;
-
-                    &:hover {
-                        transition: color 500ms;
-                        color: var(--secondary);
-                    }
                 }
             }
 
