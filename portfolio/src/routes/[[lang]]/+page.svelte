@@ -66,9 +66,5 @@
         <AboutMe />
     </div>
 
-    <section id="contact" class="bg-background w-full py-24">
-        <div class="container mx-auto max-w-xl px-4 md:px-0">
-            <ContactForm />
-        </div>
-    </section>
+    <ContactForm />
 </main>
