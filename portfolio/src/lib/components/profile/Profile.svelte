@@ -22,7 +22,7 @@
         m.profile_uni_content_1(),
     ]);
 
-    let age = calculateAge("2006-06-12");
+    let age = calculateAge("2006-08-31");
 
     let observerElement: HTMLElement;
     let isVisible = $state(false);
@@ -45,7 +45,7 @@
 
 <div
     id="profile"
-    class="container mx-auto my-8 grid min-h-[70vh] w-full grid-cols-1 gap-4 text-foreground max-[650px]:block max-[650px]:p-[10px] min-[650px]:max-[1024px]:min-h-screen min-[650px]:max-[1024px]:grid-cols-2 min-[650px]:max-[1024px]:grid-rows-[2fr_1fr] lg:grid-cols-3"
+    class="container mx-auto py-8 grid min-h-[70vh] w-full grid-cols-1 gap-4 text-foreground max-[650px]:block max-[650px]:p-[10px] min-[650px]:max-[1024px]:min-h-screen min-[650px]:max-[1024px]:grid-cols-2 min-[650px]:max-[1024px]:grid-rows-[2fr_1fr] lg:grid-cols-3"
 >
     <!-- Column 1 -->
     <div

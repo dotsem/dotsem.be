@@ -28,7 +28,7 @@
     import { onMount } from "svelte";
 </script>
 
-<div id="hero" class="relative">
+<div id="hero" class="relative bg-background">
     <img
         src={heroImage}
         alt="Hero"

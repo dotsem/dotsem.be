@@ -59,5 +59,15 @@
 	"cookie_list_consent": "Cookie Consent",
 	"cookie_list_consent_desc": "Used to remember if you have accepted or declined our cookie policy.",
 	"privacy_page_title": "Privacy Policy",
-	"privacy_page_description": "Information about the privacy policy of this website."
+	"privacy_page_description": "Information about the privacy policy of this website.",
+	"about_me_title": "About me",
+	"about_me_who_am_i_title": "Who am I?",
+	"about_me_who_am_i_content": "I'm an {age} year old programmer who has found love in programming. I've been experimenting with technology from a young age. Currently I like to make projects with a variety of programming languages. Apart from programming, I like to play the guitar & listen to music. I'm a scuba diver & ex-competitive swimmer.",
+	"about_me_all_about_tech_title": "All about tech",
+	"about_me_all_about_tech_content": "I've been programming for 4+ years. I've been experimenting with a wide range of programming languages and am interested in multiple different fields. I currently using CachyOS (Linux) with Niri.",
+	"about_me_hobbies_title": "Hobbies",
+	"about_me_hobbies_content": "I'm an amateur photographer who likes to take photographs of nature and urban scenes. I play guitar for 5+ years and love to play rock & metal songs.",
+	"hiring_talent": "Hiring Talent?",
+	"hiring_talent_action_secondary": "Contact me!",
+	"hiring_talent_action_primary": "Follow me on LinkedIn!"
 }
