@@ -4,6 +4,7 @@
     import {
         navbar_profile,
         navbar_projects,
+        navbar_blog,
         navbar_contact,
     } from "$lib/paraglide/messages.js";
 
@@ -18,6 +19,9 @@
     </a>
     <a href={i18n.resolveRoute("/projects", currentLang)}>
         {navbar_projects(undefined, { languageTag: currentLang })}
+    </a>
+    <a href={i18n.resolveRoute("/blog", currentLang)}>
+        {navbar_blog(undefined, { languageTag: currentLang })}
     </a>
     <a href={i18n.resolveRoute("/#contact", currentLang)}>
         {navbar_contact(undefined, { languageTag: currentLang })}
