@@ -11,6 +11,8 @@
     import CookieConsent from "$lib/components/cookie-consent/CookieConsent.svelte";
 
     let { children } = $props();
+
+    let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
 </script>
 
 <svelte:head>
@@ -23,6 +25,10 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
+
+    {#if currentLang === "nl"}
+        <meta name="google" content="notranslate" />
+    {/if}
 </svelte:head>
 
 <ModeWatcher defaultMode="dark" />
