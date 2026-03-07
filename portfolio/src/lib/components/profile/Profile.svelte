@@ -162,6 +162,7 @@
             <a
                 href="https://github.com/dotsem"
                 target="_blank"
+                rel="me"
                 aria-label="Github"
                 class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
                 ><i
@@ -171,6 +172,7 @@
             <a
                 href="https://www.linkedin.com/in/sem-van-broekhoven/"
                 target="_blank"
+                rel="me"
                 aria-label="LinkedIn"
                 class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
                 ><i
@@ -180,6 +182,7 @@
             <a
                 href="https://www.instagram.com/sem_van_broekhoven/"
                 target="_blank"
+                rel="me"
                 aria-label="Instagram"
                 class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
                 ><i
@@ -189,6 +192,7 @@
             <a
                 href="https://www.facebook.com/profile.php?id=100089528472654"
                 target="_blank"
+                rel="me"
                 aria-label="Facebook"
                 class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
                 ><i

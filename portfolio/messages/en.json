@@ -3,7 +3,7 @@
 	"navbar_projects": "My Projects",
 	"navbar_blog": "Blog",
 	"navbar_contact": "Contact me",
-	"hero_title": "Hi, I'm Sem!",
+	"hero_title": "Hi, I'm Sem<span class='sr-only'> Van Broekhoven</span>!",
 	"hero_subtitle": "Software engineer with a passion for building cool stuff.",
 	"hero_button_main": "Discover more",
 	"hero_button_secondary": "Contact me",

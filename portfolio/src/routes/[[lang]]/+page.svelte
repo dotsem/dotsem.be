@@ -20,8 +20,26 @@
 </script>
 
 <svelte:head>
-    <title>Sem Van Broekhoven</title>
-    <meta name="description" content="Portfolio of Sem Van Broekhoven" />
+    <title>Sem Van Broekhoven | Software Engineer Portfolio</title>
+    <meta
+        name="description"
+        content="Official portfolio of Sem Van Broekhoven, a software engineer specializing in building innovative technology solutions. Studying Digital Innovation at Thomas More. Discover my projects and blog posts."
+    />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Sem Van Broekhoven",
+            "url": "https://dotsem.be",
+            "jobTitle": "Software Engineer",
+            "sameAs": [
+                "https://github.com/dotsem",
+                "https://www.linkedin.com/in/sem-van-broekhoven/",
+                "https://www.instagram.com/sem_van_broekhoven/",
+                "https://www.facebook.com/profile.php?id=100089528472654"
+            ]
+        }
+    </script>
 </svelte:head>
 
 <main>

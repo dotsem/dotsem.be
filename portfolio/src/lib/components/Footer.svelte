@@ -28,24 +28,28 @@
                     <a
                         href="https://github.com/dotsem"
                         target="_blank"
+                        rel="me"
                         aria-label="Github"
                         ><i class="fa-brands fa-github"></i></a
                     >
                     <a
                         href="https://www.linkedin.com/in/sem-van-broekhoven/"
                         target="_blank"
+                        rel="me"
                         aria-label="LinkedIn"
                         ><i class="fa-brands fa-linkedin"></i></a
                     >
                     <a
                         href="https://www.instagram.com/sem_van_broekhoven/"
                         target="_blank"
+                        rel="me"
                         aria-label="Instagram"
                         ><i class="fa-brands fa-instagram"></i></a
                     >
                     <a
                         href="https://www.facebook.com/profile.php?id=100089528472654"
                         target="_blank"
+                        rel="me"
                         aria-label="Facebook"
                         ><i class="fa-brands fa-facebook"></i></a
                     >

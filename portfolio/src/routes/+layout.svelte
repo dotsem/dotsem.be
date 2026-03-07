@@ -29,6 +29,17 @@
     {#if currentLang === "nl"}
         <meta name="google" content="notranslate" />
     {/if}
+
+    <title>Sem Van Broekhoven</title>
+
+    <link rel="canonical" href="https://dotsem.be{page.url.pathname}" />
+
+    <meta name="author" content="Sem Van Broekhoven" />
+    <meta property="og:site_name" content="Sem Van Broekhoven Portfolio" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dotsem.be{page.url.pathname}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
 <ModeWatcher defaultMode="dark" />

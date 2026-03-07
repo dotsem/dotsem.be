@@ -30,7 +30,7 @@
             <h1
                 class="sm:text-right text-center text-5xl lg:text-7xl font-bold"
             >
-                {hero_title()}
+                {@html hero_title()}
             </h1>
             <p class="sm:text-right text-center text-xl">{hero_subtitle()}</p>
             <div class="flex gap-4 sm:justify-end justify-center">

@@ -3,7 +3,7 @@
 	"navbar_projects": "Mijn Projecten",
 	"navbar_blog": "Blog",
 	"navbar_contact": "Contacteer mij",
-	"hero_title": "Hoi, ik ben Sem!",
+	"hero_title": "Hoi, ik ben Sem<span class='sr-only'> Van Broekhoven</span>!",
 	"hero_subtitle": "Software engineer met een passie voor het bouwen van coole dingen.",
 	"hero_button_main": "Ontdek meer",
 	"hero_button_secondary": "Contacteer mij",
