@@ -45,7 +45,14 @@
 
 <div
     id="profile"
-    class="container mx-auto py-8 grid min-h-[70vh] w-full grid-cols-1 gap-4 text-foreground max-[650px]:block max-[650px]:p-[10px] min-[650px]:max-[1024px]:min-h-screen min-[650px]:max-[1024px]:grid-cols-2 min-[650px]:max-[1024px]:grid-rows-[2fr_1fr] lg:grid-cols-3"
+    class="container mx-auto py-8 grid min-h-[70vh]
+    w-full grid-cols-1 gap-4 text-foreground
+    min-[650px]:max-[1024px]:gap-y-0
+    max-[650px]:block max-[650px]:p-[10px]
+    min-[650px]:max-[1024px]:min-h-screen
+    min-[650px]:max-[1024px]:grid-cols-2
+    min-[650px]:max-[1024px]:grid-rows-[2fr_1fr]
+    lg:grid-cols-3"
 >
     <!-- Column 1 -->
     <div
@@ -225,7 +232,7 @@
         </div>
         <div
             id="profile-education"
-            class="glossy-tile m-0! col-span-4 row-span-2 p-4 min-[650px]:max-[1024px]:col-span-2"
+            class="glossy-tile m-0! col-span-4 row-span-3 p-4 min-[650px]:max-[1024px]:col-span-2"
         >
             <h3 class="mx-4 mb-1 mt-4">{m.profile_hs_title()}</h3>
             <ul>
