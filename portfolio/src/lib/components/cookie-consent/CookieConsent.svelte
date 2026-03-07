@@ -6,6 +6,7 @@
     import Card from "../ui/card/card.svelte";
     import Button from "../ui/button/button.svelte";
     import { CardFooter, CardHeader } from "../ui/card";
+    import { languageTag } from "$lib/paraglide/runtime";
 
     let visible = $state(false);
 
@@ -23,20 +24,28 @@
 
     function acceptCookies() {
         localStorage.setItem("cookie-consent", "true");
+        document.cookie =
+            "cookie-consent=true;max-age=31536000;path=/;SameSite=Lax";
+        // Also set paraglide_lang now that we have consent
+        document.cookie = `paraglide_lang=${languageTag()};max-age=31536000;path=/;SameSite=Lax`;
         visible = false;
     }
 
     function declineCookies() {
         localStorage.setItem("cookie-consent", "false");
+        document.cookie =
+            "cookie-consent=false;max-age=31536000;path=/;SameSite=Lax";
         visible = false;
         // Optionally delete cookies if they were already set
         document.cookie.split(";").forEach((c) => {
-            document.cookie = c
-                .replace(/^ +/, "")
-                .replace(
-                    /=.*/,
-                    "=;expires=" + new Date().toUTCString() + ";path=/",
-                );
+            const cookieName = c.split("=")[0].trim();
+            if (cookieName !== "cookie-consent") {
+                document.cookie =
+                    cookieName +
+                    "=;expires=" +
+                    new Date(0).toUTCString() +
+                    ";path=/";
+            }
         });
     }
 </script>
