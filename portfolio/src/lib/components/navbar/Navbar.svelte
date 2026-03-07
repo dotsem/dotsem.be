@@ -4,6 +4,7 @@
     import LangSwitch from "$lib/components/navbar/LangSwitch.svelte";
     import NavLinks from "$lib/components/navbar/NavLinks.svelte";
     import HamburgerButton from "./HamburgerButton.svelte";
+    import ThemeSwitch from "./ThemeSwitch.svelte";
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
     let hamburgerMenuVisible = $state(false);
@@ -19,6 +20,7 @@
 
     <div class="hidden min-[901px]:flex items-center gap-6">
         <NavLinks />
+        <!-- <ThemeSwitch /> -->
         <LangSwitch />
     </div>
 
@@ -31,7 +33,8 @@
                 ? 'translateX(0)'
                 : 'translateX(250px)'};"
         >
-            <div class="px-4">
+            <div class="px-4 flex items-center justify-between">
+                <!-- <ThemeSwitch /> -->
                 <LangSwitch />
             </div>
             <NavLinks class="flex flex-col gap-3 pt-3" />

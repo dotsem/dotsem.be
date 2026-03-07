@@ -24,10 +24,15 @@
                 purpose={m.cookie_list_inlang_desc()}
                 icon="fa-language"
             />
+            <!-- <CookieItem
+                name={m.cookie_list_theme()}
+                purpose={m.cookie_list_theme_desc()}
+                icon="fa-sun"
+            /> -->
             <CookieItem
-                name={m.cookie_list_consent()}
-                purpose={m.cookie_list_consent_desc()}
-                icon="fa-check-circle"
+                name={m.cookie_list_analytics()}
+                purpose={m.cookie_list_analytics_desc()}
+                icon="fa-chart-line"
             />
         </div>
     </div>

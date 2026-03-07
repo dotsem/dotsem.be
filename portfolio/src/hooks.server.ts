@@ -5,9 +5,10 @@ const paraglideHandle = i18n.handle();
 
 export const handle: Handle = async ({ event, resolve }) => {
     const consent = event.cookies.get('cookie-consent');
+    const theme = event.cookies.get('theme');
 
-    // If user explicitly declined, or hasn't decided yet (we should be safe and only set when accepted)
-    if (consent !== 'true') {
+    // Only allow marketing/functional cookies (like paraglide_lang) if consent is 'all'
+    if (consent !== 'all') {
         const originalSet = event.cookies.set.bind(event.cookies);
         event.cookies.set = (name, value, options) => {
             if (name === 'paraglide_lang') return;
@@ -15,5 +16,21 @@ export const handle: Handle = async ({ event, resolve }) => {
         };
     }
 
-    return paraglideHandle({ event, resolve });
+    // Wrap the paraglide handle to also inject our theme class to prevent FOUC
+    return paraglideHandle({
+        event,
+        resolve: (event, opts) => resolve(event, {
+            ...opts,
+            transformPageChunk: ({ html, done }) => {
+                let finalHtml = html;
+                if (theme) {
+                    finalHtml = finalHtml.replace('<html ', `<html class="${theme}" `);
+                }
+                if (opts?.transformPageChunk) {
+                    return opts.transformPageChunk({ html: finalHtml, done });
+                }
+                return finalHtml;
+            }
+        })
+    });
 };

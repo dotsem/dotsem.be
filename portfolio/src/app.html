@@ -7,25 +7,6 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<script>
-		// Block paraglide_lang cookie if no consent
-		(function () {
-			const descriptor = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie');
-			if (!descriptor || !descriptor.set) return;
-
-			const originalSetter = descriptor.set;
-			Object.defineProperty(document, 'cookie', {
-				set: function (val) {
-					if (val.includes('paraglide_lang=') && localStorage.getItem('cookie-consent') !== 'true') {
-						return;
-					}
-					originalSetter.call(this, val);
-				},
-				configurable: true
-			});
-		})();
-	</script>
-
 	%sveltekit.head%
 </head>
 

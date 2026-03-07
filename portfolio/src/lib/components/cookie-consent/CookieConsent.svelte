@@ -11,7 +11,6 @@
     let visible = $state(false);
 
     onMount(() => {
-        // Delay appearance slightly for better UX
         const timer = setTimeout(() => {
             const consent = localStorage.getItem("cookie-consent");
             if (consent === null) {
@@ -22,31 +21,30 @@
         return () => clearTimeout(timer);
     });
 
-    function acceptCookies() {
-        localStorage.setItem("cookie-consent", "true");
+    function acceptAllCookies() {
+        localStorage.setItem("cookie-consent", "all");
         document.cookie =
-            "cookie-consent=true;max-age=31536000;path=/;SameSite=Lax";
-        // Also set paraglide_lang now that we have consent
+            "cookie-consent=all;max-age=31536000;path=/;SameSite=Lax";
         document.cookie = `paraglide_lang=${languageTag()};max-age=31536000;path=/;SameSite=Lax`;
         visible = false;
     }
 
-    function declineCookies() {
-        localStorage.setItem("cookie-consent", "false");
+    function acceptNecessaryCookies() {
+        localStorage.setItem("cookie-consent", "necessary");
         document.cookie =
-            "cookie-consent=false;max-age=31536000;path=/;SameSite=Lax";
+            "cookie-consent=necessary;max-age=31536000;path=/;SameSite=Lax";
+        document.cookie = `paraglide_lang=${languageTag()};max-age=31536000;path=/;SameSite=Lax`;
+
         visible = false;
-        // Optionally delete cookies if they were already set
-        document.cookie.split(";").forEach((c) => {
-            const cookieName = c.split("=")[0].trim();
-            if (cookieName !== "cookie-consent") {
-                document.cookie =
-                    cookieName +
-                    "=;expires=" +
-                    new Date(0).toUTCString() +
-                    ";path=/";
-            }
-        });
+    }
+
+    function declineAllCookies() {
+        localStorage.setItem("cookie-consent", "declined");
+        document.cookie =
+            "cookie-consent=declined;max-age=31536000;path=/;SameSite=Lax";
+        visible = false;
+
+        // Delete all cookies we can
     }
 </script>
 
@@ -56,36 +54,38 @@
         class="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 z-50 md:w-[600px]"
     >
         <Card style="background: var(--header-footer-bg);" class="py-6">
-            <CardHeader>
-                <div class="flex gap-4 items-center">
-                    <div
-                        class="bg-accent/20 p-3 rounded-2xl border border-accent/20"
-                    >
-                        <i
-                            class="fa-solid fa-cookie-bite text-3xl text-secondary"
-                        ></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-white">
-                            {m.cookie_banner_title()}
-                        </h2>
-                        <p class="text-white text-sm">
-                            {m.cookie_banner_message()}
-                            <a
-                                href={i18n.resolveRoute("/cookies")}
-                                class="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-4 decoration-blue-400/30"
-                            >
-                                {m.cookie_banner_more()}
-                            </a>
-                        </p>
-                    </div>
+            <CardHeader class="flex gap-4 items-center flex-col sm:flex-row">
+                <div
+                    class="bg-accent/20 p-3 rounded-2xl border border-accent/20"
+                >
+                    <i class="fa-solid fa-cookie-bite text-3xl text-secondary"
+                    ></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">
+                        {m.cookie_banner_title()}
+                    </h2>
+                    <p class="text-white text-sm">
+                        {m.cookie_banner_message()}
+                        <a href={i18n.resolveRoute("/cookies")}>
+                            {m.cookie_banner_more()}
+                        </a>
+                    </p>
                 </div>
             </CardHeader>
-            <CardFooter class="flex justify-end gap-4">
-                <Button variant="outline" onclick={declineCookies}
-                    >{m.cookie_banner_decline()}</Button
+            <CardFooter class="flex flex-wrap justify-end gap-2 md:gap-4">
+                <Button
+                    variant="ghost"
+                    onclick={declineAllCookies}
+                    class="w-full md:w-auto">{m.cookie_banner_decline()}</Button
                 >
-                <Button onclick={acceptCookies}
+                <Button
+                    variant="outline"
+                    onclick={acceptNecessaryCookies}
+                    class="w-full md:w-auto"
+                    >{m.cookie_banner_necessary()}</Button
+                >
+                <Button onclick={acceptAllCookies} class="w-full md:w-auto"
                     >{m.cookie_banner_accept()}</Button
                 >
             </CardFooter>

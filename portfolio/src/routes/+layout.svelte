@@ -26,6 +26,12 @@
         href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
 
+    <script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="6a62e455-1b23-4405-974f-98993374be36"
+    ></script>
+
     {#if currentLang === "nl"}
         <meta name="google" content="notranslate" />
     {/if}
@@ -62,5 +68,6 @@
         </div>
         <Footer />
     </div>
-    <CookieConsent />
+    <!-- Current website is cookie free -->
+    <!-- <CookieConsent /> -->
 </ParaglideJS>
