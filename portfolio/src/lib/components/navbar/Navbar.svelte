@@ -3,18 +3,10 @@
     import { i18n } from "$lib/i18n";
     import LangSwitch from "$lib/components/navbar/LangSwitch.svelte";
     import NavLinks from "$lib/components/navbar/NavLinks.svelte";
-    import { onMount } from "svelte";
     import HamburgerButton from "./HamburgerButton.svelte";
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
-    let width = $state(0);
     let hamburgerMenuVisible = $state(false);
-    onMount(() => {
-        width = window.innerWidth;
-        window.addEventListener("resize", () => {
-            width = window.innerWidth;
-        });
-    });
 </script>
 
 <nav
@@ -25,28 +17,26 @@
         class="font-bold no-underline text-primary text-5xl">dotsem.</a
     >
 
-    {#if width > 900}
-        <div class="flex items-center gap-6">
-            <NavLinks />
-            <LangSwitch />
-        </div>
-    {:else}
-        <div class="hamburger">
-            <HamburgerButton bind:hamburgerMenuVisible />
+    <div class="hidden min-[901px]:flex items-center gap-6">
+        <NavLinks />
+        <LangSwitch />
+    </div>
 
-            <div
-                id="hamburger-menu"
-                style="transform: {hamburgerMenuVisible
-                    ? 'translateX(0)'
-                    : 'translateX(250px)'};"
-            >
-                <div class="px-4">
-                    <LangSwitch />
-                </div>
-                <NavLinks class="flex flex-col gap-3 pt-3" />
+    <div class="min-[901px]:hidden hamburger">
+        <HamburgerButton bind:hamburgerMenuVisible />
+
+        <div
+            id="hamburger-menu"
+            style="transform: {hamburgerMenuVisible
+                ? 'translateX(0)'
+                : 'translateX(250px)'};"
+        >
+            <div class="px-4">
+                <LangSwitch />
             </div>
+            <NavLinks class="flex flex-col gap-3 pt-3" />
         </div>
-    {/if}
+    </div>
 </nav>
 
 <style>

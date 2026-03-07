@@ -3,37 +3,25 @@
     import HeroImage from "$lib/assets/hero.png";
     import HeroImageMobile from "$lib/assets/hero-sm.png";
 
-    let heroImage = $state(HeroImage);
-
-    onMount(() => {
-        if (window.innerWidth < 1400) {
-            heroImage = HeroImageMobile;
-        }
-
-        window.addEventListener("resize", () => {
-            if (window.innerWidth < 1400) {
-                heroImage = HeroImageMobile;
-            } else {
-                heroImage = HeroImage;
-            }
-        });
-    });
-
     import {
         hero_button_main,
         hero_button_secondary,
         hero_subtitle,
         hero_title,
     } from "$lib/paraglide/messages.js";
-    import { onMount } from "svelte";
 </script>
 
 <div id="hero" class="relative bg-background">
-    <img
-        src={heroImage}
-        alt="Hero"
-        class="w-full h-full object-cover object-top-right"
-    />
+    <picture>
+        <source media="(min-width: 1400px)" srcset={HeroImage} />
+        <img
+            src={HeroImageMobile}
+            alt="Hero"
+            class="w-full h-full object-cover object-top-right"
+            fetchpriority="high"
+            loading="eager"
+        />
+    </picture>
 
     <div id="hero-content" class="w-full h-full absolute top-0 left-0">
         <div
