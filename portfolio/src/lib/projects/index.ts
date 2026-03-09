@@ -7,6 +7,7 @@ export interface ProjectMeta {
     image: string;
     languages: string[];
     highlighted?: boolean;
+    status?: string;
 }
 
 export interface Project extends ProjectMeta {

@@ -92,6 +92,16 @@
             >
             </i>
         {/if}
+
+        {#if project.status}
+            <span
+                class="absolute top-1 left-1 text-xs glossy-tile m-0 px-1 py-0.5 rounded-md z-10 {project.status.startsWith(
+                    'V',
+                )
+                    ? ''
+                    : 'status-hide'}">{project.status}</span
+            >
+        {/if}
     </Card.Root>
 </a>
 
@@ -212,6 +222,15 @@
 
     .project-card-link:hover .call-to-action {
         transform: translateY(1rem);
+    }
+
+    .status-hide {
+        transform: translateX(-110%);
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .project-card-link:hover .status-hide {
+        transform: translateX(0);
     }
 
     @keyframes saw-scroll {
