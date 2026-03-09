@@ -8,6 +8,7 @@ languages:
   - raspberrypi
   - py
 highlighted: true
+status: Finished
 ---
 
 # Smart Jack

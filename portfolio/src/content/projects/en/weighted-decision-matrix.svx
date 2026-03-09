@@ -5,5 +5,7 @@ image: /projects/Weighted-decision-matrix/logo.png
 description: A handy website to easily create weighted decision matrices and export them to markdown.
 languages:
   - svelte
-highlighted: true
+  - ts
+highlighted: false
+status: V1
 ---

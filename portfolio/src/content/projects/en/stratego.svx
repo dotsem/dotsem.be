@@ -6,7 +6,9 @@ description: A stratego game that lets you play against different AIs or even tr
 languages:
   - svelte
   - go
+  - ts
   - postgresql
   - docker
 highlighted: true
+status: In Progress
 ---

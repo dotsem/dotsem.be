@@ -6,6 +6,8 @@ description: Een stratego spel dat je laat spelen tegen verschillende AI's of ze
 languages:
   - svelte
   - go
+  - ts
   - postgresql
 highlighted: true
+status: In Progress
 ---

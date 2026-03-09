@@ -4,6 +4,10 @@ slug: skil2-chez-natalie
 image: /projects/skil2-chez-natalie/logo.png
 description: 
 languages:
+    - php
+    - laravel
+    - sql
 
 highlighted: false
+status: In Progress
 ---

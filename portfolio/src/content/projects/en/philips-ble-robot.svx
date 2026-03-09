@@ -8,6 +8,7 @@ languages:
   - dart
   - flutter
 highlighted: true
+status: Finished
 ---
 
 # Philips BLE Robot
