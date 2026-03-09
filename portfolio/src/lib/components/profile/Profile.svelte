@@ -153,11 +153,8 @@
                 <ProgLang name="github"></ProgLang>
                 <ProgLang name="figma"></ProgLang>
                 <ProgLang name="markdown"></ProgLang>
-                <ProgLang name="neovim"></ProgLang>
                 <ProgLang name="supabase"></ProgLang>
-                <ProgLang name="nano"></ProgLang>
                 <ProgLang name="uml"></ProgLang>
-                <ProgLang name="grafana"></ProgLang>
             </div>
         </div>
         <div
@@ -168,41 +165,25 @@
                 href="https://github.com/dotsem"
                 target="_blank"
                 rel="me"
-                aria-label="Github"
-                class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
-                ><i
-                    class="fa-brands fa-github transition-transform duration-500 group-hover/links:scale-80 group-hover/link:scale-110!"
-                ></i></a
+                aria-label="Github"><i class="fa-brands fa-github"></i></a
             >
             <a
                 href="https://www.linkedin.com/in/sem-van-broekhoven/"
                 target="_blank"
                 rel="me"
-                aria-label="LinkedIn"
-                class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
-                ><i
-                    class="fa-brands fa-linkedin transition-transform duration-500 group-hover/links:scale-80 group-hover/link:scale-110!"
-                ></i></a
+                aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a
             >
             <a
                 href="https://www.instagram.com/sem_van_broekhoven/"
                 target="_blank"
                 rel="me"
-                aria-label="Instagram"
-                class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
-                ><i
-                    class="fa-brands fa-instagram transition-transform duration-500 group-hover/links:scale-80 group-hover/link:scale-110!"
-                ></i></a
+                aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a
             >
             <a
                 href="https://www.facebook.com/profile.php?id=100089528472654"
                 target="_blank"
                 rel="me"
-                aria-label="Facebook"
-                class="h-fit text-[36px] text-foreground transition-all duration-500 hover:text-secondary group-hover/links:opacity-50 hover:opacity-100! group/link"
-                ><i
-                    class="fa-brands fa-facebook transition-transform duration-500 group-hover/links:scale-80 group-hover/link:scale-110!"
-                ></i></a
+                aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a
             >
         </div>
     </div>
@@ -247,3 +228,45 @@
         </div>
     </div>
 </div>
+
+<style>
+    #profile-links {
+        > a {
+            transition: opacity 500ms;
+            height: fit-content;
+            font-size: 36px;
+            color: var(--text);
+            opacity: 1;
+
+            i {
+                transition: transform 500ms;
+            }
+        }
+
+        &:has(a:hover) a:not(:hover) {
+            transition: opacity 500ms;
+            opacity: 0.5;
+
+            i {
+                transform: scale(0.8);
+
+                transition: transform 500ms;
+            }
+        }
+
+        a:hover {
+            transition: transform 500ms;
+
+            transition:
+                color 500ms,
+                opacity 500ms;
+            color: var(--secondary);
+            opacity: 1;
+
+            i {
+                transition: transform 500ms;
+                transform: scale(1.1);
+            }
+        }
+    }
+</style>
