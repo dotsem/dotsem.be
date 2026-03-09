@@ -61,6 +61,9 @@ def main():
             f.write(content)
         
         created_files.append(target_path)
+    
+    target_dir = Path("src") / "lib" / "assets" / type_key / slug
+    target_dir.mkdir(parents=True, exist_ok=True)
 
     if created_files:
         print("\033[32mSuccessfully created files:\033[0m")
