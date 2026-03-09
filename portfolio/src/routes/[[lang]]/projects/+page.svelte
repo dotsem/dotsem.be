@@ -2,6 +2,14 @@
     import ProjectCard from "$lib/components/ProjectCard.svelte";
 
     let { data } = $props();
+
+    let projects = $derived(
+        data.projects.sort((a, b) => {
+            if (a.highlighted && !b.highlighted) return -1;
+            if (!a.highlighted && b.highlighted) return 1;
+            return 0;
+        }),
+    );
 </script>
 
 <svelte:head>
@@ -10,8 +18,8 @@
 </svelte:head>
 
 <div class="container mx-auto py-10 px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {#each data.projects as project}
+    <div class="flex flex-wrap gap-2 justify-center">
+        {#each projects as project}
             <ProjectCard {project} />
         {/each}
     </div>

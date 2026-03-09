@@ -39,10 +39,23 @@
 >
     <Card.Root class="project-card overflow-hidden w-80 h-96">
         <div class="card-image">
-            <img src={project.image} alt={project.title} />
+            <img
+                src={project.image}
+                alt=""
+                class="image-blur-bg"
+                aria-hidden="true"
+            />
+            <div class="image-overlay"></div>
+            <div class="image-main-wrap">
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    class="image-main"
+                />
+            </div>
         </div>
-
-        <Card.Header class="pb-2 w-full overflow-hidden">
+        <Card.Header class="pb-2 w-full overflow-hidden flex flex-col gap-2">
             <div
                 class="lang-scroll-container {needsScroll
                     ? 'mask-edges px-2'
@@ -56,15 +69,29 @@
                     bind:this={contentContainer}
                 >
                     {#each project.languages as lang}
-                        <ProgLang name={lang} size={0.7} />
+                        <ProgLang name={lang} size={0.65} />
                     {/each}
                 </div>
             </div>
-            <Card.Title class="text-lg">{project.title}</Card.Title>
-            <Card.Description class="line-clamp-5">
+            <Card.Title class="text-xl font-bold tracking-tight"
+                >{project.title}</Card.Title
+            >
+            <Card.Description class="line-clamp-4 text-sm opacity-90">
                 {project.description}
             </Card.Description>
         </Card.Header>
+
+        <span
+            class="call-to-action absolute bottom-0 left-0 right-0 font-bold text-xl text-center"
+            >Read more</span
+        >
+
+        {#if project.highlighted}
+            <i
+                class="fa-solid fa-star text-2xl text-yellow-400 absolute top-1 right-1 z-10"
+            >
+            </i>
+        {/if}
     </Card.Root>
 </a>
 
@@ -75,20 +102,73 @@
         display: block;
     }
 
-    .card-image {
-        height: 10rem;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+    :global(.project-card) {
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        display: flex;
+        flex-direction: column;
     }
 
-    .project-card-link:hover .card-image img {
-        transform: scale(1.05);
+    .project-card-link:hover :global(.project-card) {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-image {
+        position: relative;
+        height: 12rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-blur-bg {
+        position: absolute;
+        inset: -15px;
+        width: calc(100% + 30px);
+        height: calc(100% + 30px);
+        object-fit: cover;
+        filter: blur(25px) saturate(1.8) brightness(0.7);
+        opacity: 0.5;
+        z-index: 0;
+        transform: scale(1.1);
+    }
+
+    .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 80%, var(--card));
+        z-index: 1;
+    }
+
+    .image-main-wrap {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .image-main {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 8px;
+    }
+
+    .project-card-link:hover .image-main {
+        transform: scale(1.12);
     }
 
     .lang-scroll-container {
@@ -101,27 +181,38 @@
         mask-image: linear-gradient(
             to right,
             transparent,
-            black 1.5rem,
-            black calc(100% - 1.5rem),
+            black 1rem,
+            black calc(100% - 1rem),
             transparent
         );
         -webkit-mask-image: linear-gradient(
             to right,
             transparent,
-            black 1.5rem,
-            black calc(100% - 1.5rem),
+            black 1rem,
+            black calc(100% - 1rem),
             transparent
         );
     }
 
     .lang-scroll-content {
         display: inline-flex;
-        gap: 0.25rem;
+        gap: 0.4rem;
         width: max-content;
     }
 
     .animate-saw {
         animation: saw-scroll 4s linear infinite alternate;
+    }
+
+    .call-to-action {
+        transform: translateY(3rem);
+        padding-bottom: 1rem;
+        background-color: var(--color-primary);
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .project-card-link:hover .call-to-action {
+        transform: translateY(1rem);
     }
 
     @keyframes saw-scroll {
