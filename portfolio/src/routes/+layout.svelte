@@ -8,7 +8,6 @@
     import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
-    import CookieConsent from "$lib/components/cookie-consent/CookieConsent.svelte";
 
     let { children } = $props();
 
@@ -35,6 +34,25 @@
     {#if currentLang === "nl"}
         <meta name="google" content="notranslate" />
     {/if}
+
+    {#each availableLanguageTags as locale}
+        <link
+            rel="alternate"
+            hreflang={locale}
+            href="https://dotsem.be{i18n.resolveRoute(
+                i18n.route(page.url.pathname),
+                locale,
+            )}"
+        />
+    {/each}
+    <link
+        rel="alternate"
+        hreflang="x-default"
+        href="https://dotsem.be{i18n.resolveRoute(
+            i18n.route(page.url.pathname),
+            'en',
+        )}"
+    />
 
     <title>Sem Van Broekhoven</title>
 
