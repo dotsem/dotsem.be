@@ -11,13 +11,13 @@
         variants: {
             variant: {
                 default:
-                    "bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs",
+                    "bg-primary text-primary-foreground hover:bg-primary/70 shadow-xs",
                 destructive:
-                    "bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white shadow-xs",
+                    "bg-destructive hover:bg-destructive/70 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white shadow-xs",
                 outline:
-                    "bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border shadow-xs",
+                    "bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:hover:bg-input/50 border border-secondary shadow-xs",
                 secondary:
-                    "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs",
+                    "bg-secondary text-secondary-foreground hover:bg-secondary/70 shadow-xs",
                 ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
                 link: "text-primary underline-offset-4 hover:underline",
             },
