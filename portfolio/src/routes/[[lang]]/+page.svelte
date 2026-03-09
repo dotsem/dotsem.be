@@ -86,7 +86,12 @@
             class="slanted"
             offset="-28px"
             paddingY="6rem"
-        />
+        >
+            <p class="text-4xl font-bold py-2">
+                “Talk is cheap. Show me the code.”
+            </p>
+            <p class="text-2xl">- Linus Torvalds</p></ImageDivider
+        >
 
         <AboutMe />
     </div>
