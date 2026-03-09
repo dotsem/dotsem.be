@@ -1,5 +1,5 @@
 # Privacy Policy
-*Last Updated: March 6, 2026*
+*Last Updated: March 9, 2026*
 
 ## 1. Introduction
 I value your privacy and am committed to protecting your personal data. This policy outlines how I handle your information when you visit my website or engage my services for web, app, or custom software development.
@@ -7,37 +7,35 @@ I value your privacy and am committed to protecting your personal data. This pol
 ## 2. Data I Collect
 As a single developer, I only collect the minimum amount of data necessary to provide my services:
 
-- **Contact Information:** Name, email address, and any project details you provide via my contact form or email.
-- **Technical Data:** IP address, browser type, and usage data (collected via cookies) to help improve website performance.
-- **Project Data:** Technical specifications and assets shared during the development of your custom software.
+- **Contact Information:** Name, email address, and your message you provide via my contact form or email.
+- **Anonymous Browser Data:** Anonymous data about your browser and device, used to improve my website.
+- **Anonymous Browsing Data:** Anonymous data about the pages you visit on my website, used to improve my website.
+
+This data is not linked to any personal information and is used solely for the purpose of improving my website.
 
 ## 3. How I Use Your Data
 I use your information strictly for:
 - Communicating with you regarding your inquiries or active projects.
-- Developing, testing, and deploying your custom software, website, or app.
-- Invoicing and administrative purposes.
 - Improving the user experience of my website.
+- Analytics and statistics about my website.
 
 ## 4. Data Storage & Security
 I implement industry-standard security measures to protect your data.
 
-- **Infrastructure:** My website and databases are hosted on secure, containerized environments.
+- **Infrastructure:** My website is hosted via a secure provider.
 - **Third Parties:** I may use trusted third-party services for hosting or analytics. These providers have their own strict privacy standards.
-- **Data Ownership:** You retain full ownership of the intellectual property and data associated with your custom software projects.
 
 ## 5. Data Sharing
 I do not sell, trade, or rent your personal information to third parties. I only share data when necessary to:
 - Comply with legal obligations.
-- Utilize third-party tools required for your project (e.g., cloud hosting providers).
 
 ## 6. Your Rights
 Depending on your location, you have the following rights:
 - **Access:** Request a copy of the data I hold about you.
 - **Correction:** Request that I fix any inaccurate information.
 - **Deletion:** Request that I delete your personal data.
-- **Portability:** Request a transfer of your data to another provider.
 
 ## 7. Contact Me
 If you have any questions about this Privacy Policy, please contact me at:
-- **Email:** Not available at the moment
+- **Email:** Not available at the moment, for questions use the contact form or contact me via my social media.
 - **Company:** dotsem
