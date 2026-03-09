@@ -7,13 +7,16 @@
     import nlFlag from "$lib/assets/flags/nl.webp";
 </script>
 
-<a
+<button
     data-sveltekit-reload
-    href={i18n.resolveRoute(
-        i18n.route(page.url.pathname),
-        currentLang === "en" ? "nl" : "en",
-    )}
-    class="flex items-center rounded-full bg-slate-800/80 p-1 w-[64px] relative shadow-inner border border-white/10 hover:bg-slate-700/80 transition-colors"
+    onclick={() => {
+        sessionStorage.setItem("scroll_pos", window.scrollY.toString());
+        window.location.href = i18n.resolveRoute(
+            i18n.route(page.url.pathname),
+            currentLang === "en" ? "nl" : "en",
+        );
+    }}
+    class="flex items-center rounded-full bg-slate-800/80 p-1 w-[64px] relative shadow-inner border border-white/10 hover:bg-slate-700/80 transition-colors cursor-pointer"
 >
     <div
         class="absolute left-1 w-7 h-7 rounded-full bg-primary/20 shadow-sm transition-transform duration-300 ease-in-out pointer-events-none {currentLang ===
@@ -37,4 +40,4 @@
             ? 'opacity-100 scale-100'
             : 'opacity-40 scale-90 hover:opacity-100'}"
     />
-</a>
+</button>

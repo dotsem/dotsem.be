@@ -8,10 +8,19 @@
     import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
+    import { onMount } from "svelte";
 
     let { children } = $props();
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
+
+    onMount(() => {
+        const scrollPos = sessionStorage.getItem("scroll_pos");
+        if (scrollPos) {
+            window.scrollTo({ top: parseInt(scrollPos) });
+            sessionStorage.removeItem("scroll_pos");
+        }
+    });
 </script>
 
 <svelte:head>
