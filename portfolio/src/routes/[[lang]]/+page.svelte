@@ -59,7 +59,9 @@
         <section class="px-3 py-24 w-full">
             <div class="container mx-auto">
                 <div class="prose dark:prose-invert max-w-none mb-8">
-                    <h2 class="text-center">{projects_highlighted_title()}</h2>
+                    <h2 class="text-4xl text-center">
+                        {projects_highlighted_title()}
+                    </h2>
                     <p class="text-center">
                         {projects_highlighted_description()}
                     </p>
@@ -86,6 +88,8 @@
             class="slanted"
             offset="-28px"
             paddingY="6rem"
+            scaleOnScroll={true}
+            scaleEnd={2}
         >
             <p class="text-4xl font-bold py-2">
                 “Talk is cheap. Show me the code.”

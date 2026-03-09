@@ -5,6 +5,9 @@
         imageUrl: string;
         paddingY?: string;
         offset?: string;
+        scaleOnScroll?: boolean;
+        scaleStart?: number;
+        scaleEnd?: number;
         children?: import("svelte").Snippet;
         [key: string]: any;
     }
@@ -13,24 +16,51 @@
         imageUrl,
         paddingY = "4rem",
         offset = "2rem",
+        scaleOnScroll = false,
+        scaleStart = 1,
+        scaleEnd = 1.1,
         children,
         ...rest
     }: Props = $props();
 
     let observer: IntersectionObserver;
-    let visible: boolean = $state(false);
+    let isVisible: boolean = $state(false);
     let slitContainer: HTMLElement | undefined = $state();
+    let scrollProgress = $state(0);
+
+    function updateScroll() {
+        if (!slitContainer) return;
+        const rect = slitContainer.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // Progress: 0 when top is at bottom of viewport, 1 when bottom is at top of viewport
+        const progress = (vh - rect.top) / (vh + rect.height);
+        scrollProgress = Math.max(0, Math.min(1, progress));
+    }
 
     onMount(() => {
         observer = new IntersectionObserver(
             (entries) => {
-                visible = entries[0].isIntersecting;
+                isVisible = entries[0].isIntersecting;
             },
             { threshold: 0.01 },
         );
-        observer.observe(slitContainer!);
+        if (slitContainer) observer.observe(slitContainer);
         return () => observer.disconnect();
     });
+
+    $effect(() => {
+        if (scaleOnScroll && isVisible) {
+            window.addEventListener("scroll", updateScroll, { passive: true });
+            updateScroll();
+            return () => window.removeEventListener("scroll", updateScroll);
+        }
+    });
+
+    let currentScale = $derived(
+        scaleOnScroll
+            ? scaleStart + (scaleEnd - scaleStart) * scrollProgress
+            : 1,
+    );
 </script>
 
 <div
@@ -40,9 +70,15 @@
     style="padding-top: {paddingY}; padding-bottom: {paddingY}; top: {offset}; {rest.style ||
         ''}"
 >
-    {#if visible && imageUrl}
+    {#if isVisible && imageUrl}
         <div class="image-container">
-            <img src={imageUrl} alt="static background" class="unselectable" />
+            <img
+                src={imageUrl}
+                alt="static background"
+                class="unselectable"
+                class:scaling={scaleOnScroll}
+                style="transform: scale({currentScale})"
+            />
         </div>
     {/if}
     {@render children?.()}
@@ -52,7 +88,7 @@
     .static-bg-container {
         position: relative;
         text-align: center;
-        background: transparent; /* Explicitly transparent for the slit */
+        background: transparent;
 
         .image-container {
             position: fixed;
@@ -72,7 +108,16 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                transform: scale(1);
+                transition: transform 0.3s ease-out;
+
+                &.scaling {
+                    transition: transform 0.1s linear;
+                }
             }
+        }
+        &:hover img:not(.scaling) {
+            transform: scale(1.02);
         }
     }
 </style>

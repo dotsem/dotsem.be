@@ -42,7 +42,7 @@
                     </div>
 
                     <Card.Header class="p-0 mb-4">
-                        <Card.Title class="text-2xl font-bold text-primary">
+                        <Card.Title class="text-2xl font-bold text-secondary">
                             {section.title}
                         </Card.Title>
                     </Card.Header>

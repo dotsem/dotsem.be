@@ -56,7 +56,7 @@
                 class="space-y-2 md:text-right flex flex-col w-full items-center md:items-end"
             >
                 <h2
-                    class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary leading-tight"
+                    class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight"
                 >
                     {contact_title()}
                 </h2>
