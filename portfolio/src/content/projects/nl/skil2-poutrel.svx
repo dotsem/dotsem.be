@@ -1,0 +1,9 @@
+---
+title: SKIL2 Poutrel
+slug: skil2-poutrel
+image: /projects/skil2-poutrel/logo.png
+description: 
+languages:
+
+highlighted: false
+---

@@ -1,0 +1,12 @@
+---
+title: Portfolio
+slug: portfolio
+image: /projects/portfolio/logo.png
+description: 
+languages:
+    - ts
+    - svelte
+    - figma
+
+highlighted: false
+---
