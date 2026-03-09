@@ -23,7 +23,6 @@
     ]);
 
     let age = calculateAge("2006-08-31");
-
     let observerElement: HTMLElement;
     let isVisible = $state(false);
 
@@ -44,9 +43,8 @@
 </script>
 
 <div
-    id="profile"
     class="container mx-auto py-8 grid min-h-[70vh]
-    w-full grid-cols-1 gap-4 text-foreground
+    w-full grid-cols-1 gap-4 text-foreground text-left
     min-[650px]:max-[1024px]:gap-y-0
     max-[650px]:block max-[650px]:p-[10px]
     min-[650px]:max-[1024px]:min-h-screen
@@ -59,7 +57,7 @@
         class="profile-column prose grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:prose-invert"
     >
         <div
-            id="profile-title"
+            id="profile"
             class="glossy-tile flex flex-col items-center justify-center m-0! col-span-4 row-span-1"
         >
             <h3>{m.profile_title()}</h3>

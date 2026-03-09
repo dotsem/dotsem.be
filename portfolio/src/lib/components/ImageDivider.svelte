@@ -37,9 +37,10 @@
     id={rest.id}
     bind:this={slitContainer}
     class="static-bg-container {rest.class}"
-    style="padding-top: {paddingY}; padding-bottom: {paddingY}; top: {offset}"
+    style="padding-top: {paddingY}; padding-bottom: {paddingY}; top: {offset}; {rest.style ||
+        ''}"
 >
-    {#if visible}
+    {#if visible && imageUrl}
         <div class="image-container">
             <img src={imageUrl} alt="static background" class="unselectable" />
         </div>

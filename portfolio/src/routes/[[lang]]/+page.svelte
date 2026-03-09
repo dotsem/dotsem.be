@@ -49,8 +49,10 @@
 
 <main>
     <Hero />
-    <section class="bg-background">
-        <Profile />
+    <section class="">
+        <ImageDivider imageUrl="" class="slanted">
+            <Profile />
+        </ImageDivider>
     </section>
 
     <div class="bg-card slanted">
@@ -91,3 +93,6 @@
 
     <ContactForm />
 </main>
+
+<style>
+</style>

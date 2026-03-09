@@ -33,7 +33,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {#each sections as section}
                 <Card.Root
-                    class="about-card bg-accent last:md:col-span-2 last:lg:col-span-1 border-none relative h-full flex flex-col p-6 m-0!"
+                    class="about-card last:md:col-span-2 last:lg:col-span-1 relative h-full flex flex-col p-6 m-0!"
                 >
                     <div class="absolute top-2 right-2">
                         <i
