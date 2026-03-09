@@ -2,7 +2,7 @@
 title: SKIL2 Poutrel
 slug: skil2-poutrel
 image: /projects/skil2-poutrel/logo.png
-description: 
+description: As a group project for the first semester of my second year at Thomas More, we had to create an implementation plan for Poutrel.
 languages:
   - uml
   - figma

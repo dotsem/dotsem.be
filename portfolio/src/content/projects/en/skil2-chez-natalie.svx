@@ -2,7 +2,7 @@
 title: SKIL2 Chez Natalie
 slug: skil2-chez-natalie
 image: /projects/skil2-chez-natalie/logo.png
-description: 
+description: For the second semester of my second year at Thomas More, we had to create a website for Chez Natalie. It was a group project where we had to create a website for a B&B.
 languages:
     - php
     - laravel
