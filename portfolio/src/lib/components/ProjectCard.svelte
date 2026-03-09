@@ -37,7 +37,7 @@
     href={i18n.resolveRoute("/projects/" + project.slug, languageTag())}
     class="project-card-link"
 >
-    <Card.Root class="project-card overflow-hidden w-80 h-96">
+    <Card.Root class="project-card overflow-hidden w-80 h-96 gap-2">
         <div class="card-image">
             <img
                 src={project.image}
@@ -82,7 +82,7 @@
         </Card.Header>
 
         <span
-            class="call-to-action absolute bottom-0 left-0 right-0 font-bold text-xl text-center"
+            class="call-to-action bg-primary absolute bottom-0 left-0 right-0 font-bold text-xl text-center"
             >Read more</span
         >
 
@@ -207,7 +207,6 @@
     .call-to-action {
         transform: translateY(3rem);
         padding-bottom: 1rem;
-        background-color: var(--color-primary);
         transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
