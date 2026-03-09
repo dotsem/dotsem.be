@@ -9,6 +9,7 @@
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
     import { onMount } from "svelte";
+    import { Toaster } from "$lib/components/ui/sonner";
 
     let { children } = $props();
 
@@ -76,6 +77,7 @@
 </svelte:head>
 
 <ModeWatcher defaultMode="dark" />
+<Toaster />
 
 <ParaglideJS {i18n}>
     <div class="flex flex-col min-h-screen">

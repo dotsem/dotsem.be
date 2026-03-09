@@ -14,6 +14,8 @@
         contact_success,
         contact_error,
     } from "$lib/paraglide/messages.js";
+    import { toast } from "svelte-sonner";
+    import Button from "./ui/button/button.svelte";
 
     let status = $state("idle"); // 'idle' | 'sending' | 'success' | 'error'
 
@@ -35,13 +37,19 @@
 
             if (response.ok) {
                 status = "success";
+                toast.success(contact_success());
                 form.reset();
+                setTimeout(() => (status = "idle"), 2000);
             } else {
                 status = "error";
+                toast.error(contact_error());
+                setTimeout(() => (status = "idle"), 2000);
             }
         } catch (error) {
             console.error("Submission error:", error);
             status = "error";
+            toast.error(contact_error());
+            setTimeout(() => (status = "idle"), 2000);
         }
     }
 </script>
@@ -168,21 +176,7 @@
                         </div>
                     </div>
 
-                    {#if status === "success"}
-                        <div
-                            class="p-4 rounded-lg bg-green-500/10 text-green-500 text-sm border border-green-500/20 animate-in fade-in slide-in-from-top-2"
-                        >
-                            {contact_success()}
-                        </div>
-                    {:else if status === "error"}
-                        <div
-                            class="p-4 rounded-lg bg-red-500/10 text-red-500 text-sm border border-red-500/20 animate-in fade-in slide-in-from-top-2"
-                        >
-                            {contact_error()}
-                        </div>
-                    {/if}
-
-                    <button
+                    <Button
                         type="submit"
                         disabled={status === "sending"}
                         class="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-primary/20 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none mt-2 text-base uppercase tracking-wider"
@@ -215,7 +209,7 @@
                         {:else}
                             {contact_button_send()}
                         {/if}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

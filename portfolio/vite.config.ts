@@ -10,5 +10,8 @@ export default defineConfig({
 		sveltekit(),
 		devtoolsJson(),
 		paraglide({ project: './project.inlang', outdir: './src/lib/paraglide' })
-	]
+	],
+	ssr: {
+		noExternal: ['svelte-sonner']
+	}
 });
