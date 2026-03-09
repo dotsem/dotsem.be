@@ -40,6 +40,11 @@
             ]
         }
     </script>
+
+    <meta
+        name="google-site-verification"
+        content="fyZMegxDAVo_uFpoYd9SFJwe_YxEfG3rrvpjjnQ5C4E"
+    />
 </svelte:head>
 
 <main>
