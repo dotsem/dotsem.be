@@ -46,6 +46,7 @@
 </script>
 
 <div
+    id="profile"
     class="container mx-auto py-8 grid min-h-[70vh]
     w-full grid-cols-1 gap-4 text-foreground text-left
     min-[650px]:max-[1024px]:gap-y-0
@@ -60,10 +61,9 @@
         class="profile-column prose grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:prose-invert"
     >
         <div
-            id="profile"
             class="glossy-tile flex flex-col items-center justify-center m-0! col-span-4 row-span-1"
         >
-            <h3>{m.profile_title()}</h3>
+            <h2>Sem Van Broekhoven</h2>
         </div>
         <div
             id="profile-who"
@@ -78,8 +78,6 @@
                 <img src={MeImage} alt="thats me!" class="flex w-[60%] my-0!" />
                 <div></div>
             </div>
-            <h3>Sem Van Broekhoven</h3>
-            <p>Full Stack Software Developer</p>
         </div>
         <div
             id="profile-about"
