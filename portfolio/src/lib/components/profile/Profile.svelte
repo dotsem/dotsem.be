@@ -4,6 +4,9 @@
     import MeImage from "$lib/assets/me.png";
     import * as m from "$lib/paraglide/messages.js";
     import { calculateAge } from "$lib/utils";
+    import SocialLinks from "../SocialLinks.svelte";
+    import PLprog from "./PLprog.svelte";
+    import PLtools from "./PLtools.svelte";
     let experienceContent = $derived([
         m.profile_experience_content_0(),
         m.profile_experience_content_1(),
@@ -97,95 +100,25 @@
             class="glossy-tile m-0! col-span-4 row-span-5 p-4"
         >
             <h3 class="mx-4 mb-1 mt-4">
-                <i class="fa-solid fa-star"></i>
-                {m.profile_tools_fav()}
-            </h3>
-            <div class="flex flex-wrap gap-[0.35rem]">
-                <ProgLang name="py"></ProgLang>
-                <ProgLang name="flutter"></ProgLang>
-                <ProgLang name="dart"></ProgLang>
-                <ProgLang name="svelte"></ProgLang>
-                <ProgLang name="go"></ProgLang>
-                <ProgLang name="ts"></ProgLang>
-                <ProgLang name="css"></ProgLang>
-                <ProgLang name="rust"></ProgLang>
-                <ProgLang name="postgresql"></ProgLang>
-            </div>
-
-            <h3 class="mx-4 mb-1 mt-4">
                 <i class="fa-solid fa-code"></i>
                 {m.profile_tools_prog()}
             </h3>
             <div class="flex flex-wrap gap-[0.35rem]">
-                <ProgLang name="js"></ProgLang>
-                <ProgLang name="html"></ProgLang>
-                <ProgLang name="laravel"></ProgLang>
-                <ProgLang name="sql"></ProgLang>
-                <ProgLang name="php"></ProgLang>
-                <ProgLang name="java"></ProgLang>
-                <ProgLang name="cpp"></ProgLang>
-                <ProgLang name="pygame"></ProgLang>
-                <ProgLang name="bash"></ProgLang>
-                <ProgLang name="django"></ProgLang>
+                <PLprog />
             </div>
-            <h3 class="mx-4 mb-1 mt-4">
-                <i class="fa-solid fa-compact-disc"></i>
-                {m.profile_tools_os()}
-            </h3>
-            <div class="flex flex-wrap gap-[0.35rem]">
-                <ProgLang name="linux"></ProgLang>
-                <ProgLang name="windows"></ProgLang>
-                <ProgLang name="arch"></ProgLang>
-                <ProgLang name="debian"></ProgLang>
-                <ProgLang name="proxmox"></ProgLang>
-            </div>
+
             <h3 class="mx-4 mb-1 mt-4">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
                 {m.profile_tools_tools()}
             </h3>
             <div class="flex flex-wrap gap-[0.35rem]">
-                <ProgLang name="arduino"></ProgLang>
-                <ProgLang name="k8s"></ProgLang>
-                <ProgLang name="docker"></ProgLang>
-                <ProgLang name="vscode"></ProgLang>
-                <ProgLang name="raspberrypi"></ProgLang>
-                <ProgLang name="gitlab"></ProgLang>
-                <ProgLang name="github"></ProgLang>
-                <ProgLang name="figma"></ProgLang>
-                <ProgLang name="markdown"></ProgLang>
-                <ProgLang name="supabase"></ProgLang>
-                <ProgLang name="uml"></ProgLang>
+                <PLtools />
             </div>
         </div>
-        <div
-            id="profile-links"
-            class="glossy-tile flex items-center justify-evenly m-0! col-span-4 row-span-1 group/links"
-        >
-            <a
-                href="https://github.com/dotsem"
-                target="_blank"
-                rel="me"
-                aria-label="Github"><i class="fa-brands fa-github"></i></a
-            >
-            <a
-                href="https://www.linkedin.com/in/sem-van-broekhoven/"
-                target="_blank"
-                rel="me"
-                aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a
-            >
-            <a
-                href="https://www.instagram.com/sem_van_broekhoven/"
-                target="_blank"
-                rel="me"
-                aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a
-            >
-            <a
-                href="https://www.facebook.com/profile.php?id=100089528472654"
-                target="_blank"
-                rel="me"
-                aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a
-            >
-        </div>
+
+        <SocialLinks
+            class="glossy-tile m-0! flex items-center justify-evenly col-span-4 row-span-1"
+        />
     </div>
 
     <!-- Column 3 -->
@@ -228,45 +161,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    #profile-links {
-        > a {
-            transition: opacity 500ms;
-            height: fit-content;
-            font-size: 36px;
-            color: var(--text);
-            opacity: 1;
-
-            i {
-                transition: transform 500ms;
-            }
-        }
-
-        &:has(a:hover) a:not(:hover) {
-            transition: opacity 500ms;
-            opacity: 0.5;
-
-            i {
-                transform: scale(0.8);
-
-                transition: transform 500ms;
-            }
-        }
-
-        a:hover {
-            transition: transform 500ms;
-
-            transition:
-                color 500ms,
-                opacity 500ms;
-            color: var(--secondary);
-            opacity: 1;
-
-            i {
-                transition: transform 500ms;
-                transform: scale(1.1);
-            }
-        }
-    }
-</style>

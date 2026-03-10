@@ -7,6 +7,7 @@
         footer_email,
     } from "$lib/paraglide/messages";
     import { i18n } from "$lib/i18n";
+    import SocialLinks from "./SocialLinks.svelte";
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
     let isContactPage = $derived(page.url.pathname === "/contact");
@@ -22,39 +23,7 @@
     </div>
     <div class="flex justify-center flex-col gap-2">
         {#if !isContactPage}
-            <div class="contact">
-                <!-- <Button href="/contact">{footer_email}</Button> -->
-                <div class="socials">
-                    <a
-                        href="https://github.com/dotsem"
-                        target="_blank"
-                        rel="me"
-                        aria-label="Github"
-                        ><i class="fa-brands fa-github"></i></a
-                    >
-                    <a
-                        href="https://www.linkedin.com/in/sem-van-broekhoven/"
-                        target="_blank"
-                        rel="me"
-                        aria-label="LinkedIn"
-                        ><i class="fa-brands fa-linkedin"></i></a
-                    >
-                    <a
-                        href="https://www.instagram.com/sem_van_broekhoven/"
-                        target="_blank"
-                        rel="me"
-                        aria-label="Instagram"
-                        ><i class="fa-brands fa-instagram"></i></a
-                    >
-                    <a
-                        href="https://www.facebook.com/profile.php?id=100089528472654"
-                        target="_blank"
-                        rel="me"
-                        aria-label="Facebook"
-                        ><i class="fa-brands fa-facebook"></i></a
-                    >
-                </div>
-            </div>
+            <SocialLinks />
         {/if}
         <div class="flex gap-4">
             <a href={i18n.resolveRoute("/cookies", currentLang)}>Cookies</a>
@@ -90,49 +59,6 @@
 
                 p {
                     padding: 4px 0;
-                }
-            }
-
-            .socials {
-                display: flex;
-                gap: 16px;
-
-                > a {
-                    transition: opacity 500ms;
-                    height: fit-content;
-                    font-size: 36px;
-                    color: var(--text);
-                    opacity: 1;
-
-                    i {
-                        transition: transform 500ms;
-                    }
-                }
-
-                &:has(:global(a:hover)) a:not(:hover) {
-                    transition: opacity 500ms;
-                    opacity: 0.5;
-
-                    i {
-                        transform: scale(0.8);
-
-                        transition: transform 500ms;
-                    }
-                }
-
-                a:hover {
-                    transition: transform 500ms;
-
-                    transition:
-                        color 500ms,
-                        opacity 500ms;
-                    color: var(--secondary);
-                    opacity: 1;
-
-                    i {
-                        transition: transform 500ms;
-                        transform: scale(1.1);
-                    }
                 }
             }
         }

@@ -11,7 +11,8 @@ export async function GET() {
         '/projects',
         '/blog',
         '/privacy',
-        '/cookies'
+        '/cookies',
+        '/aboutme'
     ];
 
     const pages: string[] = [];

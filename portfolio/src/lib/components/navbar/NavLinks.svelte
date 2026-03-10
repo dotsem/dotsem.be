@@ -6,6 +6,7 @@
         navbar_projects,
         navbar_blog,
         navbar_contact,
+        navbar_aboutme,
     } from "$lib/paraglide/messages.js";
 
     let { ...restProps } = $props();
@@ -16,6 +17,9 @@
 <div class="nav-links {restProps.class}">
     <a href={i18n.resolveRoute("/#profile", currentLang)}>
         {navbar_profile(undefined, { languageTag: currentLang })}
+    </a>
+    <a href={i18n.resolveRoute("/aboutme", currentLang)}>
+        {navbar_aboutme(undefined, { languageTag: currentLang })}
     </a>
     <a href={i18n.resolveRoute("/projects", currentLang)}>
         {navbar_projects(undefined, { languageTag: currentLang })}

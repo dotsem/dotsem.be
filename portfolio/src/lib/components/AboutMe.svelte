@@ -2,6 +2,9 @@
     import * as Card from "$lib/components/ui/card";
     import * as m from "$lib/paraglide/messages.js";
     import { calculateAge } from "$lib/utils";
+    import InfoCard from "./InfoCard.svelte";
+
+    let { showTitle = true, ...restProps } = $props();
 
     const age = calculateAge("2006-08-31");
 
@@ -24,35 +27,26 @@
     ]);
 </script>
 
-<section id="about-me" class="container m-auto py-24">
+<section
+    {...restProps}
+    id="about-me"
+    class="container m-auto py-24 {restProps.class}"
+>
     <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12 text-foreground">
-            {m.about_me_title()}
-        </h2>
+        {#if showTitle}
+            <h2 class="text-4xl font-bold text-center mb-12 text-foreground">
+                {m.about_me_title()}
+            </h2>
+        {/if}
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {#each sections as section}
-                <Card.Root
-                    class="about-card last:md:col-span-2 last:lg:col-span-1 relative h-full flex flex-col p-6 m-0!"
+                <InfoCard
+                    title={section.title}
+                    icon={section.icon}
+                    class="last:md:col-span-2 last:lg:col-span-1"
+                    >{section.content}</InfoCard
                 >
-                    <div class="absolute top-2 right-2">
-                        <i
-                            class="about-icon fa-solid {section.icon} text-secondary/30 text-6xl"
-                        ></i>
-                    </div>
-
-                    <Card.Header class="p-0 mb-4">
-                        <Card.Title class="text-2xl font-bold text-secondary">
-                            {section.title}
-                        </Card.Title>
-                    </Card.Header>
-
-                    <Card.Content
-                        class="p-0 text-foreground/80 leading-relaxed"
-                    >
-                        {section.content}
-                    </Card.Content>
-                </Card.Root>
             {/each}
         </div>
     </div>

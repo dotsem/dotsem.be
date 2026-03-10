@@ -109,11 +109,6 @@
                 height: 100%;
                 object-fit: cover;
                 transform: scale(1);
-                transition: transform 0.3s ease-out;
-
-                &.scaling {
-                    transition: transform 0.1s linear;
-                }
             }
         }
         &:hover img:not(.scaling) {
