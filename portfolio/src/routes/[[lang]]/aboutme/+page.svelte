@@ -38,7 +38,7 @@
         <img
             id="me-image"
             src={MeImage}
-            class="w-[60%] mx-auto"
+            class="w-[60%] mx-auto unselectable"
             alt="thats me!"
         />
     </div>
@@ -84,7 +84,7 @@
     {#snippet image()}
         <img
             src={DigitalInnovation}
-            class="w-[60%] mx-auto"
+            class="w-[60%] mx-auto unselectable"
             alt="Digital Innovation @ Thomas More"
         />
     {/snippet}

@@ -16,7 +16,7 @@
             currentLang === "en" ? "nl" : "en",
         );
     }}
-    class="flex items-center rounded-full bg-slate-800/80 p-1 w-[64px] relative shadow-inner border border-white/10 hover:bg-slate-700/80 transition-colors cursor-pointer"
+    class="unselectable flex items-center rounded-full bg-slate-800/80 p-1 w-[64px] relative shadow-inner border border-white/10 hover:bg-slate-700/80 transition-colors cursor-pointer"
 >
     <div
         class="absolute left-1 w-7 h-7 rounded-full bg-primary/20 shadow-sm transition-transform duration-300 ease-in-out pointer-events-none {currentLang ===

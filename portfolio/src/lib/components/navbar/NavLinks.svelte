@@ -14,7 +14,7 @@
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
 </script>
 
-<div class="nav-links {restProps.class}">
+<div class="nav-links unselectable {restProps.class}">
     <a href={i18n.resolveRoute("/#profile", currentLang)}>
         {navbar_profile(undefined, { languageTag: currentLang })}
     </a>

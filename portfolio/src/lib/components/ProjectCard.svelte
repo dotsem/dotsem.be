@@ -42,7 +42,7 @@
             <img
                 src={project.image}
                 alt=""
-                class="image-blur-bg"
+                class="image-blur-bg unselectable"
                 aria-hidden="true"
             />
             <div class="image-overlay"></div>
@@ -51,7 +51,7 @@
                     src={project.image}
                     alt={project.title}
                     loading="lazy"
-                    class="image-main"
+                    class="image-main unselectable"
                 />
             </div>
         </div>

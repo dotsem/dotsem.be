@@ -27,7 +27,7 @@
         <img
             src={data.metadata.image}
             alt={data.metadata.title}
-            class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white/20 object-cover shadow-xl"
+            class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white/20 object-cover shadow-xl unselectable"
         />
         <h1 class="text-3xl md:text-5xl font-bold font-sans drop-shadow-md">
             {data.metadata.title}

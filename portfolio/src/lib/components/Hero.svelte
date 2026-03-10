@@ -12,7 +12,7 @@
 </script>
 
 <div id="hero" class="relative bg-background">
-    <picture>
+    <picture class="unselectable">
         <source media="(min-width: 1400px)" srcset={HeroImage} />
         <img
             src={HeroImageMobile}
