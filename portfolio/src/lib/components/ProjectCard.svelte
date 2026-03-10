@@ -55,24 +55,20 @@
                 />
             </div>
         </div>
-        <Card.Header class="pb-2 w-full overflow-hidden flex flex-col gap-2">
+        <div
+            class="lang-scroll-container px-6 {needsScroll ? 'mask-edges' : ''}"
+            bind:this={scrollContainer}
+        >
             <div
-                class="lang-scroll-container {needsScroll
-                    ? 'mask-edges px-2'
-                    : ''}"
-                bind:this={scrollContainer}
+                class="lang-scroll-content {needsScroll ? 'animate-saw' : ''}"
+                bind:this={contentContainer}
             >
-                <div
-                    class="lang-scroll-content {needsScroll
-                        ? 'animate-saw'
-                        : ''}"
-                    bind:this={contentContainer}
-                >
-                    {#each project.languages as lang}
-                        <ProgLang name={lang} size={0.65} />
-                    {/each}
-                </div>
+                {#each project.languages as lang}
+                    <ProgLang name={lang} size={0.65} />
+                {/each}
             </div>
+        </div>
+        <Card.Header class="pb-2 w-full overflow-hidden flex flex-col gap-2">
             <Card.Title class="text-xl font-bold tracking-tight"
                 >{project.title}</Card.Title
             >
@@ -95,9 +91,8 @@
 
         {#if project.status}
             <span
-                class="absolute top-1 left-1 text-xs glossy-tile m-0 px-1 py-0.5 rounded-md z-10 {project.status.startsWith(
-                    'V',
-                )
+                class="absolute top-1 left-1 text-xs glossy-tile m-0 px-1 py-0.5 rounded-md z-10
+                {project.status.toLowerCase().startsWith('v')
                     ? ''
                     : 'status-hide'}">{project.status}</span
             >
