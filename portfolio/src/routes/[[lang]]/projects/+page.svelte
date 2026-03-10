@@ -1,5 +1,6 @@
 <script lang="ts">
     import ProjectCard from "$lib/components/ProjectCard.svelte";
+    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
     let { data } = $props();
 
@@ -19,8 +20,10 @@
 
 <div class="container mx-auto py-10 px-4">
     <div class="flex flex-wrap gap-2 justify-center">
-        {#each projects as project}
-            <ProjectCard {project} />
+        {#each projects as project, index}
+            <EntryAnimation type="slide-right" delay={index * 100}>
+                <ProjectCard {project} />
+            </EntryAnimation>
         {/each}
     </div>
 </div>

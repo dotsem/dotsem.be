@@ -11,6 +11,7 @@
     import BgImage from "$lib/assets/bg-dark.jpg";
     import ImageDivider from "$lib/components/ImageDivider.svelte";
     import AboutMe from "$lib/components/AboutMe.svelte";
+    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
     let { data } = $props();
 
@@ -51,7 +52,9 @@
     <Hero />
     <section class="">
         <ImageDivider imageUrl="" class="slanted">
-            <Profile />
+            <EntryAnimation type="scale" delay={100}>
+                <Profile />
+            </EntryAnimation>
         </ImageDivider>
     </section>
 
@@ -91,11 +94,13 @@
             scaleOnScroll={true}
             scaleEnd={2}
         >
-            <p class="text-4xl font-bold py-2">
-                “Talk is cheap. Show me the code.”
-            </p>
-            <p class="text-2xl">- Linus Torvalds</p></ImageDivider
-        >
+            <EntryAnimation type="slide-up" delay={0}>
+                <p class="text-4xl font-bold py-2">
+                    “Talk is cheap. Show me the code.”
+                </p>
+                <p class="text-2xl">- Linus Torvalds</p>
+            </EntryAnimation>
+        </ImageDivider>
 
         <AboutMe />
     </div>

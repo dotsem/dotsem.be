@@ -40,12 +40,12 @@
         {/if}
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {#each sections as section}
+            {#each sections as section, index}
                 <InfoCard
                     title={section.title}
                     icon={section.icon}
                     class="last:md:col-span-2 last:lg:col-span-1"
-                    >{section.content}</InfoCard
+                    delay={index * 100}>{section.content}</InfoCard
                 >
             {/each}
         </div>

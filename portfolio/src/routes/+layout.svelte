@@ -8,12 +8,28 @@
     import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
+    import { onNavigate, afterNavigate } from "$app/navigation";
     import { onMount } from "svelte";
     import { Toaster } from "$lib/components/ui/sonner";
 
     let { children } = $props();
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
+
+    onNavigate((navigation) => {
+        const toPath = navigation.to?.url.pathname.replace(/\/$/, "") || "";
+        const fromPath = navigation.from?.url.pathname.replace(/\/$/, "") || "";
+
+        // If we're navigating to a different page, make it instant
+        if (toPath !== fromPath) {
+            document.documentElement.style.scrollBehavior = "auto";
+        }
+    });
+
+    afterNavigate(() => {
+        // After any navigation, restore smooth scrolling for in-page links
+        document.documentElement.style.scrollBehavior = "smooth";
+    });
 
     onMount(() => {
         const scrollPos = sessionStorage.getItem("scroll_pos");
