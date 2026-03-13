@@ -5,6 +5,8 @@
     import { page } from "$app/state";
     import "./layout.css";
     import favicon from "$lib/assets/favicon.png";
+    import "devicon/devicon.min.css";
+    import "@fortawesome/fontawesome-free/css/all.min.css";
     import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { ModeWatcher } from "mode-watcher";
     import Footer from "$lib/components/Footer.svelte";
@@ -42,14 +44,6 @@
 
 <svelte:head>
     <link rel="icon" href={favicon} />
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
 
     <script
         defer
