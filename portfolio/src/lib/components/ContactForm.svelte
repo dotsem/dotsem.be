@@ -16,6 +16,7 @@
     } from "$lib/paraglide/messages.js";
     import { toast } from "svelte-sonner";
     import Button from "./ui/button/button.svelte";
+    import EntryAnimation from "./EntryAnimation.svelte";
 
     let status = $state("idle"); // 'idle' | 'sending' | 'success' | 'error'
 
@@ -63,25 +64,31 @@
             <div
                 class="space-y-2 md:text-right flex flex-col w-full items-center md:items-end"
             >
-                <h2
-                    class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight"
-                >
-                    {contact_title()}
-                </h2>
-                <p
-                    class="text-xl md:text-2xl lg:text-3xl font-medium text-foreground opacity-90"
-                >
-                    {contact_subtitle()}
-                </p>
+                <EntryAnimation delay={200} type="slide-left">
+                    <h2
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight"
+                    >
+                        {contact_title()}
+                    </h2>
+                </EntryAnimation>
+                <EntryAnimation delay={400} type="slide-left">
+                    <p
+                        class="text-xl md:text-2xl lg:text-3xl font-medium text-foreground opacity-90"
+                    >
+                        {contact_subtitle()}
+                    </p>
+                </EntryAnimation>
             </div>
 
             <!-- Vertical Divider -->
-            <div
-                class="hidden md:block w-1 self-stretch bg-primary rounded-full min-h-[400px]"
-            ></div>
-            <div
-                class="md:hidden h-1 w-80 mx-auto bg-primary rounded-full"
-            ></div>
+            <EntryAnimation type="scale" duration={2000}>
+                <div
+                    class="hidden md:block w-1 self-stretch bg-primary rounded-full min-h-[400px]"
+                ></div>
+                <div
+                    class="md:hidden h-1 w-80 mx-auto bg-primary rounded-full"
+                ></div>
+            </EntryAnimation>
 
             <!-- Form Side -->
             <div class="w-full">
