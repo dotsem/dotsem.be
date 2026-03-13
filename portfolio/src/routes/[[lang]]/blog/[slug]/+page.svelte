@@ -46,9 +46,10 @@
     </div>
 </div>
 
-<div class="container mx-auto py-10 px-4 md:px-8 xl:px-0">
-    <div class="flex flex-col xl:flex-row gap-8 relative max-w-7xl mx-auto">
-        <div class="flex-1 w-full min-w-0">
+<div class="w-full py-10 px-4 md:px-8">
+    <div class="grid grid-cols-1 xl:grid-cols-[1fr_minmax(0,800px)_1fr] gap-8">
+        <div class="hidden xl:block"></div>
+        <div class="w-full min-w-0">
             <article
                 class="prose dark:prose-invert lg:prose-lg xl:prose-xl mx-auto"
             >
@@ -69,7 +70,8 @@
                 {/if}
             </article>
         </div>
-
-        <TableOfContents headers={data.blog.headers} />
+        <div class="flex xl:justify-end justify-center">
+            <TableOfContents headers={data.blog.headers} />
+        </div>
     </div>
 </div>

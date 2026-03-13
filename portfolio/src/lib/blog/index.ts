@@ -51,7 +51,7 @@ function createSlug(text: string): string {
 
 function extractHeaders(body: string): BlogHeader[] {
     const headers: BlogHeader[] = [];
-    const regex = /^(#{2,3})\s+(.*)$/gm;
+    const regex = /^(#{2,5})\s+(.*)$/gm;
     let match;
     while ((match = regex.exec(body)) !== null) {
         headers.push({

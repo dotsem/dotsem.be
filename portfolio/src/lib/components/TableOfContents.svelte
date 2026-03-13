@@ -13,15 +13,25 @@
     let isMobileMenuOpen = $state(false);
 
     onMount(() => {
+        const visibleHeaders = new Set<string>();
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        activeId = entry.target.id;
+                        visibleHeaders.add(entry.target.id);
+                    } else {
+                        visibleHeaders.delete(entry.target.id);
                     }
                 });
+
+                const firstVisible = headers.find((h) =>
+                    visibleHeaders.has(h.id),
+                );
+                if (firstVisible) {
+                    activeId = firstVisible.id;
+                }
             },
-            { rootMargin: "-100px 0px -40% 0px" },
+            { rootMargin: "-80px 0px -70% 0px" },
         );
 
         headers.forEach((header) => {
@@ -55,7 +65,7 @@
 </script>
 
 <!-- Desktop TOC -->
-<div class="hidden xl:block w-64 shrink-0 px-4">
+<div class="toc hidden xl:block w-64 shrink-0 px-4">
     <div
         class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4 pointer-events-auto"
     >
@@ -75,11 +85,11 @@
                             e.preventDefault();
                             scrollToHeader(header.id);
                         }}
-                        class="text-sm transition-colors hover:text-foreground inline-block relative {activeId ===
+                        class="text-sm transition-colors border-l-2 border-dark hover:text-foreground inline-block relative {activeId ===
                         header.id
-                            ? 'text-foreground font-medium'
+                            ? 'text-foreground border-primary font-medium'
                             : 'text-muted-foreground'}"
-                        style="padding-left: {(header.level - 2) * 1}rem;"
+                        style="padding-left: {(header.level - 2) * 1 + 0.5}rem;"
                     >
                         {#if activeId === header.id}
                             <div
@@ -96,7 +106,7 @@
 
 <!-- Mobile/Tablet TOC Button -->
 {#if headers.length > 0}
-    <div class="fixed bottom-4 right-4 z-50 xl:hidden mobile-toc-container">
+    <div class="toc fixed bottom-4 right-4 z-50 xl:hidden mobile-toc-container">
         <button
             onclick={(e) => {
                 e.stopPropagation();
@@ -124,11 +134,12 @@
                                 e.preventDefault();
                                 scrollToHeader(header.id);
                             }}
-                            class="text-sm transition-colors hover:text-foreground {activeId ===
+                            class="text-sm transition-colors border-l-2 border-dark hover:text-foreground {activeId ===
                             header.id
-                                ? 'text-foreground font-medium border-l-2 border-primary pl-2 -ml-[10px]'
+                                ? 'text-foreground border-primary font-medium border-l-2'
                                 : 'text-muted-foreground'}"
-                            style="padding-left: {(header.level - 2) * 1}rem;"
+                            style="padding-left: {(header.level - 2) * 1 +
+                                0.5}rem;"
                         >
                             {header.text}
                         </a>
