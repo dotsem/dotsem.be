@@ -3,8 +3,8 @@
     import Profile from "$lib/components/profile/Profile.svelte";
     import { calculateAge } from "$lib/utils";
     import * as m from "$lib/paraglide/messages.js";
-    import MeImage from "$lib/assets/me.png";
-    import DigitalInnovation from "$lib/assets/digital-innovation.png";
+    import MeImage from "$lib/assets/me.webp";
+    import DigitalInnovation from "$lib/assets/digital-innovation.webp";
     import SocialLinks from "$lib/components/SocialLinks.svelte";
     import ProgLang from "$lib/components/ProgLang.svelte";
     import InfoCard from "$lib/components/InfoCard.svelte";

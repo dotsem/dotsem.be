@@ -77,7 +77,7 @@
                 alt="static background"
                 class="unselectable"
                 class:scaling={scaleOnScroll}
-                style="transform: scale({currentScale})"
+                style="transform: scale({currentScale});"
             />
         </div>
     {/if}

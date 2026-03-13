@@ -8,7 +8,7 @@
         projects_highlighted_description,
     } from "$lib/paraglide/messages.js";
     import * as Carousel from "$lib/components/ui/carousel";
-    import BgImage from "$lib/assets/bg-dark.jpg";
+    import BgImage from "$lib/assets/bg-dark.webp";
     import ImageDivider from "$lib/components/ImageDivider.svelte";
     import AboutMe from "$lib/components/AboutMe.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";

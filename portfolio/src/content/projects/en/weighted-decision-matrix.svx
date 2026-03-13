@@ -1,7 +1,7 @@
 ---
 title: Weighted Decision Matrix
 slug: weighted-decision-matrix
-image: /projects/Weighted-decision-matrix/logo.png
+image: /projects/Weighted-decision-matrix/logo.webp
 description: A handy website to easily create weighted decision matrices and export them to markdown.
 languages:
   - svelte

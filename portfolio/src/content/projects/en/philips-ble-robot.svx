@@ -1,7 +1,7 @@
 ---
 title: Philips BLE Robot
 slug: philips-ble-robot
-image: /projects/Philips-BLE-robot/logo.png
+image: /projects/Philips-BLE-robot/logo.webp
 description: A project made during my internship at Philips Eindhoven. Combining their embedded bluetooth library to control a simple robot via bluetooth via a custom mobile app.
 languages:
   - cpp

@@ -1,7 +1,7 @@
 ---
 title: {title}
 slug: {slug}
-image: /blogs/{slug}/logo.png
+image: /blogs/{slug}/logo.webp
 description: 
 labels:
 

@@ -1,7 +1,7 @@
 ---
 title: Niri - The best window manager
 slug: niri-the-best-window-manager
-image: /projects/niri-the-best-window-manager/logo.png
+image: /projects/niri-the-best-window-manager/logo.webp
 description: 
 labels:
 

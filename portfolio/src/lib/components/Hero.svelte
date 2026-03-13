@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Button } from "$lib/components/ui/button";
-    import HeroImage from "$lib/assets/hero.png";
-    import HeroImageMobile from "$lib/assets/hero-sm.png";
+    import HeroImage from "$lib/assets/hero.webp";
+    import HeroImageMobile from "$lib/assets/hero-sm.webp";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
     import {

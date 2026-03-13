@@ -1,7 +1,7 @@
 ---
 title: Waaiburg Mobiele App
 slug: waaiburg-app
-image: /projects/Waaiburg-app/logo.png
+image: /projects/Waaiburg-app/logo.webp
 description: Performance analyse, updates & nieuwe features voor de Waaiburg mobiele app.
 languages:
   - flutter

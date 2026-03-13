@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import ProgLang from "$lib/components/ProgLang.svelte";
-    import MeImage from "$lib/assets/me.png";
+    import MeImage from "$lib/assets/me.webp";
     import * as m from "$lib/paraglide/messages.js";
     import { calculateAge } from "$lib/utils";
     import SocialLinks from "../SocialLinks.svelte";

@@ -1,7 +1,7 @@
 ---
 title: Smart Jack
 slug: smart-jack
-image: /projects/Smart-jack/logo.jpg
+image: /projects/Smart-jack/logo.webp
 description: Een IOT project met een custom blackjack game gemaakt met pygame, draaiend op een raspberry pi. Het bevat een eID kaartlezer om de speler te identificeren.
 languages:
   - pygame

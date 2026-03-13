@@ -1,7 +1,7 @@
 ---
 title: StrateGO
 slug: stratego
-image: /projects/stratego/logo.png
+image: /projects/stratego/logo.webp
 description: A stratego game that lets you play against different AIs or even train your own AI.
 languages:
   - svelte

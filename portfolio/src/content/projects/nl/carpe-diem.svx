@@ -1,7 +1,7 @@
 ---
 title: Carpe Diem
 slug: carpe-diem
-image: /projects/Carpe-diem/logo.png
+image: /projects/Carpe-diem/logo.webp
 description: Een handige planning app om dag per dag te plannen en je projecten bij te houden.
 languages:
   - dart
