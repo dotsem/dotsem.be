@@ -1,5 +1,6 @@
 <script lang="ts">
     import BlogCard from "$lib/components/BlogCard.svelte";
+    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
     import { Badge } from "$lib/components/ui/badge";
     import * as m from "$lib/paraglide/messages";
 
@@ -48,14 +49,16 @@
 
 <div class="container mx-auto py-10 px-4">
     <div class="mb-8">
-        <h1 class="text-4xl font-bold mb-4">{m.blog_title()}</h1>
-        <p class="text-xl text-muted-foreground mb-6">{m.blog_description()}</p>
-
-        <div class="flex flex-col md:flex-row gap-4 mb-6">
+        <div class="flex flex-col md:flex-row justify-between gap-4 mb-6">
+            <div>
+                <h1 class="sr-only">{m.blog_title()}</h1>
+                <h2 class="text-2xl font-bold mb-6">{m.blog_description()}</h2>
+            </div>
             <input
                 type="search"
                 placeholder={m.blog_search()}
                 bind:value={searchQuery}
+                aria-label="Search"
                 class="md:w-96 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
         </div>
@@ -80,8 +83,10 @@
 
     {#if filteredBlogs.length > 0}
         <div class="flex flex-col gap-6">
-            {#each filteredBlogs as blog}
-                <BlogCard {blog} />
+            {#each filteredBlogs as blog, i}
+                <EntryAnimation delay={i * 100} type="slide-right">
+                    <BlogCard {blog} />
+                </EntryAnimation>
             {/each}
         </div>
     {:else}

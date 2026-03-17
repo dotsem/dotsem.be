@@ -63,7 +63,7 @@
 <AboutMe showTitle={false} class="py-8!" />
 
 <section class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
-    <InfoCard title={m.profile_experience_title()} icon="fa-flask">
+    <InfoCard title={m.profile_experience_title()} delay={300} icon="fa-flask">
         <ul class="list-disc list-inside space-y-1">
             {#each experienceContent as item}
                 <li>{item}</li>
@@ -71,7 +71,7 @@
         </ul>
     </InfoCard>
 
-    <InfoCard title={m.profile_achievements_title()} icon="fa-star">
+    <InfoCard title={m.profile_achievements_title()} delay={400} icon="fa-star">
         <ul class="list-disc list-inside space-y-1">
             {#each achievementsContent as item}
                 <li>{item}</li>
