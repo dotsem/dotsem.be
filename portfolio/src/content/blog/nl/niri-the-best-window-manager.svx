@@ -1,9 +1,98 @@
 ---
-title: Niri - The best window manager
+title: Niri - De beste window manager
 slug: niri-the-best-window-manager
-image: /projects/niri-the-best-window-manager/logo.webp
-description: 
+image: /blogs/niri-the-best-window-manager/logo.webp
+description: Niri is een window manager voor Linux, geschreven in Rust. Het is een tiling window manager, wat betekent dat het vensters in een tegelpatroon schikt, waardoor het eenvoudig en efficiënt in gebruik is. Het onderscheidt zich van andere tiling window managers omdat het een troef achter de hand heeft; het is een tiling window manager met een oneindig horizontaal scrollbare werkruimte.
 labels:
 
-hidden: true
+hidden: false
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Niri - De beste window manager
+
+Niri is een window manager voor Linux, geschreven in Rust. Het is een tiling window manager, wat betekent dat het vensters schikt in een tegelpatroon, waardoor het eenvoudig en efficiënt in gebruik is.
+Het onderscheidt zich van andere tiling window managers omdat het een troef achter de hand heeft: het is een tiling window manager met een oneindig horizontaal scrollbare werkruimte.
+
+## Eerst, Hyprland
+
+Hyprland heeft mijn leven veranderd: teruggaan naar Windows (of eender welke andere "floating" WM in Linux) is gewoon pijnlijk. Geen vensters die vastklikken, geen werkruimtes, geen sneltoetsen (al zeker niet zo eenvoudig), ...
+
+De verbeterde werkefficiëntie is waanzinnig en georganiseerd. 
+In Hyprland had ik een strikte ideologie: 10 werkruimtes per scherm. Maar met Teams, Outlook, Discord, WhatsApp en Spotify tegelijkertijd open, zijn er al 5 werkruimtes verbruikt.
+Tenzij je 2 apps per werkruimte combineert, zou je voor alleen deze apps nog steeds 3 werkruimtes nodig hebben.
+
+Dat is waar Niri een rol speelt. 
+Nu heb ik al mijn sociale apps open op één werkruimte en kan ik ertussen schakelen met een eenvoudige sneltoets.
+Ook het verplaatsen tussen verschillende schermen is gewoon veel makkelijker.
+
+## De oneindige horizontaal scrollbare werkruimte
+
+Je denkt waarschijnlijk: "We hebben al werkruimtes, waarom hebben we dan oneindige horizontaal scrollbare werkruimtes nodig?" en "Zou dit het navigeren niet moeilijker maken?"
+
+TLDR: Ja en Ja
+
+Oneindige horizontaal scrollbare werkruimtes maken het inderdaad lastiger, maar ook meer georganiseerd.
+Een van de grootste voordelen is dat wanneer je een nieuwe app opent, je oorspronkelijke app niet van grootte verandert; deze blijft gewoon staan, terwijl je gezichtsveld verschuift.
+
+Ik kan nu eindelijk apps combineren op één werkruimte zonder dat ze op elkaar geplet worden.
+
+## Geweldige functies waarvan ik niet wist dat ik ze nodig had
+
+Niri heeft een aantal geweldige ingebouwde functies waarvan ik niet wist dat ik ze nodig had.
+Deze zijn vooraf geïnstalleerd en werken direct "out of the box". Iets wat Hyprland niet aanbood.
+
+#### Screenshot-tool
+
+Niri wordt standaard geleverd met een screenshot-tool. Om eerlijk te zijn werkte Hyprshot niet altijd; het werkte 99% van de tijd, maar soms... 
+Bovendien was het niet vooraf geïnstalleerd en voor zover ik weet, wordt het niet eens meer onderhouden.
+
+Maar de Niri screenshot-tool, laat me je vertellen, die is geweldig. Heb je ooit de Windows kniptool gebruikt? Je sleept en op het moment dat je loslaat, wordt de screenshot gemaakt.
+Soms denk je: "Oh handig", maar soms denk je: "Verdorie, ik heb het verkeerde gebied geselecteerd".
+Met de Niri screenshot-tool kun je eerst een gebied selecteren en wanneer je tevreden bent, druk je op de spatiebalk om de screenshot te bevestigen.
+Je kunt ook de cursor verbergen of tonen (standaard verborgen), voor het geval je ergens naar wilt wijzen.
+Maar het beste deel is dat het je laatst gebruikte selectie onthoudt, waardoor je simpelweg op de spatiebalk kunt drukken om nog een screenshot van hetzelfde gebied te maken.
+Dit is echt goud waard wanneer je afbeeldingen maakt voor een app of website en steeds hetzelfde deel van het scherm nodig hebt.
+
+
+#### Overzicht
+
+Omdat er een extra dimensie aan kopzorgen is toegevoegd, verlies je soms het overzicht over je vensters. 
+Niri heeft een ingebouwde overzichtsmodus die al je vensters in een raster toont. Het ziet er niet alleen gelikt uit, het is ook zeer functioneel.
+Alle sneltoetsen werken nog steeds, dus je kunt nog gewoon navigeren met je vertrouwde toetsenbordsneltoetsen.
+
+<AssetImage name="overview.png" alt="Overzichtsmodus" />
+
+## Beïnvloed door gaming
+
+Verenigd door onze workflow, zijn we toch verdeeld door onze keuze in sneltoetsen. Ik heb mijn inspiratie uit de gamingwereld gehaald.
+Hoewel Niri bedoeld is om het gebruik van een muis te beperken, heb je er voor de meeste programma's toch een nodig. Daarom wil ik mijn belangrijkste sneltoetsen aan de linkerkant van mijn toetsenbord hebben.
+
+#### ZQSD (AZERTY-toetsenbord)
+
+De typische bewegingstoetsen in elk spel zijn ZQSD (of WASD voor de rest van de wereld). Door de manier waarop Niri werkt 
+(horizontaal = schakelen tussen vensters in je werkruimte, verticaal = schakelen tussen werkruimtes), is het heel intuïtief om Q/D te gebruiken voor vensters en Z/S voor de werkruimtes.
+
+## Formaat aanpassen
+
+Maak je geen illusies: niet alles werkt perfect in Niri. Het aanpassen van de venstergrootte is soms lastiger dan ik gewend was in Hyprland. Dit komt vooral omdat vensters het volledige scherm kunnen innemen als ze dat willen.
+
+## Dank Material Shell
+
+Ik heb mijn lesje uit Hyprland wel geleerd: een aangepaste shell is cool, maar het vreet tijd. Deze keer koos ik voor een kant-en-klare shell: Dank Material Shell.
+Het bevat alle nodige functies, en een geweldige community breidt het nog verder uit met plug-ins. 
+Het maakt gebruik van Quickshell, dat QML gebruikt. Ik ben geen grote fan van QML—naar mijn mening is de ondersteuning niet geweldig—maar het werkt.
+DMS is zeer goed gedocumenteerd, waardoor het makkelijk is om aan de slag te gaan. Ook het instellingenmenu is top met veel opties.
+Waarom heb ik Noctalia Shell niet geprobeerd? Geen idee, ik heb gewoon voor DMS gekozen; er is geen specifieke reden waarom ik de ene boven de andere verkoos.
+
+## Moet je overstappen naar Niri?
+
+Als je momenteel aan het "DE hoppen" bent, kun je Niri eens proberen. Als je momenteel Gnome gebruikt, kun je de PaperWM-extensie installeren om een vergelijkbare ervaring te krijgen binnen Gnome.
+Trouwens, niemand houdt je tegen om twee of meer window managers op je systeem te installeren. Je kunt er gewoon tussen schakelen via je inlogscherm.
+
+## Mijn Niri-configuratie
+
+[Je kan het hier vinden](http://github.com/dotsem/dotfiles/tree/main/niri/.config/niri)
