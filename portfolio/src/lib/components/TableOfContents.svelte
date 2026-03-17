@@ -1,10 +1,16 @@
 <script lang="ts">
-    import type { BlogHeader } from "$lib/blog";
     import List from "@lucide/svelte/icons/list";
     import { onMount, onDestroy } from "svelte";
+    import { on_this_page } from "$lib/paraglide/messages";
+
+    interface Header {
+        level: number;
+        text: string;
+        id: string;
+    }
 
     interface Props {
-        headers: BlogHeader[];
+        headers: Header[];
     }
 
     let { headers }: Props = $props();
@@ -73,7 +79,7 @@
             <h4
                 class="font-semibold mb-4 text-sm uppercase tracking-wider text-muted-foreground w-full border-b pb-2"
             >
-                On this page
+                {on_this_page()}
             </h4>
             <nav class="flex flex-col gap-2 relative pointer-events-auto">
                 {#each headers as header}
@@ -122,7 +128,7 @@
                 class="absolute bottom-16 right-0 w-[85vw] sm:w-[350px] bg-background border border-border rounded-lg shadow-xl p-6 overflow-y-auto max-h-[60vh]"
             >
                 <h4 class="font-semibold mb-4 text-lg border-b pb-2">
-                    On this page
+                    {on_this_page()}
                 </h4>
                 <nav class="flex flex-col gap-3">
                     {#each headers as header}

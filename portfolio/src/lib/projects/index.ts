@@ -10,9 +10,16 @@ export interface ProjectMeta {
     status?: string;
 }
 
+export interface ProjectHeader {
+    level: number;
+    text: string;
+    id: string;
+}
+
 export interface Project extends ProjectMeta {
     component: Component;
     hasContent: boolean;
+    headers: ProjectHeader[];
 }
 
 type MdsvexModule = {
@@ -31,6 +38,25 @@ const images = import.meta.glob<string>('/src/lib/assets/projects/**/*.{png,jpg,
     import: 'default'
 });
 
+// Emulate github-slugger used by rehype-slug
+function createSlug(text: string): string {
+    return text.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
+}
+
+function extractHeaders(body: string): ProjectHeader[] {
+    const headers: ProjectHeader[] = [];
+    const regex = /^(#{2,5})\s+(.*)$/gm;
+    let match;
+    while ((match = regex.exec(body)) !== null) {
+        headers.push({
+            level: match[1].length,
+            text: match[2].trim(),
+            id: createSlug(match[2])
+        });
+    }
+    return headers;
+}
+
 
 export function getProjectsByLang(lang: string): Promise<Project[]> {
     const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
@@ -46,7 +72,8 @@ export function getProjectsByLang(lang: string): Promise<Project[]> {
                 ...mod.metadata,
                 image: images[imagePath] || mod.metadata.image,
                 component: mod.default,
-                hasContent: body.length > 0
+                hasContent: body.length > 0,
+                headers: extractHeaders(body)
             };
         })
     );
@@ -67,6 +94,7 @@ export async function getProjectBySlug(lang: string, slug: string): Promise<Proj
         ...mod.metadata,
         image: images[imagePath] || mod.metadata.image,
         component: mod.default,
-        hasContent: body.length > 0
+        hasContent: body.length > 0,
+        headers: extractHeaders(body)
     };
 }

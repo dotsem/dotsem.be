@@ -2,6 +2,7 @@
     import ProgLang from "$lib/components/ProgLang.svelte";
     import * as m from "$lib/paraglide/messages";
     import HardHat from "@lucide/svelte/icons/hard-hat";
+    import TableOfContents from "$lib/components/TableOfContents.svelte";
 
     let { data } = $props();
 
@@ -44,20 +45,30 @@
     ></span>
 </div>
 
-<article class="prose dark:prose-invert lg:prose-xl mx-auto py-10 px-4 md:px-0">
-    {#if data.metadata.hasContent}
-        <Component />
-    {:else}
-        <div
-            class="flex flex-col items-center justify-center py-20 text-center opacity-70"
-        >
-            <i class="fa-solid fa-hard-hat fa-bounce text-6xl"></i>
-            <h2 class="text-3xl font-bold m-0 mb-4 mt-8">
-                {m.projects_empty_title()}
-            </h2>
-            <p class="text-xl max-w-lg m-0">
-                {m.projects_empty_description()}
-            </p>
+<div class="w-full py-10 px-4 md:px-8">
+    <div class="grid grid-cols-1 xl:grid-cols-[1fr_minmax(0,1024px)_1fr] gap-8">
+        <div class="hidden xl:block"></div>
+        <div class="w-full min-w-0">
+            <article class="prose dark:prose-invert lg:prose-xl mx-auto">
+                {#if data.metadata.hasContent}
+                    <Component />
+                {:else}
+                    <div
+                        class="flex flex-col items-center justify-center py-20 text-center opacity-70"
+                    >
+                        <HardHat class="w-16 h-16 animate-bounce mb-4 mt-8" />
+                        <h2 class="text-3xl font-bold m-0 mb-4">
+                            {m.projects_empty_title()}
+                        </h2>
+                        <p class="text-xl max-w-lg m-0">
+                            {m.projects_empty_description()}
+                        </p>
+                    </div>
+                {/if}
+            </article>
         </div>
-    {/if}
-</article>
+        <div class="flex xl:justify-end justify-center">
+            <TableOfContents headers={data.metadata.headers} />
+        </div>
+    </div>
+</div>
