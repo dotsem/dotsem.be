@@ -1,7 +1,7 @@
 ---
 title: Waaiburg Mobile App
 slug: waaiburg-app
-image: /projects/Waaiburg-app/logo.webp
+image: /projects/waaiburg-app/logo.webp
 description: Performance analysis, updates & new features for the Waaiburg mobile app.
 languages:
   - flutter
@@ -10,7 +10,11 @@ highlighted: false
 status: Finished
 ---
 
-# Waaiburg Mobile App
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Waaiburg Mobile App
 
 One of the projects I worked on in Digital Innovation was the Waaiburg mobile app. 
 The app already existed, but the client requested the addition of a customizable avatar.
@@ -27,6 +31,18 @@ While working on the project I noticed that the app could be optimized.
 I started by analyzing the app and found that the app was not using the latest version of flutter.
 I updated the app to the latest version of flutter and optimized the app.
 
-Then I added content & image caching, this improved the performance of the app significantly.
+I also added content & image caching, this improved the performance of the app significantly.
 
-I also updated the "levensboom" interface by adding the feature to answer multiple questions per growth stage in one page.
+## The "Levensboom" Interface
+
+The main goal of this project was to implement an avatar in our "levensboom" (tree of life) interface.
+After testing the original interface I noticed that we could improve the user experience by adding the feature to answer multiple questions per growth stage in one page.
+This made the app more engaging and looking more like a real chat-app. Now every time a user completed the questions form a growth stage, the tree would grow.
+
+The cherry on top was to preload the videos the moment the user opened the interface, this made the animation transitions feel buttery smooth.
+
+## View My LinkedIn Post
+
+[Check out my LinkedIn post about this project!](https://www.linkedin.com/feed/update/urn:li:activity:7438206490622001152/?originTrackingId=tGYXsoSeSoDsJHQRu4Dv5A%3D%3D)
+
+<AssetImage name="flyer.png" alt="Flyer" />
