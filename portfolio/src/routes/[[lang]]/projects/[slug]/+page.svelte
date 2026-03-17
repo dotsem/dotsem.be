@@ -17,7 +17,7 @@
     class="relative w-full h-[50vh] max-h-[50vh] flex flex-col items-center justify-center overflow-hidden"
 >
     <div
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-50"
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-50 blur-md"
         style="background-image: url('{data.metadata.image}')"
     ></div>
 
@@ -38,6 +38,10 @@
             {/each}
         </div>
     </div>
+
+    <span
+        class="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-b from-transparent to-background"
+    ></span>
 </div>
 
 <article class="prose dark:prose-invert lg:prose-xl mx-auto py-10 px-4 md:px-0">
