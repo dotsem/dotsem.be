@@ -2,9 +2,127 @@
 title: SKIL2 Chez Natalie
 slug: skil2-chez-natalie
 image: /projects/skil2-chez-natalie/logo.webp
-description: 
+description: Voor het tweede semester van mijn tweede jaar aan Thomas More moesten we een website maken voor Chez Natalie. Het was een groepsproject waarbij we een website voor een B&B moesten bouwen.
 languages:
+    - php
+    - laravel
+    - sql
+    - uml
 
 highlighted: false
-status: In Progress
+status: In uitvoering
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Webapp voor Chez Natalie
+
+In het tweede semester hebben we ons onderzoek gewisseld met een andere groep. Dit betekende dat we een website moesten maken voor een klant die we nog niet kenden.
+Het doel was om het onderzoek van de andere groep te gebruiken om de doelstellingen te begrijpen en dit te gebruiken om een website voor de klant te maken.
+
+### SKIL2
+
+Bij Thomas More hebben we een vak dat Skills Integration Lab heet.
+Dit vak is gericht op het combineren van alle vaardigheden die in de lessen geleerd zijn en deze toe te passen op realistische projecten.
+
+In het tweede jaar van SKIL werken we nog niet voor echte klanten.
+In plaats daarvan werken we voor fictieve bedrijven die door onze docenten zijn bedacht.
+Dit wordt gedaan om ons de kans te geven onze vaardigheden te oefenen zonder de druk van het werken voor een echte klant.
+
+## Valideren en onderzoek
+
+Omdat dit een nieuwe klant voor ons was, zijn we begonnen met het valideren van het onderzoek van de andere groep.
+Dit hebben we gedaan door een interview met de klant af te nemen om hun behoeften en verwachtingen te begrijpen en deze te vergelijken met het onderzoek van de andere groep.
+
+Vervolgens zijn we begonnen met het analyseren van het ERD en dit te vergelijken met de behoeften en verwachtingen van de klant.
+
+## Het ERD herschrijven
+
+Na het analyseren van het ERD merkten we dat dit niet correct was.
+We zijn begonnen met het herschrijven van het ERD zodat het overeenkomt met de behoeften en verwachtingen van de klant.
+
+<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
+
+## Tech stack
+
+Voor dit project zijn we (verplicht) om [Laravel](https://laravel.com/) te gebruiken met de TALL-stack.
+Dit bevat het volgende:
+
+- TailwindCSS
+- Alpine.js
+- Laravel
+- Livewire
+
+We gebruiken [FluxUI](https://fluxui.com/) als ons UI-framework voor dit project. Het is nauw geïntegreerd met Livewire en Alpine.js.
+
+## Databank opzetten
+
+Na het herschrijven van het ERD en het bevestigen hiervan door de klant, zijn we begonnen met het opzetten van de database.
+Ik heb de taak op me genomen om de database op te zetten en de modellen aan te maken.
+Ik heb Eloquent ORM (onderdeel van Laravel) gebruikt om de databasetabellen aan te maken.
+
+### Wat is er nodig?
+
+Elke tabel heeft een migratie nodig om de database te vertellen hoe de gegevens van de tabel gestructureerd zijn.
+Vervolgens is er een model nodig om te communiceren met de databasetabel. We kunnen hier aangepaste lookups en functies definiëren om het werken met de gegevens gemakkelijker te maken.
+Ten slotte hebben we seeders en optioneel factories nodig om de database te vullen met gegevens en testdata te gebruiken in unittests.
+
+## Scrum
+
+Voor dit project werken we met de Scrum-methodologie.
+We hebben het project opgesplitst in meerdere sprints, elk met hun eigen doelen.
+
+We volgen de Scrum-methodologie niet volledig omdat we niet elke dag een daily standup kunnen doen. Dit komt doordat we niet voltijds aan dit project werken.
+
+### Jira
+
+We gebruiken Jira om ons project te beheren.
+We hebben een backlog gemaakt van alle taken die we moeten voltooien en aan het begin van elke sprint evalueren we onze backlog en kiezen we welke taken we deze sprint willen voltooien.
+Elke taak krijgt een story point-waarde om de moeilijkheidsgraad van de taak in te schatten. Hiervoor gebruiken we Fibonacci-getallen (1, 2, 3, 5, 8, 13, 21, ...).
+
+### Sprint 1
+
+Normaal was het gepland om de database en componenten voor het project op te zetten in deze sprint. Maar we liepen hier al op vooruit.
+We spraken af om te beginnen aan de "must-have" functionaliteiten voor onze klant.
+
+#### Beheerdersdashboard
+
+Deze sprint heb ik gewerkt aan het maken van een uitbreidbaar dashboard voor de admin.
+Dit dashboard dient om een snel overzicht te krijgen van de boekingen en de kamers.
+
+<AssetImage name="dashboard.png" alt="Dashboard" />
+
+Vanwege de beperkte tijd die we hadden en omdat we voorliepen op de planning, konden we niet alle taken in deze sprint afronden.
+We kregen echter wel een audit op onze database-setup aan het einde van deze sprint. De score die we ontvingen was perfect.
+Zoals beschreven door de docent: "Groep 601 heeft een zeer professionele en uitgebreide database-architectuur geleverd. Het project beslaat een complex bereik inclusief kamerboekingen, fietsverhuur, yogalessen en een e-mailsjabloonsysteem. De codekwaliteit is uitstekend, met een sterke naleving van de Laravel 12-standaarden en duidelijke architecturale keuzes."
+
+### Sprint 2
+
+Voor sprint 2 hebben we de taken afgerond die niet af waren in sprint 1. We hebben ook een aantal nieuwe taken opgepakt. We hadden alle "must-have" functies al voltooid, dus we zijn begonnen aan de "should-have" functies.
+
+#### Beheersysteem voor yogalessen
+
+Deze sprint heb ik gewerkt aan het opzetten van de inloglogica voor yogadocenten en hen een manier gegeven om hun lessen te beheren.
+Het lesbeheersysteem is een uitgebreid systeem waarmee yogadocenten lessen kunnen aanmaken, bijwerken en verwijderen.
+Het bevat functies zoals het automatisch controleren of de kamer beschikbaar is en het afhandelen hiervan voor geannuleerde lessen.
+
+<AssetImage name="yoga-management.png" alt="Yoga Management pagina" />
+
+#### Reviewpagina voor klanten
+
+Ik heb ook gewerkt aan de pagina voor klanten om een review te schrijven.
+Hier kunnen ze een review schrijven door een beoordeling, een titel en een bericht op te geven.
+Zodra ze een review hebben gemaakt, kunnen ze die review bewerken of verwijderen.
+Een klant kan slechts één review plaatsen.
+
+<AssetImage name="review.png" alt="Review pagina" />
+
+#### Dashboard uitbreiden
+
+Ik heb ook gewerkt aan het uitbreiden van het beheerdersdashboard met de nieuwe kalender.
+
+### Sprint 3
+
+Kom binnenkort terug voor meer informatie over sprint 3!

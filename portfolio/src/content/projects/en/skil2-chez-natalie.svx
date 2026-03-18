@@ -7,7 +7,125 @@ languages:
     - php
     - laravel
     - sql
+    - uml
 
 highlighted: false
 status: In Progress
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Webapp for Chez Natalie
+
+In the second semester we switched our research with another group. This meant we had to create a website for a client that we didn't know yet.
+The goal was to use the research from the other group to understand the goal and use it to create a website for the client.
+
+### SKIL2
+
+At Thomas More, we have a subject called Skills Integration Lab. 
+This subject is focused on combining all skills learned in courses and applying them to realistic projects.
+
+In the second year of SKIL, we are not working for real clients just yet. 
+Instead, we are working for fake companies that are created by our teachers. 
+This is done to give us the opportunity to practice our skills without the pressure of working for a real client.
+
+## Validating and researching
+
+Because this was a new client for us, we started by validating the research from the other group.
+We did this by conducting an interview with the client to understand their needs and expectations and compare it to the research from the other group.
+
+Next up we started analyzing the ERD and comparing it to the client's needs and expectations.
+
+## Rewriting the ERD
+
+After analyzing the ERD, we noticed that it was not correct. 
+We started by rewriting the ERD to match the client's needs and expectations.
+
+<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
+
+## Tech stack
+
+For this project we are (forced) to use [Laravel](https://laravel.com/) with the TALL stack.
+This includes the following:
+
+- TailwindCSS
+- Alpine.js
+- Laravel
+- Livewire
+
+We use [FluxUI](https://fluxui.com/) as our UI framework for this project. It is tightly integrated with Livewire and Alpine.js.
+
+## Setting up the database
+
+After rewriting the ERD and confirming it with the client, we started by setting up the database.
+I took the task of setting up the database and creating the models.
+I used Eloquent ORM (part of Laravel) to create the database tables.
+
+### What does it need?
+
+Each table needs a migration to tell the database how the data of the table is structured. 
+It then needs a model to interact with the database table. We can define custom lookups & functions here to make it easier to work with the data.
+Finally we need seeders and optionally factories to populate the database with data and use fake data in unit tests.
+
+## Scrum
+
+For this project we are working with the scrum methodology.
+We have split up the project into multiple sprints, each with their own goals.
+
+We are not fully following the scrum methodology because we are unable to do a daily standup everyday. This because we are not working on this project full-time.
+
+### Jira
+
+We are using Jira to manage our project. 
+We have created a backlog of all the tasks we need to complete and at the start of every sprint we evaluate our backlog and choose which tasks we want to complete this sprint.
+Each task gets a story point value to estimate the difficulty of the task. We use fibonacci numbers for this (1, 2, 3, 5, 8, 13, 21, ...).
+
+### Sprint 1
+
+Normally it was planned to setup the database and components for the project in this sprint. But we where already ahead of this.
+We agreed to start working on the must have features for our client.
+
+#### Admin Dashboard 
+
+This sprint I've worked on creating an extensible dashboard for the admin.
+This dashboard is to get a quick overview of the bookings and the rooms.
+
+<AssetImage name="dashboard.png" alt="Dashboard" />
+
+Because of the limited time we had and because we where ahead of the planning, we where not able to finish all tasks in this sprint. 
+We did however get an audit on our database setup at the end of this sprint. The score we received was perfect. 
+As described by the teacher: "Group 601 has delivered a highly professional and extensive database architecture. The project covers a complex
+scope including room bookings, bike rentals, yoga classes, and a mail template system. The code quality is excellent,
+with strong adherence to Laravel 12 standards and clear architectural choices."
+
+### Sprint 2
+
+For sprint 2 we finished the tasks that weren't finished from sprint 1. We also picked up some new tasks. We already completed all the must have features, so we started working on the should have features.
+
+#### Yoga Teacher Class Management System
+
+This sprint I've worked on setting up the login logic for yoga teachers and giving them a way to manage their classes.
+The class management system is a comprehensive system that allows yoga teachers to create, update, and delete classes.
+It includes features like automatically checking if the room is available and handling this for canceled classes.
+
+<AssetImage name="yoga-management.png" alt="Yoga Management page" />
+
+
+#### Client Review Page
+
+I've also worked on the page for clients to write a review.
+Here they can write a review by providing a rating, a title and a message. 
+Once they have made review they are able to edit or delete that review.
+A client can only make one review.
+
+<AssetImage name="review.png" alt="Review page" />
+
+#### Extending Admin Dashboard
+
+I've also worked on extending the admin dashboard to include the new calender.
+
+### Sprint 3
+
+Come back soon for more information about sprint 3!
