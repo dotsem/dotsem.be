@@ -2,9 +2,92 @@
 title: Portfolio
 slug: portfolio
 image: /projects/portfolio/logo.webp
-description: 
+description: Mijn portfolio is natuurlijk een project om trots op te zijn. Het bevat interessante implementaties voor i18n en mijn projecten en blogs, terwijl het een statische website blijft die performant en toegankelijk is.
 languages:
+    - ts
+    - svelte
+    - figma
 
 highlighted: false
-status: In Progress
+status: In uitvoering
 ---
+
+<script lang="ts">
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Mijn Portfolio
+
+Ja! Mijn portfolio is een project om trots op te zijn. Het combineert alle elementen om een geweldige, SEO-geoptimaliseerde, performante website te creëren.
+Het portfolio is uiteraard gebouwd met SvelteKit en TypeScript.
+
+## Doelen
+
+Vanuit eerdere ervaring met het maken van portfolio-websites (die ik nooit heb afgemaakt) heb ik een aantal duidelijke doelen gesteld voor mijn (hopelijk) definitieve portfolio.
+
+- Gestructureerd systeem voor i18n
+- Gemakkelijk projecten & blogs schrijven zonder boilerplate
+- SEO correct opzetten
+- Focus op prestaties, maar zonder het oog voor design en toegankelijkheid te verliezen
+
+Dit zijn geen op zichzelf staande doelen, maar eerder een systeem om ervoor te zorgen dat ik een geweldige portfolio-website kan maken die gemakkelijk te onderhouden en bij te werken is.
+
+## Planning
+
+Ik ben begonnen met het maken van een ontwerp in Figma. Hierdoor kon ik mijn ontwerp en lay-out plannen voordat ik een enkele regel code schreef.
+
+<AssetImage name="figma.png" alt="Figma Ontwerp" />
+
+## Tech Stack
+
+### Framework
+
+Ik heb ervoor gekozen om SvelteKit en TypeScript te gebruiken voor dit project.
+Svelte met SvelteKit is mijn favoriete webframework om mee te werken.
+Het is niet alleen eenvoudig om componenten te maken, dingen te integreren, routes te structureren, ... maar het is ook zeer performant en SEO-vriendelijk.
+
+Dit komt omdat Svelte een gecompileerd framework is, wat zorgt voor maximale prestaties omdat het geen virtual DOM gebruikt en de vrijheid van aangepaste syntax.
+
+### Styling
+
+Ik gebruik ook TailwindCSS voor de styling. Lange tijd was ik sceptisch over TailwindCSS, en dat ben ik nog steeds een beetje, maar het is prettig om mee te werken voor een portfolio-website.
+CSS heeft zijn eigen eigenaardigheden, en TailwindCSS probeert die op te lossen, maar het introduceert ook zijn eigen eigenaardigheden.
+Ik ben persoonlijk geen fan van de reset van elk element; elke kop, elke paragraaf heeft expliciete styling nodig.
+Gelukkig lost Tailwind Typography dit probleem grotendeels op; het is een zeer handige plugin voor het stylen van markdown-inhoud.
+
+Ik gebruik gedeeltelijk shadcn-componenten gepoort naar Svelte. De filosofie achter shadcn is om componenten als basis te gebruiken en ze aan te passen aan je eigen behoeften.
+Ze zijn ook gestyled met TailwindCSS.
+
+### Vertalingen
+
+Voor vertalingen heb ik Inlang gebruikt. Dit helpt me bij het routeren tussen talen en het beheren van vertalingen.
+Het enige nadeel is dat ik dezelfde inhoud in meerdere talen moet schrijven.
+
+### Inhoud
+
+Voor het schrijven van blogs & projecten gebruik ik een markdown preprocessor voor Svelte genaamd "mdsvex".
+Het stelt me in staat om markdown-bestanden te schrijven en ze om te zetten naar HTML.
+Dit betekent dat ik al mijn projecten & blogs in markdown-formaat kan schrijven en dat het automatisch wordt geconverteerd en gestyled.
+Ja, deze projectbeschrijving is geschreven in markdown-formaat.
+mdsvex biedt ook de mogelijkheid om Svelte-componenten te gebruiken in markdown-bestanden. Elke afbeelding is bijvoorbeeld een Svelte-component.
+Het voegt ook headers toe aan de markdown-bestanden; hier definiëren we alle metadata voor het project, bijvoorbeeld de titel, slug, afbeelding, beschrijving, progr-taal, status, etc.
+
+Ik heb een kleine CLI-tool gemaakt om automatisch een nieuw project of blogpost op te zetten. Het zorgt voor het invullen van de headers en het maken van de basis-mappenstructuur.
+
+## Hosting
+
+Ik gebruik Netlify voor hosting; dit verzorgt de deployment van de website met een uitstekende Svelte-integratie.
+Het regelt ook SSL-certificaten en aangepaste domeinen via hun eigen DNS-beheer.
+
+Telkens wanneer ik een commit naar de main-branch push, bouwt en deployt Netlify de website automatisch voor mij.
+
+## SEO
+
+SEO is een belangrijk aspect van een website, en ik heb geprobeerd het correct te implementeren.
+Ik heb een script gemaakt dat automatisch een sitemap.xml genereert om ervoor te zorgen dat zoekmachines de website kunnen vinden en indexeren.
+Google Search Console zorgt er vervolgens voor dat mijn website wordt gecrawld en alles wordt geïndexeerd.
+
+## Conclusie
+
+Ik ben erg blij met hoe het portfolio is geworden. Het is een project waar ik trots op kan zijn, en het is een project dat ik kan gebruiken om mijn vaardigheden en capaciteiten te laten zien.
+Ik zou het erg op prijs stellen als je mijn portfolio deelt met je netwerk!
