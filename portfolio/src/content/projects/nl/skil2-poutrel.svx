@@ -2,9 +2,99 @@
 title: SKIL2 Poutrel
 slug: skil2-poutrel
 image: /projects/skil2-poutrel/logo.webp
-description: 
+description: Voor een groepsproject voor het eerste semester van mijn tweede jaar aan Thomas More hebben we een implementatieplan opgesteld voor Poutrel.
 languages:
+  - uml
+  - figma
 
 highlighted: false
-status: Finished
+status: Afgerond
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Analyse van Poutrel
+
+Voor dit project moesten we een implementatieplan maken voor Poutrel.
+Poutrel is een fictief bedrijf dat gespecialiseerd is in yoga, pilates en personal coaching.
+
+### SKIL2
+
+Bij Thomas More hebben we een vak dat Skills Integration Lab heet.
+Dit vak is gericht op het combineren van alle vaardigheden die in de lessen geleerd zijn en deze toe te passen op realistische projecten.
+
+In het tweede jaar van SKIL werken we nog niet voor echte klanten.
+In plaats daarvan werken we voor fictieve bedrijven die door onze docenten zijn bedacht.
+Dit wordt gedaan om ons de kans te geven onze vaardigheden te oefenen zonder de druk van het werken voor een echte klant.
+
+## Informatie verzamelen
+
+De eerste stap was het verzamelen van informatie over wat de klant precies wilde.
+We zijn begonnen met een gesprek met onze klant om hun behoeften en verwachtingen te bespreken.
+
+Hieruit konden we een lijst opstellen van vereisten en functionaliteiten die de website zou moeten hebben.
+
+## UML
+
+Na het verzamelen van alle informatie zijn we begonnen met het maken van UML-diagrammen om de structuur van de website te visualiseren.
+We hebben een ERD en een use-case-diagram gemaakt.
+
+### ERD (Entity Relationship Diagram)
+
+Het ERD toont de structuur van de database en de relaties tussen de verschillende tabellen.
+Dit helpt ons bij het visualiseren en begrijpen van hoe de gegevens zijn georganiseerd en hoe de verschillende tabellen zich tot elkaar verhouden.
+Dit helpt later bij de ontwikkeling om de databasestructuur te begrijpen en hoe deze in de website moet worden geïmplementeerd.
+
+<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
+
+### UCD (Use Case Diagram)
+
+Het use-case-diagram toont de verschillende use cases van de website en de relaties daartussen.
+Hieronder zie je een deel van het use-case-diagram.
+
+<AssetImage name="ucd.png" alt="Use Case Diagram" />
+
+### Use-case-beschrijvingen
+
+Om te begrijpen hoe de gebruiker met het systeem moet omgaan, hebben we use-case-beschrijvingen gemaakt voor elke use case in het use-case-diagram.
+Hieronder zien we een voorbeeld van een use-case-beschrijving. Deze is van toepassing op klanten.
+
+<AssetImage name="description.png" alt="Use Case Beschrijving" />
+
+## Figma
+
+Na het maken van de UML-diagrammen zijn we begonnen met het ontwerpen van de website in Figma.
+We hebben een wireframe en een mockup van de website gemaakt.
+
+De pagina's in Figma sluiten aan bij de use-case-beschrijvingen die we eerder hebben gemaakt.
+
+Op deze manier kunnen we een duidelijk overzicht bieden van alle functionaliteiten van de website.
+We kunnen de klant ook gemakkelijk laten zien hoe de website eruit gaat zien en hoe deze zal werken, zodat de klant kan bevestigen of deze aan de verwachtingen voldoet.
+
+<AssetImage name="figma.png" alt="Figma ontwerp" />
+
+## Bijdrage
+
+Samen met mijn team hebben we met succes een implementatieplan opgesteld voor Poutrel.
+
+### UCD
+
+Ik heb geholpen bij het maken van het use-case-diagram en de use-case-beschrijvingen.
+
+### ERD
+
+Ik heb de basis gelegd voor het ERD en heb geholpen met de relaties tussen de verschillende tabellen.
+Tot slot heb ik het ERD gecontroleerd om er zeker van te zijn dat het correct was.
+
+### Figma
+
+Ik heb de basislaag voor de Figma-ontwerpen gelegd en geholpen met het algemene ontwerp van de website.
+Ik heb de meeste pagina's voor de klantrol gemaakt.
+
+## Conclusie
+
+Ik ben tevreden over het eindresultaat. De groepsdynamiek was prima, misschien niet altijd de beste, maar we zijn erin geslaagd een solide implementatieplan voor Poutrel neer te zetten.
+
+Ik heb mijn vaardigheden op het gebied van UML en Figma kunnen laten zien en verbeteren.

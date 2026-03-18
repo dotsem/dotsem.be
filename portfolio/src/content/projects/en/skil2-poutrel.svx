@@ -10,3 +10,91 @@ languages:
 highlighted: false
 status: Finished
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Analysis of Poutrel
+
+For this project, we had to create an implementation plan for Poutrel. 
+Poutrel is a fake company that is specialized in yoga, pilates and personal coaching.
+
+### SKIL2
+
+At Thomas More, we have a subject called Skills Integration Lab. 
+This subject is focused on combining all skills learned in courses and applying them to realistic projects.
+
+In the second year of SKIL, we are not working for real clients just yet. 
+Instead, we are working for fake companies that are created by our teachers. 
+This is done to give us the opportunity to practice our skills without the pressure of working for a real client.
+
+## Gathering info
+
+The first step was to gather information about what the client exactly wants. 
+We started with a meeting with our client to discuss their needs and expectations. 
+
+From this we could compose a list of requirements and features that the website should have. 
+
+## UML
+
+After gathering all the information, we started with creating UML diagrams to visualize the structure of the website. 
+We created an ERD and a use case diagram. 
+
+### ERD (Entity Relationship Diagram)
+
+The ERD shows the structure of the database and the relationships between the different tables. 
+This helps us visualize and understand how the data is organized and how the different tables relate to each other. 
+This will later on help the developers to understand the database structure and how to implement it in the website.
+
+<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
+
+### UCD (Use Case Diagram)
+
+The use case diagram shows the different use cases of the website and the relationships between them. 
+Below you can see a part of the use case diagram.
+
+<AssetImage name="ucd.png" alt="Use Case Diagram" />
+
+### Use case descriptions
+
+To understand how the user should interact with the system, we created use case descriptions for each use case in the use case diagram. 
+Below we can see an example of a use case description. This one is applicable for clients.
+
+<AssetImage name="description.png" alt="Use Case Description" />
+
+## Figma
+
+After creating the UML diagrams, we started with creating the design of the website in Figma. 
+We created a wireframe of the website and a mockup of the website. 
+
+The pages in Figma are coherent to the use case descriptions we created earlier.
+
+Via this way we can provide a clear overview of all the functionalities of the website.
+We can also easily show the client what the website will look like and how it will work so the client can confirm if it meets their expectations.
+
+<AssetImage name="figma.png" alt="Figma design" />
+
+## Contribution
+
+Together with my team, we have successfully created an implementation plan for Poutrel.
+
+### UCD
+
+I've helped creating the Use case diagram and use case descriptions.
+
+### ERD
+
+I've laid the foundation for the ERD, and helped with the relations between the different tables.
+Finally I've double checked the ERD to make sure it was correct.
+
+### Figma
+
+I've laid the base layer for the Figma designs, and helped with the overall design of the website.
+I've made most of the pages for the client role.
+
+## Conclusion
+
+I'm satisfied of the end result. The group dynamic was nice, maybe not always the best, but we managed to create a solid implementation plan for Poutrel.
+
+I've been able to show and improve my skills in UML and Figma. 
