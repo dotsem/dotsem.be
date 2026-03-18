@@ -8,6 +8,7 @@ export interface ProjectMeta {
     languages: string[];
     highlighted?: boolean;
     status?: string;
+    hidden?: boolean;
 }
 
 export interface ProjectHeader {
@@ -58,12 +59,13 @@ function extractHeaders(body: string): ProjectHeader[] {
 }
 
 
-export function getProjectsByLang(lang: string): Promise<Project[]> {
+export async function getProjectsByLang(lang: string): Promise<Project[]> {
     const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
 
-    return Promise.all(
+    const projects = await Promise.all(
         entries.map(async ([path, loader]) => {
             const mod = await loader();
+            if (mod.metadata.hidden) return null;
             const imagePath = `/src/lib/assets${mod.metadata.image}`;
             const rawContent = rawModules[path] || '';
             const body = rawContent.split('---').slice(2).join('---').trim();
@@ -77,6 +79,8 @@ export function getProjectsByLang(lang: string): Promise<Project[]> {
             };
         })
     );
+
+    return projects.filter((project): project is Project => project !== null);
 }
 
 export async function getProjectBySlug(lang: string, slug: string): Promise<Project | null> {
@@ -85,6 +89,7 @@ export async function getProjectBySlug(lang: string, slug: string): Promise<Proj
     if (!loader) return null;
 
     const mod = await loader();
+    if (mod.metadata.hidden) return null;
     const imagePath = `/src/lib/assets${mod.metadata.image}`;
     const rawContent = rawModules[path] || '';
     const body = rawContent.split('---').slice(2).join('---').trim();
