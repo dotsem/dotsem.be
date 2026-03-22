@@ -89,5 +89,11 @@
 	"hiring_talent": "Op zoek naar talent?",
 	"hiring_talent_action_secondary": "Contacteer mij!",
 	"hiring_talent_action_primary": "Volg mij op LinkedIn!",
-	"on_this_page": "Op deze pagina"
+	"on_this_page": "Op deze pagina",
+	"error_404_title": "404",
+	"error_404_subtitle": "We konden deze pagina niet vinden...",
+	"error_404_description": "De pagina die u zoekt is mogelijk verwijderd of tijdelijk niet beschikbaar, probeer het later opnieuw.",
+	"error_404_button": "Ga terug naar de homepagina",
+	"error_404_back": "Ga terug naar de vorige pagina"
+
 }

@@ -78,7 +78,7 @@
 	"about_me_who_am_i_title": "Who am I?",
 	"about_me_who_am_i_content": "I'm an {age} year old programmer who has found love in programming. I've been experimenting with technology from a young age. Currently I like to make projects with a variety of programming languages. Apart from programming, I like to play the guitar & listen to music. I'm a scuba diver & ex-competitive swimmer.",
 	"about_me_all_about_tech_title": "All about tech",
-	"about_me_all_about_tech_content": "I've been programming for 4+ years. I've been experimenting with a wide range of programming languages and am interested in multiple different fields. I currently using CachyOS (Linux) with Niri.",
+	"about_me_all_about_tech_content": "I've been programming for 4+ years. I've been experimenting with a wide range of programming languages and am interested in multiple different fields. I'm currently using CachyOS (Linux) with Niri.",
 	"about_me_hobbies_title": "Hobbies",
 	"about_me_hobbies_content": "I'm an amateur photographer who likes to take photographs of nature and urban scenes. I play guitar for 5+ years and love to play rock & metal songs.",
 	"di_description": "Digital Innovation is a special part of the IT factory @ Thomas More in Geel. Instead of studying, we make projects for real clients to develop real skill. We need to research, develop, present, connect to develop our skills and complete our learning goals. We are free to use our own tech stacks and get the opportunity to work on projects that aren't taught in the normal courses.",
@@ -89,5 +89,10 @@
 	"hiring_talent": "Hiring Talent?",
 	"hiring_talent_action_secondary": "Contact me!",
 	"hiring_talent_action_primary": "Follow me on LinkedIn!",
-	"on_this_page": "On this page"
+	"on_this_page": "On this page",
+	"error_404_title": "404",
+	"error_404_subtitle": "We Could Not Locate This Page...",
+	"error_404_description": "The page you are looking for could be removed or temporarily be unavailable, please try again later.",
+	"error_404_button": "Go back to the homepage",
+	"error_404_back": "Go back to previous page"
 }
