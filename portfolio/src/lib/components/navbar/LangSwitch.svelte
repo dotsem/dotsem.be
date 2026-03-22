@@ -11,10 +11,11 @@
     data-sveltekit-reload
     onclick={() => {
         sessionStorage.setItem("scroll_pos", window.scrollY.toString());
-        window.location.href = i18n.resolveRoute(
+        const newUrl = i18n.resolveRoute(
             i18n.route(page.url.pathname),
             currentLang === "en" ? "nl" : "en",
         );
+        window.location.replace(newUrl);
     }}
     class="unselectable flex items-center rounded-full bg-slate-800/80 p-1 w-[64px] relative shadow-inner border border-white/10 hover:bg-slate-700/80 transition-colors cursor-pointer"
 >
