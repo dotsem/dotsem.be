@@ -24,5 +24,5 @@ export const i18n = createI18n(runtime, {
             nl: '/over-mij'
         }
     },
-    prefixDefaultLanguage: 'always'
+    prefixDefaultLanguage: 'never'
 });

@@ -18,7 +18,10 @@
         <p>{footer_copyright({ year: new Date().getFullYear() })}</p>
         <p>
             {footer_credits()}
-            <a href="/about-me" class="font-bold">Sem Van Broekhoven</a>
+            <a
+                href={i18n.resolveRoute("/aboutme", currentLang)}
+                class="font-bold">Sem Van Broekhoven</a
+            >
         </p>
     </div>
     <div class="flex justify-center flex-col gap-2">

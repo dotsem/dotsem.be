@@ -1,13 +1,16 @@
 import { getProjectsByLang } from '$lib/projects';
 import { getBlogsByLang } from '$lib/blog';
 import { availableLanguageTags } from '$lib/paraglide/runtime';
+import { i18n } from '$lib/i18n';
+
+export const prerender = true;
 
 export async function GET() {
     const baseUrl = 'https://dotsem.be';
 
     // Constant pages
     const pathnames = [
-        '',
+        '/',
         '/projects',
         '/blog',
         '/privacy',
@@ -20,7 +23,7 @@ export async function GET() {
     // Add localized versions of constant pages
     for (const lang of availableLanguageTags) {
         for (const path of pathnames) {
-            pages.push(`${baseUrl}/${lang}${path}`);
+            pages.push(`${baseUrl}${i18n.resolveRoute(path, lang)}`);
         }
     }
 
@@ -30,11 +33,11 @@ export async function GET() {
         const blogs = await getBlogsByLang(lang);
 
         for (const project of projects) {
-            pages.push(`${baseUrl}/${lang}/projects/${project.slug}`);
+            pages.push(`${baseUrl}${i18n.resolveRoute(`/projects/${project.slug}`, lang)}`);
         }
 
         for (const blog of blogs) {
-            pages.push(`${baseUrl}/${lang}/blog/${blog.slug}`);
+            pages.push(`${baseUrl}${i18n.resolveRoute(`/blog/${blog.slug}`, lang)}`);
         }
     }
 
@@ -49,7 +52,7 @@ export async function GET() {
     <url>
         <loc>${page}</loc>
         <changefreq>weekly</changefreq>
-        <priority>${page.endsWith('.be/en') || page.endsWith('.be/nl') ? '1.0' : '0.7'}</priority>
+        <priority>${page === `${baseUrl}/` || page === `${baseUrl}/nl/` || page === `${baseUrl}/en/` ? '1.0' : '0.7'}</priority>
     </url>`;
             })
             .join('')}

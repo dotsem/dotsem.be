@@ -17,6 +17,9 @@
     let { children } = $props();
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
+    let canonicalUrl = $derived(
+        `https://dotsem.be${i18n.resolveRoute(i18n.route(page.url.pathname), currentLang)}`,
+    );
 
     onNavigate((navigation) => {
         const toPath = navigation.to?.url.pathname.replace(/\/$/, "") || "";
@@ -76,12 +79,12 @@
 
     <title>Sem Van Broekhoven</title>
 
-    <link rel="canonical" href="https://dotsem.be{page.url.pathname}" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <meta name="author" content="Sem Van Broekhoven" />
     <meta property="og:site_name" content="Sem Van Broekhoven Portfolio" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dotsem.be{page.url.pathname}" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
