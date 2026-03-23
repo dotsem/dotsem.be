@@ -1,11 +1,61 @@
 ---
 title: Weighted Decision Matrix
 slug: weighted-decision-matrix
-image: /projects/Weighted-decision-matrix/logo.webp
+image: /projects/weighted-decision-matrix/logo.webp
 description: A handy website to easily create weighted decision matrices and export them to markdown.
 languages:
   - svelte
   - ts
 highlighted: false
-status: V1
+status: v0.1.0
 ---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+
+## A simple Weighted Decision Matrix
+
+Creating a weighted decision matrix is a great way to make informed decisions.
+Actually making one is another story. One persons just draws it, the other one uses Excel, the other one uses Google Sheets, and so on.
+
+This website helps you create weighted decision matrices and export them to markdown to easily share them with others.
+
+## Features
+
+- Make a weighted decision matrix (obviously)
+- Export it to markdown
+
+The website gives you a nice interface with a grid to enter your criteria and options.
+It also gives you a nice overview of the results that update in real time.
+
+## Website
+
+The website has a simple interface with a grid to enter your criteria and options.
+It also gives you a nice overview of the results that update in real time.
+
+<AssetImage name="example1.png" alt="Screenshot of the Weighted Decision Matrix website" />
+<AssetImage name="example2.png" alt="Screenshot of the Weighted Decision Matrix website" />
+
+## Export to Markdown
+
+The website allows you to export your weighted decision matrix to markdown. You can either copy it or download a file.
+This is useful for sharing your results with others or for keeping a record of your decision-making process.
+
+<div class="flex gap-4 justify-center flex-wrap">
+    <AssetImage name="markdown1.png" alt="Screenshot of the Weighted Decision Matrix website" />
+    <AssetImage name="markdown2.png" alt="Screenshot of the Weighted Decision Matrix website" />
+</div>
+
+## Stateful
+
+The app stores your data in your browser's local storage, so you can close the website and come back later to continue where you left off.
+
+## Try it out yourself!
+
+<a href="https://dotsem.github.io/Weighted-Decision-Matrix/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Try it out yourself!</a>
+
+## Source code
+
+<a href="https://github.com/dotsem/Weighted-Decision-Matrix" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Source code</a>

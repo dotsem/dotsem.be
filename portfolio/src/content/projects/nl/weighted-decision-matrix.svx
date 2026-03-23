@@ -1,11 +1,61 @@
 ---
 title: Weighted Decision Matrix
 slug: weighted-decision-matrix
-image: /projects/Weighted-decision-matrix/logo.webp
-description: Een handige website om makkelijk weighted decision matrices te maken en te exporteren naar markdown.
+image: /projects/weighted-decision-matrix/logo.webp
+description: Een handige website om eenvoudig gewogen beslissingsmatrices te maken en naar markdown te exporteren.
 languages:
   - svelte
   - ts
 highlighted: false
-status: V1
+status: v0.1.0
 ---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+
+## Een simpele Gewogen Beslissingsmatrix
+
+Het maken van een gewogen beslissingsmatrix is een geweldige manier om geïnformeerde beslissingen te nemen.
+In de praktijk is er een daadwerkelijk een maken vaak een ander verhaal. De één tekent het gewoon, de ander gebruikt Excel, de volgende Google Sheets, enzovoort.
+
+Deze website helpt je bij het maken van gewogen beslissingsmatrices en het exporteren ervan naar markdown om ze eenvoudig met anderen te delen.
+
+## Functionaliteiten
+
+- Maak een gewogen beslissingsmatrix (uiteraard)
+- Exporteer naar markdown
+
+De website biedt een fijne interface met een raster om je criteria en opties in te voeren.
+Het geeft ook een overzicht van de resultaten die in realtime worden bijgewerkt.
+
+## Website
+
+De website heeft een simpele interface met een raster om je criteria en opties in te voeren.
+Het geeft ook een overzicht van de resultaten die in realtime worden bijgewerkt.
+
+<AssetImage name="example1.png" alt="Screenshot van de Weighted Decision Matrix website" />
+<AssetImage name="example2.png" alt="Screenshot van de Weighted Decision Matrix website" />
+
+## Export naar Markdown
+
+De website stelt je in staat om je gewogen beslissingsmatrix naar markdown te exporteren. Je kunt de tekst kopiëren of als bestand downloaden.
+Dit is handig voor het delen van je resultaten met anderen of om je besluitvormingsproces vast te leggen.
+
+<div class="flex gap-4 justify-center flex-wrap">
+    <AssetImage name="markdown1.png" alt="Screenshot van de Weighted Decision Matrix website" />
+    <AssetImage name="markdown2.png" alt="Screenshot van de Weighted Decision Matrix website" />
+</div>
+
+## Onthoudt gegevens
+
+De app slaat je gegevens op in de lokale opslag van je browser, zodat je de website kunt sluiten en later kunt terugkomen om verder te gaan waar je gebleven was.
+
+## Probeer het zelf!
+
+<a href="https://dotsem.github.io/Weighted-Decision-Matrix/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Probeer het zelf!</a>
+
+## Broncode
+
+<a href="https://github.com/dotsem/Weighted-Decision-Matrix" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Broncode</a>
