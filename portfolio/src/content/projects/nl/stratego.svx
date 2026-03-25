@@ -8,6 +8,105 @@ languages:
   - go
   - ts
   - postgresql
+  - docker
+  - nixos
 highlighted: true
 status: In Progress
 ---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Stratego is een leuk spel, maar wat als we het opnieuw zouden ontwerpen?
+
+Ik kreeg de uitdaging om een stratego spel te maken, maar dan herontworpen. Het doel was om een framework te creëren om een AI te trainen om stratego te spelen. 
+Dit kan natuurlijk worden uitgebreid met veel meer functionaliteiten, zoals spelen tegen andere mensen, data verzamelen, ...
+
+## Het spel
+
+Het spel zelf is gebaseerd op de standaardregels van stratego. 
+
+## Backend
+
+De backend is gebouwd met Go en gebruikt een PostgreSQL database om de spelstatus op te slaan.
+De eerste versie van de backend is pure Go met een REST API en Websockets.
+De backend kan onafhankelijk van de frontend worden gebruikt om AI's sneller te trainen en te testen (veel sneller).
+
+### Go
+
+Ik had al een beetje ervaring met Go, maar niet veel, vooral theoretisch. 
+Toen ik aan het project begon, wist ik niet veel over frameworks in Go en koos ik voor vanilla.
+
+Go is erg goed gebouwd voor gelijktijdigheid (concurrency) en dat heb ik in mijn voordeel gebruikt.
+Het hele spel is gebouwd rond Go routines en channels. Elk spel is een eigen Go routine en communiceert met de frontend via websockets.
+<br>
+De kritieke spelonderdelen zijn volledig gedekt door unit tests om de integriteit van het spel te waarborgen.
+
+### PostgreSQL
+
+De database is gebouwd met PostgreSQL, een moderne optie voor relationele databases.
+
+### AI training
+
+AI training kan via de CLI worden gedaan. Op deze manier kunnen we gemakkelijk zien hoe AI's tegenover elkaar presteren.
+Het trainen is erg snel, een van de redenen waarom we Go hebben gekozen voor de backend.
+
+## Frontend
+
+De frontend is gebouwd met SvelteKit en TypeScript.
+
+Ik heb ervoor gekozen om geen serverfuncties en SSR (server side rendering) op te nemen, 
+omdat we al een backend hebben die onafhankelijk van de frontend kan worden gebruikt. 
+Het is ook niet nodig om de website supersnel te renderen.
+
+Svelte is een uitstekend framework dat echt boven de rest uitsteekt.
+Het gebruikt tailwind gemixt met CSS voor styling.
+
+## Docker maakt alles makkelijker
+
+Alle diensten zijn gecontaineriseerd met Docker. Dit maakt het eenvoudig om het project in verschillende omgevingen te implementeren en vooraf te testen.
+
+## Thema
+
+Voor het thema heb ik geprobeerd een moderne look te creëren die toch speels blijft.
+Alle afbeeldingen en personages zijn geïnspireerd door de Go-mascotte "gopher".
+
+### Stukken
+
+De stukken zijn een modernere versie van de klassieke stratego stukken.
+Ze vertegenwoordigen een moderner slagveld met tanks, IT-specialisten, mortieren, ...<br>
+De essentie van de stukken is behouden: bommen zijn bommen en het machtigste stuk is nog steeds de maarschalk.
+
+<AssetImage name="pieces-blue.png" alt="Stukken" width={700} />
+<AssetImage name="pieces-red.png" alt="Stukken" width={700} />
+
+## AI's
+
+Voorlopig hebben we 2 AI's. In de toekomst zullen er meer AI's worden toegevoegd.
+
+### FAFO
+
+De f*ck around and find out AI. Deze AI is erg simpel: pak een willekeurig stuk en doe een willekeurige geldige zet.
+Dat is alles. Hij weet niet wat er aan de hand is, hij leeft alleen op hoop en gebed.
+
+<AssetImage name="fafo.png" alt="FAFO AI" width={128} height={128} />
+
+### FATO
+
+De f*ck around and try out AI. Deze AI is iets geavanceerder dan FAFO.
+Hij probeert het bord te begrijpen en strategische zetten te doen, maar als hij niet weet wat hij moet doen, doet hij gewoon een willekeurige zet.
+
+<AssetImage name="fato.png" alt="FATO AI" width={128} height={128} />
+
+
+## Hosting @ home
+
+Aan de hosting wordt momenteel gewerkt.
+Ik heb een NixOS VM opgezet op een Proxmox-server die uiteindelijk het project zal hosten. Het is makkelijk gemaakt door de docker-compose die al aanwezig is.
+<br>
+Ik werk aan een krachtige CD-pipeline om het project automatisch op mijn server te implementeren.
+
+## Dit project is open source!
+
+Voel je vrij om het project op GitHub te bekijken: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)

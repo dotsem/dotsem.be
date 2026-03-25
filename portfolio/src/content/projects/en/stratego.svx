@@ -9,6 +9,104 @@ languages:
   - ts
   - postgresql
   - docker
+  - nixos
 highlighted: true
 status: In Progress
 ---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Stratego is a fun game, but what if we re-engineered it?
+
+I've got the challenge to create a stratego game, but re-engineering it. The goal was to create a framework to train an AI to play stratego. 
+This of course could be extended to a lot more functionalities, like playing against other people, gathering data, ...
+
+## The game
+
+The game itself is based around the standard rules of stratego. 
+
+## Backend
+
+The backend is built using Go and uses a PostgreSQL database to store the game state.
+The first version of the backend is plain Go with a REST API and Websockets.
+The backend can be used independently from the frontend to train and test AIs faster (very much faster).
+
+### Go
+
+I've had a little prior experience with Go, but not that much, mostly theoretical. 
+When I started the project, I didn't know much about frameworks in Go and choose to go vanilla.
+
+Go has is very well built for concurrency and I've used that to my advantage.
+The whole game is built around Go routines and channels. Each game is its own Go routine and communicates with the frontend using websockets.
+<br>
+The critical game components are fully cover by unit tests to ensure the integrity of the game.
+
+### PostgreSQL
+
+The database is built using PostgreSQL which is a modern option for relational databases.
+
+### AI training
+
+AI training can be done via the CLI. Via this way we can easily see how AIs perform against each other.
+The training is very fast, one of the reasons we choose Go for the backend.
+
+## Frontend
+
+The frontend is built using SvelteKit and TypeScript.
+
+I choose not to include server functions and SSR (server side rendering) 
+because we already have a backend that can be used independently from the frontend. 
+It is also not necessary to render the website very fast.
+
+Svelte is an excellent framework that really shines above the rest.
+It uses tailwind mixed with CSS for styling.
+
+## Docker makes everything easier
+
+All services are containerized using docker. This makes it easy to deploy the project on different environments and test it beforehand.
+
+## Theme
+
+For the theme I tried to go for a modern look while still remaining playful.
+All images and characters are inspired by the Go mascot "gopher".
+
+### Pieces
+
+The pieces are a more modern version of the classic stratego pieces.
+They represent a more modern battle field with tanks, IT-specialists, mortars, ...<br>
+The essence of the pieces is kept: bombs are bombs and the most powerful piece is still the marshal.
+
+<AssetImage name="pieces-blue.png" alt="Pieces" width={700} />
+<AssetImage name="pieces-red.png" alt="Pieces" width={700} />
+
+## AIs
+
+For now we have 2 AIs. More AIs will be added in the future.
+
+### FAFO
+
+The f*ck around and find out AI. This AI is very simple: take a random piece and do a random valid move.
+Thats all. It doesn't know what is going on, it just lives on hopes and prayers.
+
+<AssetImage name="fafo.png" alt="FAFO AI" width={128} height={128} />
+
+### FATO
+
+The f*ck around and try out AI. This AI is a bit more advanced than FAFO.
+It tries to understand the board and make strategic moves but if it doesn't know what to do, it will just do a random move.
+
+<AssetImage name="fato.png" alt="FATO AI" width={128} height={128} />
+
+
+## Hosting @ home
+
+Hosting is currently being worked on.
+I've set up a NixOS VM on a Proxmox server that will eventually host the project. It is made easy by the docker-compose that is already present.
+<br>
+I'm working on a powerful CD pipeline to automatically deploy the project on my server.
+
+## This project is open source!
+
+Feel free to check out the project on GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)
