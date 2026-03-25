@@ -8,6 +8,9 @@
         alt?: string;
         class?: string;
         caption?: string;
+        width?: number;
+        height?: number;
+        align?: "left" | "center" | "right";
     }
 
     const {
@@ -17,6 +20,9 @@
         alt = "",
         class: className = "",
         caption = "",
+        width,
+        height,
+        align = "center",
     }: Props = $props();
 
     const type = $derived(
@@ -37,13 +43,15 @@
     const resolvedSrc = images[assetPath];
 </script>
 
-<figure class="my-8 flex flex-col items-center {className}">
+<figure class="my-8 flex flex-col items-{align} {className}">
     {#if resolvedSrc}
         <img
             src={resolvedSrc}
             {alt}
             class="rounded-lg shadow-md max-w-full h-auto"
             loading="lazy"
+            {width}
+            {height}
         />
         {#if caption}
             <figcaption class="mt-2 text-sm text-center text-muted-foreground">
