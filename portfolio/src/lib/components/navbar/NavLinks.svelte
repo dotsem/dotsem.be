@@ -12,19 +12,33 @@
     let { ...restProps } = $props();
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
+
+    let activeLink = $derived(page.url.pathname);
+
+    function isActive(link: string) {
+        return activeLink.includes(i18n.resolveRoute(link, currentLang))
+            ? "active"
+            : "";
+    }
 </script>
 
 <div class="nav-links unselectable {restProps.class}">
     <a href={i18n.resolveRoute("/#profile", currentLang)}>
         {navbar_profile(undefined, { languageTag: currentLang })}
     </a>
-    <a href={i18n.resolveRoute("/aboutme", currentLang)}>
+    <a
+        href={i18n.resolveRoute("/aboutme", currentLang)}
+        class={isActive("/aboutme")}
+    >
         {navbar_aboutme(undefined, { languageTag: currentLang })}
     </a>
-    <a href={i18n.resolveRoute("/projects", currentLang)}>
+    <a
+        href={i18n.resolveRoute("/projects", currentLang)}
+        class={isActive("/projects")}
+    >
         {navbar_projects(undefined, { languageTag: currentLang })}
     </a>
-    <a href={i18n.resolveRoute("/blog", currentLang)}>
+    <a href={i18n.resolveRoute("/blog", currentLang)} class={isActive("/blog")}>
         {navbar_blog(undefined, { languageTag: currentLang })}
     </a>
     <a href={i18n.resolveRoute("/#contact", currentLang)}>
@@ -36,5 +50,10 @@
     .nav-links a {
         padding-left: 1rem;
         padding-right: 1rem;
+
+        &.active {
+            color: var(--primary);
+            text-decoration-color: var(--primary);
+        }
     }
 </style>
