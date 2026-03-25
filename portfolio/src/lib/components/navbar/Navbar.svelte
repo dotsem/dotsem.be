@@ -15,6 +15,9 @@
 >
     <a
         href={i18n.resolveRoute("/", currentLang)}
+        onclick={() => {
+            hamburgerMenuVisible = false;
+        }}
         class="font-bold no-underline text-primary text-5xl">dotsem.</a
     >
 
@@ -37,7 +40,12 @@
                 <!-- <ThemeSwitch /> -->
                 <LangSwitch />
             </div>
-            <NavLinks class="flex flex-col gap-3 pt-3" />
+            <NavLinks
+                onclick={() => {
+                    hamburgerMenuVisible = false;
+                }}
+                class="flex flex-col gap-3 pt-3"
+            />
         </div>
     </div>
 </nav>

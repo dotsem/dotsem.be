@@ -9,7 +9,15 @@
         navbar_aboutme,
     } from "$lib/paraglide/messages.js";
 
-    let { ...restProps } = $props();
+    import type { MouseEventHandler } from "svelte/elements";
+
+    interface Props {
+        onclick?: MouseEventHandler<HTMLAnchorElement>;
+        class?: string;
+        [key: string]: any;
+    }
+
+    let { onclick = () => {}, ...restProps }: Props = $props();
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
 
@@ -23,25 +31,31 @@
 </script>
 
 <div class="nav-links unselectable {restProps.class}">
-    <a href={i18n.resolveRoute("/#profile", currentLang)}>
+    <a href={i18n.resolveRoute("/#profile", currentLang)} {onclick}>
         {navbar_profile(undefined, { languageTag: currentLang })}
     </a>
     <a
         href={i18n.resolveRoute("/aboutme", currentLang)}
         class={isActive("/aboutme")}
+        {onclick}
     >
         {navbar_aboutme(undefined, { languageTag: currentLang })}
     </a>
     <a
         href={i18n.resolveRoute("/projects", currentLang)}
         class={isActive("/projects")}
+        {onclick}
     >
         {navbar_projects(undefined, { languageTag: currentLang })}
     </a>
-    <a href={i18n.resolveRoute("/blog", currentLang)} class={isActive("/blog")}>
+    <a
+        href={i18n.resolveRoute("/blog", currentLang)}
+        class={isActive("/blog")}
+        {onclick}
+    >
         {navbar_blog(undefined, { languageTag: currentLang })}
     </a>
-    <a href={i18n.resolveRoute("/#contact", currentLang)}>
+    <a href={i18n.resolveRoute("/#contact", currentLang)} {onclick}>
         {navbar_contact(undefined, { languageTag: currentLang })}
     </a>
 </div>
