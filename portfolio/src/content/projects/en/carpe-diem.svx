@@ -1,11 +1,134 @@
 ---
 title: Carpe Diem
 slug: carpe-diem
-image: /projects/Carpe-diem/logo.webp
-description: A handy planning app to plan day by day and track your projects.
+image: /projects/carpe-diem/logo.webp
+description: A handy planning app for productive people to plan day by day and track your projects.
 languages:
   - dart
   - flutter
 highlighted: true
 status: v0.1.0
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+
+  const latestRelease = "v0.1.0";
+</script>
+
+## Planning for productive people
+
+Carpe Diem is a local-first planning app that helps you plan your day and track your projects.
+
+<AssetImage name="quote.png" alt="Carpe Diem quote" width="500" />
+
+## Design Philosophy
+
+Carpe Diem is built on 3 main design philosophies:
+
+- 📅 Plan day by day
+- 🗂️ Work with multiple projects with big variety easily
+- 🚀 Productivity first
+
+You are not limited to the day by day planning. You can plan max one week ahead.
+
+## Main Workflow
+
+<p class="text-center text-2xl font-bold border-2 border-primary rounded-lg p-4">
+    Gather tasks/ideas in the backlog
+    <br />
+    ↓
+    <br />
+    Select tasks you want to work on today
+    <br />
+    ↓
+    <br />
+    Complete or reschedule todays tasks
+</p>
+
+## But why?
+
+I wanted to have a planning app that just works. No bloat, no distractions, just a simple and effective way to plan your day and track your projects.
+Most planners either lacked the ability to track multiple projects, where extremely complex & bloated or didn't provide a good overview of the day.
+<br>
+Also most planners are online which means you need an internet connection to use them. It also takes longer to load tasks and edit them, hindering your workflow.
+
+## Features
+
+- 📅 Plan easily for today or tomorrow
+- 📋 Visualize your tasks for today in a list or kanban view
+- 🗂️ Manage multiple projects easily
+- 🏷️ Add priorities and labels to tasks and projects
+- ⏰ Add deadlines to tasks and projects
+- 📥 Import tasks from markdown
+- ✏️ Bulk edit tasks
+- 🚫 Add blockers to tasks
+
+## Cross-platform
+
+The app is built with Flutter and is currently available for Linux, macOS and Windows.
+It is planed to support Android and iOS in the future.
+
+## Possibilities
+
+### Projects
+Create projects to organize tasks. Projects can have labels to identify it, priorities and deadlines to organize it. You can add as many projects as you need.
+
+### Tasks
+Tasks can be added to projects (or not). Tasks will automatically land in the backlog where they are waiting to be picked up. Tasks inherit the labels from the project they are part of and can have additional labels to identify it. Tasks can have priorities to organize it and deadlines to keep track of it. You can add as many tasks as you need.
+
+### Plan Tasks
+Tasks can be planned for today, tomorrow or up to 7 days ahead. When a task is planned without a deadline, it is expected to be completed that day; if not, it will be carried over to the next day with an overdue label.
+
+Tasks with a deadline will be carried over to the next day with an overdue label if not completed by the deadline. If not picked up the day of the deadline, they will be automatically scheduled.
+
+### Kanban and List View
+Today's tasks can be visualized in a kanban view or a list view. The kanban view is a visual representation of the tasks in 3 columns (todo, in progress, done), while the list view is a more compact representation of the tasks. Both views are updated in real-time.
+
+### Blockers
+A task can be blocked by another task. When a task is blocked, it is expected to be completed before the task that is blocking it. While it is not enforced, it does give a good indication of what needs to be done first.
+
+### Tools at hand
+Managing tasks has been made easy. Use bulk edit to edit multiple tasks in the backlog at once. Easily plan tasks for today, tomorrow or for next workday (on fridays). Import tasks from markdown files and automatically assign them to a project.
+
+## Release
+
+### v0.1.0
+
+- Initial release
+- All core features implemented
+- Available for Linux, macOS and Windows
+
+## Download
+
+[Download for Linux](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz)
+
+[Download for macOS](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-macos.zip)
+
+[Download for Windows](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-windows.zip)
+
+[Source code](https://github.com/dotsem/Carpe-Diem)
+
+## Little demonstration
+
+For this example we have used a simple mock of a fictional person, lets call him Bob (not relevant at all 😀).
+
+<AssetImage name="example1.png" alt="Carpe Diem example" caption="Bob has some projects he wants to work on." />
+
+<AssetImage name="example2.png" alt="Carpe Diem example" caption="He can easily see an overview of everything that needs to be done in the backlog." />
+
+<AssetImage name="example3.png" alt="Carpe Diem example" caption="He can easily add a new task to the backlog. Here he adds a title, a priority, a project, labels and a deadline." />
+
+<AssetImage name="example4.png" alt="Carpe Diem example" caption="He can also filter in the backlog on specific labels, priorities or projects." />
+
+<AssetImage name="example5.png" alt="Carpe Diem example" caption="He has the tools at hand to easily plan a task for today or tomorrow." />
+
+<AssetImage name="example6.png" alt="Carpe Diem example" caption="He can easily see an overview of everything that needs to be done today in a list-view." />
+
+<AssetImage name="example7.png" alt="Carpe Diem example" caption="He can also see an overview of everything that needs to be done today in a kanban-view." />
+
+<AssetImage name="example8.png" alt="Carpe Diem example" caption="Via the kanban he can easily manage todays tasks and get a good overview of what needs to be done." />
+
+<AssetImage name="example9.png" alt="Carpe Diem example" caption="He can also look at individual projects and see all tasks related to it." />
+
+This is just a small demonstration of what Carpe Diem can do. Be sure to try it out yourself!

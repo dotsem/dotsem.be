@@ -1,11 +1,134 @@
 ---
 title: Carpe Diem
 slug: carpe-diem
-image: /projects/Carpe-diem/logo.webp
-description: Een handige planning app om dag per dag te plannen en je projecten bij te houden.
+image: /projects/carpe-diem/logo.webp
+description: Een handige planning-app voor productieve mensen om dag per dag te plannen en je projecten bij te houden.
 languages:
   - dart
   - flutter
 highlighted: true
 status: v0.1.0
 ---
+
+<script>
+  import AssetImage from "$lib/components/AssetImage.svelte";
+
+  const latestRelease = "v0.1.0";
+</script>
+
+## Planning voor productieve mensen
+
+Carpe Diem is een local-first planning-app die je helpt je dag te plannen en je projecten bij te houden.
+
+<AssetImage name="quote.png" alt="Carpe Diem quote" width="500" />
+
+## Ontwerpfilosofie
+
+Carpe Diem is gebouwd op 3 belangrijke ontwerpfilosofieën:
+
+- 📅 Plan dag per dag
+- 🗂️ Werk eenvoudig met meerdere projecten van verschillende aard
+- 🚀 Productiviteit eerst
+
+Je bent niet beperkt tot dagelijkse planning. Je kunt tot maximaal één week vooruit plannen.
+
+## Belangrijkste Workflow
+
+<p class="text-center text-2xl font-bold border-2 border-primary rounded-lg p-4">
+    Verzamel taken/ideeën in de backlog
+    <br />
+    ↓
+    <br />
+    Selecteer taken waar je vandaag aan wilt werken
+    <br />
+    ↓
+    <br />
+    Voltooi of verplaats de taken van vandaag
+</p>
+
+## Maar waarom?
+
+Ik wilde een planning-app die gewoon werkt. Geen overbodige functies, geen afleidingen, gewoon een eenvoudige en effectieve manier om je dag te plannen en je projecten te volgen.
+De meeste planners misten de mogelijkheid om meerdere projecten bij te houden, waren extreem complex en volgepropt met overbodige functies, of boden geen goed overzicht van de dag.
+<br>
+Bovendien zijn de meeste planners online, wat betekent dat je een internetverbinding nodig hebt om ze te gebruiken. Het duurt ook langer om taken te laden en te bewerken, wat je workflow belemmert.
+
+## Functies
+
+- 📅 Plan eenvoudig voor vandaag of morgen
+- 📋 Visualiseer je taken voor vandaag in een lijst- of kanban-weergave
+- 🗂️ Beheer eenvoudig meerdere projecten
+- 🏷️ Voeg prioriteiten en labels toe aan taken en projecten
+- ⏰ Voeg deadlines toe aan taken en projecten
+- 📥 Importeer taken uit markdown
+- ✏️ Bewerk taken in bulk
+- 🚫 Voeg blokkades toe aan taken
+
+## Cross-platform
+
+De app is gebouwd met Flutter en is momenteel beschikbaar voor Linux, macOS en Windows.
+Het is de bedoeling om in de toekomst ook Android en iOS te ondersteunen.
+
+## Mogelijkheden
+
+### Projecten
+Maak projecten aan om taken te organiseren. Projecten kunnen labels hebben om ze te identificeren, prioriteiten en deadlines om ze te structureren. Je kunt zoveel projecten toevoegen als je nodig hebt.
+
+### Taken
+Taken kunnen aan projecten worden toegevoegd (of niet). Taken komen automatisch in de backlog terecht waar ze wachten om opgepakt te worden. Taken nemen de labels over van het project waar ze deel van uitmaken en kunnen extra labels krijgen ter identificatie. Taken kunnen prioriteiten hebben voor organisatie en deadlines om ze bij te houden. Je kunt zoveel taken toevoegen als je nodig hebt.
+
+### Taken Plannen
+Taken kunnen gepland worden voor vandaag, morgen of tot 7 dagen vooruit. Wanneer een taak zonder deadline is gepland, wordt verwacht dat deze die dag wordt voltooid; zo niet, dan wordt deze naar de volgende dag verplaatst met een 'overdue' label.
+
+Taken met een deadline worden naar de volgende dag verplaatst met een 'overdue' label als ze niet voor de deadline voltooid zijn. Als ze niet op de dag van de deadline zijn opgepakt, worden ze automatisch ingepland.
+
+### Kanban- en Lijstweergave
+De taken van vandaag kunnen worden gevisualiseerd in een kanban-weergave of een lijstweergave. De kanban-weergave is een visuele weergave van de taken in 3 kolommen (te doen, in uitvoering, voltooid), terwijl de lijstweergave een compactere weergave van de taken is. Beide weergaven worden in realtime bijgewerkt.
+
+### Blokkades
+Een taak kan worden geblokkeerd door een andere taak. Wanneer een taak is geblokkeerd, wordt verwacht dat deze wordt voltooid vóór de taak die hem blokkeert. Hoewel dit niet wordt afgedwongen, geeft het wel een goede indicatie van wat eerst moet gebeuren.
+
+### Handige hulpmiddelen
+Het beheren van taken is eenvoudig gemaakt. Gebruik 'bulk edit' om meerdere taken in de backlog tegelijk te bewerken. Plan eenvoudig taken voor vandaag, morgen of voor de volgende werkdag (op vrijdagen). Importeer taken uit markdown-bestanden en wijs ze automatisch toe aan een project.
+
+## Release
+
+### v0.1.0
+
+- Eerste release
+- Alle kernfuncties geïmplementeerd
+- Beschikbaar voor Linux, macOS en Windows
+
+## Download
+
+[Download voor Linux](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz)
+
+[Download voor macOS](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-macos.zip)
+
+[Download voor Windows](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-windows.zip)
+
+[Broncode](https://github.com/dotsem/Carpe-Diem)
+
+## Korte demonstratie
+
+Voor dit voorbeeld hebben we een eenvoudige mock gebruikt van een fictief persoon, laten we hem Bob noemen (helemaal niet relevant 😀).
+
+<AssetImage name="example1.png" alt="Carpe Diem voorbeeld" caption="Bob heeft enkele projecten waar hij aan wil werken." />
+
+<AssetImage name="example2.png" alt="Carpe Diem voorbeeld" caption="Hij kan eenvoudig een overzicht zien van alles wat er moet gebeuren in de backlog." />
+
+<AssetImage name="example3.png" alt="Carpe Diem voorbeeld" caption="Hij kan eenvoudig een nieuwe taak toevoegen aan de backlog. Hier voegt hij een titel, een prioriteit, een project, labels en een deadline toe." />
+
+<AssetImage name="example4.png" alt="Carpe Diem voorbeeld" caption="Hij kan in de backlog ook filteren op specifieke labels, prioriteiten of projecten." />
+
+<AssetImage name="example5.png" alt="Carpe Diem voorbeeld" caption="Hij heeft de tools bij de hand om eenvoudig een taak voor vandaag of morgen te plannen." />
+
+<AssetImage name="example6.png" alt="Carpe Diem voorbeeld" caption="Hij kan eenvoudig een overzicht zien van alles wat er vandaag moet gebeuren in een lijstweergave." />
+
+<AssetImage name="example7.png" alt="Carpe Diem voorbeeld" caption="Hij kan ook een overzicht zien van alles wat er vandaag moet gebeuren in een kanban-weergave." />
+
+<AssetImage name="example8.png" alt="Carpe Diem voorbeeld" caption="Via the kanban kan hij eenvoudig de taken van vandaag beheren en een goed overzicht krijgen van wat er moet gebeuren." />
+
+<AssetImage name="example9.png" alt="Carpe Diem voorbeeld" caption="Hij kan ook naar individuele projecten kijken en alle gerelateerde taken zien." />
+
+Dit is slechts een kleine demonstratie van wat Carpe Diem kan doen. Probeer het zeker zelf uit!
