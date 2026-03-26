@@ -99,7 +99,10 @@
         {m.di_description_2()}
     </p>
     <div class="mt-4">
-        <Button>{m.di_button()}</Button>
+        <Button
+            href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
+            >{m.di_button()}</Button
+        >
         <Button
             variant="outline"
             href="https://github.com/Thomas-More-Digital-Innovation"
