@@ -98,6 +98,9 @@
     <p class="py-2">
         {m.di_description_2()}
     </p>
+    <p class="py-2">
+        {m.di_description_3()}
+    </p>
     <div class="mt-4">
         <Button
             href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
