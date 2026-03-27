@@ -1,7 +1,7 @@
 ---
 title: Smart Jack
 slug: smart-jack
-image: /projects/Smart-jack/logo.webp
+image: /projects/smart-jack/logo.webp
 description: An IOT project including an custom blackjack game made with pygame, running on a raspberry pi. It includes an eID card reader to identify the player.
 languages:
   - pygame
@@ -11,19 +11,66 @@ highlighted: true
 status: Finished
 ---
 
-# Smart Jack
+<script>
+  import AssetImage from '$lib/components/AssetImage.svelte';
 
-> the Smart Blackjack Table
+</script>
 
-Smart Jack is a project I made during my first year of college. It is a blackjack game that is controlled by a raspberry pi. It includes an eID card reader to identify the player. 
-It features a custom python game made with pygame. It is optimized to run on a raspberry pi 4 while retaining a smooth 60fps experience.
+## The Smart Blackjack Table
 
-## Features
+Smart Jack is a project I made for an IOT group project during my first year of college. 
+The game runs on a raspberry pi 4. 
+It includes an eID card reader to identify the player and verify them. It also uses a hashed version of their national number to identify them in the database. 
+The game itself is a custom blackjack game made with pygame. 
+It is optimized to run on a raspberry pi 4 while retaining a smooth 60fps experience.
 
-- Custom blackjack algorithm
-- Smooth animations
-- eID card reader integration
-- Buttons for hit, stand, double down, split
-- Buttons controlled via bluetooth
-- Grafana dashboard for statistics
+## The Idea
+
+For IOT we had to do a group project where we had to use sensors and actuators to create something cool. 
+Our teacher had the mindset of "the crazier the better".
+In our group we had a running joke about gambling, so naturally we decided to do something around that.
+<br>
+That is how Smart Jack was born.
+
+## The Game
+
+We started by creating the game. I had plenty of pygame experience, so I took the lead on that part.
+It was very fun incorporating animations and game logic into the game.
+I analyzed the rules of blackjack and tried to implement them as accurately as possible.
+<br>
+The only challenge left was to get it up and running smoothly on a raspberry pi 4 as pygame is notorious for being slow because it is CPU bound and python is an interpreted language.
+We were aiming for a solid 60fps experience but would be happy if 30fps was achievable. I used delta time to make the game run at a constant speed regardless of the framerate.
+
+## Sensors and Actuators
+
+We used arcade like buttons to control the game. Everything was displayed on a bigger screen and to incorporate I2C communication we used an LCD screen.
+The plan was to use a camera with AI to detect our student card and identify them. Unfortunately student cards differ to much from each other and the camera module was way to slow to get a good image.
+<br>
+I came up with the idea to use an eID card reader to identify the player. This was a much better solution as it is more secure and reliable.
+There is no official python library to read Belgian eID cards and the documentation is very poor. 
+I found a C# code online that I ported to python. This eventually worked very well and we could retrieve all public information from the card.
+
+## Manual Labour
+
+An arcade game is nothing without a good looking cabinet. 
+
+We used the available laser cutter at school to cut the wooden panels for the cabinet.
+They were then assembled using screws.
+
+<AssetImage name="side.jpg" alt="Smart Jack Cabinet" width="500" caption="
+The overall cabinet was a bit wobbly, but it worked."
+ />
+
+## Final Result
+
+<AssetImage name="showcase.jpg" alt="Smart Jack" width="500" />
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <AssetImage class="my-0!" name="register-id.jpg" alt="Registering an eID card" />
+  <AssetImage class="my-0!" name="play.jpg" alt="Playing a game" />
+  <AssetImage class="my-0!" name="blackjack.jpg" alt="Blackjack game" />
+  <AssetImage class="my-0!" name="inside.jpg" alt="Inside of the cabinet" />
+  <AssetImage class="my-0!" name="telemetry.jpg" alt="Telemetry" caption="Part of the project was to collect telemetry data." />
+  <AssetImage class="my-0!" name="logo.jpg" alt="Smart Jack" />
+</div>
 

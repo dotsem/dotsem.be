@@ -46,7 +46,7 @@
     const resolvedSrc = $derived(images[assetPath]);
 </script>
 
-<figure class="my-8 flex flex-col items-{align} {className}">
+<figure class="my-4! flex flex-col items-{align} {className}">
     {#if resolvedSrc}
         <button
             onclick={() => (isModalOpen = true)}
@@ -56,7 +56,7 @@
             <img
                 src={resolvedSrc}
                 {alt}
-                class="shadow-md max-w-full h-auto transition-all duration-500 group-hover:brightness-110"
+                class="shadow-md max-w-full h-auto my-0! transition-all duration-500 group-hover:brightness-110"
                 loading="lazy"
                 {width}
                 {height}

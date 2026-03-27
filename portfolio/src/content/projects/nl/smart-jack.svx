@@ -1,29 +1,75 @@
 ---
 title: Smart Jack
 slug: smart-jack
-image: /projects/Smart-jack/logo.webp
-description: Een IOT project met een custom blackjack game gemaakt met pygame, draaiend op een raspberry pi. Het bevat een eID kaartlezer om de speler te identificeren.
+image: /projects/smart-jack/logo.webp
+description: Een IoT-project bestaande uit een aangepast blackjack-spel gemaakt met pygame, draaiend op een Raspberry Pi. Het bevat een eID-kaartlezer om de speler te identificeren.
 languages:
   - pygame
   - raspberrypi
   - py
 highlighted: true
-status: Finished
+status: Afgewerkt
 ---
 
-# Smart Jack
+<script>
+  import AssetImage from '$lib/components/AssetImage.svelte';
 
-> de Smart Blackjack Tafel
+</script>
 
-Smart Jack is een project dat ik heb gemaakt tijdens mijn eerste jaar van de hogeschool. Het is een blackjack game die wordt bestuurd door een raspberry pi. Het bevat een eID kaartlezer om de speler te identificeren. 
-Het beschikt over een custom python game gemaakt met pygame. Het is geoptimaliseerd om te draaien op een raspberry pi 4 met behoud van een soepele 60fps ervaring.
+## De Slimme Blackjacktafel
 
-## Features
+Smart Jack is een project dat ik heb gemaakt voor een IoT-groepsproject tijdens mijn eerste jaar op de hogeschool. 
+Het spel draait op een Raspberry Pi 4. 
+Het bevat een eID-kaartlezer om de speler te identificeren en te verifiëren. Het gebruikt ook een gehashte versie van hun rijksregisternummer om hen te identificeren in de database. 
+Het spel zelf is een aangepast blackjack-spel gemaakt met Pygame. 
+Het is geoptimaliseerd om op een Raspberry Pi 4 te draaien met behoud van een soepele 60fps ervaring.
 
-- Custom blackjack algoritme
-- Vloeiende animaties
-- eID kaartlezer integratie
-- Knoppen voor hit, stand, double down, split
-- Knoppen bestuurd via bluetooth
-- Grafana dashboard voor statistieken
+## Het Idee
 
+Voor IoT moesten we een groepsproject doen waarbij we sensoren en actuatoren moesten gebruiken om iets cools te maken. 
+Onze docent had de mindset van "hoe gekker, hoe beter".
+In onze groep hadden we een lopende grap over gokken, dus besloten we natuurlijk om daar iets mee te doen.
+<br>
+Zo is Smart Jack ontstaan.
+
+## Het Spel
+
+We zijn begonnen met het maken van het spel. Ik had veel ervaring met Pygame, dus ik nam de leiding over dat deel.
+Het was erg leuk om animaties en spellogica in het spel te verwerken.
+Ik heb de regels van blackjack geanalyseerd en geprobeerd ze zo nauwkeurig mogelijk te implementeren.
+<br>
+De enige uitdaging die overbleef was om het soepel te laten draaien op een Raspberry Pi 4, aangezien Pygame berucht is om zijn traagheid omdat het CPU-gebonden is en Python een geïnterpreteerde taal is.
+We mikten op een solide 60fps ervaring, maar zouden al blij zijn met 30fps. Ik heb delta time gebruikt om het spel op een constante snelheid te laten draaien, ongeacht de framerate.
+
+## Sensoren en Actuatoren
+
+We gebruikten arcade-knoppen om het spel te besturen. Alles werd weergegeven op een groter scherm en om I2C-communicatie te integreren, gebruikten we een LCD-scherm.
+Het plan was om een camera met AI te gebruiken om onze studentenkaarten te detecteren en de spelers te identificeren. Helaas verschilden studentenkaarten te veel van elkaar en was de cameramodule veel te traag om een goed beeld te krijgen.
+<br>
+Ik kwam op het idee om een eID-kaartlezer te gebruiken om de speler te identificeren. Dit was een veel betere oplossing omdat het veiliger en betrouwbaarder is.
+Er is geen officiële Python-bibliotheek om Belgische eID-kaarten te lezen en de documentatie is erg pover. 
+Ik vond online C#-code die ik heb geport naar Python. Dit werkte uiteindelijk erg goed en we konden alle openbare informatie van de kaart ophalen.
+
+## Handarbeid
+
+Een arcadespel is niets zonder een mooi uitziende behuizing. 
+
+We hebben de beschikbare lasersnijder op school gebruikt om de houten panelen voor de behuizing te snijden.
+Deze zijn vervolgens met schroeven in elkaar gezet.
+
+<AssetImage name="side.jpg" alt="Smart Jack Behuizing" width="500" caption="
+De behuizing was een beetje wankel, maar het werkte."
+ />
+
+## Eindresultaat
+
+<AssetImage name="showcase.jpg" alt="Smart Jack" width="500" />
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <AssetImage class="my-0!" name="register-id.jpg" alt="Registreren van een eID-kaart" />
+  <AssetImage class="my-0!" name="play.jpg" alt="Een spelletje spelen" />
+  <AssetImage class="my-0!" name="blackjack.jpg" alt="Blackjack spel" />
+  <AssetImage class="my-0!" name="inside.jpg" alt="Binnenkant van de behuizing" />
+  <AssetImage class="my-0!" name="telemetry.jpg" alt="Telemetrie" caption="Onderdeel van het project was het verzamelen van telemetriegegevens." />
+  <AssetImage class="my-0!" name="logo.jpg" alt="Smart Jack" />
+</div>
