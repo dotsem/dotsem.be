@@ -34,7 +34,7 @@
 <section
     class="flex flex-col md:flex-row container px-4 mx-auto items-center justify-center"
 >
-    <div class="">
+    <div class="flex-1">
         <img
             id="me-image"
             src={MeImage}
@@ -42,7 +42,7 @@
             alt="thats me!"
         />
     </div>
-    <div>
+    <div class="flex-1">
         <h1
             class="text-2xl sm:text-4xl md:text-6xl font-bold text-center md:text-start"
         >
