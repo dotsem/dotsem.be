@@ -188,6 +188,9 @@ html {
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
 
+  --spacing-paper: 9mm;
+  --background-image-header: var(--header-footer-bg);
+
   @keyframes who-image-border {
     to {
       transform: scaleX(1);
