@@ -65,7 +65,7 @@
         <main class="grid grid-cols-12 font-serif bg-white text-black">
             <!-- Main Content -->
             <article class="col-span-8 pl-paper pr-4 pt-4">
-                <Section title={m.cv_education()}>
+                <Section title={m.cv_education()} class="mb-4">
                     <div class="mx-2">
                         <Experience
                             title={m.cv_edu_bachelor_title()}
@@ -114,7 +114,7 @@
                         </Experience>
                     </div>
                 </Section>
-                <Section title={m.cv_experience()} class="mb-4">
+                <Section title={m.cv_experience()}>
                     <div class="mx-2">
                         <Experience
                             title={m.cv_internship_philips_title()}
