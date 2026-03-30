@@ -8,6 +8,7 @@
     import FAB from "$lib/components/cv/FAB.svelte";
     import { handleDownload } from "$lib/components/cv/handleDownload";
     import Experience from "$lib/components/cv/Experience.svelte";
+    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
     let pdfRef: HTMLElement | undefined = $state();
 
@@ -17,17 +18,17 @@
 </script>
 
 <div class="fixed bottom-0 right-0 print-hidden z-50">
-    <FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}
-        >{m.cv_download()}</FAB
-    >
-    <FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
+    <EntryAnimation delay={300} type="slide-left">
+        <FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}
+            >{m.cv_download()}</FAB
+        >
+    </EntryAnimation>
+    <EntryAnimation delay={400} type="slide-left">
+        <FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
+    </EntryAnimation>
 </div>
 
-<section
-    id="cv"
-    class="w-full flex justify-center mb-8 print:m-0"
-    bind:this={pdfRef}
->
+<section id="cv" bind:this={pdfRef}>
     <Paper>
         <header
             class="flex justify-between items-start border-b-4 pl-paper pr-paper pt-paper pb-4 border-b-primary"

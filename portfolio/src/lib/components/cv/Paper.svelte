@@ -11,7 +11,7 @@
 </div>
 
 <style>
-    /* Background and centering */
+    /* Background andiventering */
     .paper-viewport {
         width: 100%;
         background: transparent;
