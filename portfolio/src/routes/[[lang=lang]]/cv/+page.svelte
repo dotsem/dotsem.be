@@ -65,6 +65,28 @@
         <main class="grid grid-cols-12 font-serif bg-white text-black">
             <!-- Main Content -->
             <article class="col-span-8 pl-paper pr-4 pt-4">
+                <Section title={m.cv_education()}>
+                    <div class="mx-2">
+                        <Experience
+                            title={m.cv_edu_bachelor_title()}
+                            location={m.cv_location_geel()}
+                            date={m.cv_edu_bachelor_date()}
+                            class="mb-4"
+                        >
+                            {m.cv_edu_bachelor_description()}
+                        </Experience>
+                        <Experience
+                            title={m.cv_edu_secondary_title()}
+                            location={m.cv_location()}
+                            date={m.cv_edu_secondary_date()}
+                        >
+                            <ul>
+                                <li>{m.cv_edu_secondary_item_1()}</li>
+                                <li>{m.cv_edu_secondary_item_2()}</li>
+                            </ul>
+                        </Experience>
+                    </div>
+                </Section>
                 <Section title={m.cv_student_jobs()} class="mb-4">
                     <div class="mx-2">
                         <Experience
@@ -111,28 +133,6 @@
                                 <li>
                                     {m.cv_vex_item_2()}
                                 </li>
-                            </ul>
-                        </Experience>
-                    </div>
-                </Section>
-                <Section title={m.cv_education()}>
-                    <div class="mx-2">
-                        <Experience
-                            title={m.cv_edu_bachelor_title()}
-                            location={m.cv_location_geel()}
-                            date={m.cv_edu_bachelor_date()}
-                            class="mb-4"
-                        >
-                            {m.cv_edu_bachelor_description()}
-                        </Experience>
-                        <Experience
-                            title={m.cv_edu_secondary_title()}
-                            location={m.cv_location()}
-                            date={m.cv_edu_secondary_date()}
-                        >
-                            <ul>
-                                <li>{m.cv_edu_secondary_item_1()}</li>
-                                <li>{m.cv_edu_secondary_item_2()}</li>
                             </ul>
                         </Experience>
                     </div>
