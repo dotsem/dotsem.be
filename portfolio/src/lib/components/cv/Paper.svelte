@@ -126,13 +126,23 @@
             margin: 0 !important;
         }
 
-        :global(body) {
+        :global(body),
+        :global(html) {
             background: white !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        :global(#svelte),
+        :global(.flex-col.min-h-screen) {
+            display: block !important;
+            min-height: 0 !important;
         }
 
         @page {
             size: A4;
-            margin: 0;
+            margin: 0 !important;
         }
     }
 </style>
