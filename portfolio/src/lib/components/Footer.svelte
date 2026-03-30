@@ -25,9 +25,14 @@
         </p>
     </div>
     <div class="flex justify-center flex-col gap-2">
-        {#if !isContactPage}
-            <SocialLinks />
-        {/if}
+        <div class="flex gap-4 items-center">
+            {#if !isContactPage}
+                <SocialLinks />
+            {/if}
+            <Button variant="secondary" href="mailto:info@dotsem.be"
+                >{footer_email()}</Button
+            >
+        </div>
         <div class="flex gap-4">
             <a href={i18n.resolveRoute("/cookies", currentLang)}>Cookies</a>
             <a href={i18n.resolveRoute("/privacy", currentLang)}>Privacy</a>

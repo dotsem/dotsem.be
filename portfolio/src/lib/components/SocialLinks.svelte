@@ -1,8 +1,9 @@
 <script lang="ts">
+    import { Button } from "./ui/button";
+    import { footer_email } from "$lib/paraglide/messages";
     let { gap = "16px", ...restProps } = $props();
 </script>
 
-<!-- <Button href="/contact">{footer_email}</Button> -->
 <div {...restProps} class="socials {restProps.class}" style="gap: {gap}">
     <a
         href="https://github.com/dotsem"
