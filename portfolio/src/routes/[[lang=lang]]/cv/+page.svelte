@@ -18,9 +18,9 @@
 
 <div class="fixed bottom-0 right-0 print-hidden z-50">
     <FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}
-        >Download CV</FAB
+        >{m.cv_download()}</FAB
     >
-    <FAB icon="fa-solid fa-print" onclick={handlePrint}>Print Resume</FAB>
+    <FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
 </div>
 
 <section
@@ -41,7 +41,7 @@
                 <p
                     class="text-lg font-bold text-primary italic uppercase tracking-wider"
                 >
-                    Software Engineer
+                    {m.cv_title()}
                 </p>
                 <div class="flex gap-4 text-sm font-medium text-neutral-600">
                     <p>
@@ -63,90 +63,75 @@
 
         <main class="grid grid-cols-12 font-serif bg-white text-black">
             <!-- Main Content -->
-            <article class="col-span-8 pl-paper pr-4 pb-paper pt-4">
-                <Section title="Student Jobs" class="mb-4">
+            <article class="col-span-8 pl-paper pr-4 pt-4">
+                <Section title={m.cv_student_jobs()} class="mb-4">
                     <div class="mx-2">
                         <Experience
-                            title="Lifeguard at Aquadroom"
-                            location="Maaseik, Belgium"
-                            date="November 2025 - Present"
+                            title={m.cv_job_lifeguard_title()}
+                            location={m.cv_location()}
+                            date={m.cv_job_lifeguard_date()}
                             class="mb-4"
                         >
                             <ul>
                                 <li>
-                                    Responsible for the safety of swimmers in
-                                    and around the pool.
+                                    {m.cv_job_lifeguard_item_1()}
                                 </li>
                                 <li>
-                                    Enforced pool rules and regulations to
-                                    ensure a safe environment.
+                                    {m.cv_job_lifeguard_item_2()}
                                 </li>
-                                <li>Trained for applying first aid and CPR.</li>
-                                <li>
-                                    Keeping the pool and surrounding area clean
-                                    and tidy.
-                                </li>
+                                <li>{m.cv_job_lifeguard_item_3()}</li>
                             </ul>
                         </Experience>
                         <Experience
-                            title="Kitchen and Bar Staff at Bistro Papillon"
-                            location="Kinrooi, Belgium"
-                            date="May 2023 - September 2025"
+                            title={m.cv_job_bistro_title()}
+                            location={m.cv_location_kinrooi()}
+                            date={m.cv_job_bistro_date()}
                         >
-                            Preparing food, preparing drinks and washing dishes.
+                            {m.cv_job_bistro_description()}
                         </Experience>
                     </div>
                 </Section>
-                <Section title="Experience" class="mb-4">
+                <Section title={m.cv_experience()} class="mb-4">
                     <div class="mx-2">
                         <Experience
-                            title="Internship at Philips"
-                            location="Eindhoven, Netherlands"
-                            date="6 November 2023 - 17 November 2023"
+                            title={m.cv_internship_philips_title()}
+                            location={m.cv_location_eindhoven()}
+                            date={m.cv_internship_philips_date()}
                             class="mb-4"
                         >
-                            2 Week internship at the Embedded Software
-                            Development team. Learning the workflow of agile and
-                            creating a robot using their custom bluetooth
-                            library as a proof of concept using C++ and Flutter.
+                            {m.cv_internship_philips_description()}
                         </Experience>
-                        <Experience title="VEX Robotics">
-                            Strategic builder, programmer, and driver.
+                        <Experience title={m.cv_vex_title()}>
+                            {m.cv_vex_description()}
                             <ul>
                                 <li>
-                                    2x Belgian champion, second place in
-                                    Luxemburg
+                                    {m.cv_vex_item_1()}
                                 </li>
                                 <li>
-                                    Participated in the world championship in
-                                    Dallas, Texas
+                                    {m.cv_vex_item_2()}
                                 </li>
                             </ul>
                         </Experience>
                     </div>
                 </Section>
-                <Section title="Education">
+                <Section title={m.cv_education()}>
                     <div class="mx-2">
                         <Experience
-                            title="Bachelor of Applied Computer Science"
-                            location="Thomas More, Geel, Belgium"
-                            date="September 2024 - Present"
+                            title={m.cv_edu_bachelor_title()}
+                            location={m.cv_location_geel()}
+                            date={m.cv_edu_bachelor_date()}
                             class="mb-4"
                         >
-                            Following the track Digital Innovation with as minor
-                            Application Development. Working in a project based
-                            learning environment. Learning valuable skills in
-                            software development, teamwork, problem solving and
-                            soft skills.
+                            {m.cv_edu_bachelor_description()}
                         </Experience>
                         <Experience
-                            title="Secondary School Mosa-RT"
-                            location="Maaseik, Belgium"
-                            date="September 2018 - June 2024"
+                            title={m.cv_edu_secondary_title()}
+                            location={m.cv_location()}
+                            date={m.cv_edu_secondary_date()}
                         >
                             <ul>
-                                <li>1st - 4th year: Industrial Sciences</li>
-                                <li>5th - 6th year: Industrial IT</li>
+                                <li>{m.cv_edu_secondary_item_1()}</li>
+                                <li>{m.cv_edu_secondary_item_2()}</li>
                             </ul>
                         </Experience>
                     </div>
@@ -157,13 +142,10 @@
             <aside
                 class="col-span-4 bg-neutral-50/50 pt-14 border-l border-neutral-200 p-4 pr-paper pb-paper"
             >
-                <Section title="Summary" class="mt-4">
-                    I'm a software engineer with a passion for building robust,
-                    scalable and efficient applications. I'm experienced in
-                    modern web technologies, apps, backend systems and hardware
-                    integration.
+                <Section title={m.cv_summary_title()} class="mt-4">
+                    {m.cv_summary_content()}
                 </Section>
-                <Section title="Skills" class="mt-4">
+                <Section title={m.cv_skills_title()} class="mt-4">
                     <ul class="space-y-1">
                         <ListItem icon="fa-brands fa-python">Python</ListItem>
                         <ListItem icon="fa-brands fa-flutter"
@@ -186,32 +168,34 @@
                         <ListItem icon="fa-brands fa-github">GitHub</ListItem>
                     </ul>
                 </Section>
-                <Section title="Hobbies" class="mt-4">
+                <Section title={m.cv_hobbies_title()} class="mt-4">
                     <ul class="space-y-1">
                         <ListItem icon="fa-solid fa-guitar"
-                            >Playing Guitar</ListItem
+                            >{m.cv_hobby_guitar()}</ListItem
                         >
                         <ListItem icon="fa-solid fa-water"
-                            >Swimming & Diving</ListItem
+                            >{m.cv_hobby_swimming()}</ListItem
                         >
-                        <ListItem icon="fa-solid fa-code">Coding</ListItem>
+                        <ListItem icon="fa-solid fa-code"
+                            >{m.cv_hobby_coding()}</ListItem
+                        >
                     </ul>
                 </Section>
 
-                <Section title="Languages" class="mt-4">
+                <Section title={m.cv_languages_title()} class="mt-4">
                     <ul class="space-y-1">
                         <li class="list-disc list-inside text-sm">
-                            Dutch (Native)
+                            {m.cv_lang_dutch()}
                         </li>
                         <li class="list-disc list-inside text-sm">
-                            English (Fluent)
+                            {m.cv_lang_english()}
                         </li>
                         <li class="list-disc list-inside text-sm">
-                            French (Conversational)
+                            {m.cv_lang_french()}
                         </li>
                     </ul>
                 </Section>
-                <Section title="Contact" class="mt-4">
+                <Section title={m.cv_contact_title()} class="mt-4">
                     <ul class="space-y-1">
                         <ListItem icon="fa-solid fa-envelope">
                             <a
