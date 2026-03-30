@@ -4,6 +4,7 @@
     import { calculateAge } from "$lib/utils";
     import * as m from "$lib/paraglide/messages.js";
     import MeImage from "$lib/assets/me.webp";
+    import CVImage from "$lib/assets/me2.webp";
     import DigitalInnovation from "$lib/assets/digital-innovation.webp";
     import SocialLinks from "$lib/components/SocialLinks.svelte";
     import ProgLang from "$lib/components/ProgLang.svelte";
@@ -13,6 +14,9 @@
     import PLprog from "$lib/components/profile/PLprog.svelte";
     import PLtools from "$lib/components/profile/PLtools.svelte";
     import ContactForm from "$lib/components/ContactForm.svelte";
+    import { resolveRoute } from "$app/paths";
+    import { i18n } from "$lib/i18n";
+    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
     let age = calculateAge("2006-08-31");
 
@@ -82,11 +86,13 @@
 
 <TextWithImageContainer class="bg-card slanted my-4">
     {#snippet image()}
-        <img
-            src={DigitalInnovation}
-            class="w-[60%] mx-auto unselectable"
-            alt="Digital Innovation @ Thomas More"
-        />
+        <EntryAnimation distance={"100px"} type="slide-left">
+            <img
+                src={DigitalInnovation}
+                class="w-[60%] mx-auto unselectable"
+                alt="Digital Innovation @ Thomas More"
+            />
+        </EntryAnimation>
     {/snippet}
 
     <h2 class="text-2xl md:text-4xl py-2 font-bold text-center md:text-start">
@@ -101,16 +107,22 @@
     <p class="py-2">
         {m.di_description_3()}
     </p>
-    <div class="mt-4">
-        <Button
-            href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
-            >{m.di_button()}</Button
-        >
-        <Button
-            variant="outline"
-            href="https://github.com/Thomas-More-Digital-Innovation"
-            >{m.di_button_secondary()}</Button
-        >
+    <div class="mt-4 flex flex-wrap gap-2">
+        <EntryAnimation delay={300} type="slide-up">
+            <Button
+                class="flex-1 md:flex-none"
+                href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
+                >{m.di_button()}</Button
+            >
+        </EntryAnimation>
+        <EntryAnimation delay={600} type="slide-up">
+            <Button
+                class="flex-1 md:flex-none"
+                variant="outline"
+                href="https://github.com/Thomas-More-Digital-Innovation"
+                >{m.di_button_secondary()}</Button
+            >
+        </EntryAnimation>
     </div>
 </TextWithImageContainer>
 
@@ -140,6 +152,43 @@
         </div>
     </InfoCard>
 </section>
+
+<TextWithImageContainer class="bg-card slanted" layout="image-first">
+    {#snippet image()}
+        <EntryAnimation distance={"100px"} type="slide-right">
+            <div
+                class="overflow-hidden w-[60%] mx-auto rounded-full aspect-square"
+            >
+                <img
+                    src={CVImage}
+                    class=" hover:scale-105 transition-transform duration-200 ease-in-out"
+                    alt=""
+                />
+            </div>
+        </EntryAnimation>
+    {/snippet}
+
+    <h2 class="text-2xl md:text-4xl py-2 font-bold text-center md:text-start">
+        {m.about_cv_title()}
+    </h2>
+    <p class="py-2">{m.about_cv_description()}</p>
+    <div class="flex flex-wrap gap-2">
+        <EntryAnimation delay={300} type="slide-up">
+            <Button class="flex-1 md:flex-none" href={i18n.resolveRoute("/cv")}
+                >{m.about_cv_button()}</Button
+            >
+        </EntryAnimation>
+        <EntryAnimation delay={600} type="slide-up">
+            <Button
+                class="flex-1 md:flex-none"
+                href="https://www.linkedin.com/in/sem-van-broekhoven/"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline">{m.about_cv_button_secondary()}</Button
+            >
+        </EntryAnimation>
+    </div>
+</TextWithImageContainer>
 
 <ContactForm />
 
