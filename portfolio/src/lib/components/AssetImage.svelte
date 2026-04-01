@@ -50,7 +50,7 @@
     {#if resolvedSrc}
         <button
             onclick={() => (isModalOpen = true)}
-            class="group relative overflow-hidden rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-primary/50"
+            class="group relative overflow-hidden cursor-pointer rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-primary/50"
             aria-label="Enlarge image"
         >
             <img

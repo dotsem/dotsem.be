@@ -56,7 +56,7 @@
         >
             <button
                 onclick={handleClose}
-                class="absolute top-4 right-4 p-2 bg-neutral-900/50 hover:bg-neutral-800/80 backdrop-blur-xl rounded-full border border-white/10 transition-all duration-300 text-white z-20 shadow-lg flex items-center justify-center w-10 h-10"
+                class="absolute cursor-pointer top-4 right-4 p-2 bg-neutral-900/50 hover:bg-neutral-800/80 backdrop-blur-xl rounded-full border border-white/10 transition-all duration-300 text-white z-20 shadow-lg flex items-center justify-center w-10 h-10"
                 aria-label="Close modal"
             >
                 <i class="fa-solid fa-xmark text-xl"></i>
