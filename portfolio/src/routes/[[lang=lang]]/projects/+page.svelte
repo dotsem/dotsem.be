@@ -1,6 +1,7 @@
 <script lang="ts">
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+    import * as m from "$lib/paraglide/messages";
 
     let { data } = $props();
 
@@ -19,7 +20,9 @@
 </svelte:head>
 
 <div class="container mx-auto py-10 px-4">
-    <div class="flex flex-wrap gap-2 justify-center">
+    <h1 class="text-5xl font-bold mb-4 text-center">{m.projects_title()}</h1>
+    <p class="text-xl m-0 text-center">{m.projects_description()}</p>
+    <div class="flex flex-wrap gap-2 justify-center mt-10">
         {#each projects as project, index}
             <EntryAnimation type="slide-right" delay={index * 100}>
                 <ProjectCard {project} />
