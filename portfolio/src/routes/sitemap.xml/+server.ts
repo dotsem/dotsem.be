@@ -15,15 +15,33 @@ export async function GET() {
         '/blog',
         '/privacy',
         '/cookies',
-        '/aboutme'
+        '/aboutme',
+        '/cv'
     ];
 
-    const pages: string[] = [];
+    const defaultPriority = '0.7';
+    const alternativePriorities: Record<string, string> = {
+        '/': '1.0',
+        '/aboutme': '0.9',
+        '/cv': '0.8',
+        '/privacy': '0.5',
+        '/cookies': '0.5'
+    };
+
+
+    const getPriority = (path: string) => {
+        return alternativePriorities[path] || defaultPriority;
+    };
+
+    const pages: { url: string; path: string }[] = [];
 
     // Add localized versions of constant pages
     for (const lang of availableLanguageTags) {
         for (const path of pathnames) {
-            pages.push(`${baseUrl}${i18n.resolveRoute(path, lang)}`);
+            pages.push({
+                url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
+                path
+            });
         }
     }
 
@@ -33,16 +51,26 @@ export async function GET() {
         const blogs = await getBlogsByLang(lang);
 
         for (const project of projects) {
-            pages.push(`${baseUrl}${i18n.resolveRoute(`/projects/${project.slug}`, lang)}`);
+            const path = `/projects/${project.slug}`;
+            pages.push({
+                url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
+                path
+            });
         }
 
         for (const blog of blogs) {
-            pages.push(`${baseUrl}${i18n.resolveRoute(`/blog/${blog.slug}`, lang)}`);
+            const path = `/blog/${blog.slug}`;
+            pages.push({
+                url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
+                path
+            });
         }
     }
 
-    // Remove duplicates and ensure unique list
-    const uniquePages = [...new Set(pages)];
+    // Remove duplicates based on URL
+    const uniquePages = Array.from(
+        new Map(pages.map((p) => [p.url, p])).values()
+    );
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -50,9 +78,9 @@ export async function GET() {
             .map((page) => {
                 return `
     <url>
-        <loc>${page}</loc>
+        <loc>${page.url}</loc>
         <changefreq>weekly</changefreq>
-        <priority>${page === `${baseUrl}/` || page === `${baseUrl}/nl/` || page === `${baseUrl}/en/` ? '1.0' : '0.7'}</priority>
+        <priority>${getPriority(page.path)}</priority>
     </url>`;
             })
             .join('')}
