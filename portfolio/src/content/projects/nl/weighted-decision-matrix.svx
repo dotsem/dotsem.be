@@ -7,7 +7,7 @@ languages:
   - svelte
   - ts
 highlighted: false
-status: v0.1.0
+status: v0.1.1
 ---
 
 <script>
