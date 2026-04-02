@@ -25,6 +25,8 @@ export const i18n = createI18n(runtime, {
         }
     },
     prefixDefaultLanguage: 'never',
-    exclude: ['/sitemap.xml']
+    exclude: [/^\/sitemap\.xml/]
 });
+
+
 
