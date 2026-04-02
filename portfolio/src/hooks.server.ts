@@ -3,6 +3,7 @@ import type { Handle } from '@sveltejs/kit';
 
 const paraglideHandle = i18n.handle();
 
+
 export const handle: Handle = async ({ event, resolve }) => {
     const consent = event.cookies.get('cookie-consent');
     const theme = event.cookies.get('theme');

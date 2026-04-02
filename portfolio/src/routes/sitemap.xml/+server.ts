@@ -33,19 +33,19 @@ export async function GET() {
         return alternativePriorities[path] || defaultPriority;
     };
 
-    const pages: { url: string; path: string }[] = [];
+    const pages: { urlPath: string; originalPath: string }[] = [];
 
     // Add localized versions of constant pages
     for (const lang of availableLanguageTags) {
         for (const path of pathnames) {
             pages.push({
-                url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
-                path
+                urlPath: i18n.resolveRoute(path, lang),
+                originalPath: path
             });
         }
     }
 
-    // Fetch all dynamic content
+    // Fetch and add localized versions of dynamic content
     for (const lang of availableLanguageTags) {
         const projects = await getProjectsByLang(lang);
         const blogs = await getBlogsByLang(lang);
@@ -53,34 +53,46 @@ export async function GET() {
         for (const project of projects) {
             const path = `/projects/${project.slug}`;
             pages.push({
-                url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
-                path
+                urlPath: i18n.resolveRoute(path, lang),
+                originalPath: path
             });
         }
 
         for (const blog of blogs) {
             const path = `/blog/${blog.slug}`;
             pages.push({
-                url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
-                path
+                urlPath: i18n.resolveRoute(path, lang),
+                originalPath: path
             });
         }
     }
 
-    // Remove duplicates based on URL
+    // Deduplicate by final URL path
     const uniquePages = Array.from(
-        new Map(pages.map((p) => [p.url, p])).values()
+        new Map<string, { urlPath: string; originalPath: string }>(
+            pages.map((p) => [p.urlPath, p])
+        ).values()
     );
+
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     ${uniquePages
             .map((page) => {
+                const alternates = availableLanguageTags.map(locale => {
+                    const altUrl = `${baseUrl}${i18n.resolveRoute(page.originalPath, locale)}`;
+                    return `<xhtml:link rel="alternate" hreflang="${locale}" href="${altUrl}"/>`;
+                }).join('\n        ');
+
+                const xDefault = `<xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${i18n.resolveRoute(page.originalPath, 'en')}"/>`;
+
                 return `
     <url>
-        <loc>${page.url}</loc>
+        <loc>${baseUrl}${page.urlPath}</loc>
         <changefreq>weekly</changefreq>
-        <priority>${getPriority(page.path)}</priority>
+        <priority>${getPriority(page.originalPath)}</priority>
+        ${alternates}
+        ${xDefault}
     </url>`;
             })
             .join('')}
@@ -92,3 +104,5 @@ export async function GET() {
         }
     });
 }
+
+
