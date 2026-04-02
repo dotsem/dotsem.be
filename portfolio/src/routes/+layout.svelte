@@ -16,14 +16,24 @@
 
     let { children } = $props();
 
+    const removeTrailingSlashFromPathname = (pathname: string) => {
+        return pathname.replace(/\/$/, "");
+    };
+
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
     let canonicalUrl = $derived(
-        `https://dotsem.be${i18n.resolveRoute(i18n.route(page.url.pathname), currentLang)}`,
+        removeTrailingSlashFromPathname(
+            `https://dotsem.be${i18n.resolveRoute(i18n.route(page.url.pathname), currentLang)}`,
+        ),
     );
 
     onNavigate((navigation) => {
-        const toPath = navigation.to?.url.pathname.replace(/\/$/, "") || "";
-        const fromPath = navigation.from?.url.pathname.replace(/\/$/, "") || "";
+        const toPath = removeTrailingSlashFromPathname(
+            navigation.to?.url.pathname || "",
+        );
+        const fromPath = removeTrailingSlashFromPathname(
+            navigation.from?.url.pathname || "",
+        );
 
         // If we're navigating to a different page, make it instant
         if (toPath !== fromPath) {
@@ -62,18 +72,16 @@
         <link
             rel="alternate"
             hreflang={locale}
-            href="https://dotsem.be{i18n.resolveRoute(
-                i18n.route(page.url.pathname),
-                locale,
+            href="https://dotsem.be{removeTrailingSlashFromPathname(
+                i18n.resolveRoute(i18n.route(page.url.pathname), locale),
             )}"
         />
     {/each}
     <link
         rel="alternate"
         hreflang="x-default"
-        href="https://dotsem.be{i18n.resolveRoute(
-            i18n.route(page.url.pathname),
-            'en',
+        href="https://dotsem.be{removeTrailingSlashFromPathname(
+            i18n.resolveRoute(i18n.route(page.url.pathname), 'en'),
         )}"
     />
 
