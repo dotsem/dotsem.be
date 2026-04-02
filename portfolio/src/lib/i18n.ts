@@ -24,5 +24,7 @@ export const i18n = createI18n(runtime, {
             nl: '/over-mij'
         }
     },
-    prefixDefaultLanguage: 'never'
+    prefixDefaultLanguage: 'never',
+    exclude: ['/sitemap.xml']
 });
+

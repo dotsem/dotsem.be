@@ -77,32 +77,33 @@ export async function GET() {
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    ${uniquePages
+${uniquePages
             .map((page) => {
                 const alternates = availableLanguageTags.map(locale => {
                     const altUrl = `${baseUrl}${i18n.resolveRoute(page.originalPath, locale)}`;
-                    return `<xhtml:link rel="alternate" hreflang="${locale}" href="${altUrl}"/>`;
-                }).join('\n        ');
+                    return `        <xhtml:link rel="alternate" hreflang="${locale}" href="${altUrl}"/>`;
+                }).join('\n');
 
-                const xDefault = `<xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${i18n.resolveRoute(page.originalPath, 'en')}"/>`;
+                const xDefault = `        <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${i18n.resolveRoute(page.originalPath, 'en')}"/>`;
 
-                return `
-    <url>
+                return `    <url>
         <loc>${baseUrl}${page.urlPath}</loc>
         <changefreq>weekly</changefreq>
         <priority>${getPriority(page.originalPath)}</priority>
-        ${alternates}
-        ${xDefault}
+${alternates}
+${xDefault}
     </url>`;
             })
-            .join('')}
-</urlset>`.trim();
+            .join('\n')}
+</urlset>`;
 
-    return new Response(sitemap, {
+    return new Response(sitemap.trim(), {
         headers: {
-            'Content-Type': 'application/xml'
+            'Content-Type': 'application/xml',
+            'X-Content-Type-Options': 'nosniff'
         }
     });
 }
+
 
 
