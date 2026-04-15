@@ -7,13 +7,13 @@ languages:
   - dart
   - flutter
 highlighted: true
-status: v0.1.0
+status: v0.1.1
 ---
 
 <script>
   import AssetImage from "$lib/components/AssetImage.svelte";
 
-  const latestRelease = "v0.1.0";
+  const latestRelease = "v0.1.1";
 </script>
 
 ## Planning voor productieve mensen
