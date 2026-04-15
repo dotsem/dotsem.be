@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { Button } from "./ui/button";
-    import { footer_email } from "$lib/paraglide/messages";
     let { gap = "16px", ...restProps } = $props();
 </script>
 

@@ -25,7 +25,7 @@
         </p>
     </div>
     <div class="flex justify-center flex-col gap-2">
-        <div class="flex gap-4 items-center">
+        <div class="flex gap-4 items-center flex-col sm:flex-row">
             {#if !isContactPage}
                 <SocialLinks />
             {/if}
