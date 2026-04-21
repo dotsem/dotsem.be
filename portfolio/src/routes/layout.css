@@ -191,23 +191,7 @@ html {
   --spacing-paper: 9mm;
   --background-image-header: var(--header-footer-bg);
 
-  @keyframes who-image-border {
-    to {
-      transform: scaleX(1);
-    }
-  }
 
-  @keyframes who-image-popup {
-    0% {
-      clip-path: inset(0 0 100% 0);
-      transform: translateY(100%);
-    }
-
-    100% {
-      clip-path: inset(0 0 0 0);
-      transform: translateY(0%);
-    }
-  }
 }
 
 @layer components {
@@ -242,40 +226,6 @@ html {
     transform: translateY(-2px);
     -webkit-backdrop-filter: blur(16px) saturate(200%);
     backdrop-filter: blur(16px) saturate(200%);
-  }
-
-  /* Profile Animations */
-  #profile-who-image-container {
-    img {
-      clip-path: inset(0 0 100% 0);
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-    }
-
-    &.ob-show>img {
-      animation: who-image-popup 1200ms forwards ease-in-out;
-      animation-delay: 800ms;
-    }
-
-    &.ob-hide>img {
-      transform: scaleX(0);
-    }
-
-    &.ob-show>div {
-      animation: who-image-border 800ms forwards ease-in-out;
-    }
-
-    &.ob-hide>div {
-      clip-path: inset(0 0 100% 0);
-      transform: translateY(100%);
-    }
-
-    >div {
-      width: 80%;
-      height: 5px;
-      transform: scaleX(0);
-      background-color: var(--secondary);
-    }
   }
 }
 
@@ -330,13 +280,13 @@ html {
   }
 
   .prose :where(h1, h2, h3, h4) {
-    margin-top: 1.25rem !important;
-    margin-bottom: 0.5rem !important;
+    margin-top: 4rem !important;
+    margin-bottom: 1rem !important;
   }
 
   .prose :where(p, ul, ol, li) {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
 
   .prose :where(h1, h2, h3, h4, p, ul, ol, li):first-child {

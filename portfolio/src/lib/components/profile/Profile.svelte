@@ -1,12 +1,11 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import ProgLang from "$lib/components/ProgLang.svelte";
     import MeImage from "$lib/assets/me.webp";
     import * as m from "$lib/paraglide/messages.js";
     import { calculateAge } from "$lib/utils";
     import SocialLinks from "../SocialLinks.svelte";
     import PLprog from "./PLprog.svelte";
     import PLtools from "./PLtools.svelte";
+    import "./profile.css";
     let experienceContent = $derived([
         m.profile_experience_content_0(),
         m.profile_experience_content_1(),
@@ -58,7 +57,7 @@
 >
     <!-- Column 1 -->
     <div
-        class="profile-column prose grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:prose-invert"
+        class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert"
     >
         <div
             class="glossy-tile flex flex-col items-center justify-center m-0! col-span-4 row-span-1"
@@ -91,7 +90,7 @@
 
     <!-- Column 2 -->
     <div
-        class="profile-column prose grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:prose-invert"
+        class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert"
     >
         <div
             id="profile-skills"
@@ -121,7 +120,7 @@
 
     <!-- Column 3 -->
     <div
-        class="profile-column prose grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:prose-invert min-[650px]:max-[1024px]:col-span-2 min-[650px]:max-[1024px]:grid-cols-4 min-[650px]:max-[1024px]:grid-rows-3"
+        class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert min-[650px]:max-[1024px]:col-span-2 min-[650px]:max-[1024px]:grid-cols-4 min-[650px]:max-[1024px]:grid-rows-3"
     >
         <div
             id="profile-experience"
