@@ -17,6 +17,7 @@
     import { toast } from "svelte-sonner";
     import Button from "./ui/button/button.svelte";
     import EntryAnimation from "./EntryAnimation.svelte";
+    import { env } from "$env/dynamic/public";
 
     let status = $state("idle"); // 'idle' | 'sending' | 'success' | 'error'
 
@@ -28,6 +29,23 @@
         const formData = new FormData(form);
 
         try {
+            // 1. Validate Turnstile token server-side
+            const validateResponse = await fetch("/api/validate", {
+                method: "POST",
+                body: formData,
+            });
+
+            const validateResult = await validateResponse.json();
+
+            if (!validateResponse.ok || !validateResult.success) {
+                // validation failed
+                status = "error";
+                toast.error("Captcha validation failed. Please try again.");
+                setTimeout(() => (status = "idle"), 2000);
+                return;
+            }
+
+            // 2. If valid, proceed with Netlify submission
             const response = await fetch("/forms.html", {
                 method: "POST",
                 headers: {
@@ -40,6 +58,7 @@
                 status = "success";
                 toast.success(contact_success());
                 form.reset();
+                // Reset Turnstile widget if possible, but form reset might handle it or it'll re-render
                 setTimeout(() => (status = "idle"), 2000);
             } else {
                 status = "error";
@@ -182,6 +201,13 @@
                             ></textarea>
                         </div>
                     </div>
+
+                    <div
+                        class="cf-turnstile mt-4"
+                        data-size="flexible"
+                        data-sitekey={env.PUBLIC_TURNSTILE_SITE_KEY}
+                        data-theme="dark"
+                    ></div>
 
                     <Button
                         type="submit"
