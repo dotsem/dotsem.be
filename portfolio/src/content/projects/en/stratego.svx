@@ -11,7 +11,7 @@ languages:
   - docker
   - nixos
 highlighted: true
-status: In Progress
+status: v0.1.1
 ---
 
 <script>
