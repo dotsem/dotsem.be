@@ -76,6 +76,12 @@
         --leading-normal: 1.5;
     }
 
+    @supports (-moz-appearance: none) {
+        .immutable-paper-context {
+            --text-sm: 13px;
+        }
+    }
+
     @media (max-width: 220mm) {
         .paper-viewport {
             padding: 1rem 0;
