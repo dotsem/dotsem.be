@@ -3,6 +3,7 @@
     import HeroImage from "$lib/assets/hero.webp";
     import HeroImageMobile from "$lib/assets/hero-sm.webp";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+    import Bg from "$lib/assets/bg-dark.webp";
 
     import {
         hero_button_main,
@@ -12,19 +13,29 @@
     } from "$lib/paraglide/messages.js";
 </script>
 
-<div id="hero" class="relative bg-background">
-    <picture class="unselectable">
-        <source media="(min-width: 1400px)" srcset={HeroImage} />
-        <img
-            src={HeroImageMobile}
-            alt="Hero"
-            class="w-full h-full object-cover object-top-right"
-            fetchpriority="high"
-            loading="eager"
-        />
-    </picture>
+<div id="hero" class="relative bg-background overflow-hidden">
+    <img
+        src={Bg}
+        alt="Hero"
+        class="w-full h-full blur-sm absolute top-0 left-0 object-cover object-top-right z-0"
+        fetchpriority="high"
+        loading="eager"
+    />
+    <EntryAnimation type="slide-left" duration={2000} distance="100px">
+        <picture class="unselectable relative z-10">
+            <source media="(min-width: 1400px)" srcset={HeroImage} />
+            <img
+                src={HeroImageMobile}
+                id="hero-image"
+                alt="Hero"
+                class="w-full h-full object-cover object-top-right"
+                fetchpriority="high"
+                loading="eager"
+            />
+        </picture>
+    </EntryAnimation>
 
-    <div id="hero-content" class="w-full h-full absolute top-0 left-0">
+    <div id="hero-content" class="w-full h-full absolute top-0 left-0 z-20">
         <div
             class="absolute top-1/2 lg:left-1/6 left-0 px-4 transform -translate-y-1/2 flex flex-col gap-4"
         >
@@ -55,7 +66,7 @@
         </div>
     </div>
     <div
-        class="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-t from-background to-transparent"
+        class="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-t from-background to-transparent z-30"
     ></div>
 </div>
 
