@@ -102,11 +102,15 @@ It tries to understand the board and make strategic moves but if it doesn't know
 
 ## Hosting @ home
 
-Hosting is currently being worked on.
-I've set up a NixOS VM on a Proxmox server that will eventually host the project. It is made easy by the docker-compose that is already present.
+Hosting is setup and the game is playable online!
+I've set up a NixOS VM on a Proxmox server that hosts the project. It is made easy by the docker-compose that is already present.
 <br>
-I'm working on a powerful CD pipeline to automatically deploy the project on my server.
+I've created a powerful CD pipeline to automatically deploy the project on my server.
 
 ## This project is open source!
 
 Feel free to check out the project on GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)
+
+## Play it now!
+
+[https://stratego.dotsem.be](https://stratego.dotsem.be)

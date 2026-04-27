@@ -102,11 +102,16 @@ Hij probeert het bord te begrijpen en strategische zetten te doen, maar als hij 
 
 ## Hosting @ home
 
-Aan de hosting wordt momenteel gewerkt.
-Ik heb een NixOS VM opgezet op een Proxmox-server die uiteindelijk het project zal hosten. Het is makkelijk gemaakt door de docker-compose die al aanwezig is.
+De hosting is opgezet en het spel is online speelbaar!
+Ik heb een NixOS VM opgezet op een Proxmox server die het project host. Dit is eenvoudig gemaakt door de docker-compose die al aanwezig is.
 <br>
-Ik werk aan een krachtige CD-pipeline om het project automatisch op mijn server te implementeren.
+Ik heb een krachtige CD-pipeline gemaakt om het project automatisch op mijn server te implementeren.
 
 ## Dit project is open source!
 
-Voel je vrij om het project op GitHub te bekijken: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)
+Bekijk het project gerust op GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)
+
+## Speel het nu!
+
+[https://stratego.dotsem.be](https://stratego.dotsem.be)
+
