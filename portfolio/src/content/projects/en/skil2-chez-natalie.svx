@@ -128,4 +128,64 @@ I've also worked on extending the admin dashboard to include the new calender.
 
 ### Sprint 3
 
-Come back soon for more information about sprint 3!
+During sprint 3 I've mostly worked on core backend features and QoL features for the client.
+
+#### Yoga Teacher Dashboard
+
+The yoga teacher now has a dashboard with all the necessary info to quickly get an overview of their upcoming classes and planning for today.
+
+<AssetImage name="yoga-dashboard.png" alt="Yoga Dashboard" />
+
+#### Mail Template Management
+
+I've implemented a sophisticated mail template management system for the admin. 
+This allows the admin to create and manage mail templates that are used to send emails to clients. 
+These templates are used for various purposes, such as sending booking confirmations, reminders, and other notifications.
+
+<AssetImage name="mail-template.png" alt="Mail Templates page" />
+
+The admin can choose between different variables to put in the mail template. 
+These variables are then replaced with the actual values when the email is sent.
+
+The variables depend on the type of mail template. For example, a booking confirmation mail template will have different variables than a yoga class cancellation mail template.
+
+These types depend on which event the mail should be sent for.
+
+<AssetImage name="mail-send-type.png" alt="Mail Send Type" />
+
+As you can see, when selecting the yoga cancellation to trigger the mail, we can't put in the room number.
+This prevents the admin from creating mail templates with variables that can't be filled in.
+The admin can also choose when to send the mail, for example right when the event happens or a couple of days delayed.
+
+Via this way we keep the whole mailing system flexible for changes.
+
+#### Mail Backend
+
+We can make mail templates, but now they also need to be sent. 
+I've implemented a system that sends the emails at the right time.
+
+This is done via a queue system. 
+
+To spare you from the technical info, i'll shortly introduce the system.
+
+The system depends on 3 critique parts:
+
+- Getting the right models for our variables
+- Sending the mail at the right time (directly or delayed)
+- Remembering mails even when the server restarts
+
+These systems together make sure that the right email is sent at the right time to the right person.
+
+#### Error pages
+
+I've also worked on providing styled error pages. I've also implemented a custom 404 page. 
+Other errors share the same template, but with different error messages.
+
+<AssetImage name="error-403.png" alt="Error 403 page" />
+
+<AssetImage name="error-404.png" alt="Error 404 page" />
+
+
+### Sprint 4
+
+Come back for sprint 4!

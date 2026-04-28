@@ -125,4 +125,63 @@ Ik heb ook gewerkt aan het uitbreiden van het beheerdersdashboard met de nieuwe 
 
 ### Sprint 3
 
-Kom binnenkort terug voor meer informatie over sprint 3!
+Tijdens sprint 3 heb ik voornamelijk gewerkt aan de kernfunctionaliteiten van de backend en QoL-functies (Quality of Life) voor de klant.
+
+#### Dashboard voor yogadocenten
+
+De yogadocent heeft nu een dashboard met alle nodige informatie om snel een overzicht te krijgen van hun komende lessen en de planning voor vandaag.
+
+<AssetImage name="yoga-dashboard.png" alt="Yoga Dashboard" />
+
+#### Beheer van e-mailsjablonen
+
+Ik heb een geavanceerd beheersysteem voor e-mailsjablonen geïmplementeerd voor de beheerder.
+Hiermee kan de beheerder e-mailsjablonen maken en beheren die worden gebruikt om e-mails naar klanten te sturen.
+Deze sjablonen worden voor verschillende doeleinden gebruikt, zoals het verzenden van boekingsbevestigingen, herinneringen en andere meldingen.
+
+<AssetImage name="mail-template.png" alt="Pagina voor e-mailsjablonen" />
+
+De beheerder kan kiezen uit verschillende variabelen om in het e-mailsjabloon te plaatsen.
+Deze variabelen worden vervolgens vervangen door de werkelijke waarden wanneer de e-mail wordt verzonden.
+
+De variabelen zijn afhankelijk van het type e-mailsjabloon. Een sjabloon voor een boekingsbevestiging heeft bijvoorbeeld andere variabelen dan een sjabloon voor het annuleren van een yogales.
+
+Deze types zijn afhankelijk van voor welk evenement de e-mail moet worden verzonden.
+
+<AssetImage name="mail-send-type.png" alt="Type e-mailverzending" />
+
+Zoals je kunt zien, kunnen we bij het selecteren van de yoga-annulering om de e-mail te triggeren, het kamernummer niet invullen.
+Dit voorkomt dat de beheerder e-mailsjablonen maakt met variabelen die niet kunnen worden ingevuld.
+De beheerder kan ook kiezen wanneer de e-mail moet worden verzonden, bijvoorbeeld direct wanneer het evenement plaatsvindt of een paar dagen vertraagd.
+
+Op deze manier houden we het hele e-mailsysteem flexibel voor wijzigingen.
+
+#### Mail Backend
+
+We kunnen e-mailsjablonen maken, maar nu moeten ze ook worden verzonden.
+Ik heb een systeem geïmplementeerd dat de e-mails op het juiste moment verzendt.
+
+Dit gebeurt via een wachtrijsysteem (queue system).
+
+Om je de technische details te besparen, zal ik het systeem kort introduceren.
+
+Het systeem is afhankelijk van 3 cruciale onderdelen:
+
+- Het ophalen van de juiste modellen voor onze variabelen
+- Het verzenden van de e-mail op het juiste moment (direct of vertraagd)
+- Het onthouden van e-mails, zelfs wanneer de server opnieuw opstart
+
+Deze systemen zorgen er samen voor dat de juiste e-mail op het juiste moment naar de juiste persoon wordt verzonden.
+
+#### Foutpagina's
+
+Ik heb ook gewerkt aan het aanbieden van gestylede foutpagina's. Ik heb ook een aangepaste 404-pagina geïmplementeerd.
+Andere fouten delen hetzelfde sjabloon, maar met verschillende foutmeldingen.
+
+<AssetImage name="error-403.png" alt="Fout 403 pagina" />
+
+<AssetImage name="error-404.png" alt="Fout 404 pagina" />
+
+### Sprint 4
+
+Kom later terug voor sprint 4!
