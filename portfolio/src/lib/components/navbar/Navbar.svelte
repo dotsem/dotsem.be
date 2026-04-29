@@ -4,21 +4,42 @@
     import LangSwitch from "$lib/components/navbar/LangSwitch.svelte";
     import NavLinks from "$lib/components/navbar/NavLinks.svelte";
     import HamburgerButton from "./HamburgerButton.svelte";
-    import ThemeSwitch from "./ThemeSwitch.svelte";
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
     let hamburgerMenuVisible = $state(false);
+
+    let lastScrollY = 0;
+    let visible = $state(true);
+    let scrollY = $state(0);
+
+    $effect(() => {
+        if (hamburgerMenuVisible) {
+            visible = true;
+            return;
+        }
+
+        if (scrollY > lastScrollY && scrollY > 100) {
+            visible = false;
+        } else {
+            visible = true;
+        }
+        lastScrollY = scrollY;
+    });
 </script>
 
+<svelte:window bind:scrollY />
+
 <nav
-    class="flex justify-between px-10 h-16 py-0 items-center fixed w-full top-0 z-50"
+    class="flex justify-between px-6 md:px-10 h-16 py-0 items-center fixed w-full top-0 z-50 transition-transform duration-300 ease-in-out"
+    class:nav-hidden={!visible}
 >
     <a
         href={i18n.resolveRoute("/", currentLang)}
         onclick={() => {
             hamburgerMenuVisible = false;
         }}
-        class="font-bold no-underline text-primary text-5xl">dotsem.</a
+        class="font-bold no-underline text-primary text-4xl md:text-5xl"
+        >dotsem.</a
     >
 
     <div class="hidden min-[901px]:flex items-center gap-6">
@@ -55,6 +76,10 @@
         background: var(--header-footer-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-hidden {
+        transform: translateY(-100%);
     }
 
     #hamburger-menu {

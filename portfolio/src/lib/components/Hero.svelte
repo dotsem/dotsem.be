@@ -77,10 +77,10 @@
 
 <style>
     #hero {
-        height: 80dvh;
+        height: 80svh;
 
         @media (min-width: 768px) {
-            height: calc(100dvh - 64px);
+            height: calc(100svh - 64px);
         }
     }
     #hero-content {
