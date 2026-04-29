@@ -21,7 +21,12 @@
         fetchpriority="high"
         loading="eager"
     />
-    <EntryAnimation type="slide-left" duration={2000} distance="100px">
+    <EntryAnimation
+        class="h-full!"
+        type="slide-left"
+        duration={2000}
+        distance="100px"
+    >
         <picture class="unselectable relative z-10">
             <source media="(min-width: 1400px)" srcset={HeroImage} />
             <img
