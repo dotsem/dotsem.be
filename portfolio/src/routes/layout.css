@@ -3,21 +3,21 @@
 
 @import "tw-animate-css";
 
-@custom-variant has-hover (@media (any-hover: hover));
-@custom-variant no-hover (@media not all and (any-hover: hover));
+@custom-variant has-hover (@media (min-width: 1024px));
+@custom-variant no-hover (@media (max-width: 1023px));
 @custom-variant hover-always {
-  @media (any-hover: hover) {
+  @media (min-width: 1024px) {
     &:hover {
       @slot;
     }
   }
-  @media not all and (any-hover: hover) {
+  @media (max-width: 1023px) {
     & {
       @slot;
     }
   }
 }
-@custom-variant mobile-hover (&:hover);
+@custom-variant mobile-hover (@media (max-width: 1023px) { &:hover });
 @custom-variant dark (&:is(.dark *));
 
 html {
