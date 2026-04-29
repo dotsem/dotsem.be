@@ -58,7 +58,7 @@
 <svelte:head>
     <link rel="icon" href={favicon} />
     <script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         async
         defer
     ></script>
