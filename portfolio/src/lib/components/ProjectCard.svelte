@@ -35,32 +35,45 @@
 
 <a
     href={i18n.resolveRoute("/projects/" + project.slug, languageTag())}
-    class="project-card-link"
+    class="group block text-inherit no-underline"
 >
-    <Card.Root class="project-card overflow-hidden w-80 h-96 gap-2">
-        <div class="card-image">
+    <Card.Root
+        class="!flex h-96 w-80 flex-col gap-2 overflow-hidden !border-white/10 !bg-white/5 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:!border-white/20 has-hover:hover:!bg-white/10 has-hover:hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
+    >
+        <div
+            class="relative flex h-48 items-center justify-center overflow-hidden"
+        >
             <img
                 src={project.image}
                 alt=""
-                class="image-blur-bg unselectable"
+                class="unselectable absolute -inset-[15px] h-[calc(100%+30px)] w-[calc(100%+30px)] scale-110 object-cover opacity-50 blur-[25px] saturate-[1.8] brightness-[0.7]"
                 aria-hidden="true"
             />
-            <div class="image-overlay"></div>
-            <div class="image-main-wrap">
+            <div
+                class="absolute inset-0 z-1 bg-linear-to-b from-transparent via-transparent via-80% to-card"
+            ></div>
+            <div
+                class="relative z-2 flex h-full w-full items-center justify-center p-4"
+            >
                 <img
                     src={project.image}
                     alt={project.title}
                     loading="lazy"
-                    class="image-main unselectable"
+                    class="unselectable h-full max-h-full w-full max-w-full rounded-lg object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:group-hover:scale-[1.12]"
                 />
             </div>
         </div>
+
         <div
-            class="lang-scroll-container px-6 {needsScroll ? 'mask-edges' : ''}"
+            class="w-full overflow-hidden px-6 @container {needsScroll
+                ? 'mask-linear-to-r from-transparent to-black1rem:to-black calc(100%-1rem):to-transparent'
+                : ''}"
             bind:this={scrollContainer}
         >
             <div
-                class="lang-scroll-content {needsScroll ? 'animate-saw' : ''}"
+                class="inline-flex w-max gap-[0.4rem] {needsScroll
+                    ? 'animate-saw'
+                    : ''}"
                 bind:this={contentContainer}
             >
                 {#each project.languages as lang}
@@ -68,7 +81,8 @@
                 {/each}
             </div>
         </div>
-        <Card.Header class="pb-2 w-full overflow-hidden flex flex-col gap-2">
+
+        <Card.Header class="flex w-full flex-col gap-2 overflow-hidden pb-2">
             <Card.Title class="text-xl font-bold tracking-tight"
                 >{project.title}</Card.Title
             >
@@ -78,154 +92,33 @@
         </Card.Header>
 
         <span
-            class="call-to-action bg-primary absolute bottom-0 left-0 right-0 font-bold text-xl text-center"
-            >Read more</span
+            class="absolute bottom-0 left-0 right-0 bg-primary pb-4 text-center text-xl font-bold transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] no-hover:hidden has-hover:translate-y-12 has-hover:group-hover:translate-y-4"
         >
+            Read more
+        </span>
 
         {#if project.highlighted}
             <i
-                class="fa-solid fa-star text-2xl text-yellow-400 absolute top-1 right-1 z-10"
-            >
-            </i>
+                class="fa-solid fa-star absolute right-1 top-1 z-10 text-2xl text-yellow-400"
+            ></i>
         {/if}
 
         {#if project.status}
             <span
-                class="absolute top-1 left-1 text-xs glossy-tile m-0 px-1 py-0.5 rounded-md z-10
+                class="glossy-tile absolute left-1 top-1 z-10 m-0 rounded-md px-1 py-0.5 text-xs transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
                     ? ''
-                    : 'status-hide'}">{project.status}</span
+                    : 'has-hover:-translate-x-[110%] has-hover:group-hover:translate-x-0'}"
             >
+                {project.status}
+            </span>
         {/if}
     </Card.Root>
 </a>
 
 <style>
-    .project-card-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    :global(.project-card) {
-        background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .project-card-link:hover :global(.project-card) {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.06) !important;
-        border-color: rgba(255, 255, 255, 0.2) !important;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    .card-image {
-        position: relative;
-        height: 12rem;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .image-blur-bg {
-        position: absolute;
-        inset: -15px;
-        width: calc(100% + 30px);
-        height: calc(100% + 30px);
-        object-fit: cover;
-        filter: blur(25px) saturate(1.8) brightness(0.7);
-        opacity: 0.5;
-        z-index: 0;
-        transform: scale(1.1);
-    }
-
-    .image-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, transparent 80%, var(--card));
-        z-index: 1;
-    }
-
-    .image-main-wrap {
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-    }
-
-    .image-main {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
-        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border-radius: 8px;
-    }
-
-    .project-card-link:hover .image-main {
-        transform: scale(1.12);
-    }
-
-    .lang-scroll-container {
-        container-type: inline-size;
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .mask-edges {
-        mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 1rem,
-            black calc(100% - 1rem),
-            transparent
-        );
-        -webkit-mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 1rem,
-            black calc(100% - 1rem),
-            transparent
-        );
-    }
-
-    .lang-scroll-content {
-        display: inline-flex;
-        gap: 0.4rem;
-        width: max-content;
-    }
-
     .animate-saw {
         animation: saw-scroll 4s linear infinite alternate;
-    }
-
-    .call-to-action {
-        transform: translateY(3rem);
-        padding-bottom: 1rem;
-        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .project-card-link:hover .call-to-action {
-        transform: translateY(1rem);
-    }
-
-    .status-hide {
-        transform: translateX(-110%);
-        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .project-card-link:hover .status-hide {
-        transform: translateX(0);
     }
 
     @keyframes saw-scroll {

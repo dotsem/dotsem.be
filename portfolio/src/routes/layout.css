@@ -3,6 +3,21 @@
 
 @import "tw-animate-css";
 
+@custom-variant has-hover (@media (any-hover: hover));
+@custom-variant no-hover (@media not all and (any-hover: hover));
+@custom-variant hover-always {
+  @media (any-hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+  @media not all and (any-hover: hover) {
+    & {
+      @slot;
+    }
+  }
+}
+@custom-variant mobile-hover (&:hover);
 @custom-variant dark (&:is(.dark *));
 
 html {
@@ -238,6 +253,8 @@ html {
     @apply bg-background text-foreground;
     height: 100%;
   }
+
+
 
   html {
     height: 100%;
