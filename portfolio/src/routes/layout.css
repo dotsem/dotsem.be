@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 * {
@@ -252,6 +253,7 @@ html {
   body {
     @apply bg-background text-foreground;
     height: 100%;
+    overflow-x: hidden;
   }
 
 

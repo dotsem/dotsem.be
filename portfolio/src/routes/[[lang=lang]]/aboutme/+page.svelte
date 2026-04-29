@@ -1,6 +1,5 @@
 <script lang="ts">
     import AboutMe from "$lib/components/AboutMe.svelte";
-    import Profile from "$lib/components/profile/Profile.svelte";
     import { calculateAge } from "$lib/utils";
     import * as m from "$lib/paraglide/messages.js";
     import MeImage from "$lib/assets/me.webp";
@@ -14,7 +13,6 @@
     import PLprog from "$lib/components/profile/PLprog.svelte";
     import PLtools from "$lib/components/profile/PLtools.svelte";
     import ContactForm from "$lib/components/ContactForm.svelte";
-    import { resolveRoute } from "$app/paths";
     import { i18n } from "$lib/i18n";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
@@ -55,9 +53,7 @@
         <p class="py-2 md:py-4 text-center md:text-start">
             {m.profile_description({ age })}
         </p>
-        <div
-            class="flex flex-wrap justify-center md:justify-start gap-[0.35rem] py-1"
-        >
+        <div class="hidden md:flex flex-wrap justify-start gap-[0.35rem] py-1">
             <PLprog />
             <ProgLang name="linux"></ProgLang>
         </div>
@@ -108,16 +104,16 @@
         {m.di_description_3()}
     </p>
     <div class="mt-4 flex flex-wrap gap-2">
-        <EntryAnimation delay={300} type="slide-up">
+        <EntryAnimation delay={300} class="flex-1" type="slide-up">
             <Button
-                class="flex-1 md:flex-none"
+                class="w-full"
                 href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
                 >{m.di_button()}</Button
             >
         </EntryAnimation>
-        <EntryAnimation delay={600} type="slide-up">
+        <EntryAnimation delay={600} class="flex-1" type="slide-up">
             <Button
-                class="flex-1 md:flex-none"
+                class="w-full"
                 variant="outline"
                 href="https://github.com/Thomas-More-Digital-Innovation"
                 >{m.di_button_secondary()}</Button
@@ -172,15 +168,15 @@
         {m.about_cv_title()}
     </h2>
     <p class="py-2">{m.about_cv_description()}</p>
-    <div class="flex flex-wrap gap-2">
-        <EntryAnimation delay={300} type="slide-up">
-            <Button class="flex-1 md:flex-none" href={i18n.resolveRoute("/cv")}
+    <div class="flex flex-wrap gap-2 w-full">
+        <EntryAnimation class="flex-1" delay={300} type="slide-up">
+            <Button class="w-full" href={i18n.resolveRoute("/cv")}
                 >{m.about_cv_button()}</Button
             >
         </EntryAnimation>
-        <EntryAnimation delay={600} type="slide-up">
+        <EntryAnimation class="flex-1" delay={600} type="slide-up">
             <Button
-                class="flex-1 md:flex-none"
+                class="w-full"
                 href="https://www.linkedin.com/in/sem-van-broekhoven/"
                 target="_blank"
                 rel="noopener noreferrer"

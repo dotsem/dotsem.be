@@ -23,7 +23,7 @@
     <div
         class="flex {layout === 'content-first'
             ? 'flex-col-reverse md:flex-row'
-            : 'flex-col md:flex-row-reverse'}  container px-4 mx-auto items-center justify-center"
+            : 'flex-col md:flex-row-reverse'}  container px-4 gap-4 mx-auto items-center justify-center"
     >
         <div class="flex-1">
             {@render children()}

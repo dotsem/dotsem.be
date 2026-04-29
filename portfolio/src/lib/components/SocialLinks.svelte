@@ -1,74 +1,59 @@
 <script lang="ts">
-    let { gap = "16px", ...restProps } = $props();
+    import { cn } from "$lib/utils";
+    let { gap = "16px", class: className, ...restProps } = $props();
 </script>
 
-<div {...restProps} class="socials {restProps.class}" style="gap: {gap}">
+<div
+    {...restProps}
+    class={cn("flex group items-center", className)}
+    style="gap: {gap}"
+>
     <a
         href="https://github.com/dotsem"
         target="_blank"
         rel="me"
-        aria-label="Github"><i class="fa-brands fa-github"></i></a
+        aria-label="Github"
+        class="social-link"
     >
+        <i class="fa-brands fa-github social-icon"></i>
+    </a>
     <a
         href="https://www.linkedin.com/in/sem-van-broekhoven/"
         target="_blank"
         rel="me"
-        aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a
+        aria-label="LinkedIn"
+        class="social-link"
     >
+        <i class="fa-brands fa-linkedin social-icon"></i>
+    </a>
     <a
         href="https://www.instagram.com/sem_van_broekhoven/"
         target="_blank"
         rel="me"
-        aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a
+        aria-label="Instagram"
+        class="social-link"
     >
+        <i class="fa-brands fa-instagram social-icon"></i>
+    </a>
     <a
         href="https://www.facebook.com/profile.php?id=100089528472654"
         target="_blank"
         rel="me"
-        aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a
+        aria-label="Facebook"
+        class="social-link"
     >
+        <i class="fa-brands fa-facebook social-icon"></i>
+    </a>
 </div>
 
 <style>
-    :global(.socials) {
-        display: flex;
+    @reference "../../routes/layout.css";
 
-        > a {
-            transition: opacity 500ms;
-            height: fit-content;
-            font-size: 36px;
-            color: var(--text);
-            opacity: 1;
+    .social-link {
+        @apply h-fit text-[36px] text-foreground transition-all duration-500 has-hover:group-hover:opacity-50 has-hover:hover:opacity-100! has-hover:hover:text-secondary;
+    }
 
-            i {
-                transition: transform 500ms;
-            }
-        }
-
-        &:has(:global(a:hover)) a:not(:hover) {
-            transition: opacity 500ms;
-            opacity: 0.5;
-
-            i {
-                transform: scale(0.8);
-
-                transition: transform 500ms;
-            }
-        }
-
-        a:hover {
-            transition: transform 500ms;
-
-            transition:
-                color 500ms,
-                opacity 500ms;
-            color: var(--secondary);
-            opacity: 1;
-
-            i {
-                transition: transform 500ms;
-                transform: scale(1.1);
-            }
-        }
+    .social-icon {
+        @apply inline-block transition-transform duration-500 has-hover:group-hover:scale-75 has-hover:hover:scale-110!;
     }
 </style>

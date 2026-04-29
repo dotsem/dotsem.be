@@ -1,14 +1,30 @@
 <script lang="ts">
     import * as Card from "./ui/card";
+    import type { Snippet } from "svelte";
     import EntryAnimation from "./EntryAnimation.svelte";
 
-    let { title, icon, children, delay = 0, ...restProps } = $props();
+    interface Props {
+        title: string;
+        icon?: string;
+        children: Snippet;
+        delay?: number;
+        class?: string;
+    }
+
+    let {
+        title,
+        icon,
+        children,
+        delay = 0,
+        class: className,
+        ...restProps
+    }: Props = $props();
 </script>
 
-<EntryAnimation type="slide-right" {delay}>
+<EntryAnimation type="slide-right" {delay} class={className}>
     <Card.Root
         {...restProps}
-        class="about-card relative h-full flex flex-col p-6 m-0! {restProps.class}"
+        class="about-card relative h-full flex flex-col p-6 m-0!"
     >
         {#if icon}
             <div class="absolute top-2 right-2">

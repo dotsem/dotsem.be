@@ -30,7 +30,7 @@
 <svelte:window bind:scrollY />
 
 <nav
-    class="flex justify-between px-6 md:px-10 h-16 py-0 items-center fixed w-full top-0 z-50 transition-transform duration-300 ease-in-out"
+    class="flex justify-between px-6 md:px-10 h-16 py-0 items-center fixed left-0 right-0 top-0 z-50 transition-transform duration-300 ease-in-out"
     class:nav-hidden={!visible}
 >
     <a
