@@ -1,7 +1,7 @@
 ---
 title: Niri - De beste window manager
 slug: niri-the-best-window-manager
-image: /blogs/niri-the-best-window-manager/logo.webp
+image: /blog/niri-the-best-window-manager/logo.webp
 description: Niri is een window manager voor Linux, geschreven in Rust. Het is een tiling window manager, wat betekent dat het vensters in een tegelpatroon schikt, waardoor het eenvoudig en efficiënt in gebruik is. Het onderscheidt zich van andere tiling window managers omdat het een troef achter de hand heeft; het is een tiling window manager met een oneindig horizontaal scrollbare werkruimte.
 labels:
 

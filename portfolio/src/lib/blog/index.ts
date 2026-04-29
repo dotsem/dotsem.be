@@ -33,7 +33,7 @@ const rawModules = import.meta.glob<string>('/src/content/blog/*/*.svx', {
     query: '?raw',
     import: 'default'
 });
-const images = import.meta.glob<string>('/src/lib/assets/blogs/**/*.{png,jpg,jpeg,webp,svg}', {
+const images = import.meta.glob<string>('/src/lib/assets/blog/**/*.{png,jpg,jpeg,webp,svg}', {
     eager: true,
     import: 'default'
 });

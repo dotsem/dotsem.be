@@ -3,7 +3,7 @@
     import ImageModal from "$lib/components/ui/ImageModal.svelte";
 
     interface Props {
-        type?: "blogs" | "projects";
+        type?: "blog" | "projects";
         slug?: string;
         name: string;
         alt?: string;
@@ -29,8 +29,7 @@
     let isModalOpen = $state(false);
 
     const type = $derived(
-        propType ||
-            (page.url.pathname.includes("/blog") ? "blogs" : "projects"),
+        propType || (page.url.pathname.includes("/blog") ? "blog" : "projects"),
     );
     const slug = $derived(propSlug || page.params.slug);
 
@@ -41,7 +40,6 @@
             import: "default",
         },
     );
-
     const assetPath = $derived(`/src/lib/assets/${type}/${slug}/${name}`);
     const resolvedSrc = $derived(images[assetPath]);
 </script>
