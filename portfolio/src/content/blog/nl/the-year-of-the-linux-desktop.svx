@@ -1,0 +1,9 @@
+---
+title: The year of the Linux desktop
+slug: the-year-of-the-linux-desktop
+image: /blogs/the-year-of-the-linux-desktop/logo.webp
+description: 
+labels:
+
+hidden: true
+---

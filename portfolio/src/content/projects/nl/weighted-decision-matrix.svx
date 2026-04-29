@@ -6,6 +6,7 @@ description: Een handige website om eenvoudig gewogen beslissingsmatrices te mak
 languages:
   - svelte
   - ts
+  - tailwind
 highlighted: false
 status: v0.1.1
 ---

@@ -6,6 +6,7 @@ description: Mijn portfolio is natuurlijk een project om trots op te zijn. Het b
 languages:
     - ts
     - svelte
+    - tailwind
     - figma
 
 highlighted: false

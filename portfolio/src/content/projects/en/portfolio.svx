@@ -6,6 +6,7 @@ description: My portfolio is of course a project to be proud of. It implements i
 languages:
     - ts
     - svelte
+    - tailwind
     - figma
 
 highlighted: false

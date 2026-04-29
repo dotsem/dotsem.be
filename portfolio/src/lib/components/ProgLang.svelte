@@ -26,6 +26,11 @@
             fullName: "CSS",
             color: "#2965f1", // CSS3 blue
         },
+        tailwind: {
+            deviconName: "tailwindcss",
+            fullName: "Tailwind",
+            color: "#00BCFF", // Tailwind blue
+        },
         js: {
             deviconName: "javascript",
             fullName: "JavaScript",
@@ -94,7 +99,7 @@
         },
         svelte: {
             deviconName: "svelte",
-            fullName: "Svelte",
+            fullName: "SvelteKit",
             color: "#FF3E00", // Svelte orange
         },
         ts: {

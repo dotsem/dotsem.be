@@ -6,6 +6,7 @@ description: A handy website to easily create weighted decision matrices and exp
 languages:
   - svelte
   - ts
+  - tailwind
 highlighted: false
 status: v0.1.1
 ---

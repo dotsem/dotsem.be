@@ -6,6 +6,7 @@ description: For the second semester of my second year at Thomas More, we had to
 languages:
     - php
     - laravel
+    - tailwind
     - sql
     - uml
 
