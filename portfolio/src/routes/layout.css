@@ -11,18 +11,27 @@
       @slot;
     }
   }
+
   @media (max-width: 1023px) {
     & {
       @slot;
     }
   }
 }
-@custom-variant mobile-hover (@media (max-width: 1023px) { &:hover });
+
+@custom-variant mobile-hover (@media (max-width: 1023px) {
+    &:hover
+  });
 @custom-variant dark (&:is(.dark *));
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 * {
