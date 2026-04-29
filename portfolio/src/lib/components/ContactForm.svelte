@@ -18,8 +18,51 @@
     import Button from "./ui/button/button.svelte";
     import EntryAnimation from "./EntryAnimation.svelte";
     import { env } from "$env/dynamic/public";
+    import { onMount, untrack } from "svelte";
 
     let status = $state("idle"); // 'idle' | 'sending' | 'success' | 'error'
+    let turnstileContainer = $state<HTMLElement | null>(null);
+    let widgetId = $state<string | null>(null);
+
+    $effect(() => {
+        const container = turnstileContainer;
+        if (!container) return;
+
+        // Check if we already have a widget using untrack to avoid dependency
+        if (untrack(() => widgetId)) return;
+
+        let retries = 0;
+        const maxRetries = 50;
+
+        const renderTurnstile = () => {
+            if (window.turnstile) {
+                // Double check to prevent race conditions from async retries
+                if (untrack(() => widgetId)) return;
+
+                widgetId = window.turnstile.render(container, {
+                    sitekey: env.PUBLIC_TURNSTILE_SITE_KEY,
+                    theme: "dark",
+                    size: "flexible",
+                });
+            } else if (retries < maxRetries) {
+                retries++;
+                setTimeout(renderTurnstile, 100);
+            } else {
+                console.warn(
+                    "Cloudflare Turnstile failed to load after 5 seconds. Adblocker might be active.",
+                );
+            }
+        };
+        renderTurnstile();
+
+        return () => {
+            const currentId = untrack(() => widgetId);
+            if (currentId && window.turnstile) {
+                window.turnstile.remove(currentId);
+                widgetId = null;
+            }
+        };
+    });
 
     async function handleSubmit(event: SubmitEvent) {
         event.preventDefault();
@@ -58,7 +101,9 @@
                 status = "success";
                 toast.success(contact_success());
                 form.reset();
-                // Reset Turnstile widget if possible, but form reset might handle it or it'll re-render
+                if (widgetId && window.turnstile) {
+                    window.turnstile.reset(widgetId);
+                }
                 setTimeout(() => (status = "idle"), 2000);
             } else {
                 status = "error";
@@ -203,10 +248,8 @@
                     </div>
 
                     <div
-                        class="cf-turnstile mt-4"
-                        data-size="flexible"
-                        data-sitekey={env.PUBLIC_TURNSTILE_SITE_KEY}
-                        data-theme="dark"
+                        bind:this={turnstileContainer}
+                        class="mt-4 min-h-[65px]"
                     ></div>
 
                     <Button
