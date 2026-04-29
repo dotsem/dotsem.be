@@ -133,7 +133,7 @@
 </TextWithImageContainer> -->
 
 <section
-    class="container gap-8 pt-8 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2"
+    class="container gap-8 pt-8 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
     <InfoCard title={m.profile_tools_prog()} icon="fa-code">
         <p class="pb-2">{m.profile_tools_prog_description()}</p>
@@ -146,6 +146,13 @@
         <div class="flex flex-wrap gap-1">
             <PLtools />
         </div>
+    </InfoCard>
+    <InfoCard
+        class="col-span-1 md:col-span-2 lg:col-span-1"
+        title={m.profile_tools_soft_skills()}
+        icon="fa-comments"
+    >
+        <p class="pb-2">{m.profile_tools_soft_skills_description()}</p>
     </InfoCard>
 </section>
 
