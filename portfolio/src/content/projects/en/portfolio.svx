@@ -10,7 +10,7 @@ languages:
     - figma
 
 highlighted: false
-status: In Progress
+status: You are looking at it!
 ---
 
 <script lang="ts">

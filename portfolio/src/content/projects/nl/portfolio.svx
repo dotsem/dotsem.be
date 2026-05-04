@@ -10,7 +10,7 @@ languages:
     - figma
 
 highlighted: false
-status: In uitvoering
+status: Je kijkt er naar!
 ---
 
 <script lang="ts">
