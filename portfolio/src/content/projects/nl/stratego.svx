@@ -12,7 +12,7 @@ languages:
   - docker
   - nixos
 highlighted: true
-status: v0.2.2
+status: v0.3.0
 ---
 
 <script>
