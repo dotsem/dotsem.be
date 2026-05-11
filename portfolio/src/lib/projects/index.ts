@@ -8,6 +8,7 @@ export interface ProjectMeta {
     languages: string[];
     highlighted?: boolean;
     status?: string;
+    repo?: string;
     hidden?: boolean;
 }
 

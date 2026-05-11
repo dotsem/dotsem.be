@@ -7,13 +7,13 @@ languages:
   - dart
   - flutter
 highlighted: true
-status: v0.2.0
+repo: dotsem/Carpe-Diem
 ---
 
 <script>
   import AssetImage from "$lib/components/AssetImage.svelte";
 
-  const latestRelease = "v0.2.0";
+  export let latestRelease = "";
 </script>
 
 ## Planning for productive people

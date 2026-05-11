@@ -51,7 +51,7 @@
         <div class="w-full min-w-0">
             <article class="prose dark:prose-invert lg:prose-xl mx-auto">
                 {#if data.metadata.hasContent}
-                    <Component />
+                    <Component latestRelease={data.metadata.status} />
                 {:else}
                     <div
                         class="flex flex-col items-center justify-center py-20 text-center opacity-70"

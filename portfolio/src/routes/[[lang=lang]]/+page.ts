@@ -1,8 +1,5 @@
-import { languageTag } from '$lib/paraglide/runtime.js';
-import { getProjectsByLang } from '$lib/projects';
+import type { PageLoad } from './$types';
 
-export const load = async ({ url }) => {
-    const lang = url.pathname.split('/').find(s => ['en', 'nl'].includes(s)) || languageTag();
-    const projects = await getProjectsByLang(lang);
-    return { projects };
+export const load: PageLoad = async ({ data }) => {
+    return data;
 };
