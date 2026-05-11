@@ -26,3 +26,37 @@ export function calculateAge(birthDate: Date | string): number {
 
 	return age;
 }
+
+export function labelScroller(
+	scrollContainer: HTMLElement | undefined,
+	contentContainer: HTMLElement | undefined,
+	onUpdate: (needsScroll: boolean, duration: number) => void,
+): ResizeObserver {
+	const updateScroll = () => {
+		if (scrollContainer && contentContainer) {
+			const distance =
+				contentContainer.scrollWidth - scrollContainer.clientWidth;
+			const needsScroll = distance > 0;
+
+			let scrollDuration = 4;
+			if (needsScroll) {
+				const speed = 30;
+				const scrollPhaseRatio = 0.7;
+				scrollDuration = Math.max(
+					4,
+					distance / (speed * scrollPhaseRatio),
+				);
+			}
+			onUpdate(needsScroll, scrollDuration);
+		}
+	};
+
+	const resizeObserver = new ResizeObserver(updateScroll);
+
+	if (scrollContainer && contentContainer) {
+		resizeObserver.observe(scrollContainer);
+		resizeObserver.observe(contentContainer);
+		updateScroll();
+	}
+	return resizeObserver;
+}

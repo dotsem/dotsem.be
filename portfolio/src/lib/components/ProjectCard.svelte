@@ -5,6 +5,7 @@
     import { languageTag } from "$lib/paraglide/runtime";
     import type { ProjectMeta } from "$lib/projects";
     import { onMount } from "svelte";
+    import { labelScroller } from "$lib/utils";
 
     interface Props {
         project: ProjectMeta;
@@ -15,19 +16,17 @@
     let scrollContainer: HTMLElement | undefined = $state();
     let contentContainer: HTMLElement | undefined = $state();
     let needsScroll = $state(false);
+    let scrollDuration = $state(4);
 
     onMount(() => {
-        const resizeObserver = new ResizeObserver(() => {
-            if (scrollContainer && contentContainer) {
-                needsScroll =
-                    contentContainer.scrollWidth > scrollContainer.clientWidth;
-            }
-        });
-
-        if (scrollContainer && contentContainer) {
-            resizeObserver.observe(scrollContainer);
-            resizeObserver.observe(contentContainer);
-        }
+        const resizeObserver = labelScroller(
+            scrollContainer,
+            contentContainer,
+            (n, d) => {
+                needsScroll = n;
+                scrollDuration = d;
+            },
+        );
 
         return () => resizeObserver.disconnect();
     });
@@ -38,7 +37,7 @@
     class="group block text-inherit no-underline"
 >
     <Card.Root
-        class="!flex h-96 w-80 flex-col gap-2 overflow-hidden !border-white/10 !bg-white/5 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:!border-white/20 has-hover:hover:!bg-white/10 has-hover:hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
+        class="flex! h-96 w-80 flex-col gap-2 overflow-hidden border-white/10! bg-white/5! backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10! has-hover:hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
     >
         <div
             class="relative flex h-48 items-center justify-center overflow-hidden"
@@ -46,7 +45,7 @@
             <img
                 src={project.image}
                 alt=""
-                class="unselectable absolute -inset-[15px] h-[calc(100%+30px)] w-[calc(100%+30px)] scale-110 object-cover opacity-50 blur-[25px] saturate-[1.8] brightness-[0.7]"
+                class="unselectable absolute -inset-3.75 h-[calc(100%+30px)] w-[calc(100%+30px)] scale-110 object-cover opacity-50 blur-[25px] saturate-[1.8] brightness-[0.7]"
                 aria-hidden="true"
             />
             <div
@@ -74,6 +73,7 @@
                 class="inline-flex w-max gap-[0.4rem] {needsScroll
                     ? 'animate-saw'
                     : ''}"
+                style="--scroll-duration: {scrollDuration}s"
                 bind:this={contentContainer}
             >
                 {#each project.languages as lang}
@@ -118,7 +118,8 @@
 
 <style>
     .animate-saw {
-        animation: saw-scroll 4s linear infinite alternate;
+        animation: saw-scroll var(--scroll-duration, 4s) linear infinite
+            alternate;
     }
 
     @keyframes saw-scroll {

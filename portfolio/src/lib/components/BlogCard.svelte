@@ -5,6 +5,7 @@
     import { languageTag } from "$lib/paraglide/runtime";
     import { onMount } from "svelte";
     import type { BlogMeta } from "$lib/blog";
+    import { labelScroller } from "$lib/utils";
 
     interface Props {
         blog: BlogMeta & { parsedLabels: string[] };
@@ -15,19 +16,17 @@
     let scrollContainer: HTMLElement | undefined = $state();
     let contentContainer: HTMLElement | undefined = $state();
     let needsScroll = $state(false);
+    let scrollDuration = $state(4);
 
     onMount(() => {
-        const resizeObserver = new ResizeObserver(() => {
-            if (scrollContainer && contentContainer) {
-                needsScroll =
-                    contentContainer.scrollWidth > scrollContainer.clientWidth;
-            }
-        });
-
-        if (scrollContainer && contentContainer) {
-            resizeObserver.observe(scrollContainer);
-            resizeObserver.observe(contentContainer);
-        }
+        const resizeObserver = labelScroller(
+            scrollContainer,
+            contentContainer,
+            (n, d) => {
+                needsScroll = n;
+                scrollDuration = d;
+            },
+        );
 
         return () => resizeObserver.disconnect();
     });
@@ -80,6 +79,7 @@
                         class="label-scroll-content {needsScroll
                             ? 'animate-saw'
                             : ''}"
+                        style="--scroll-duration: {scrollDuration}s"
                         bind:this={contentContainer}
                     >
                         {#each blog.parsedLabels as label}
@@ -219,7 +219,8 @@
     }
 
     .animate-saw {
-        animation: saw-scroll 4s linear infinite alternate;
+        animation: saw-scroll var(--scroll-duration, 4s) linear infinite
+            alternate;
     }
 
     .call-to-action {
