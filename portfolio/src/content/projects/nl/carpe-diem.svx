@@ -93,12 +93,25 @@ Het beheren van taken is eenvoudig gemaakt. Gebruik 'bulk edit' om meerdere take
 
 ## Release
 
+[Volledige Changelog](https://github.com/dotsem/Carpe-Diem/releases)
+
 ### v0.1.0
 
 - Eerste release
 - Alle kernfuncties geïmplementeerd
 - Beschikbaar voor Linux, macOS en Windows
 
+### v0.2.0
+
+- Toevoeging van een geschiedenis & statistieken
+  - Geschiedenis toont alle voltooide taken die eerder zijn afgerond
+  - Statistieken toont een grafische weergave van het aantal voltooide taken over een periode
+- Settings & customizatie
+  - Toevoeging van een licht thema
+  - Settings om de app te configureren
+- Random taak knop: kiest een willekeurige taak om op te werken
+- Import van markdown werkt nu ook in een project detail scherm
+  
 ## Download
 
 [Download voor Linux](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz)

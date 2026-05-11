@@ -93,11 +93,24 @@ Managing tasks has been made easy. Use bulk edit to edit multiple tasks in the b
 
 ## Release
 
+[Full Changelog](https://github.com/dotsem/Carpe-Diem/releases)
+
 ### v0.1.0
 
 - Initial release
 - All core features implemented
 - Available for Linux, macOS and Windows
+
+### v0.2.0
+
+- Added history & statistics
+  - History shows all completed tasks that were previously completed
+  - Statistics shows a graphical representation of the number of completed tasks over a period
+- Settings & customizatie
+  - Added a light theme
+  - Settings to configure the app
+- Random task button: picks a random task to work on
+- Import of markdown now also works in a project detail screen
 
 ## Download
 
