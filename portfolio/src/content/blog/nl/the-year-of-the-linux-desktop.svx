@@ -1,9 +1,100 @@
 ---
-title: The year of the Linux desktop
+title: Het jaar van de Linux desktop
 slug: the-year-of-the-linux-desktop
-image: /blogs/the-year-of-the-linux-desktop/logo.webp
+image: /blog/the-year-of-the-linux-desktop/logo.webp
 description: 
 labels:
 
-hidden: true
+hidden: false
 ---
+
+## Het jaar van de Linux desktop
+
+Linux heeft een lange weg afgelegd, maar het heeft altijd moeite gehad om mainstream adoptie te krijgen als desktop besturingssysteem. 
+Zal dit jaar eindelijk het jaar van de Linux desktop zijn?
+
+## De problemen bij Microsoft
+
+Microsoft schiet zichzelf keer op keer in de voet met Windows, met functies waar niemand om vroeg en de integratie van AI in alles.
+
+Ik gebruikte Windows 10 zolang ik me kan herinneren (en Vista & XP daarvoor...).
+Ik had nooit echt veel klachten totdat Windows 11 verscheen.
+
+Ik had ook een behoorlijk krachtige computer, dus over de prestaties kon ik niet klagen. 
+Op het moment dat Windows 11 officieel werd uitgebracht, was het een puinhoop. 
+Ik had nog de luxe van Windows 10 op mijn laptop, ik moest er alleen voor zorgen dat ik mijn computer niet om zeep hielp zodat de IT-afdeling een nieuwe Windows-image zou installeren, wat Windows 11 was.
+
+## Waarom ik ben overgestapt naar Linux
+
+Ik kocht een nieuwe laptop die geleverd werd met Windows 11. Na nog geen volledig jaar werd hij echt traag. 
+Het draaien van één instantie van VS Code had al een serieuze impact op de prestaties van mijn computer.
+En dat voor een behoorlijk fatsoenlijke laptop (i7, 32GB RAM).
+
+YouTube raadde me een video aan van Pewdiepie over zijn reis met Linux (ik dacht dat die gast gaming video's maakte?).
+De volgende video die automatisch afspeelde was weer een video over Linux.
+
+> "F*ck it, laten we het proberen"
+
+Na wat onderzoek kwam ik uit bij Manjaro. 
+
+Na wat "distro hoppen" van Manjaro naar Arch ben ik uiteindelijk bij CachyOS beland.
+
+En ik moet toegeven, Linux is nog nooit beter geweest.
+
+Ik gebruik momenteel Niri met Dank Material Shell.
+
+## Linux is al overal
+
+Lees je dit op een Android-telefoon? Of misschien een Chromebook? 
+Dan gebruik je al Linux! 
+Android is gebouwd bovenop de Linux-kernel.
+
+Gebruik je Docker? Dan gebruik je Linux! (Of in ieder geval een compatibiliteitslaag daarvoor.)
+
+Linux draait ook op het overgrote deel van het internet, IoT-apparaten, embedded systemen, supercomputers, routers, switches, smart-tv's en nog zoveel meer. 
+
+Er zijn "slechts" een paar apparaten over die geen Linux draaien, en dat zijn de desktops van de gemiddelde gebruiker. 
+
+## Wat is er zo geweldig aan Linux?
+
+### Aanpasbaarheid
+
+Je bent vrij om te gebruiken wat je wilt!
+Wil je een minimale tiling window manager? Gebruik i3 of Sway.
+
+Wil je volledig "ricen"? Gebruik Hyprland of Niri.
+
+Hou je van een traditionele desktopervaring? Gebruik Gnome, KDE, Cinnamon, Xfce, LXQt, MATE, Budgie, ...
+
+### Gemeenschap
+
+Als iets niet standaard op Linux draait, heeft iemand er al een compatibiliteitslaag voor gemaakt. 
+Geloof me, alles draait op Linux (behalve misschien Adobe-producten...).
+
+### Meerdere desktopomgevingen
+
+Je bent vrij om meerdere desktopomgevingen te gebruiken.
+Momenteel gebruik ik Niri dagelijks, maar soms gebruik ik KDE. Je kunt dit gewoon doen vanuit je inlogscherm.
+
+### Prestaties
+
+Mijn laptop kreeg een tweede leven. Ook oude laptops kunnen met Linux een waardevol tweede leven krijgen.
+
+### Package managers
+
+Linux maakt gebruik van package managers, en laat me je vertellen, het is een game changer.
+Ik was gewend om altijd een app die ik wilde installeren te googelen (want wie gebruikt de Microsoft Store?), om vervolgens drie neppe downloadknoppen te ontwijken om eindelijk het installatieprogramma te downloaden en de app te installeren.
+Nou, dat is verleden tijd. Open gewoon je terminal en voer `sudo pacman -S <package>` uit en je bent klaar.
+
+### App stores
+
+De meeste distro's worden geleverd met een app store, wat een grafische interface is voor de package manager. 
+Het is een geweldige manier om nieuwe apps te ontdekken en ze met een paar klikken te installeren.
+Geen neppe downloadknoppen, gewoon pure en simpele software-installatie.
+
+
+## Dus wanneer is het echt het jaar van Linux?
+
+Ik denk dat de gemiddelde persoon niet echt geeft om de desktopomgeving. Ze willen gewoon een besturingssysteem dat werkt.
+Tenzij overheden besluiten over te stappen op Linux, zal 90% van de gebruikers gewoon Windows blijven gebruiken.
+De mensen die uiteindelijk zullen overstappen zijn al de meer technisch onderlegde mensen, vooral programmeurs en gamers.

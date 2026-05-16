@@ -1,9 +1,100 @@
 ---
 title: The year of the Linux desktop
 slug: the-year-of-the-linux-desktop
-image: /blogs/the-year-of-the-linux-desktop/logo.webp
+image: /blog/the-year-of-the-linux-desktop/logo.webp
 description: 
 labels:
 
-hidden: true
+hidden: false
 ---
+
+## The year of the Linux desktop
+
+Linux has come a long way, but it has always struggled to gain mainstream adoption as a desktop operating system. 
+Will this year finally be the year of the Linux desktop?
+
+## The problems at Microsoft
+
+Microsoft has been shooting themselves in the foot time after time with Windows, with features that no one asked for and integrating AI into everything.
+
+I used windows 10 for as long as I could remember (and Vista & XP before that...).
+I never really had a lot of complaints until Windows 11 came around.
+
+I also had a pretty beefy computer so I couldn't complain about performance. 
+The moment Windows 11 was officially released, it was a mess. 
+I still had the luxury of having Windows 10 on my laptop, I just needed to make sure to not mess up my computer so that the IT department would install a new Windows image, which was Windows 11.
+
+## Why I switched to Linux
+
+I bought a new laptop, it came preloaded with Windows 11. After not even a full year it was becoming really slow. 
+Running one instance of VsCode seriously impacted the performance of my computer.
+And that for a pretty decent laptop (i7, 32GB ram).
+
+Youtube recommended me a video from Pewdiepie about his journey using Linux (I thought that guy made gaming videos?).
+The next video that autoplayed was another video about Linux.
+
+>"F*ck it, lets try it"
+
+After some research, I landed on Manjaro. 
+
+After some distro hopping from Manjaro to Arch I finally landed on CachyOS.
+
+And I have to admit, Linux has never been better.
+
+I'm currently rocking Niri with Dank Material Shell.
+
+## Linux is already everywhere
+
+Are you reading this on an Android phone? Or maybe a Chromebook? 
+Well then you are already using Linux! 
+Android is built on top of the Linux kernel.
+
+Are you using Docker? Then you are using Linux! (Or at least a compatibility layer for it.)
+
+Linux also runs the vast majority of the internet, IOT devices, embedded systems, supercomputers, routers, switches, smart TVs, and so much more. 
+
+There are "only" a few devices left that are not running Linux, and those are the desktops of the average user. 
+
+## What's so great about Linux?
+
+### Customization
+
+You are free to use whatever you want!
+Want a minimal tiling window manager? Use i3 or Sway.
+
+Want to go full rice? Use Hyprland or Niri.
+
+Do you like a traditional desktop experience? Use Gnome, KDE, Cinnamon, Xfce, LXQt, MATE, Budgie, ...
+
+### Community
+
+If something doesn't natively run on Linux, someone already made a compatibility layer for it. 
+Trust me, everything runs on Linux (except maybe Adobe products...).
+
+### Multiple desktop environments
+
+You are free to use multiple desktop environments.
+I'm currently daily driving Niri, but sometimes I use KDE. You can just do this from your login screen.
+
+### Performance
+
+My laptop got a second life. Also old laptops can get a second life worth with Linux.
+
+### Package managers
+
+Linux uses package managers, and let me tell you, it is a game changer.
+I was used to always google an app i wanted to install (because who uses the Microsoft store?), then dodging 3 fake download buttons to finally download the installer to then install the app.
+Well, not anymore. Just open your terminal and run `sudo pacman -S <package>` and you're done.
+
+### App stores
+
+Most distros come with an app store, which is a graphical interface for the package manager. 
+It's a great way to discover new apps and install them with a few clicks.
+No fake download buttons, just pure and simple software installation.
+
+
+## So when is it really the year of Linux?
+
+I think the normal person doesn't really care about the desktop environment. They just want an operating system that works.
+Unless governments decide to switch to Linux, 90% of users will just keep using Windows.
+The people who will eventually switch are already the more tech savvy people, especially programmers and gamers.
