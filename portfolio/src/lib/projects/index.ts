@@ -10,6 +10,7 @@ export interface ProjectMeta {
     status?: string;
     repo?: string;
     hidden?: boolean;
+    link?: string;
 }
 
 export interface ProjectHeader {

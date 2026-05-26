@@ -1,8 +1,7 @@
 <script lang="ts">
-    import ProgLang from "$lib/components/ProgLang.svelte";
     import * as m from "$lib/paraglide/messages";
-    import HardHat from "@lucide/svelte/icons/hard-hat";
-    import TableOfContents from "$lib/components/TableOfContents.svelte";
+    import ContentHero from "$lib/components/content-pages/ContentHero.svelte";
+    import ContentLayout from "$lib/components/content-pages/ContentLayout.svelte";
 
     let { data } = $props();
 
@@ -14,61 +13,61 @@
     <meta name="description" content={data.metadata.description} />
 </svelte:head>
 
-<div
-    class="relative w-full h-[50vh] max-h-[50vh] flex flex-col items-center justify-center overflow-hidden"
+<ContentHero
+    title={data.metadata.title}
+    description={data.metadata.description}
+    image={data.metadata.image}
+    repo={data.metadata.repo}
+    link={data.metadata.link}
+    languages={data.metadata.languages}
+    type="project"
+/>
+
+<ContentLayout
+    headers={data.metadata.headers}
+    hasContent={data.metadata.hasContent}
+    emptyTitle={m.projects_empty_title()}
+    emptyDescription={m.projects_empty_description()}
 >
-    <div
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-50 blur-md"
-        style="background-image: url('{data.metadata.image}')"
-    ></div>
-
-    <div
-        class="relative z-10 flex flex-col items-center gap-4 text-white text-center px-4"
-    >
-        <img
-            src={data.metadata.image}
-            alt={data.metadata.title}
-            class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white/20 object-cover shadow-xl unselectable"
-        />
-        <h1 class="text-3xl md:text-5xl font-bold font-sans drop-shadow-md">
-            {data.metadata.title}
-        </h1>
-        <div class="flex gap-2">
-            {#each data.metadata.languages as language}
-                <ProgLang name={language} />
-            {/each}
-        </div>
-    </div>
-
-    <span
-        class="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-b from-transparent to-background"
-    ></span>
-</div>
-
-<div class="w-full py-10 px-4 md:px-8">
-    <div class="grid grid-cols-1 xl:grid-cols-[1fr_minmax(0,1024px)_1fr] gap-8">
-        <div class="hidden xl:block"></div>
-        <div class="w-full min-w-0">
-            <article class="prose dark:prose-invert lg:prose-xl mx-auto">
-                {#if data.metadata.hasContent}
-                    <Component latestRelease={data.metadata.status} />
-                {:else}
-                    <div
-                        class="flex flex-col items-center justify-center py-20 text-center opacity-70"
+    {#snippet leftSidebar()}
+        <div
+            class="flex flex-col gap-3 p-5 rounded-2xl border border-white/5 bg-white/3 backdrop-blur-md"
+        >
+            <h3
+                class="text-xs font-bold text-white/40 uppercase tracking-widest"
+            >
+                Project Info
+            </h3>
+            <div class="flex flex-col gap-4 text-sm mt-2">
+                <div class="flex flex-col gap-1">
+                    <span class="text-white/60 text-xs">Role</span>
+                    <span class="text-white font-medium">Software Engineer</span
                     >
-                        <HardHat class="w-16 h-16 animate-bounce mb-4 mt-8" />
-                        <h2 class="text-3xl font-bold m-0 mb-4">
-                            {m.projects_empty_title()}
-                        </h2>
-                        <p class="text-xl max-w-lg m-0">
-                            {m.projects_empty_description()}
-                        </p>
+                </div>
+                {#if data.metadata.status}
+                    <div class="flex flex-col gap-1">
+                        <span class="text-white/60 text-xs">Version Status</span
+                        >
+                        <span class="text-white font-medium"
+                            >{data.metadata.status}</span
+                        >
                     </div>
                 {/if}
-            </article>
+                {#if data.metadata.repo}
+                    <div class="flex flex-col gap-1">
+                        <span class="text-white/60 text-xs">Repository</span>
+                        <a
+                            href="https://github.com/{data.metadata.repo}"
+                            target="_blank"
+                            class="text-primary font-medium hover:underline break-all no-underline"
+                        >
+                            {data.metadata.repo.split("/")[1]}
+                        </a>
+                    </div>
+                {/if}
+            </div>
         </div>
-        <div class="flex xl:justify-end justify-center">
-            <TableOfContents headers={data.metadata.headers} />
-        </div>
-    </div>
-</div>
+    {/snippet}
+
+    <Component latestRelease={data.metadata.status} />
+</ContentLayout>

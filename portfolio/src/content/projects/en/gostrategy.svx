@@ -13,6 +13,7 @@ languages:
   - nixos
 highlighted: 1
 repo: Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy
+link: https://gostrategy.dotsem.be
 ---
 
 <script>
