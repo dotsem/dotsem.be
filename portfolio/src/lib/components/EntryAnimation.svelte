@@ -37,8 +37,12 @@
 
     function handleIntersect(isIntersecting: boolean) {
         if (isIntersecting) {
-            visible = true;
-            hasAnimated = true;
+            // Defer setting visible to ensure the browser has painted the initial
+            // hidden state, allowing transitions to trigger on page load/reload.
+            setTimeout(() => {
+                visible = true;
+                hasAnimated = true;
+            }, 50);
         } else if (!once) {
             visible = false;
         }
