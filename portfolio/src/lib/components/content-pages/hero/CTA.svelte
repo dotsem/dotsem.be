@@ -8,7 +8,7 @@
 
 <a
     href="#content"
-    class="group absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col gap-0.5 items-center w-fit no-underline text-secondary hover:text-primary transition-colors duration-300 text-xs font-semibold uppercase tracking-wider"
+    class="group absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col gap-0.5 items-center w-fit whitespace-nowrap no-underline text-secondary hover:text-primary transition-colors duration-300 text-xs font-semibold uppercase tracking-wider"
 >
     Read {type === "project" ? "about" : ""} the
     {type} below
