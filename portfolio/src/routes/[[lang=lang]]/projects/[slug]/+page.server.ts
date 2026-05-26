@@ -10,9 +10,25 @@ export const load = async ({ params, url, setHeaders }) => {
     if (!project) error(404, 'Project not found');
 
     if (project.repo) {
-        const latestVersion = await getLatestRelease(project.repo);
-        if (latestVersion) {
-            project.status = latestVersion;
+        if (project.trackRelease) {
+            let repoToTrack: string | undefined;
+            if (Array.isArray(project.repo)) {
+                const first = project.repo[0];
+                if (typeof first === 'string') {
+                    repoToTrack = first;
+                } else if (first && typeof first === 'object') {
+                    repoToTrack = first.path;
+                }
+            } else {
+                repoToTrack = project.repo as string;
+            }
+
+            if (repoToTrack) {
+                const latestVersion = await getLatestRelease(repoToTrack);
+                if (latestVersion) {
+                    project.status = latestVersion;
+                }
+            }
         }
 
         // Instruct CDN/Netlify to cache this page for 10 minutes

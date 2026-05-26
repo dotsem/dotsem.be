@@ -1,19 +1,6 @@
 ---
 title: GoStrategy
-slug: gostrategy
-image: /projects/gostrategy/logo.webp
 description: Een open-source implementatie van het klassieke GoStrategy bordspel. Gebouwd met een krachtige Go-backend en een moderne SvelteKit-frontend, ontworpen voor zowel Mens-tegen-AI als AI-tegen-AI experimenten. Dit project is bedoeld om een robuust platform te bieden voor het spelen van GoStrategy, terwijl het dient als testomgeving voor diverse AI-strategieën. Het beschikt over real-time gameplay via WebSockets, veilige gebruikersauthenticatie en een declaratieve infrastructuur beheerd via NixOS.
-languages:
-  - svelte
-  - go
-  - ts
-  - tailwind
-  - postgresql
-  - docker
-  - nixos
-highlighted: 1
-repo: Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy
-link: https://gostrategy.dotsem.be
 ---
 
 <script>

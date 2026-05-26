@@ -19,7 +19,9 @@
     image={data.metadata.image}
     repo={data.metadata.repo}
     link={data.metadata.link}
+    linkTitle={data.metadata.linkTitle}
     languages={data.metadata.languages}
+    labels={data.metadata.labels}
     type="project"
 />
 
@@ -54,15 +56,29 @@
                     </div>
                 {/if}
                 {#if data.metadata.repo}
-                    <div class="flex flex-col gap-1">
+                    <div class="flex flex-col gap-2">
                         <span class="text-white/60 text-xs">Repository</span>
-                        <a
-                            href="https://github.com/{data.metadata.repo}"
-                            target="_blank"
-                            class="text-primary font-medium hover:underline break-all no-underline"
-                        >
-                            {data.metadata.repo.split("/")[1]}
-                        </a>
+                        {#if Array.isArray(data.metadata.repo)}
+                            {#each data.metadata.repo as r}
+                                {@const repoPath = typeof r === 'string' ? r : r.path}
+                                {@const repoLabel = typeof r === 'string' ? r.split("/")[1] : r.name}
+                                <a
+                                    href="https://github.com/{repoPath}"
+                                    target="_blank"
+                                    class="text-primary font-medium hover:underline break-all no-underline block"
+                                >
+                                    {repoLabel}
+                                </a>
+                            {/each}
+                        {:else}
+                            <a
+                                href="https://github.com/{data.metadata.repo}"
+                                target="_blank"
+                                class="text-primary font-medium hover:underline break-all no-underline block"
+                            >
+                                {data.metadata.repo.split("/")[1]}
+                            </a>
+                        {/if}
                     </div>
                 {/if}
             </div>

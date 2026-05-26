@@ -1,16 +1,13 @@
 <script lang="ts">
     import ProgLang from "$lib/components/ProgLang.svelte";
     import Badge from "$lib/components/ui/badge/badge.svelte";
+    import { ContentHeroCTA, ContentHeroLabels, ContentHeroTitle } from ".";
+    import ContentHeroActionLinks from "./hero/ActionLinks.svelte";
+    import type { ProjectMetadata } from "$lib/projects/metadata";
 
-    interface Props {
+    interface Props extends Partial<ProjectMetadata> {
         title: string;
         description: string;
-        image?: string;
-        status?: string;
-        repo?: string;
-        link?: string;
-        languages?: string[];
-        labels?: string[];
         type?: string;
     }
 
@@ -21,6 +18,7 @@
         status,
         repo,
         link,
+        linkTitle,
         languages = [],
         labels = [],
         type,
@@ -64,19 +62,8 @@
                     {/if}
                 </div>
 
-                <div>
-                    {#if type}
-                        <span class="text-md uppercase text-primary"
-                            >{type}</span
-                        >
-                    {/if}
-                    <h1
-                        class="text-4xl md:text-6xl font-black tracking-tight text-white font-sans drop-shadow-sm leading-[1.1]"
-                    >
-                        {title}
-                    </h1>
-                </div>
-
+                <ContentHeroTitle {title} {type} />
+                <ContentHeroLabels {labels} />
                 <p
                     class="text-lg md:text-xl text-foreground/80 font-normal leading-relaxed max-w-2xl"
                 >
@@ -92,47 +79,7 @@
                     </div>
                 {/if}
 
-                <!-- Category Labels -->
-                {#if labels.length > 0}
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        {#each labels as label}
-                            <Badge
-                                variant="secondary"
-                                class="bg-white/10 hover:bg-white/20 text-white border-none px-3.5 py-1 text-xs"
-                            >
-                                {label}
-                            </Badge>
-                        {/each}
-                    </div>
-                {/if}
-
-                <!-- Action Links -->
-                {#if repo || link}
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        {#if repo}
-                            <a
-                                href="https://github.com/{repo}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20 transition-all duration-300 shadow-md no-underline"
-                            >
-                                <i class="fa-brands fa-github text-lg"></i>
-                                View on GitHub
-                            </a>
-                        {/if}
-                        {#if link}
-                            <a
-                                href={link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold bg-primary hover:bg-primary/95 text-white transition-all duration-300 shadow-[0_4px_20px_rgba(239,68,68,0.3)] hover:shadow-[0_4px_25px_rgba(239,68,68,0.5)] no-underline hover:scale-[1.02]"
-                            >
-                                <i class="fa-solid fa-gamepad text-lg"></i>
-                                Play Live Game
-                            </a>
-                        {/if}
-                    </div>
-                {/if}
+                <ContentHeroActionLinks {repo} {link} {linkTitle} />
             </div>
 
             <!-- Right Visual Column (Interactive Device Frame/Showcase Card) -->
@@ -164,4 +111,6 @@
             {/if}
         </div>
     </div>
+
+    <ContentHeroCTA {type} />
 </div>

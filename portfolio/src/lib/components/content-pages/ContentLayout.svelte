@@ -25,7 +25,7 @@
 </script>
 
 <!-- Main Layout Content with Sidebars -->
-<div class="w-full py-16 px-4 md:px-8 bg-[#070709]">
+<div id="content" class="w-full py-16 px-4 md:px-8 bg-[#070709]">
     <div
         class="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] gap-12 container mx-auto"
     >

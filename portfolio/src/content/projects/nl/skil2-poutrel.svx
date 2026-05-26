@@ -1,14 +1,6 @@
 ---
 title: SKIL2 Poutrel
-slug: skil2-poutrel
-image: /projects/skil2-poutrel/logo.webp
 description: Voor een groepsproject voor het eerste semester van mijn tweede jaar aan Thomas More hebben we een implementatieplan opgesteld voor Poutrel.
-languages:
-  - uml
-  - figma
-
-highlighted: false
-status: Afgerond
 ---
 
 <script>

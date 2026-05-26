@@ -1,13 +1,6 @@
 ---
 title: Carpe Diem
-slug: carpe-diem
-image: /projects/carpe-diem/logo.webp
 description: Een handige planning-app voor productieve mensen om dag per dag te plannen en je projecten bij te houden.
-languages:
-  - dart
-  - flutter
-highlighted: 2
-repo: dotsem/Carpe-Diem
 ---
 
 <script>

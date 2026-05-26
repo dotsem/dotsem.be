@@ -9,10 +9,24 @@ export const load = async ({ url, setHeaders }) => {
     // Update versions for all projects with a repo field
     const projectsWithVersions = await Promise.all(projects.map(async (project) => {
         const { component, ...meta } = project;
-        if (meta.repo) {
-            const version = await getLatestRelease(meta.repo);
-            if (version) {
-                return { ...meta, status: version };
+        if (meta.repo && meta.trackRelease) {
+            let repoToTrack: string | undefined;
+            if (Array.isArray(meta.repo)) {
+                const first = meta.repo[0];
+                if (typeof first === 'string') {
+                    repoToTrack = first;
+                } else if (first && typeof first === 'object') {
+                    repoToTrack = first.path;
+                }
+            } else {
+                repoToTrack = meta.repo as string;
+            }
+
+            if (repoToTrack) {
+                const version = await getLatestRelease(repoToTrack);
+                if (version) {
+                    return { ...meta, status: version };
+                }
             }
         }
         return meta;

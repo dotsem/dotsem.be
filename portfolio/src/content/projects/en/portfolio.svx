@@ -1,16 +1,6 @@
 ---
 title: Portfolio
-slug: portfolio
-image: /projects/portfolio/logo.webp
 description: My portfolio is of course a project to be proud of. It implements interesting implementations for i18n and my projects and blogs while remaining a static website that is performant and accessible.
-languages:
-    - ts
-    - svelte
-    - tailwind
-    - figma
-
-highlighted: 5
-status: You are looking at it!
 ---
 
 <script lang="ts">

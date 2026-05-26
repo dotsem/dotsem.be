@@ -1,17 +1,6 @@
 ---
 title: SKIL2 Chez Natalie
-slug: skil2-chez-natalie
-image: /projects/skil2-chez-natalie/logo.webp
 description: Voor het tweede semester van mijn tweede jaar aan Thomas More moesten we een website maken voor Chez Natalie. Het was een groepsproject waarbij we een website voor een B&B moesten bouwen.
-languages:
-    - php
-    - laravel
-    - tailwind
-    - sql
-    - uml
-
-highlighted: false
-status: In uitvoering
 ---
 
 <script>

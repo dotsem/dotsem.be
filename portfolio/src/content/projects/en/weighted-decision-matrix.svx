@@ -1,14 +1,6 @@
 ---
 title: Weighted Decision Matrix
-slug: weighted-decision-matrix
-image: /projects/weighted-decision-matrix/logo.webp
 description: A handy website to easily create weighted decision matrices and export them to markdown.
-languages:
-  - svelte
-  - ts
-  - tailwind
-highlighted: false
-repo: dotsem/Weighted-Decision-Matrix
 ---
 
 <script>
