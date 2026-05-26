@@ -60,7 +60,7 @@
         </main>
 
         <!-- right sidebar: table of contents -->
-        <aside class="w-full lg:w-65 lg:shrink-0 block">
+        <aside class="w-0 xl:w-65 lg:shrink-0 block">
             <div class="sticky top-28">
                 <TableOfContents {headers} />
             </div>

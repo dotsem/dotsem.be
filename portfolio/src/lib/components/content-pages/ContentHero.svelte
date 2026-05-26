@@ -32,7 +32,7 @@
 
 <!-- premium split hero banner -->
 <div
-    class="relative w-full overflow-hidden bg-[#070709] pt-32 pb-20 border-b border-white/5"
+    class="relative w-full overflow-hidden bg-[#070709] pt-32 pb-20 px-4 md:px-8 border-b border-white/5"
 >
     <!-- ambient radial blur auras -->
     <div
@@ -48,9 +48,9 @@
         ></div>
     {/if}
 
-    <div class="container relative z-10 mx-auto px-4 md:px-8">
+    <div class="relative z-10 container mx-auto">
         <div
-            class="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center justify-evenly!"
+            class="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center justify-between"
         >
             <!-- left details column -->
             <div class="flex flex-col gap-6 text-left">
