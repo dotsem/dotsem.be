@@ -1,22 +1,48 @@
 <script lang="ts">
     import Hero from "../../lib/components/Hero.svelte";
     import Profile from "$lib/components/profile/Profile.svelte";
-    import ProjectCard from "$lib/components/ProjectCard.svelte";
+    import BentoProjectCard from "$lib/components/cards/BentoProjectCard.svelte";
     import ContactForm from "$lib/components/ContactForm.svelte";
     import {
         projects_highlighted_title,
         projects_highlighted_description,
+        projects_view_all,
     } from "$lib/paraglide/messages.js";
-    import * as Carousel from "$lib/components/ui/carousel";
     import BgImage from "$lib/assets/bg-dark.webp";
     import ImageDivider from "$lib/components/ImageDivider.svelte";
     import AboutMe from "$lib/components/AboutMe.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+    import { Button } from "$lib/components/ui/button";
+    import { i18n } from "$lib/i18n";
+    import { languageTag } from "$lib/paraglide/runtime";
 
     let { data } = $props();
 
+    let innerWidth = $state(0);
+    let bestProjectVariant = $derived<"normal" | "wide" | "tall" | "full">(
+        innerWidth >= 1024 ? "full" : innerWidth >= 768 ? "wide" : "normal",
+    );
+
     const highlightedProjects = $derived(
-        data.projects.filter((p) => p.highlighted),
+        data.projects
+            .filter(
+                (p) => p.highlighted !== undefined && p.highlighted !== false,
+            )
+            .sort((a, b) => {
+                const valA =
+                    typeof a.highlighted === "number"
+                        ? a.highlighted
+                        : a.highlighted
+                          ? 1
+                          : 999;
+                const valB =
+                    typeof b.highlighted === "number"
+                        ? b.highlighted
+                        : b.highlighted
+                          ? 1
+                          : 999;
+                return valA - valB;
+            }),
     );
 </script>
 
@@ -48,6 +74,8 @@
     />
 </svelte:head>
 
+<svelte:window bind:innerWidth />
+
 <main>
     <Hero />
     <section class="">
@@ -60,7 +88,7 @@
 
     <div class="bg-card slanted">
         <section class="px-3 py-24 w-full">
-            <div class="container mx-auto">
+            <div class="container relative mx-auto">
                 <div class="prose dark:prose-invert max-w-none mb-8">
                     <h2 class="text-4xl text-center">
                         {projects_highlighted_title()}
@@ -69,19 +97,45 @@
                         {projects_highlighted_description()}
                     </p>
                 </div>
+                <Button
+                    class="absolute right-2 top-0 z-10 rounded-full"
+                    href={i18n.resolveRoute("/projects", languageTag())}
+                >
+                    {projects_view_all()}
+                    <i class="fa-solid fa-arrow-right"></i>
+                </Button>
 
-                <div class="relative px-4 md:px-12">
-                    <Carousel.Root opts={{ align: "center" }}>
-                        <Carousel.Content class="ms-0 gap-4">
-                            {#each highlightedProjects as project}
-                                <Carousel.Item class="basis-auto lg:p-4">
-                                    <ProjectCard {project} />
-                                </Carousel.Item>
-                            {/each}
-                        </Carousel.Content>
-                        <Carousel.Previous class="-left-2 md:-left-12" />
-                        <Carousel.Next class="-right-2 md:-right-12" />
-                    </Carousel.Root>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px] md:auto-rows-[360px] lg:auto-rows-[340px] container mx-auto px-4"
+                >
+                    {#each highlightedProjects as project, index}
+                        <div
+                            class={index === 0
+                                ? "col-span-1 row-span-1 md:col-start-1 md:row-start-1 md:col-span-2 md:row-span-1 lg:col-start-2 lg:row-start-1 lg:col-span-1 lg:row-span-2"
+                                : index === 1
+                                  ? "col-span-1 row-span-1 md:col-start-1 md:row-start-2 md:col-span-1 md:row-span-1 lg:col-start-1 lg:row-start-1 lg:col-span-1 lg:row-span-1"
+                                  : index === 2
+                                    ? "col-span-1 row-span-1 md:col-start-2 md:row-start-2 md:col-span-1 md:row-span-1 lg:col-start-3 lg:row-start-2 lg:col-span-1 lg:row-span-1"
+                                    : index === 3
+                                      ? "col-span-1 row-span-1 md:col-start-1 md:row-start-3 md:col-span-1 md:row-span-1 lg:col-start-1 lg:row-start-2 lg:col-span-1 lg:row-span-1"
+                                      : index === 4
+                                        ? "col-span-1 row-span-1 md:col-start-2 md:row-start-3 md:col-span-1 md:row-span-1 lg:col-start-3 lg:row-start-1 lg:col-span-1 lg:row-span-1"
+                                        : ""}
+                        >
+                            <EntryAnimation
+                                type="scale"
+                                delay={index * 100}
+                                class="h-full w-full"
+                            >
+                                <BentoProjectCard
+                                    {project}
+                                    variant={index === 0
+                                        ? bestProjectVariant
+                                        : "normal"}
+                                />
+                            </EntryAnimation>
+                        </div>
+                    {/each}
                 </div>
             </div>
         </section>

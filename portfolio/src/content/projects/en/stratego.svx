@@ -2,7 +2,7 @@
 title: StrateGO
 slug: stratego
 image: /projects/stratego/logo.webp
-description: A stratego game that lets you play against different AIs or even train your own AI.
+description: An open-source implementation of the classic GoStrategy board game. Built with a high-performance Go backend and a modern SvelteKit frontend, designed for both Human-vs-AI and AI-vs-AI experimentation. This project aims to provide a robust platform for playing GoStrategy while serving as a testing ground for various AI strategies. It features real-time gameplay via WebSockets, secure user authentication, and a declarative infrastructure managed via NixOS.
 languages:
   - svelte
   - go
@@ -11,7 +11,7 @@ languages:
   - postgresql
   - docker
   - nixos
-highlighted: true
+highlighted: 1
 repo: Thomas-More-Digital-Innovation/2526-DI-004-Stratego
 ---
 

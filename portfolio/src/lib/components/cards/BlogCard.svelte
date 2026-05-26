@@ -6,6 +6,7 @@
     import { onMount } from "svelte";
     import type { BlogMeta } from "$lib/blog";
     import { labelScroller } from "$lib/utils";
+    import CardImage from "$lib/components/cards/CardImage.svelte";
 
     interface Props {
         blog: BlogMeta & { parsedLabels: string[] };
@@ -34,36 +35,26 @@
 
 <a
     href={i18n.resolveRoute("/blog/" + blog.slug, languageTag())}
-    class="blog-card-link"
+    class="blog-card-link group"
 >
     <Card.Root
         class="blog-card overflow-hidden w-full min-h-64 flex flex-col md:flex-row relative m-0 pb-0"
     >
-        <div class="card-image w-full md:w-80 shrink-0 md:rounded-xl">
-            {#if blog.image}
-                <img
-                    src={blog.image}
-                    alt=""
-                    class="image-blur-bg unselectable"
-                    aria-hidden="true"
-                />
-                <div class="image-overlay"></div>
-                <div class="image-main-wrap">
-                    <img
-                        src={blog.image}
-                        alt={blog.title}
-                        loading="lazy"
-                        class="image-main unselectable"
-                    />
-                </div>
-            {:else}
-                <div
-                    class="w-full h-full bg-muted flex items-center justify-center text-muted-foreground relative z-10"
-                >
-                    No image
-                </div>
-            {/if}
-        </div>
+        {#if blog.image}
+            <CardImage
+                src={blog.image}
+                alt={blog.title}
+                class="w-full md:w-80 md:rounded-xl h-48 md:h-auto"
+                overlayClass="md:bg-linear-to-r"
+                paddingClass="p-4"
+            />
+        {:else}
+            <div
+                class="relative flex items-center justify-center overflow-hidden shrink-0 w-full md:w-80 md:rounded-xl h-48 md:h-auto bg-muted text-muted-foreground z-10"
+            >
+                No image
+            </div>
+        {/if}
 
         <div class="flex flex-col flex-1 overflow-hidden relative">
             <Card.Header
@@ -123,70 +114,6 @@
         background: rgba(255, 255, 255, 0.06) !important;
         border-color: rgba(255, 255, 255, 0.2) !important;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    .card-image {
-        position: relative;
-        height: 12rem;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        @media (min-width: 768px) {
-            height: auto;
-        }
-    }
-
-    .image-blur-bg {
-        position: absolute;
-        inset: -15px;
-        width: calc(100% + 30px);
-        height: calc(100% + 30px);
-        object-fit: cover;
-        filter: blur(25px) saturate(1.8) brightness(0.7);
-        opacity: 0.5;
-        z-index: 0;
-        transform: scale(1.1);
-    }
-
-    .image-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, transparent 80%, var(--card));
-        z-index: 1;
-
-        @media (min-width: 768px) {
-            background: linear-gradient(
-                to right,
-                transparent 80%,
-                rgba(20, 20, 20, 0.4)
-            );
-        }
-    }
-
-    .image-main-wrap {
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-    }
-
-    .image-main {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
-        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border-radius: 8px;
-    }
-
-    .blog-card-link:hover .image-main {
-        transform: scale(1.12);
     }
 
     .label-scroll-container {

@@ -9,7 +9,7 @@ languages:
     - tailwind
     - figma
 
-highlighted: false
+highlighted: 5
 status: You are looking at it!
 ---
 

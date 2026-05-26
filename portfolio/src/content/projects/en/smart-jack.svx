@@ -7,7 +7,7 @@ languages:
   - pygame
   - raspberrypi
   - py
-highlighted: true
+highlighted: 4
 status: Finished
 ---
 

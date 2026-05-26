@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ProjectCard from "$lib/components/ProjectCard.svelte";
+    import ProjectCard from "$lib/components/cards/ProjectCard.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
     import * as m from "$lib/paraglide/messages";
 

@@ -6,7 +6,7 @@ description: Een handige planning-app voor productieve mensen om dag per dag te 
 languages:
   - dart
   - flutter
-highlighted: true
+highlighted: 2
 repo: dotsem/Carpe-Diem
 ---
 

@@ -6,7 +6,7 @@ export interface ProjectMeta {
     description: string;
     image: string;
     languages: string[];
-    highlighted?: boolean;
+    highlighted?: boolean | number;
     status?: string;
     repo?: string;
     hidden?: boolean;

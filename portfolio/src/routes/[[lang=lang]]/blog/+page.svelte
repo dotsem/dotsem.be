@@ -1,5 +1,5 @@
 <script lang="ts">
-    import BlogCard from "$lib/components/BlogCard.svelte";
+    import BlogCard from "$lib/components/cards/BlogCard.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
     import { Badge } from "$lib/components/ui/badge";
     import * as m from "$lib/paraglide/messages";
