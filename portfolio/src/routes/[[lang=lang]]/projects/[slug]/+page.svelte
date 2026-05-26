@@ -5,6 +5,7 @@
     import {
         LeftSidebar,
         LeftSidebarContent,
+        ContentPagination,
     } from "$lib/components/content-pages";
     import { Badge } from "$lib/components/ui/badge";
 
@@ -99,4 +100,10 @@
     {/snippet}
 
     <Component latestRelease={data.metadata.status} />
+
+    <ContentPagination
+        prev={data.prevProject}
+        next={data.nextProject}
+        type="project"
+    />
 </ContentLayout>

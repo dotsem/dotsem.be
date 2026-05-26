@@ -7,3 +7,5 @@ export { default as ContentLayout } from "./ContentLayout.svelte";
 export { default as LeftSidebar } from "./layout/LeftSidebar.svelte";
 export { default as LeftSidebarContent } from "./layout/LeftSidebarContent.svelte";
 export { default as TableOfContents } from "./layout/TableOfContents.svelte";
+export { default as ContentPagination } from "./ContentPagination.svelte";
+

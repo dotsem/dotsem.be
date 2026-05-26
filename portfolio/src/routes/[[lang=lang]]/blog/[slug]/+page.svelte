@@ -3,8 +3,11 @@
     import ContentHero from "$lib/components/content-pages/ContentHero.svelte";
     import ContentLayout from "$lib/components/content-pages/ContentLayout.svelte";
     import PenTool from "@lucide/svelte/icons/pen-tool";
-    import LeftSidebar from "$lib/components/content-pages/layout/LeftSidebar.svelte";
-    import LeftSidebarContent from "$lib/components/content-pages/layout/LeftSidebarContent.svelte";
+    import {
+        LeftSidebar,
+        LeftSidebarContent,
+        ContentPagination,
+    } from "$lib/components/content-pages";
 
     let { data } = $props();
 
@@ -48,4 +51,10 @@
     {/snippet}
 
     <Component />
+
+    <ContentPagination
+        prev={data.prevBlog}
+        next={data.nextBlog}
+        type="blog"
+    />
 </ContentLayout>
