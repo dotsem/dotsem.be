@@ -2,9 +2,8 @@
     import * as Card from "$lib/components/ui/card";
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
-    import { type ProjectMeta, getLocalizedStatus } from "$lib/projects";
+    import type { ProjectMeta } from "$lib/projects";
     import ScrollingLangList from "$lib/components/ScrollingLangList.svelte";
-    import CardImage from "$lib/components/cards/CardImage.svelte";
 
     interface Props {
         project: ProjectMeta;
@@ -18,14 +17,31 @@
     class="group block text-inherit no-underline"
 >
     <Card.Root
-        class="flex! h-96 w-80 m-0! flex-col gap-2 overflow-hidden border-white/10! bg-white/5! backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10! has-hover:hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
+        class="flex! h-96 w-80 flex-col gap-2 overflow-hidden border-white/10! bg-white/5! backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10! has-hover:hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
     >
-        <CardImage
-            src={project.image}
-            alt={project.title}
-            class="h-48"
-            paddingClass="p-4"
-        />
+        <div
+            class="relative flex h-48 items-center justify-center overflow-hidden"
+        >
+            <img
+                src={project.image}
+                alt=""
+                class="unselectable absolute -inset-3.75 h-[calc(100%+30px)] w-[calc(100%+30px)] scale-110 object-cover opacity-50 blur-[25px] saturate-[1.8] brightness-[0.7]"
+                aria-hidden="true"
+            />
+            <div
+                class="absolute inset-0 z-1 bg-linear-to-b from-transparent via-transparent via-80% to-card"
+            ></div>
+            <div
+                class="relative z-2 flex h-full w-full items-center justify-center p-4"
+            >
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    class="unselectable h-full max-h-full w-full max-w-full rounded-lg object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:group-hover:scale-[1.12]"
+                />
+            </div>
+        </div>
 
         <ScrollingLangList languages={project.languages} class="px-6" />
 
@@ -57,7 +73,7 @@
                     ? ''
                     : 'has-hover:-translate-x-[110%] has-hover:group-hover:translate-x-0'}"
             >
-                {getLocalizedStatus(project.status)}
+                {project.status}
             </span>
         {/if}
     </Card.Root>

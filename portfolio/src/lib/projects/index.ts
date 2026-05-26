@@ -1,4 +1,26 @@
 import type { Component } from 'svelte';
+import { projectsMetadata, ProjectStatus } from './metadata';
+import * as m from '$lib/paraglide/messages';
+
+export { ProjectStatus };
+
+export function getLocalizedStatus(status: ProjectStatus | string | undefined): string {
+    if (!status) return '';
+    if (status.toLocaleLowerCase().startsWith('v')) return status;
+    
+    switch (status) {
+        case ProjectStatus.Finished:
+            return m.status_finished();
+        case ProjectStatus.InDevelopment:
+            return m.status_in_development();
+        case ProjectStatus.InProgress:
+            return m.status_in_progress();
+        case ProjectStatus.YouAreLookingAtIt:
+            return m.status_you_are_looking_at_it();
+        default:
+            return status;
+    }
+}
 
 export interface ProjectMeta {
     title: string;
@@ -7,9 +29,13 @@ export interface ProjectMeta {
     image: string;
     languages: string[];
     highlighted?: boolean | number;
-    status?: string;
-    repo?: string;
+    status?: ProjectStatus | string;
+    repo?: string | string[] | { name: string; path: string }[];
+    trackRelease?: boolean;
     hidden?: boolean;
+    link?: string;
+    linkTitle?: string;
+    labels?: string[];
 }
 
 export interface ProjectHeader {
@@ -26,7 +52,7 @@ export interface Project extends ProjectMeta {
 
 type MdsvexModule = {
     default: Component;
-    metadata: ProjectMeta;
+    metadata: Partial<ProjectMeta>;
 };
 
 const modules = import.meta.glob<MdsvexModule>('/src/content/projects/*/*.svx');
@@ -59,7 +85,6 @@ function extractHeaders(body: string): ProjectHeader[] {
     return headers;
 }
 
-
 export async function getProjectsByLang(lang: string): Promise<Project[]> {
     const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
 
@@ -67,17 +92,32 @@ export async function getProjectsByLang(lang: string): Promise<Project[]> {
         entries.map(async ([path, loader]) => {
             const mod = await loader();
             if (mod.metadata.hidden) return null;
-            const imagePath = `/src/lib/assets${mod.metadata.image}`;
+
+            const filenameSlug = path.split('/').pop()?.replace('.svx', '') || '';
+            const slug = mod.metadata.slug || filenameSlug;
+            const meta = projectsMetadata.find(p => p.slug === slug);
+
+            const mergedMeta = {
+                title: mod.metadata.title || '',
+                description: mod.metadata.description || '',
+                image: '',
+                languages: [],
+                ...mod.metadata,
+                ...meta,
+                slug
+            };
+
+            const imagePath = `/src/lib/assets${mergedMeta.image}`;
             const rawContent = rawModules[path] || '';
             const body = rawContent.split('---').slice(2).join('---').trim();
 
             return {
-                ...mod.metadata,
-                image: images[imagePath] || mod.metadata.image,
+                ...mergedMeta,
+                image: images[imagePath] || mergedMeta.image,
                 component: mod.default,
                 hasContent: body.length > 0,
                 headers: extractHeaders(body)
-            };
+            } as Project;
         })
     );
 
@@ -91,16 +131,28 @@ export async function getProjectBySlug(lang: string, slug: string): Promise<Proj
 
     const mod = await loader();
     if (mod.metadata.hidden) return null;
-    const imagePath = `/src/lib/assets${mod.metadata.image}`;
+
+    const meta = projectsMetadata.find(p => p.slug === slug);
+
+    const mergedMeta = {
+        title: mod.metadata.title || '',
+        description: mod.metadata.description || '',
+        image: '',
+        languages: [],
+        ...mod.metadata,
+        ...meta,
+        slug
+    };
+
+    const imagePath = `/src/lib/assets${mergedMeta.image}`;
     const rawContent = rawModules[path] || '';
     const body = rawContent.split('---').slice(2).join('---').trim();
 
-
     return {
-        ...mod.metadata,
-        image: images[imagePath] || mod.metadata.image,
+        ...mergedMeta,
+        image: images[imagePath] || mergedMeta.image,
         component: mod.default,
         hasContent: body.length > 0,
         headers: extractHeaders(body)
-    };
+    } as Project;
 }

@@ -1,14 +1,6 @@
 ---
 title: Philips BLE Robot
-slug: philips-ble-robot
-image: /projects/Philips-BLE-robot/logo.webp
 description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun embedded bluetooth library gecombineerd met een custom mobiele app om een simpele robot via bluetooth aan te sturen.
-languages:
-  - cpp
-  - dart
-  - flutter
-highlighted: 2
-status: Finished
 ---
 
 # Philips BLE Robot

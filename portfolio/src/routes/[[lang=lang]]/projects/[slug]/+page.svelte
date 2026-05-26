@@ -1,8 +1,14 @@
 <script lang="ts">
-    import ProgLang from "$lib/components/ProgLang.svelte";
     import * as m from "$lib/paraglide/messages";
-    import HardHat from "@lucide/svelte/icons/hard-hat";
-    import TableOfContents from "$lib/components/TableOfContents.svelte";
+    import ContentHero from "$lib/components/content-pages/ContentHero.svelte";
+    import ContentLayout from "$lib/components/content-pages/ContentLayout.svelte";
+    import {
+        LeftSidebar,
+        LeftSidebarContent,
+        ContentPagination,
+    } from "$lib/components/content-pages";
+    import { Badge } from "$lib/components/ui/badge";
+    import { getLocalizedStatus } from "$lib/projects";
 
     let { data } = $props();
 
@@ -14,61 +20,91 @@
     <meta name="description" content={data.metadata.description} />
 </svelte:head>
 
-<div
-    class="relative w-full h-[50vh] max-h-[50vh] flex flex-col items-center justify-center overflow-hidden"
->
-    <div
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-50 blur-md"
-        style="background-image: url('{data.metadata.image}')"
-    ></div>
+<ContentHero
+    title={data.metadata.title}
+    description={data.metadata.description}
+    image={data.metadata.image}
+    repo={data.metadata.repo}
+    link={data.metadata.link}
+    linkTitle={data.metadata.linkTitle}
+    languages={data.metadata.languages}
+    labels={data.metadata.labels}
+    status={data.metadata.status}
+    type="project"
+/>
 
-    <div
-        class="relative z-10 flex flex-col items-center gap-4 text-white text-center px-4"
+{#snippet RepoLink(name: string, label: string)}
+    <a
+        href="https://github.com/{name}"
+        target="_blank"
+        class="text-primary font-medium hover:underline break-all no-underline block"
     >
-        <img
-            src={data.metadata.image}
-            alt={data.metadata.title}
-            class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white/20 object-cover shadow-xl unselectable"
-        />
-        <h1 class="text-3xl md:text-5xl font-bold font-sans drop-shadow-md">
-            {data.metadata.title}
-        </h1>
-        <div class="flex gap-2">
-            {#each data.metadata.languages as language}
-                <ProgLang name={language} />
-            {/each}
-        </div>
-    </div>
+        {label}
+    </a>
+{/snippet}
 
-    <span
-        class="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-b from-transparent to-background"
-    ></span>
-</div>
-
-<div class="w-full py-10 px-4 md:px-8">
-    <div class="grid grid-cols-1 xl:grid-cols-[1fr_minmax(0,1024px)_1fr] gap-8">
-        <div class="hidden xl:block"></div>
-        <div class="w-full min-w-0">
-            <article class="prose dark:prose-invert lg:prose-xl mx-auto">
-                {#if data.metadata.hasContent}
-                    <Component latestRelease={data.metadata.status} />
+<ContentLayout
+    headers={data.metadata.headers}
+    hasContent={data.metadata.hasContent}
+    emptyTitle={m.projects_empty_title()}
+    emptyDescription={m.projects_empty_description()}
+>
+    {#snippet leftSidebar()}
+        <LeftSidebar title={m.projects_sidebar_title()}>
+            <LeftSidebarContent label={m.projects_sidebar_project()}>
+                {data.metadata.title}
+            </LeftSidebarContent>
+            {#if data.metadata.status}
+                {#if data.metadata.status.toLocaleLowerCase().startsWith("v")}
+                    <LeftSidebarContent label={m.projects_sidebar_version()}>
+                        {getLocalizedStatus(data.metadata.status)}
+                    </LeftSidebarContent>
                 {:else}
-                    <div
-                        class="flex flex-col items-center justify-center py-20 text-center opacity-70"
-                    >
-                        <HardHat class="w-16 h-16 animate-bounce mb-4 mt-8" />
-                        <h2 class="text-3xl font-bold m-0 mb-4">
-                            {m.projects_empty_title()}
-                        </h2>
-                        <p class="text-xl max-w-lg m-0">
-                            {m.projects_empty_description()}
-                        </p>
-                    </div>
+                    <LeftSidebarContent label={m.projects_sidebar_status()}>
+                        {getLocalizedStatus(data.metadata.status)}
+                    </LeftSidebarContent>
                 {/if}
-            </article>
-        </div>
-        <div class="flex xl:justify-end justify-center">
-            <TableOfContents headers={data.metadata.headers} />
-        </div>
-    </div>
-</div>
+            {/if}
+            {#if data.metadata.repo}
+                <LeftSidebarContent label={m.projects_sidebar_repository()}>
+                    {#if Array.isArray(data.metadata.repo)}
+                        {#each data.metadata.repo as r}
+                            {@const repoPath =
+                                typeof r === "string" ? r : r.path}
+                            {@const repoLabel =
+                                typeof r === "string"
+                                    ? r.split("/")[1]
+                                    : r.name}
+                            {@render RepoLink(repoPath, repoLabel)}
+                        {/each}
+                    {:else}
+                        {@render RepoLink(
+                            data.metadata.repo,
+                            data.metadata.repo.split("/")[1],
+                        )}
+                    {/if}
+                </LeftSidebarContent>
+            {/if}
+            {#if data.metadata.labels}
+                <LeftSidebarContent label={m.projects_sidebar_labels()}>
+                    {#each data.metadata.labels as label}
+                        <Badge
+                            variant="secondary"
+                            class="bg-white/10 m-1 hover:bg-white/20 text-white border-none px-3.5 py-1 text-xs"
+                        >
+                            {label}
+                        </Badge>
+                    {/each}
+                </LeftSidebarContent>
+            {/if}
+        </LeftSidebar>
+    {/snippet}
+
+    <Component latestRelease={data.metadata.status} />
+
+    <ContentPagination
+        prev={data.prevProject}
+        next={data.nextProject}
+        type="project"
+    />
+</ContentLayout>

@@ -2,7 +2,7 @@
     import * as Card from "$lib/components/ui/card";
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
-    import type { ProjectMeta } from "$lib/projects";
+    import { type ProjectMeta, getLocalizedStatus } from "$lib/projects";
     import ScrollingLangList from "$lib/components/ScrollingLangList.svelte";
     import CardImage from "$lib/components/cards/CardImage.svelte";
 
@@ -97,7 +97,7 @@
                     ? ''
                     : 'has-hover:-translate-x-[120%] has-hover:group-hover:translate-x-0'}"
             >
-                {project.status}
+                {getLocalizedStatus(project.status)}
             </span>
         {/if}
     </Card.Root>

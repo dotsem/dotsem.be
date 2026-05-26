@@ -4,7 +4,7 @@
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
     import { onMount } from "svelte";
-    import type { BlogMeta } from "$lib/blog";
+    import { type BlogMeta, formatBlogDate } from "$lib/blog";
     import { labelScroller } from "$lib/utils";
     import CardImage from "$lib/components/cards/CardImage.svelte";
 
@@ -60,23 +60,31 @@
             <Card.Header
                 class="pb-2 w-full overflow-hidden flex flex-col gap-2"
             >
-                <div
-                    class="label-scroll-container {needsScroll
-                        ? 'mask-edges'
-                        : ''}"
-                    bind:this={scrollContainer}
-                >
+                <div class="flex items-center justify-between gap-4 w-full">
                     <div
-                        class="label-scroll-content {needsScroll
-                            ? 'animate-saw'
+                        class="label-scroll-container {needsScroll
+                            ? 'mask-edges'
                             : ''}"
-                        style="--scroll-duration: {scrollDuration}s"
-                        bind:this={contentContainer}
+                        bind:this={scrollContainer}
                     >
-                        {#each blog.parsedLabels as label}
-                            <Badge variant="secondary">{label}</Badge>
-                        {/each}
+                        <div
+                            class="label-scroll-content {needsScroll
+                                ? 'animate-saw'
+                                : ''}"
+                            style="--scroll-duration: {scrollDuration}s"
+                            bind:this={contentContainer}
+                        >
+                            {#each blog.parsedLabels as label}
+                                <Badge variant="secondary">{label}</Badge>
+                            {/each}
+                        </div>
                     </div>
+                    {#if blog.date}
+                        <span class="text-white/40 text-xs shrink-0 font-medium font-sans">
+                            <i class="fa-regular fa-calendar mr-1"></i>
+                            {formatBlogDate(blog.date)}
+                        </span>
+                    {/if}
                 </div>
                 <Card.Title class="text-xl font-bold tracking-tight"
                     >{blog.title}</Card.Title
