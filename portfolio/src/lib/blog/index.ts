@@ -1,4 +1,5 @@
 import type { Component } from 'svelte';
+import { languageTag } from '$lib/paraglide/runtime';
 
 export interface BlogMeta {
     title: string;
@@ -64,6 +65,27 @@ function extractHeaders(body: string): BlogHeader[] {
     return headers;
 }
 
+export function parseBlogDate(dateStr: string | undefined): number {
+    if (!dateStr) return 0;
+    const parsed = Date.parse(dateStr);
+    return isNaN(parsed) ? 0 : parsed;
+}
+
+export function formatBlogDate(dateStr: string | undefined): string {
+    if (!dateStr) return '';
+    const parsed = Date.parse(dateStr);
+    if (isNaN(parsed)) return dateStr;
+    
+    const date = new Date(parsed);
+    const lang = languageTag();
+    
+    return new Intl.DateTimeFormat(lang, {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    }).format(date);
+}
+
 export async function getBlogsByLang(lang: string): Promise<Blog[]> {
     const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
 
@@ -87,7 +109,9 @@ export async function getBlogsByLang(lang: string): Promise<Blog[]> {
         })
     );
 
-    return blogs.filter((blog): blog is Blog => blog !== null);
+    return blogs
+        .filter((blog): blog is Blog => blog !== null)
+        .sort((a, b) => parseBlogDate(b.date) - parseBlogDate(a.date));
 }
 
 export async function getBlogBySlug(lang: string, slug: string): Promise<Blog | null> {

@@ -8,6 +8,7 @@
         LeftSidebarContent,
         ContentPagination,
     } from "$lib/components/content-pages";
+    import { formatBlogDate } from "$lib/blog";
 
     let { data } = $props();
 
@@ -44,7 +45,7 @@
             </LeftSidebarContent>
             {#if data.blog.date}
                 <LeftSidebarContent label={m.blog_sidebar_published()}>
-                    {data.blog.date}
+                    {formatBlogDate(data.blog.date)}
                 </LeftSidebarContent>
             {/if}
         </LeftSidebar>

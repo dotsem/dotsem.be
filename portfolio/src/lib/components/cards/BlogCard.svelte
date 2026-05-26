@@ -4,7 +4,7 @@
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
     import { onMount } from "svelte";
-    import type { BlogMeta } from "$lib/blog";
+    import { type BlogMeta, formatBlogDate } from "$lib/blog";
     import { labelScroller } from "$lib/utils";
     import CardImage from "$lib/components/cards/CardImage.svelte";
 
@@ -82,7 +82,7 @@
                     {#if blog.date}
                         <span class="text-white/40 text-xs shrink-0 font-medium font-sans">
                             <i class="fa-regular fa-calendar mr-1"></i>
-                            {blog.date}
+                            {formatBlogDate(blog.date)}
                         </span>
                     {/if}
                 </div>
