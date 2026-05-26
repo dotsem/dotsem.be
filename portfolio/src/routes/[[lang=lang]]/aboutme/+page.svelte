@@ -15,6 +15,7 @@
     import ContactForm from "$lib/components/ContactForm.svelte";
     import { i18n } from "$lib/i18n";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+    import RandomDelayGroup from "$lib/components/RandomDelayGroup.svelte";
 
     let age = calculateAge("2006-08-31");
 
@@ -62,23 +63,27 @@
 </section>
 <AboutMe showTitle={false} class="py-8!" />
 
-<section class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
-    <InfoCard title={m.profile_experience_title()} delay={300} icon="fa-flask">
-        <ul class="list-disc list-inside space-y-1">
-            {#each experienceContent as item}
-                <li>{item}</li>
-            {/each}
-        </ul>
-    </InfoCard>
+<RandomDelayGroup count={2}>
+    {#snippet children(delays)}
+        <section class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <InfoCard title={m.profile_experience_title()} delay={delays[0]} icon="fa-flask">
+                <ul class="list-disc list-inside space-y-1">
+                    {#each experienceContent as item}
+                        <li>{item}</li>
+                    {/each}
+                </ul>
+            </InfoCard>
 
-    <InfoCard title={m.profile_achievements_title()} delay={400} icon="fa-star">
-        <ul class="list-disc list-inside space-y-1">
-            {#each achievementsContent as item}
-                <li>{item}</li>
-            {/each}
-        </ul>
-    </InfoCard>
-</section>
+            <InfoCard title={m.profile_achievements_title()} delay={delays[1]} icon="fa-star">
+                <ul class="list-disc list-inside space-y-1">
+                    {#each achievementsContent as item}
+                        <li>{item}</li>
+                    {/each}
+                </ul>
+            </InfoCard>
+        </section>
+    {/snippet}
+</RandomDelayGroup>
 
 <TextWithImageContainer class="bg-card slanted my-4">
     {#snippet image()}
@@ -132,29 +137,34 @@
     <p class="py-2"></p>
 </TextWithImageContainer> -->
 
-<section
-    class="container gap-8 pt-8 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
->
-    <InfoCard title={m.profile_tools_prog()} icon="fa-code">
-        <p class="pb-2">{m.profile_tools_prog_description()}</p>
-        <div class="flex flex-wrap gap-1">
-            <PLprog />
-        </div>
-    </InfoCard>
-    <InfoCard title={m.profile_tools_tools()} icon="fa-screwdriver-wrench">
-        <p class="pb-2">{m.profile_tools_tools_description()}</p>
-        <div class="flex flex-wrap gap-1">
-            <PLtools />
-        </div>
-    </InfoCard>
-    <InfoCard
-        class="col-span-1 md:col-span-2 lg:col-span-1"
-        title={m.profile_tools_soft_skills()}
-        icon="fa-comments"
-    >
-        <p class="pb-2">{m.profile_tools_soft_skills_description()}</p>
-    </InfoCard>
-</section>
+<RandomDelayGroup count={3}>
+    {#snippet children(delays)}
+        <section
+            class="container gap-8 pt-8 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        >
+            <InfoCard title={m.profile_tools_prog()} delay={delays[0]} icon="fa-code">
+                <p class="pb-2">{m.profile_tools_prog_description()}</p>
+                <div class="flex flex-wrap gap-1">
+                    <PLprog />
+                </div>
+            </InfoCard>
+            <InfoCard title={m.profile_tools_tools()} delay={delays[1]} icon="fa-screwdriver-wrench">
+                <p class="pb-2">{m.profile_tools_tools_description()}</p>
+                <div class="flex flex-wrap gap-1">
+                    <PLtools />
+                </div>
+            </InfoCard>
+            <InfoCard
+                class="col-span-1 md:col-span-2 lg:col-span-1"
+                title={m.profile_tools_soft_skills()}
+                delay={delays[2]}
+                icon="fa-comments"
+            >
+                <p class="pb-2">{m.profile_tools_soft_skills_description()}</p>
+            </InfoCard>
+        </section>
+    {/snippet}
+</RandomDelayGroup>
 
 <TextWithImageContainer class="bg-card slanted" layout="image-first">
     {#snippet image()}

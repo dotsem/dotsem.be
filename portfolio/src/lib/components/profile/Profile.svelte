@@ -6,6 +6,9 @@
     import PLprog from "./PLprog.svelte";
     import PLtools from "./PLtools.svelte";
     import "./profile.css";
+    import RandomDelayGroup from "$lib/components/RandomDelayGroup.svelte";
+    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+
     let experienceContent = $derived([
         m.profile_experience_content_0(),
         m.profile_experience_content_1(),
@@ -44,117 +47,171 @@
     });
 </script>
 
-<div
-    id="profile"
-    class="container mx-auto py-8 grid min-h-[70vh]
-    w-full grid-cols-1 gap-4 text-foreground text-left
-    min-[650px]:max-[1024px]:gap-y-0
-    max-[650px]:block max-[650px]:p-[10px]
-    min-[650px]:max-[1024px]:min-h-screen
-    min-[650px]:max-[1024px]:grid-cols-2
-    min-[650px]:max-[1024px]:grid-rows-[2fr_1fr]
-    lg:grid-cols-3"
->
-    <!-- Column 1 -->
-    <div
-        class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert"
-    >
+<RandomDelayGroup count={7}>
+    {#snippet children(delays)}
         <div
-            class="glossy-tile flex flex-col items-center justify-center m-0! col-span-4 row-span-1"
+            id="profile"
+            class="container mx-auto py-8 grid min-h-[70vh]
+            w-full grid-cols-1 gap-4 text-foreground text-left
+            min-[650px]:max-[1024px]:gap-y-0
+            max-[650px]:block max-[650px]:p-2.5
+            min-[650px]:max-[1024px]:min-h-screen
+            min-[650px]:max-[1024px]:grid-cols-2
+            min-[650px]:max-[1024px]:grid-rows-[2fr_1fr]
+            lg:grid-cols-3"
         >
-            <h2>Sem Van Broekhoven</h2>
-        </div>
-        <div
-            id="profile-who"
-            class="glossy-tile flex flex-col items-center justify-center m-0! col-span-4 row-span-3"
-        >
+            <!-- Column 1 -->
             <div
-                id="profile-who-image-container"
-                bind:this={observerElement}
-                class="ob-infinite unselectable flex w-full flex-col items-center justify-center"
-                class:ob-show={isVisible}
+                class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert"
             >
-                <img src={MeImage} alt="thats me!" class="flex w-[60%] my-0!" />
-                <div></div>
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[0]}
+                    class="col-span-4 row-span-1 m-0! h-full w-full flex flex-col"
+                >
+                    <div
+                        class="glossy-tile flex flex-col items-center justify-center m-0! w-full h-full"
+                    >
+                        <h2>Sem Van Broekhoven</h2>
+                    </div>
+                </EntryAnimation>
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[1]}
+                    class="col-span-4 row-span-3 m-0! h-full w-full flex flex-col"
+                >
+                    <div
+                        id="profile-who"
+                        class="glossy-tile flex flex-col items-center justify-center m-0! w-full h-full"
+                    >
+                        <div
+                            id="profile-who-image-container"
+                            bind:this={observerElement}
+                            class="ob-infinite unselectable flex w-full flex-col items-center justify-center"
+                            class:ob-show={isVisible}
+                        >
+                            <img
+                                src={MeImage}
+                                alt="thats me!"
+                                class="flex w-[60%] my-0!"
+                            />
+                            <div></div>
+                        </div>
+                    </div>
+                </EntryAnimation>
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[2]}
+                    class="col-span-4 row-span-2 m-0! h-full w-full flex flex-col"
+                >
+                    <div
+                        id="profile-about"
+                        class="glossy-tile flex flex-col items-center justify-center m-0! p-4 w-full h-full"
+                    >
+                        <p>
+                            {m.profile_description({ age })}
+                        </p>
+                    </div>
+                </EntryAnimation>
+            </div>
+
+            <!-- Column 2 -->
+            <div
+                class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert"
+            >
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[3]}
+                    class="col-span-4 row-span-5 m-0! h-full w-full flex flex-col"
+                >
+                    <div
+                        id="profile-skills"
+                        class="glossy-tile m-0! p-4 w-full h-full"
+                    >
+                        <h3 class="mx-4 mb-1 mt-4">
+                            <i class="fa-solid fa-code"></i>
+                            {m.profile_tools_prog()}
+                        </h3>
+                        <div class="flex flex-wrap gap-[0.35rem]">
+                            <PLprog />
+                        </div>
+
+                        <h3 class="mx-4 mb-1 mt-4">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            {m.profile_tools_tools()}
+                        </h3>
+                        <div class="flex flex-wrap gap-[0.35rem]">
+                            <PLtools />
+                        </div>
+                    </div>
+                </EntryAnimation>
+
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[4]}
+                    class="col-span-4 row-span-1 m-0! h-full w-full flex flex-col"
+                >
+                    <SocialLinks
+                        class="glossy-tile m-0! flex items-center justify-evenly w-full h-full"
+                    />
+                </EntryAnimation>
+            </div>
+
+            <!-- Column 3 -->
+            <div
+                class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert min-[650px]:max-[1024px]:col-span-2 min-[650px]:max-[1024px]:grid-cols-4 min-[650px]:max-[1024px]:grid-rows-3"
+            >
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[5]}
+                    class="col-span-4 row-span-4 m-0! h-full w-full flex flex-col min-[650px]:max-[1024px]:col-span-2"
+                >
+                    <div
+                        id="profile-experience"
+                        class="glossy-tile m-0! p-4 w-full h-full"
+                    >
+                        <h3 class="mx-4 mb-1 mt-4">
+                            {m.profile_experience_title()}
+                        </h3>
+                        <ul>
+                            {#each experienceContent as content}
+                                <li>{content}</li>
+                            {/each}
+                        </ul>
+                        <h3 class="mx-4 mb-1 mt-4">
+                            {m.profile_achievements_title()}
+                        </h3>
+                        <ul>
+                            {#each achievementsContent as content}
+                                <li>{content}</li>
+                            {/each}
+                        </ul>
+                    </div>
+                </EntryAnimation>
+                <EntryAnimation
+                    type="scale"
+                    delay={delays[6]}
+                    class="col-span-4 row-span-3 m-0! h-full w-full flex flex-col min-[650px]:max-[1024px]:col-span-2"
+                >
+                    <div
+                        id="profile-education"
+                        class="glossy-tile m-0! p-4 w-full h-full"
+                    >
+                        <h3 class="mx-4 mb-1 mt-4">{m.profile_hs_title()}</h3>
+                        <ul>
+                            {#each hsContent as content}
+                                <li>{content}</li>
+                            {/each}
+                        </ul>
+                        <h3 class="mx-4 mb-1 mt-4">{m.profile_uni_title()}</h3>
+                        <ul>
+                            {#each uniContent as content}
+                                <li>{content}</li>
+                            {/each}
+                        </ul>
+                    </div>
+                </EntryAnimation>
             </div>
         </div>
-        <div
-            id="profile-about"
-            class="glossy-tile flex flex-col items-center justify-center m-0! col-span-4 row-span-2 p-4"
-        >
-            <p>
-                {m.profile_description({ age })}
-            </p>
-        </div>
-    </div>
-
-    <!-- Column 2 -->
-    <div
-        class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert"
-    >
-        <div
-            id="profile-skills"
-            class="glossy-tile m-0! col-span-4 row-span-5 p-4"
-        >
-            <h3 class="mx-4 mb-1 mt-4">
-                <i class="fa-solid fa-code"></i>
-                {m.profile_tools_prog()}
-            </h3>
-            <div class="flex flex-wrap gap-[0.35rem]">
-                <PLprog />
-            </div>
-
-            <h3 class="mx-4 mb-1 mt-4">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                {m.profile_tools_tools()}
-            </h3>
-            <div class="flex flex-wrap gap-[0.35rem]">
-                <PLtools />
-            </div>
-        </div>
-
-        <SocialLinks
-            class="glossy-tile m-0! flex items-center justify-evenly col-span-4 row-span-1"
-        />
-    </div>
-
-    <!-- Column 3 -->
-    <div
-        class="profile-column grid max-w-none grid-cols-4 grid-rows-6 gap-4 py-2 dark:-invert min-[650px]:max-[1024px]:col-span-2 min-[650px]:max-[1024px]:grid-cols-4 min-[650px]:max-[1024px]:grid-rows-3"
-    >
-        <div
-            id="profile-experience"
-            class="glossy-tile m-0! col-span-4 row-span-4 p-4 min-[650px]:max-[1024px]:col-span-2"
-        >
-            <h3 class="mx-4 mb-1 mt-4">{m.profile_experience_title()}</h3>
-            <ul>
-                {#each experienceContent as content}
-                    <li>{content}</li>
-                {/each}
-            </ul>
-            <h3 class="mx-4 mb-1 mt-4">{m.profile_achievements_title()}</h3>
-            <ul>
-                {#each achievementsContent as content}
-                    <li>{content}</li>
-                {/each}
-            </ul>
-        </div>
-        <div
-            id="profile-education"
-            class="glossy-tile m-0! col-span-4 row-span-3 p-4 min-[650px]:max-[1024px]:col-span-2"
-        >
-            <h3 class="mx-4 mb-1 mt-4">{m.profile_hs_title()}</h3>
-            <ul>
-                {#each hsContent as content}
-                    <li>{content}</li>
-                {/each}
-            </ul>
-            <h3 class="mx-4 mb-1 mt-4">{m.profile_uni_title()}</h3>
-            <ul>
-                {#each uniContent as content}
-                    <li>{content}</li>
-                {/each}
-            </ul>
-        </div>
-    </div>
-</div>
+    {/snippet}
+</RandomDelayGroup>

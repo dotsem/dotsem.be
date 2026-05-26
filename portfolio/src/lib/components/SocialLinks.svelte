@@ -1,6 +1,12 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
-    let { gap = "16px", class: className, ...restProps } = $props();
+    interface Props {
+        gap?: string;
+        class?: string;
+        [key: string]: any;
+    }
+
+    let { gap = "16px", class: className = "", ...restProps }: Props = $props();
 </script>
 
 <div

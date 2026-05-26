@@ -80,9 +80,7 @@
     <Hero />
     <section class="">
         <ImageDivider imageUrl="" class="slanted">
-            <EntryAnimation type="scale" delay={100}>
-                <Profile />
-            </EntryAnimation>
+            <Profile />
         </ImageDivider>
     </section>
 

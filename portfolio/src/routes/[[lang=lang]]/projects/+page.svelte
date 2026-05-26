@@ -1,12 +1,12 @@
 <script lang="ts">
     import ProjectCard from "$lib/components/cards/ProjectCard.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+    import RandomDelayGroup from "$lib/components/RandomDelayGroup.svelte";
     import * as m from "$lib/paraglide/messages";
     import { onMount } from "svelte";
 
     let { data } = $props();
 
-    let delays = $state<number[]>([]);
     let scrolled = $state(false);
     let hasMoreContent = $state(false);
 
@@ -19,13 +19,6 @@
     );
 
     onMount(() => {
-        const arr = Array.from({ length: projects.length }, (_, i) => i * 100);
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        delays = arr;
-
         const checkScrollable = () => {
             hasMoreContent =
                 document.documentElement.scrollHeight > window.innerHeight + 80;
@@ -63,13 +56,18 @@
 <div class="container mx-auto py-10 px-4 relative">
     <h1 class="text-5xl font-bold mb-4 text-center">{m.projects_title()}</h1>
     <p class="text-xl m-0 text-center">{m.projects_description()}</p>
-    <div class="flex flex-wrap gap-2 justify-center mt-10">
-        {#each projects as project, index}
-            <EntryAnimation type="scale" delay={delays[index] ?? index * 100}>
-                <ProjectCard {project} />
-            </EntryAnimation>
-        {/each}
-    </div>
+    
+    <RandomDelayGroup count={projects.length}>
+        {#snippet children(delays)}
+            <div class="flex flex-wrap gap-2 justify-center mt-10">
+                {#each projects as project, index}
+                    <EntryAnimation type="scale" delay={delays[index] ?? index * 100}>
+                        <ProjectCard {project} />
+                    </EntryAnimation>
+                {/each}
+            </div>
+        {/snippet}
+    </RandomDelayGroup>
 
     <!-- Scroll Indicator badge -->
     {#if hasMoreContent && !scrolled}

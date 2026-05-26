@@ -3,6 +3,7 @@
     import * as m from "$lib/paraglide/messages.js";
     import { calculateAge } from "$lib/utils";
     import InfoCard from "./InfoCard.svelte";
+    import RandomDelayGroup from "./RandomDelayGroup.svelte";
 
     let { showTitle = true, ...restProps } = $props();
 
@@ -39,16 +40,20 @@
             </h2>
         {/if}
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {#each sections as section, index}
-                <InfoCard
-                    title={section.title}
-                    icon={section.icon}
-                    class="last:md:col-span-2 last:lg:col-span-1"
-                    delay={index * 100}>{section.content}</InfoCard
-                >
-            {/each}
-        </div>
+        <RandomDelayGroup count={sections.length}>
+            {#snippet children(delays)}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {#each sections as section, index}
+                        <InfoCard
+                            title={section.title}
+                            icon={section.icon}
+                            class="last:md:col-span-2 last:lg:col-span-1"
+                            delay={delays[index] ?? index * 100}>{section.content}</InfoCard
+                        >
+                    {/each}
+                </div>
+            {/snippet}
+        </RandomDelayGroup>
     </div>
 </section>
 
