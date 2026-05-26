@@ -24,13 +24,11 @@
     }: Props = $props();
 </script>
 
-<!-- Main Layout Content with Sidebars -->
+<!-- main layout content with sidebars -->
 <div id="content" class="w-full py-16 px-4 md:px-8 bg-[#070709]">
-    <div
-        class="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] gap-12 container mx-auto"
-    >
-        <!-- Left Sidebar: Project/Post Meta Details -->
-        <aside class="hidden lg:block">
+    <div class="flex flex-col lg:flex-row gap-12 container mx-auto">
+        <!-- left sidebar: project/post meta details -->
+        <aside class="hidden lg:block w-65 shrink-0">
             <div class="sticky top-28 flex flex-col gap-8">
                 {#if leftSidebar}
                     {@render leftSidebar()}
@@ -38,8 +36,8 @@
             </div>
         </aside>
 
-        <!-- Center: Article Content -->
-        <main class="w-full min-w-0">
+        <!-- center: article content -->
+        <main class="w-full min-w-0 flex-1">
             <article class="prose dark:prose-invert lg:prose-xl mx-auto">
                 {#if hasContent}
                     {@render children()}
@@ -61,8 +59,8 @@
             </article>
         </main>
 
-        <!-- Right Sidebar: Table of Contents -->
-        <aside class="block">
+        <!-- right sidebar: table of contents -->
+        <aside class="w-full lg:w-65 lg:shrink-0 block">
             <div class="sticky top-28">
                 <TableOfContents {headers} />
             </div>

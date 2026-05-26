@@ -54,25 +54,25 @@
 <div
     class="relative flex flex-col gap-3 p-5 rounded-2xl bg-white/3 backdrop-blur-md overflow-hidden"
 >
-    <!-- SVG Reading Progress Border -->
+    <!-- svg reading progress border -->
     <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" overflow="visible">
-        <!-- Static background border -->
+        <!-- static background border -->
         <rect
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
+            x="0.75"
+            y="0.75"
+            width="calc(100% - 1.5px)"
+            height="calc(100% - 1.5px)"
             rx="16"
             fill="none"
             stroke="rgba(255, 255, 255, 0.05)"
             stroke-width="1"
         />
-        <!-- Active reading progress border -->
+        <!-- active reading progress border -->
         <rect
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
+            x="0.75"
+            y="0.75"
+            width="calc(100% - 1.5px)"
+            height="calc(100% - 1.5px)"
             rx="16"
             fill="none"
             stroke="var(--primary)"
