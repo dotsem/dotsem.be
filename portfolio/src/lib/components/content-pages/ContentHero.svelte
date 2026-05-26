@@ -49,20 +49,7 @@
         >
             <!-- Left Details Column -->
             <div class="flex flex-col gap-6 text-left">
-                <div class="flex flex-wrap items-center gap-3">
-                    {#if status}
-                        <span
-                            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-sm"
-                        >
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
-                            ></span>
-                            {status}
-                        </span>
-                    {/if}
-                </div>
-
-                <ContentHeroTitle {title} {type} />
+                <ContentHeroTitle {title} {type} version={status} />
                 <ContentHeroLabels {labels} />
                 <p
                     class="text-lg md:text-xl text-foreground/80 font-normal leading-relaxed max-w-2xl"

@@ -22,6 +22,7 @@
     linkTitle={data.metadata.linkTitle}
     languages={data.metadata.languages}
     labels={data.metadata.labels}
+    status={data.metadata.status}
     type="project"
 />
 
@@ -60,8 +61,12 @@
                         <span class="text-white/60 text-xs">Repository</span>
                         {#if Array.isArray(data.metadata.repo)}
                             {#each data.metadata.repo as r}
-                                {@const repoPath = typeof r === 'string' ? r : r.path}
-                                {@const repoLabel = typeof r === 'string' ? r.split("/")[1] : r.name}
+                                {@const repoPath =
+                                    typeof r === "string" ? r : r.path}
+                                {@const repoLabel =
+                                    typeof r === "string"
+                                        ? r.split("/")[1]
+                                        : r.name}
                                 <a
                                     href="https://github.com/{repoPath}"
                                     target="_blank"
