@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Snippet, Component as SvelteComponent } from "svelte";
-    import TableOfContents from "$lib/components/TableOfContents.svelte";
+    import TableOfContents from "$lib/components/content-pages/layout/TableOfContents.svelte";
     import HardHat from "@lucide/svelte/icons/hard-hat";
 
     interface Props {

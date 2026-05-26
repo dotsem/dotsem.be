@@ -4,7 +4,7 @@ slug: the-year-of-the-linux-desktop
 image: /blog/the-year-of-the-linux-desktop/logo.webp
 description: 
 labels:
-
+date: 16 May 2026
 hidden: false
 ---
 

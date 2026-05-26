@@ -3,3 +3,7 @@ export { default as ContentHeroActionLinks } from "./hero/ActionLinks.svelte";
 export { default as ContentHeroTitle } from "./hero/Title.svelte";
 export { default as ContentHeroLabels } from "./hero/Labels.svelte";
 export { default as ContentHeroCTA } from "./hero/CTA.svelte";
+export { default as ContentLayout } from "./ContentLayout.svelte";
+export { default as LeftSidebar } from "./layout/LeftSidebar.svelte";
+export { default as LeftSidebarContent } from "./layout/LeftSidebarContent.svelte";
+export { default as TableOfContents } from "./layout/TableOfContents.svelte";

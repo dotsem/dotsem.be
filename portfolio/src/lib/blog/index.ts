@@ -7,6 +7,7 @@ export interface BlogMeta {
     image: string;
     labels?: string[] | string;
     hidden?: boolean;
+    date?: string;
 }
 
 export interface BlogHeader {

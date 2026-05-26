@@ -3,6 +3,8 @@
     import ContentHero from "$lib/components/content-pages/ContentHero.svelte";
     import ContentLayout from "$lib/components/content-pages/ContentLayout.svelte";
     import PenTool from "@lucide/svelte/icons/pen-tool";
+    import LeftSidebar from "$lib/components/content-pages/layout/LeftSidebar.svelte";
+    import LeftSidebarContent from "$lib/components/content-pages/layout/LeftSidebarContent.svelte";
 
     let { data } = $props();
 
@@ -30,29 +32,19 @@
     emptyIcon={PenTool}
 >
     {#snippet leftSidebar()}
-        <div
-            class="flex flex-col gap-3 p-5 rounded-2xl border border-white/5 bg-white/3 backdrop-blur-md"
-        >
-            <h3
-                class="text-xs font-bold text-white/40 uppercase tracking-widest"
-            >
-                Post Details
-            </h3>
-            <div class="flex flex-col gap-4 text-sm mt-2">
-                <div class="flex flex-col gap-1">
-                    <span class="text-white/60 text-xs">Author</span>
-                    <span class="text-white font-medium"
-                        >Sem Van Broekhoven</span
-                    >
-                </div>
-                <div class="flex flex-col gap-1">
-                    <span class="text-white/60 text-xs">Topic</span>
-                    <span class="text-white font-medium capitalize"
-                        >{data.blog.slug.replace(/-/g, " ")}</span
-                    >
-                </div>
-            </div>
-        </div>
+        <LeftSidebar title={"Blog Details"}>
+            <LeftSidebarContent label="Author">
+                Sem Van Broekhoven
+            </LeftSidebarContent>
+            <LeftSidebarContent label="Topic">
+                {data.blog.slug.replace(/-/g, " ")}
+            </LeftSidebarContent>
+            {#if data.blog.date}
+                <LeftSidebarContent label="Published">
+                    {data.blog.date}
+                </LeftSidebarContent>
+            {/if}
+        </LeftSidebar>
     {/snippet}
 
     <Component />
