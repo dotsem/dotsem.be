@@ -1,7 +1,7 @@
 ---
-title: StrateGO
-slug: stratego
-image: /projects/stratego/logo.webp
+title: GoStrategy
+slug: gostrategy
+image: /projects/gostrategy/logo.webp
 description: An open-source implementation of the classic GoStrategy board game. Built with a high-performance Go backend and a modern SvelteKit frontend, designed for both Human-vs-AI and AI-vs-AI experimentation. This project aims to provide a robust platform for playing GoStrategy while serving as a testing ground for various AI strategies. It features real-time gameplay via WebSockets, secure user authentication, and a declarative infrastructure managed via NixOS.
 languages:
   - svelte
@@ -12,21 +12,21 @@ languages:
   - docker
   - nixos
 highlighted: 1
-repo: Thomas-More-Digital-Innovation/2526-DI-004-Stratego
+repo: Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy
 ---
 
 <script>
     import AssetImage from "$lib/components/AssetImage.svelte";
 </script>
 
-## Stratego is a fun game, but what if we re-engineered it?
+## GoStrategy is a fun game, but what if we re-engineered it?
 
-I've got the challenge to create a stratego game, but re-engineering it. The goal was to create a framework to train an AI to play stratego. 
+I've got the challenge to create a gostrategy game, but re-engineering it. The goal was to create a framework to train an AI to play gostrategy. 
 This of course could be extended to a lot more functionalities, like playing against other people, gathering data, ...
 
 ## The game
 
-The game itself is based around the standard rules of stratego. 
+The game itself is based around the standard rules of gostrategy. 
 
 ## Backend
 
@@ -75,7 +75,7 @@ All images and characters are inspired by the Go mascot "gopher".
 
 ### Pieces
 
-The pieces are a more modern version of the classic stratego pieces.
+The pieces are a more modern version of the classic gostrategy pieces.
 They represent a more modern battle field with tanks, IT-specialists, mortars, ...<br>
 The essence of the pieces is kept: bombs are bombs and the most powerful piece is still the marshal.
 
@@ -110,8 +110,8 @@ I've created a powerful CD pipeline to automatically deploy the project on my se
 
 ## This project is open source!
 
-Feel free to check out the project on GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)
+Feel free to check out the project on GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
 
 ## Play it now!
 
-[https://stratego.dotsem.be](https://stratego.dotsem.be)
+[https://gostrategy.dotsem.be](https://gostrategy.dotsem.be)

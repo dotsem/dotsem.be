@@ -1,7 +1,7 @@
 ---
-title: StrateGO
-slug: stratego
-image: /projects/stratego/logo.webp
+title: GoStrategy
+slug: gostrategy
+image: /projects/gostrategy/logo.webp
 description: Een open-source implementatie van het klassieke GoStrategy bordspel. Gebouwd met een krachtige Go-backend en een moderne SvelteKit-frontend, ontworpen voor zowel Mens-tegen-AI als AI-tegen-AI experimenten. Dit project is bedoeld om een robuust platform te bieden voor het spelen van GoStrategy, terwijl het dient als testomgeving voor diverse AI-strategieën. Het beschikt over real-time gameplay via WebSockets, veilige gebruikersauthenticatie en een declaratieve infrastructuur beheerd via NixOS.
 languages:
   - svelte
@@ -12,21 +12,21 @@ languages:
   - docker
   - nixos
 highlighted: 1
-repo: Thomas-More-Digital-Innovation/2526-DI-004-Stratego
+repo: Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy
 ---
 
 <script>
     import AssetImage from "$lib/components/AssetImage.svelte";
 </script>
 
-## Stratego is een leuk spel, maar wat als we het opnieuw zouden ontwerpen?
+## GoStrategy is een leuk spel, maar wat als we het opnieuw zouden ontwerpen?
 
-Ik kreeg de uitdaging om een stratego spel te maken, maar dan herontworpen. Het doel was om een framework te creëren om een AI te trainen om stratego te spelen. 
+Ik kreeg de uitdaging om een gostrategy spel te maken, maar dan herontworpen. Het doel was om een framework te creëren om een AI te trainen om gostrategy te spelen. 
 Dit kan natuurlijk worden uitgebreid met veel meer functionaliteiten, zoals spelen tegen andere mensen, data verzamelen, ...
 
 ## Het spel
 
-Het spel zelf is gebaseerd op de standaardregels van stratego. 
+Het spel zelf is gebaseerd op de standaardregels van gostrategy. 
 
 ## Backend
 
@@ -75,7 +75,7 @@ Alle afbeeldingen en personages zijn geïnspireerd door de Go-mascotte "gopher".
 
 ### Stukken
 
-De stukken zijn een modernere versie van de klassieke stratego stukken.
+De stukken zijn een modernere versie van de klassieke gostrategy stukken.
 Ze vertegenwoordigen een moderner slagveld met tanks, IT-specialisten, mortieren, ...<br>
 De essentie van de stukken is behouden: bommen zijn bommen en het machtigste stuk is nog steeds de maarschalk.
 
@@ -110,9 +110,9 @@ Ik heb een krachtige CD-pipeline gemaakt om het project automatisch op mijn serv
 
 ## Dit project is open source!
 
-Bekijk het project gerust op GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-Stratego)
+Bekijk het project gerust op GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
 
 ## Speel het nu!
 
-[https://stratego.dotsem.be](https://stratego.dotsem.be)
+[https://gostrategy.dotsem.be](https://gostrategy.dotsem.be)
 
