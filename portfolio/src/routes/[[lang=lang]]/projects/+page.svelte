@@ -80,7 +80,7 @@
             <span
                 class="text-[10px] uppercase tracking-widest text-white/60 group-hover:text-white font-bold transition-colors"
             >
-                More Projects
+                {m.projects_more()}
             </span>
             <i
                 class="fa-solid fa-chevron-down text-secondary group-hover:text-primary text-xs animate-bounce transition-colors mt-0.5"

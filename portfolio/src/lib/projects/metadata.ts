@@ -1,3 +1,10 @@
+export enum ProjectStatus {
+    Finished = 'Finished',
+    InDevelopment = 'In Development',
+    InProgress = 'In Progress',
+    YouAreLookingAtIt = 'You are looking at it!'
+}
+
 export interface ProjectMetadata {
     slug: string;
     image: string;
@@ -8,7 +15,7 @@ export interface ProjectMetadata {
     link?: string;
     linkTitle?: string;
     labels?: string[];
-    status?: string;
+    status?: ProjectStatus | string;
 }
 
 export const projectsMetadata: ProjectMetadata[] = [
@@ -22,7 +29,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         link: "https://gostrategy.dotsem.be",
         linkTitle: "Play GoStrategy Live",
         labels: ["WebSockets", "Go Concurrency", "NixOS Deployment"],
-        status: "In Development"
+        status: ProjectStatus.InDevelopment
     },
     {
         slug: "carpe-diem",
@@ -32,7 +39,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         repo: "dotsem/Carpe-Diem",
         trackRelease: true,
         labels: ["Mobile App", "Local-First Planning", "Productivity"],
-        status: "Finished"
+        status: ProjectStatus.Finished
     },
     {
         slug: "smart-jack",
@@ -41,7 +48,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: 4,
         repo: "dotsem/lets-go-gambling",
         labels: ["IoT", "Game Development", "Hardware Integration"],
-        status: "Finished"
+        status: ProjectStatus.Finished
     },
     {
         slug: "philips-ble-robot",
@@ -50,7 +57,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: 2,
         repo: ["dotsem/Philips-BLE-Robot-App", "dotsem/Philips-BLE-Robot-Code"],
         labels: ["Internship Project", "Embedded Systems", "Mobile App", "Bluetooth"],
-        status: "Finished"
+        status: ProjectStatus.Finished
     },
     {
         slug: "portfolio",
@@ -59,7 +66,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: 5,
         repo: "dotsem/dotsem.be",
         labels: ["Svelte 5", "i18n Support"],
-        status: "You are looking at it!"
+        status: ProjectStatus.YouAreLookingAtIt
     },
     {
         slug: "skil2-chez-natalie",
@@ -67,7 +74,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         languages: ["php", "laravel", "tailwind", "sql", "uml"],
         highlighted: false,
         labels: ["Group Project", "TALL Stack", "B&B Webapp"],
-        status: "In Progress"
+        status: ProjectStatus.InProgress
     },
     {
         slug: "skil2-poutrel",
@@ -75,7 +82,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         languages: ["uml", "figma"],
         highlighted: false,
         labels: ["UML Diagrams", "Figma Design", "Implementation Plan"],
-        status: "Finished"
+        status: ProjectStatus.Finished
     },
     {
         slug: "waaiburg-app",
@@ -84,7 +91,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: false,
         repo: "Thomas-More-Digital-Innovation/2526-waai-001-waaiburg-mobile-app",
         labels: ["Mobile App Development", "Avatar Customization", "Caching & Performance"],
-        status: "Finished"
+        status: ProjectStatus.Finished
     },
     {
         slug: "weighted-decision-matrix",
@@ -96,6 +103,6 @@ export const projectsMetadata: ProjectMetadata[] = [
         link: "https://dotsem.github.io/Weighted-Decision-Matrix/",
         linkTitle: "Try it out yourself!",
         labels: ["Decision Making", "Local Storage", "Markdown Export"],
-        status: "Finished"
+        status: ProjectStatus.Finished
     }
 ];

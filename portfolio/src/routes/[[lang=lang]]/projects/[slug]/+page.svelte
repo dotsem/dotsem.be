@@ -8,6 +8,7 @@
         ContentPagination,
     } from "$lib/components/content-pages";
     import { Badge } from "$lib/components/ui/badge";
+    import { getLocalizedStatus } from "$lib/projects";
 
     let { data } = $props();
 
@@ -49,23 +50,23 @@
     emptyDescription={m.projects_empty_description()}
 >
     {#snippet leftSidebar()}
-        <LeftSidebar title="Project Info">
-            <LeftSidebarContent label="Project">
+        <LeftSidebar title={m.projects_sidebar_title()}>
+            <LeftSidebarContent label={m.projects_sidebar_project()}>
                 {data.metadata.title}
             </LeftSidebarContent>
             {#if data.metadata.status}
                 {#if data.metadata.status.toLocaleLowerCase().startsWith("v")}
-                    <LeftSidebarContent label="Version">
-                        {data.metadata.status}
+                    <LeftSidebarContent label={m.projects_sidebar_version()}>
+                        {getLocalizedStatus(data.metadata.status)}
                     </LeftSidebarContent>
                 {:else}
-                    <LeftSidebarContent label="Status">
-                        {data.metadata.status}
+                    <LeftSidebarContent label={m.projects_sidebar_status()}>
+                        {getLocalizedStatus(data.metadata.status)}
                     </LeftSidebarContent>
                 {/if}
             {/if}
             {#if data.metadata.repo}
-                <LeftSidebarContent label="Repository">
+                <LeftSidebarContent label={m.projects_sidebar_repository()}>
                     {#if Array.isArray(data.metadata.repo)}
                         {#each data.metadata.repo as r}
                             {@const repoPath =
@@ -85,7 +86,7 @@
                 </LeftSidebarContent>
             {/if}
             {#if data.metadata.labels}
-                <LeftSidebarContent label="Labels">
+                <LeftSidebarContent label={m.projects_sidebar_labels()}>
                     {#each data.metadata.labels as label}
                         <Badge
                             variant="secondary"

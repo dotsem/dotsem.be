@@ -1,6 +1,7 @@
 <script lang="ts">
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
+    import * as m from "$lib/paraglide/messages";
 
     interface PaginationItem {
         title: string;
@@ -17,10 +18,10 @@
 
     const basePath = $derived(type === "project" ? "/projects/" : "/blog/");
     const prevLabel = $derived(
-        type === "project" ? "Previous Project" : "Previous Post",
+        type === "project" ? m.pagination_prev_project() : m.pagination_prev_blog(),
     );
     const nextLabel = $derived(
-        type === "project" ? "Next Project" : "Next Post",
+        type === "project" ? m.pagination_next_project() : m.pagination_next_blog(),
     );
 </script>
 

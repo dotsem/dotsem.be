@@ -35,15 +35,15 @@
     emptyIcon={PenTool}
 >
     {#snippet leftSidebar()}
-        <LeftSidebar title={"Blog Details"}>
-            <LeftSidebarContent label="Author">
+        <LeftSidebar title={m.blog_sidebar_title()}>
+            <LeftSidebarContent label={m.blog_sidebar_author()}>
                 Sem Van Broekhoven
             </LeftSidebarContent>
-            <LeftSidebarContent label="Topic">
+            <LeftSidebarContent label={m.blog_sidebar_topic()}>
                 {data.blog.slug.replace(/-/g, " ")}
             </LeftSidebarContent>
             {#if data.blog.date}
-                <LeftSidebarContent label="Published">
+                <LeftSidebarContent label={m.blog_sidebar_published()}>
                     {data.blog.date}
                 </LeftSidebarContent>
             {/if}

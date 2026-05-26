@@ -1,5 +1,26 @@
 import type { Component } from 'svelte';
-import { projectsMetadata } from './metadata';
+import { projectsMetadata, ProjectStatus } from './metadata';
+import * as m from '$lib/paraglide/messages';
+
+export { ProjectStatus };
+
+export function getLocalizedStatus(status: ProjectStatus | string | undefined): string {
+    if (!status) return '';
+    if (status.toLocaleLowerCase().startsWith('v')) return status;
+    
+    switch (status) {
+        case ProjectStatus.Finished:
+            return m.status_finished();
+        case ProjectStatus.InDevelopment:
+            return m.status_in_development();
+        case ProjectStatus.InProgress:
+            return m.status_in_progress();
+        case ProjectStatus.YouAreLookingAtIt:
+            return m.status_you_are_looking_at_it();
+        default:
+            return status;
+    }
+}
 
 export interface ProjectMeta {
     title: string;
@@ -8,7 +29,7 @@ export interface ProjectMeta {
     image: string;
     languages: string[];
     highlighted?: boolean | number;
-    status?: string;
+    status?: ProjectStatus | string;
     repo?: string | string[] | { name: string; path: string }[];
     trackRelease?: boolean;
     hidden?: boolean;
