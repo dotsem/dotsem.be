@@ -60,3 +60,28 @@ export function labelScroller(
 	}
 	return resizeObserver;
 }
+
+export interface MarkdownHeader {
+	level: number;
+	text: string;
+	id: string;
+}
+
+// emulates github-slugger to match rehype-slug
+export function createSlug(text: string): string {
+	return text.toLowerCase().replace(/[^\w\s-]/g, "").trim().replace(/\s/g, "-");
+}
+
+export function extractHeaders(body: string): MarkdownHeader[] {
+	const headers: MarkdownHeader[] = [];
+	const regex = /^(#{2,5})\s+(.*)$/gm;
+	let match;
+	while ((match = regex.exec(body)) !== null) {
+		headers.push({
+			level: match[1].length,
+			text: match[2].trim(),
+			id: createSlug(match[2]),
+		});
+	}
+	return headers;
+}

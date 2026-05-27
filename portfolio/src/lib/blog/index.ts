@@ -1,5 +1,6 @@
 import type { Component } from 'svelte';
 import { languageTag } from '$lib/paraglide/runtime';
+import { extractHeaders, type MarkdownHeader } from '$lib/utils';
 
 export interface BlogMeta {
     title: string;
@@ -11,11 +12,7 @@ export interface BlogMeta {
     date?: string;
 }
 
-export interface BlogHeader {
-    level: number;
-    text: string;
-    id: string;
-}
+export type BlogHeader = MarkdownHeader;
 
 export interface Blog extends BlogMeta {
     component: Component;
@@ -46,24 +43,7 @@ function parseLabels(labels: string[] | string | undefined): string[] {
     return labels.split(',').map(l => l.trim()).filter(Boolean);
 }
 
-// Emulate github-slugger used by rehype-slug
-function createSlug(text: string): string {
-    return text.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
-}
 
-function extractHeaders(body: string): BlogHeader[] {
-    const headers: BlogHeader[] = [];
-    const regex = /^(#{2,5})\s+(.*)$/gm;
-    let match;
-    while ((match = regex.exec(body)) !== null) {
-        headers.push({
-            level: match[1].length,
-            text: match[2].trim(),
-            id: createSlug(match[2])
-        });
-    }
-    return headers;
-}
 
 export function parseBlogDate(dateStr: string | undefined): number {
     if (!dateStr) return 0;

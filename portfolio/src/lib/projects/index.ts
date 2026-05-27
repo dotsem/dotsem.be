@@ -1,6 +1,7 @@
 import type { Component } from 'svelte';
 import { projectsMetadata, ProjectStatus } from './metadata';
 import * as m from '$lib/paraglide/messages';
+import { extractHeaders, type MarkdownHeader } from '$lib/utils';
 
 export { ProjectStatus };
 
@@ -38,11 +39,7 @@ export interface ProjectMeta {
     labels?: string[];
 }
 
-export interface ProjectHeader {
-    level: number;
-    text: string;
-    id: string;
-}
+export type ProjectHeader = MarkdownHeader;
 
 export interface Project extends ProjectMeta {
     component: Component;
@@ -66,24 +63,7 @@ const images = import.meta.glob<string>('/src/lib/assets/projects/**/*.{png,jpg,
     import: 'default'
 });
 
-// Emulate github-slugger used by rehype-slug
-function createSlug(text: string): string {
-    return text.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
-}
 
-function extractHeaders(body: string): ProjectHeader[] {
-    const headers: ProjectHeader[] = [];
-    const regex = /^(#{2,5})\s+(.*)$/gm;
-    let match;
-    while ((match = regex.exec(body)) !== null) {
-        headers.push({
-            level: match[1].length,
-            text: match[2].trim(),
-            id: createSlug(match[2])
-        });
-    }
-    return headers;
-}
 
 export async function getProjectsByLang(lang: string): Promise<Project[]> {
     const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
