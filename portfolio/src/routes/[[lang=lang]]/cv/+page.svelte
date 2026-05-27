@@ -10,12 +10,28 @@
     import Experience from "$lib/components/cv/Experience.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
 
+    import { onMount } from "svelte";
+
     let pdfRef: HTMLElement | undefined = $state();
+
+    let emailHref = $state("");
+    let emailText = $state("");
+
+    onMount(() => {
+        const email = ["cv", "dotsem.be"].join("@");
+        emailHref = "mailto:" + email;
+        emailText = email;
+    });
 
     function handlePrint() {
         window.print();
     }
 </script>
+
+<svelte:head>
+    <title>{m.cv_title()} | Sem Van Broekhoven</title>
+    <meta name="description" content={m.cv_summary_content()} />
+</svelte:head>
 
 <div class="fixed bottom-0 right-0 print-hidden z-50">
     <EntryAnimation delay={300} type="slide-left">
@@ -199,11 +215,15 @@
                 <Section title={m.cv_contact_title()} class="mt-4">
                     <ul class="space-y-1">
                         <ListItem icon="fa-solid fa-envelope">
-                            <a
-                                href="mailto:cv@dotsem.be"
-                                class="text-neutral-900 no-underline hover:underline"
-                                >cv@dotsem.be</a
-                            >
+                            {#if emailHref}
+                                <a
+                                    href={emailHref}
+                                    class="text-neutral-900 no-underline hover:underline"
+                                    >{emailText}</a
+                                >
+                            {:else}
+                                <span class="text-neutral-900">cv [at] dotsem.be</span>
+                            {/if}
                         </ListItem>
                         <ListItem icon="fa-brands fa-linkedin">
                             <a

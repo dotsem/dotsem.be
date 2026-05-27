@@ -10,6 +10,7 @@
 
 <svelte:head>
     <title>{m.privacy_page_title()} | Sem Van Broekhoven</title>
+    <meta name="description" content={m.privacy_page_description()} />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-24 max-w-4xl">

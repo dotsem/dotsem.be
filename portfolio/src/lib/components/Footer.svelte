@@ -8,9 +8,15 @@
     } from "$lib/paraglide/messages";
     import { i18n } from "$lib/i18n";
     import SocialLinks from "./SocialLinks.svelte";
+    import { onMount } from "svelte";
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
     let isContactPage = $derived(page.url.pathname === "/contact");
+
+    let emailHref = $state("");
+    onMount(() => {
+        emailHref = "mailto:" + ["info", "dotsem.be"].join("@");
+    });
 </script>
 
 <footer>
@@ -29,7 +35,7 @@
             {#if !isContactPage}
                 <SocialLinks />
             {/if}
-            <Button variant="secondary" href="mailto:info@dotsem.be"
+            <Button variant="secondary" href={emailHref || null}
                 >{footer_email()}</Button
             >
         </div>
