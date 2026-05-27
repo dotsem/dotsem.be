@@ -13,6 +13,7 @@ export interface ProjectMetadata {
     repo?: string | string[] | { name: string; path: string }[];
     trackRelease?: boolean;
     link?: string;
+    linkOpenInNewTab?: boolean;
     linkTitle?: string;
     labels?: string[];
     status?: ProjectStatus | string;
@@ -28,6 +29,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         trackRelease: true,
         link: "https://gostrategy.dotsem.be",
         linkTitle: "Play GoStrategy Live",
+        linkOpenInNewTab: true,
         labels: ["WebSockets", "Go Concurrency", "NixOS Deployment"],
         status: ProjectStatus.InDevelopment
     },
@@ -37,6 +39,9 @@ export const projectsMetadata: ProjectMetadata[] = [
         languages: ["dart", "flutter"],
         highlighted: 2,
         repo: "dotsem/Carpe-Diem",
+        linkOpenInNewTab: false,
+        link: "#download-here",
+        linkTitle: "Download Carpe Diem",
         trackRelease: true,
         labels: ["Mobile App", "Local-First Planning", "Productivity"],
         status: ProjectStatus.Finished

@@ -5,6 +5,7 @@ description: A high-performance, local-first planning application built with Flu
 
 <script>
   import AssetImage from "$lib/components/AssetImage.svelte";
+  import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
 
   export let latestRelease = "";
 </script>
@@ -37,10 +38,14 @@ Carpe Diem is a privacy-focused, local-first planning application designed to el
 
 ## Downloads & Source
 
+<OsDownloadButton
+  windowsUrl="https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-windows.zip"
+  macosUrl="https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-macos.zip"
+  linuxUrl="https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz"
+  title="Carpe Diem"
+/>
+
 *   [Source Code & Releases](https://github.com/dotsem/Carpe-Diem)
-*   [Download for Linux](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz)
-*   [Download for macOS](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-macos.zip)
-*   [Download for Windows](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-windows.zip)
 
 ---
 

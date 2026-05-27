@@ -24,6 +24,7 @@
         repo,
         link,
         linkTitle,
+        linkOpenInNewTab,
         languages = [],
         labels = [],
         type,
@@ -71,7 +72,12 @@
                     </div>
                 {/if}
 
-                <ContentHeroActionLinks {repo} {link} {linkTitle} />
+                <ContentHeroActionLinks
+                    {repo}
+                    {link}
+                    {linkTitle}
+                    {linkOpenInNewTab}
+                />
             </div>
 
             <!-- right visual column (device frame/showcase card) -->

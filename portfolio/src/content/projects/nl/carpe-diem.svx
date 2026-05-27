@@ -5,6 +5,7 @@ description: Een krachtige, local-first planning-applicatie gebouwd met Flutter 
 
 <script>
   import AssetImage from "$lib/components/AssetImage.svelte";
+  import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
 
   export let latestRelease = "";
 </script>
@@ -37,10 +38,14 @@ Carpe Diem is een privacy-gerichte, local-first planning-app ontworpen om afleid
 
 ## Downloads & Broncode
 
+<OsDownloadButton
+  windowsUrl="https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-windows.zip"
+  macosUrl="https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-macos.zip"
+  linuxUrl="https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz"
+  title="Carpe Diem"
+/>
+
 *   [Broncode & Releases](https://github.com/dotsem/Carpe-Diem)
-*   [Download voor Linux](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-linux.tar.gz)
-*   [Download voor macOS](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-macos.zip)
-*   [Download voor Windows](https://github.com/dotsem/Carpe-Diem/releases/download/{latestRelease}/carpe_diem-windows.zip)
 
 ---
 

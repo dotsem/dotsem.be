@@ -187,5 +187,12 @@
     "status_finished": "Finished",
     "status_in_development": "In Development",
     "status_in_progress": "In Progress",
-    "status_you_are_looking_at_it": "You are looking at it!"
+    "status_you_are_looking_at_it": "You are looking at it!",
+    "download_for": "Download for {platform}",
+    "download_other_platforms": "Looking for another platform?",
+    "download_unsupported": "Download for your platform",
+    "download_windows": "Windows",
+    "download_macos": "macOS",
+    "download_linux": "Linux",
+    "download": "Download"
 }

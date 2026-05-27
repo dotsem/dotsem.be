@@ -1,5 +1,5 @@
 import type { Component } from 'svelte';
-import { projectsMetadata, ProjectStatus } from './metadata';
+import { projectsMetadata, ProjectStatus, type ProjectMetadata } from './metadata';
 import * as m from '$lib/paraglide/messages';
 import { extractHeaders, type MarkdownHeader } from '$lib/utils';
 
@@ -8,7 +8,7 @@ export { ProjectStatus };
 export function getLocalizedStatus(status: ProjectStatus | string | undefined): string {
     if (!status) return '';
     if (status.toLocaleLowerCase().startsWith('v')) return status;
-    
+
     switch (status) {
         case ProjectStatus.Finished:
             return m.status_finished();
@@ -23,20 +23,10 @@ export function getLocalizedStatus(status: ProjectStatus | string | undefined): 
     }
 }
 
-export interface ProjectMeta {
+export interface ProjectMeta extends ProjectMetadata {
     title: string;
-    slug: string;
     description: string;
-    image: string;
-    languages: string[];
-    highlighted?: boolean | number;
-    status?: ProjectStatus | string;
-    repo?: string | string[] | { name: string; path: string }[];
-    trackRelease?: boolean;
     hidden?: boolean;
-    link?: string;
-    linkTitle?: string;
-    labels?: string[];
 }
 
 export type ProjectHeader = MarkdownHeader;

@@ -1,10 +1,28 @@
 <script lang="ts">
+    import { Button } from "$lib/components/ui/button";
     import type { ProjectMetadata } from "$lib/projects/metadata";
 
-    type Props = Pick<ProjectMetadata, "repo" | "link" | "linkTitle">;
+    type Props = Pick<
+        ProjectMetadata,
+        "repo" | "link" | "linkTitle" | "linkOpenInNewTab"
+    >;
 
-    let { repo, link, linkTitle }: Props = $props();
+    let { repo, link, linkTitle, linkOpenInNewTab }: Props = $props();
+
+    const actionButtonStyle = "px-8 text-md py-2 h-full font-bold";
 </script>
+
+{#snippet GitHubButton(path: string, label: string)}
+    <Button
+        href="https://github.com/{path}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="{actionButtonStyle} bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20 transition-all duration-300 "
+    >
+        <i class="fa-brands fa-github text-lg"></i>
+        {label}
+    </Button>
+{/snippet}
 
 {#if repo || link}
     <div class="flex flex-wrap gap-4 pt-4">
@@ -25,27 +43,24 @@
                     </a>
                 {/each}
             {:else}
-                <a
-                    href="https://github.com/{repo}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20 transition-all duration-300 shadow-md no-underline"
-                >
-                    <i class="fa-brands fa-github text-lg"></i>
-                    View on GitHub
-                </a>
+                {@render GitHubButton(repo, repo.split("/")[1])}
             {/if}
         {/if}
         {#if link && linkTitle}
-            <a
+            <Button
                 href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold bg-primary hover:bg-primary/95 text-white transition-all duration-300 shadow-[0_4px_20px_rgba(239,68,68,0.3)] hover:shadow-[0_4px_25px_rgba(239,68,68,0.5)] no-underline hover:scale-[1.02]"
+                target={linkOpenInNewTab ? "_blank" : ""}
+                rel={linkOpenInNewTab ? "noopener noreferrer" : ""}
+                class={actionButtonStyle}
             >
                 {linkTitle}
-                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
-            </a>
+                {#if linkOpenInNewTab}
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"
+                    ></i>
+                {:else}
+                    <i class="fa-solid fa-link text-sm"></i>
+                {/if}
+            </Button>
         {/if}
     </div>
 {/if}

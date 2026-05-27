@@ -27,6 +27,7 @@
     repo={data.metadata.repo}
     link={data.metadata.link}
     linkTitle={data.metadata.linkTitle}
+    linkOpenInNewTab={data.metadata.linkOpenInNewTab}
     languages={data.metadata.languages}
     labels={data.metadata.labels}
     status={data.metadata.status}

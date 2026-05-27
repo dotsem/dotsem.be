@@ -174,5 +174,12 @@
     "status_finished": "Voltooid",
     "status_in_development": "In ontwikkeling",
     "status_in_progress": "In uitvoering",
-    "status_you_are_looking_at_it": "Je kijkt er naar!"
+    "status_you_are_looking_at_it": "Je kijkt er naar!",
+    "download_for": "Download voor {platform}",
+    "download_other_platforms": "Op zoek naar een ander platform?",
+    "download_unsupported": "Download voor jouw platform",
+    "download_windows": "Windows",
+    "download_macos": "macOS",
+    "download_linux": "Linux",
+    "download": "Downloaden"
 }
