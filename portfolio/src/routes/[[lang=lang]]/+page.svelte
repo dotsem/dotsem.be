@@ -96,7 +96,7 @@
                     </p>
                 </div>
                 <Button
-                    class="absolute right-2 top-0 z-10 rounded-full"
+                    class="absolute right-2 top-0 z-10"
                     href={i18n.resolveRoute("/projects", languageTag())}
                 >
                     {projects_view_all()}
