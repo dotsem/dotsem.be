@@ -1,105 +1,63 @@
 ---
 title: GoStrategy
-description: An open-source implementation of the classic GoStrategy board game. Built with a high-performance Go backend and a modern SvelteKit frontend, designed for both Human-vs-AI and AI-vs-AI experimentation. This project aims to provide a robust platform for playing GoStrategy while serving as a testing ground for various AI strategies. It features real-time gameplay via WebSockets, secure user authentication, and a declarative infrastructure managed via NixOS.
+description: An open-source re-engineering of the classic GoStrategy board game. Features a high-performance Go backend with WebSockets, a modern SvelteKit client, strategic heuristic AIs, and declarative NixOS deployment.
 ---
 
 <script>
     import AssetImage from "$lib/components/AssetImage.svelte";
 </script>
 
-## GoStrategy is a fun game, but what if we re-engineered it?
+## Re-Engineering a Classic
 
-I've got the challenge to create a gostrategy game, but re-engineering it. The goal was to create a framework to train an AI to play gostrategy. 
-This of course could be extended to a lot more functionalities, like playing against other people, gathering data, ...
+GoStrategy modernizes the traditional strategic board game into an extensible, high-performance platform. It is engineered not just for human-vs-human play, but as a robust testing ground for real-time game simulation and strategic AI model training.
 
-## The game
+---
 
-The game itself is based around the standard rules of gostrategy. 
+## Technical Architecture & Core Pillars
 
-## Backend
+### High-Performance Go Backend
+*   **Concurrency-First Game Engine**: Leverages Go's lightweight goroutines and channels to run isolated, concurrent game loops. Each active match is handled as a lightweight thread, communicating with client sessions via persistent WebSockets.
+*   **Decoupled CLI & Headless Training**: The backend can run fully headless to train and benchmark AI strategies at maximum CPU clock speeds, completely independent of the visual DOM.
+*   **Robust Quality Assurance**: Key board rules, piece movement algorithms, and battle resolution matrices are covered by a dense suite of Go unit tests to prevent regressions.
 
-The backend is built using Go and uses a PostgreSQL database to store the game state.
-The first version of the backend is plain Go with a REST API and Websockets.
-The backend can be used independently from the frontend to train and test AIs faster (very much faster).
+### SvelteKit Client-Side Frontend
+*   **Reactive & Atomic UI**: Built using SvelteKit and TypeScript. The UI bypasses heavy SSR in favor of a fast, client-side SPA architecture, styling exclusively with a custom-themed Tailwind system.
+*   **Interactive Custom Assets**: Designed playful, modern battlefield pieces inspired by the Go "Gopher" mascot. Standard ranks are updated to modern counterparts (e.g., tanks, IT specialists, and mortars) while keeping the original game mechanics intact.
 
-### Go
+### Strategic AI Integration
+*   **FAFO (Random Strategy)**: The baseline "F*ck Around and Find Out" AI. Executes random valid moves to serve as a pure stochastic control reference.
+*   **FATO (Heuristic Strategy)**: The "F*ck Around and Try Out" AI. Evaluates board layout metrics and applies static heuristics to prioritize offensive, defensive, and capture-oriented paths before falling back on random moves.
 
-I've had a little prior experience with Go, but not that much, mostly theoretical. 
-When I started the project, I didn't know much about frameworks in Go and choose to go vanilla.
+### Declarative Infrastructure & CD
+*   **Docker Containerization**: Multi-stage Docker builds isolate backend binaries and frontend assets, minimizing execution footprints and ensuring parity across development and production.
+*   **NixOS Hosting & CD**: Deployed deterministically on a self-hosted NixOS VM via a Proxmox virtualized environment. Git pushes trigger an automated CI/CD pipeline that builds, tests, and deploys the stack seamlessly.
 
-Go has is very well built for concurrency and I've used that to my advantage.
-The whole game is built around Go routines and channels. Each game is its own Go routine and communicates with the frontend using websockets.
-<br>
-The critical game components are fully cover by unit tests to ensure the integrity of the game.
+---
 
-### PostgreSQL
+## Links & Live Demo
 
-The database is built using PostgreSQL which is a modern option for relational databases.
+*   [Play GoStrategy Live](https://gostrategy.dotsem.be)
+*   [Open-Source GitHub Repository](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
 
-### AI training
+---
 
-AI training can be done via the CLI. Via this way we can easily see how AIs perform against each other.
-The training is very fast, one of the reasons we choose Go for the backend.
+## Asset & Character Designs
 
-## Frontend
+<AssetImage name="pieces-blue.png" alt="Blue Pieces" width={700} caption="The custom blue battlefield pieces, ranging from IT specialists to high-ranking Marshals." />
 
-The frontend is built using SvelteKit and TypeScript.
+<AssetImage name="pieces-red.png" alt="Red Pieces" width={700} caption="The corresponding custom red team pieces." />
 
-I choose not to include server functions and SSR (server side rendering) 
-because we already have a backend that can be used independently from the frontend. 
-It is also not necessary to render the website very fast.
+### Meet the AIs
 
-Svelte is an excellent framework that really shines above the rest.
-It uses tailwind mixed with CSS for styling.
-
-## Docker makes everything easier
-
-All services are containerized using docker. This makes it easy to deploy the project on different environments and test it beforehand.
-
-## Theme
-
-For the theme I tried to go for a modern look while still remaining playful.
-All images and characters are inspired by the Go mascot "gopher".
-
-### Pieces
-
-The pieces are a more modern version of the classic gostrategy pieces.
-They represent a more modern battle field with tanks, IT-specialists, mortars, ...<br>
-The essence of the pieces is kept: bombs are bombs and the most powerful piece is still the marshal.
-
-<AssetImage name="pieces-blue.png" alt="Pieces" width={700} />
-<AssetImage name="pieces-red.png" alt="Pieces" width={700} />
-
-## AIs
-
-For now we have 2 AIs. More AIs will be added in the future.
-
-### FAFO
-
-The f*ck around and find out AI. This AI is very simple: take a random piece and do a random valid move.
-Thats all. It doesn't know what is going on, it just lives on hopes and prayers.
-
-<AssetImage name="fafo.png" alt="FAFO AI" width={128} height={128} />
-
-### FATO
-
-The f*ck around and try out AI. This AI is a bit more advanced than FAFO.
-It tries to understand the board and make strategic moves but if it doesn't know what to do, it will just do a random move.
-
-<AssetImage name="fato.png" alt="FATO AI" width={128} height={128} />
-
-
-## Hosting @ home
-
-Hosting is setup and the game is playable online!
-I've set up a NixOS VM on a Proxmox server that hosts the project. It is made easy by the docker-compose that is already present.
-<br>
-I've created a powerful CD pipeline to automatically deploy the project on my server.
-
-## This project is open source!
-
-Feel free to check out the project on GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
-
-## Play it now!
-
-[https://gostrategy.dotsem.be](https://gostrategy.dotsem.be)
+<div class="flex gap-8 justify-center items-center not-prose text-white mt-8">
+    <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
+        <AssetImage name="fafo.png" alt="FAFO AI" width={96} height={96} />
+        <h4 class="font-bold text-lg mt-4 text-primary">FAFO</h4>
+        <p class="text-xs text-muted-foreground mt-2">Purely random gameplay for baseline metrics.</p>
+    </div>
+    <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
+        <AssetImage name="fato.png" alt="FATO AI" width={96} height={96} />
+        <h4 class="font-bold text-lg mt-4 text-primary">FATO</h4>
+        <p class="text-xs text-muted-foreground mt-2">Heuristics-driven strategic decision-making.</p>
+    </div>
+</div>

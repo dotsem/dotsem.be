@@ -1,106 +1,63 @@
 ---
 title: GoStrategy
-description: Een open-source implementatie van het klassieke GoStrategy bordspel. Gebouwd met een krachtige Go-backend en een moderne SvelteKit-frontend, ontworpen voor zowel Mens-tegen-AI als AI-tegen-AI experimenten. Dit project is bedoeld om een robuust platform te bieden voor het spelen van GoStrategy, terwijl het dient als testomgeving voor diverse AI-strategieën. Het beschikt over real-time gameplay via WebSockets, veilige gebruikersauthenticatie en een declaratieve infrastructuur beheerd via NixOS.
+description: Een open-source herontwerp van het klassieke GoStrategy bordspel. Bevat een krachtige Go-backend met WebSockets, een moderne SvelteKit-client, strategische heuristische AI's en declaratieve NixOS-deployment.
 ---
 
 <script>
     import AssetImage from "$lib/components/AssetImage.svelte";
 </script>
 
-## GoStrategy is een leuk spel, maar wat als we het opnieuw zouden ontwerpen?
+## Herontwerp van een Klassieker
 
-Ik kreeg de uitdaging om een gostrategy spel te maken, maar dan herontworpen. Het doel was om een framework te creëren om een AI te trainen om gostrategy te spelen. 
-Dit kan natuurlijk worden uitgebreid met veel meer functionaliteiten, zoals spelen tegen andere mensen, data verzamelen, ...
+GoStrategy moderniseert het traditionele strategische bordspel tot een uitbreidbaar, krachtig platform. Het is niet alleen ontworpen voor mens-tegen-mens-wedstrijden, maar dient ook als een robuuste testomgeving voor realtime gamesimulatie en het trainen van strategische AI-modellen.
 
-## Het spel
+---
 
-Het spel zelf is gebaseerd op de standaardregels van gostrategy. 
+## Technische Architectuur & Kernzuilen
 
-## Backend
+### High-Performance Go Backend
+*   **Concurrency-First Game Engine**: Maakt gebruik van Go's lichte goroutines en channels om geïsoleerde, concurrerende gameloops te draaien. Elke actieve wedstrijd wordt afgehandeld in een aparte thread en communiceert met clients via persistente WebSockets.
+*   **Ontkoppelde CLI & Headless Training**: De backend kan volledig headless worden uitgevoerd om AI-strategieën met maximale CPU-snelheid te trainen en te benchmarken, onafhankelijk van de visuele DOM.
+*   **Robuuste Kwaliteitsbewaking**: Kritieke spelregels, stukbewegingen en gevechtsresoluties zijn volledig gedekt door een dichte suite van Go unit-tests.
 
-De backend is gebouwd met Go en gebruikt een PostgreSQL database om de spelstatus op te slaan.
-De eerste versie van de backend is pure Go met een REST API en Websockets.
-De backend kan onafhankelijk van de frontend worden gebruikt om AI's sneller te trainen en te testen (veel sneller).
+### SvelteKit Frontend
+*   **Reactieve & Atomische UI**: Gebouwd met SvelteKit en TypeScript. De interface omzeilt zware SSR ten gunste van een snelle, client-side SPA-architectuur en is gestyled met een Tailwind-ontwerpsysteem.
+*   **Interactieve Custom Assets**: Ontwierp speelse, moderne speelstukken geïnspireerd door de Go "Gopher" mascotte. Klassieke rangen zijn gemoderniseerd (zoals tanks, IT-specialisten en mortieren) met behoud van de originele spelregels.
 
-### Go
+### Strategische AI-Integratie
+*   **FAFO (Willekeurige Strategie)**: De baseline "F*ck Around and Find Out" AI. Voert willekeurige geldige zetten uit om te dienen als pure stochastische controle.
+*   **FATO (Heuristische Strategie)**: De "F*ck Around and Try Out" AI. Analyseert het spelbord en past statische heuristieken toe om aanvallende, verdedigende en vangstgerichte paden te prioriteren.
 
-Ik had al een beetje ervaring met Go, maar niet veel, vooral theoretisch. 
-Toen ik aan het project begon, wist ik niet veel over frameworks in Go en koos ik voor vanilla.
+### Declaratieve Infrastructuur & CD
+*   **Docker Containerisatie**: Multi-stage Docker builds isoleren backend binaries en frontend assets, waardoor de footprint tot een minimum wordt beperkt en consistente werking in elke omgeving gegarandeerd is.
+*   **NixOS Hosting & CD**: Deploys worden deterministisch uitgevoerd op een zelf-gehoste NixOS VM binnen een Proxmox-omgeving. Git-pushes triggeren een automatische CI/CD-pipeline die de stack naadloos bouwt, test en live zet.
 
-Go is erg goed gebouwd voor gelijktijdigheid (concurrency) en dat heb ik in mijn voordeel gebruikt.
-Het hele spel is gebouwd rond Go routines en channels. Elk spel is een eigen Go routine en communiceert met de frontend via websockets.
-<br>
-De kritieke spelonderdelen zijn volledig gedekt door unit tests om de integriteit van het spel te waarborgen.
+---
 
-### PostgreSQL
+## Links & Live Demo
 
-De database is gebouwd met PostgreSQL, een moderne optie voor relationele databases.
+*   [Speel GoStrategy Live](https://gostrategy.dotsem.be)
+*   [Open-Source GitHub Repository](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
 
-### AI training
+---
 
-AI training kan via de CLI worden gedaan. Op deze manier kunnen we gemakkelijk zien hoe AI's tegenover elkaar presteren.
-Het trainen is erg snel, een van de redenen waarom we Go hebben gekozen voor de backend.
+## Grafische Ontwerpen & Stukken
 
-## Frontend
+<AssetImage name="pieces-blue.png" alt="Blauwe Stukken" width={700} caption="De op maat ontworpen blauwe legerstukken, variërend van IT-specialisten tot hooggeplaatste Maarschalken." />
 
-De frontend is gebouwd met SvelteKit en TypeScript.
+<AssetImage name="pieces-red.png" alt="Rode Stukken" width={700} caption="De bijbehorende rode legerstukken." />
 
-Ik heb ervoor gekozen om geen serverfuncties en SSR (server side rendering) op te nemen, 
-omdat we al een backend hebben die onafhankelijk van de frontend kan worden gebruikt. 
-Het is ook niet nodig om de website supersnel te renderen.
+### Maak kennis met de AI's
 
-Svelte is een uitstekend framework dat echt boven de rest uitsteekt.
-Het gebruikt tailwind gemixt met CSS voor styling.
-
-## Docker maakt alles makkelijker
-
-Alle diensten zijn gecontaineriseerd met Docker. Dit maakt het eenvoudig om het project in verschillende omgevingen te implementeren en vooraf te testen.
-
-## Thema
-
-Voor het thema heb ik geprobeerd een moderne look te creëren die toch speels blijft.
-Alle afbeeldingen en personages zijn geïnspireerd door de Go-mascotte "gopher".
-
-### Stukken
-
-De stukken zijn een modernere versie van de klassieke gostrategy stukken.
-Ze vertegenwoordigen een moderner slagveld met tanks, IT-specialisten, mortieren, ...<br>
-De essentie van de stukken is behouden: bommen zijn bommen en het machtigste stuk is nog steeds de maarschalk.
-
-<AssetImage name="pieces-blue.png" alt="Stukken" width={700} />
-<AssetImage name="pieces-red.png" alt="Stukken" width={700} />
-
-## AI's
-
-Voorlopig hebben we 2 AI's. In de toekomst zullen er meer AI's worden toegevoegd.
-
-### FAFO
-
-De f*ck around and find out AI. Deze AI is erg simpel: pak een willekeurig stuk en doe een willekeurige geldige zet.
-Dat is alles. Hij weet niet wat er aan de hand is, hij leeft alleen op hoop en gebed.
-
-<AssetImage name="fafo.png" alt="FAFO AI" width={128} height={128} />
-
-### FATO
-
-De f*ck around and try out AI. Deze AI is iets geavanceerder dan FAFO.
-Hij probeert het bord te begrijpen en strategische zetten te doen, maar als hij niet weet wat hij moet doen, doet hij gewoon een willekeurige zet.
-
-<AssetImage name="fato.png" alt="FATO AI" width={128} height={128} />
-
-
-## Hosting @ home
-
-De hosting is opgezet en het spel is online speelbaar!
-Ik heb een NixOS VM opgezet op een Proxmox server die het project host. Dit is eenvoudig gemaakt door de docker-compose die al aanwezig is.
-<br>
-Ik heb een krachtige CD-pipeline gemaakt om het project automatisch op mijn server te implementeren.
-
-## Dit project is open source!
-
-Bekijk het project gerust op GitHub: [https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
-
-## Speel het nu!
-
-[https://gostrategy.dotsem.be](https://gostrategy.dotsem.be)
-
+<div class="flex gap-8 justify-center items-center not-prose text-white mt-8">
+    <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
+        <AssetImage name="fafo.png" alt="FAFO AI" width={96} height={96} />
+        <h4 class="font-bold text-lg mt-4 text-primary">FAFO</h4>
+        <p class="text-xs text-muted-foreground mt-2">Puur willekeurige zetten voor nulmetingen en stresstests.</p>
+    </div>
+    <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
+        <AssetImage name="fato.png" alt="FATO AI" width={96} height={96} />
+        <h4 class="font-bold text-lg mt-4 text-primary">FATO</h4>
+        <p class="text-xs text-muted-foreground mt-2">Heuristisch gestuurde strategische besluitvorming.</p>
+    </div>
+</div>
