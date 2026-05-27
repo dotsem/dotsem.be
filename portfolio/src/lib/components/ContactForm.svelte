@@ -28,15 +28,16 @@
         const container = turnstileContainer;
         if (!container) return;
 
-        // Check if we already have a widget using untrack to avoid dependency
+        // check if we already have a widget using untrack to avoid dependency
         if (untrack(() => widgetId)) return;
 
         let retries = 0;
         const maxRetries = 50;
+        let timeoutId: number | undefined;
 
         const renderTurnstile = () => {
             if (window.turnstile) {
-                // Double check to prevent race conditions from async retries
+                // double check to prevent race conditions from async retries
                 if (untrack(() => widgetId)) return;
 
                 widgetId = window.turnstile.render(container, {
@@ -46,7 +47,7 @@
                 });
             } else if (retries < maxRetries) {
                 retries++;
-                setTimeout(renderTurnstile, 100);
+                timeoutId = setTimeout(renderTurnstile, 100) as any;
             } else {
                 console.warn(
                     "Cloudflare Turnstile failed to load after 5 seconds. Adblocker might be active.",
@@ -56,6 +57,7 @@
         renderTurnstile();
 
         return () => {
+            if (timeoutId) clearTimeout(timeoutId);
             const currentId = untrack(() => widgetId);
             if (currentId && window.turnstile) {
                 window.turnstile.remove(currentId);
@@ -147,7 +149,7 @@
             <!-- Vertical Divider -->
             <EntryAnimation type="scale" duration={2000}>
                 <div
-                    class="hidden md:block w-1 self-stretch bg-primary rounded-full min-h-[400px]"
+                    class="hidden md:block w-1 self-stretch bg-primary rounded-full min-h-100"
                 ></div>
                 <div
                     class="md:hidden h-1 w-80 mx-auto bg-primary rounded-full"

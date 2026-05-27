@@ -18,9 +18,11 @@ export function rateLimit(ip: string, limit: number, windowMs: number): {
 
     // evict oldest keys when capacity limit is breached under heavy load to prevent memory leaks
     if (cache.size > MAX_CACHE_SIZE) {
-        const keysToEvict = Array.from(cache.keys()).slice(0, 500);
-        for (const k of keysToEvict) {
-            cache.delete(k);
+        const iterator = cache.keys();
+        for (let i = 0; i < 500; i++) {
+            const next = iterator.next();
+            if (next.done) break;
+            cache.delete(next.value);
         }
     }
 

@@ -74,14 +74,16 @@
                                 typeof r === "string" ? r : r.path}
                             {@const repoLabel =
                                 typeof r === "string"
-                                    ? r.split("/")[1]
+                                    ? (r.includes("/") ? r.split("/")[1] : r)
                                     : r.name}
                             {@render RepoLink(repoPath, repoLabel)}
                         {/each}
                     {:else}
                         {@render RepoLink(
                             data.metadata.repo,
-                            data.metadata.repo.split("/")[1],
+                            data.metadata.repo.includes("/")
+                                ? data.metadata.repo.split("/")[1]
+                                : data.metadata.repo,
                         )}
                     {/if}
                 </LeftSidebarContent>

@@ -32,7 +32,9 @@
                 {#each repo as r}
                     {@const repoPath = typeof r === "string" ? r : r.path}
                     {@const repoLabel =
-                        typeof r === "string" ? r.split("/")[1] : r.name}
+                        typeof r === "string"
+                            ? (r.includes("/") ? r.split("/")[1] : r)
+                            : r.name}
                     {@render GitHubButton(repoPath, repoLabel)}
                 {/each}
             {:else}
