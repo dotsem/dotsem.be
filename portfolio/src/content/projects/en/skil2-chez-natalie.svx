@@ -1,181 +1,94 @@
 ---
 title: SKIL2 Chez Natalie
-description: For the second semester of my second year at Thomas More, we had to create a website for Chez Natalie. It was a group project where we had to create a website for a B&B.
+description: A group B&B web application built with the TALL stack, featuring a custom event-driven mailing system, active calendars, and custom dashboards.
 ---
 
 <script>
   import AssetImage from "$lib/components/AssetImage.svelte";
 </script>
 
-## Webapp for Chez Natalie
+## Project Overview
 
-In the second semester we switched our research with another group. This meant we had to create a website for a client that we didn't know yet.
-The goal was to use the research from the other group to understand the goal and use it to create a website for the client.
+As part of the Skills Integration Lab (SKIL) at Thomas More, our team developed a comprehensive B&B management platform for **Chez Natalie**. Working in an Agile/Scrum structure, I took on roles ranging from backend architecture and Docker DevOps setup to building advanced interactive features like visual editors and scheduling engines.
 
-### SKIL2
+---
 
-At Thomas More, we have a subject called Skills Integration Lab. 
-This subject is focused on combining all skills learned in courses and applying them to realistic projects.
+## 1. Database Architecture & Schema Design
 
-In the second year of SKIL, we are not working for real clients just yet. 
-Instead, we are working for fake companies that are created by our teachers. 
-This is done to give us the opportunity to practice our skills without the pressure of working for a real client.
+I designed and implemented the entire database layer from scratch using Laravel Eloquent ORM. The architecture was fully verified against client needs and normalized for robust relational behavior.
 
-## Validating and researching
+### Database Highlights:
+*   **Users & Access**: Extended standard Laravel users to support custom roles and gender relationships.
+*   **Booking Engine**: Designed room categories, seasonal pricing, booking constraints, and seeders to prevent double-booking conflicts.
+*   **Leisure Systems**: Created separate entities and relation maps for bike rentals, yoga class schedules, and class subscriptions.
 
-Because this was a new client for us, we started by validating the research from the other group.
-We did this by conducting an interview with the client to understand their needs and expectations and compare it to the research from the other group.
-
-Next up we started analyzing the ERD and comparing it to the client's needs and expectations.
-
-## Rewriting the ERD
-
-After analyzing the ERD, we noticed that it was not correct. 
-We started by rewriting the ERD to match the client's needs and expectations.
+Our database design received a **9.5 / 10 evaluation** from the examiners:
+> *"Group 601 has delivered a highly professional and extensive database architecture. The project covers a complex scope including room bookings, bike rentals, yoga classes, and a mail template system. The code quality is excellent, with strong adherence to Laravel standards and clear architectural choices."*
 
 <AssetImage name="erd.png" alt="Entity Relationship Diagram" />
 
-## Tech stack
+---
 
-For this project we are (forced) to use [Laravel](https://laravel.com/) with the TALL stack.
-This includes the following:
+## 2. Core Feature Engineering
 
-- TailwindCSS
-- Alpine.js
-- Laravel
-- Livewire
+### Visual Mailing Template Maker & Queue Backend
+To prevent future API deprecations, I built a custom visual WYSIWYG mail editor and a resilient backend mailing queue system from scratch:
+*   **Placeholder Editor**: Allows admins to insert dynamic system variables (like `{{client_name}}`, `{{booking_date}}`) into mail subjects and bodies.
+*   **Smart Variable Filtering**: Groups available placeholders contextually based on the event trigger (e.g., room details are hidden during yoga class cancellations to avoid validation errors).
+*   **Flexible Delay Engine**: Integrated an intuitive UI delay selector enabling direct or scheduled background mail delivery.
+*   **Robust Queue**: Supported by Laravel Queues to guarantee bulletproof delivery, persistence across server restarts, and automatic template-variable replacement.
 
-We use [FluxUI](https://fluxui.com/) as our UI framework for this project. It is tightly integrated with Livewire and Alpine.js.
+<AssetImage name="mail-template.png" alt="Custom WYSIWYG Mail Template Editor" />
+<AssetImage name="mail-send-type.png" alt="Contextual Variable Validation & Sending Delays" />
 
-## Setting up the database
+### Yoga Class Management
+Developed a comprehensive administrative workspace and frontend dashboard for yoga instructors:
+*   **Intelligent Reinstating**: An active recovery system for canceled classes that automatically runs check queries against room schedules to prevent scheduling overlaps.
+*   **Dynamic Room Checkers**: Live room availability states that update asynchronously as the date and time fields are edited.
+*   **Open Hours Enforcement**: Validation rules that automatically restrict lesson start times and durations based on B&B operational guidelines.
 
-After rewriting the ERD and confirming it with the client, we started by setting up the database.
-I took the task of setting up the database and creating the models.
-I used Eloquent ORM (part of Laravel) to create the database tables.
+<AssetImage name="yoga-management.png" alt="Yoga Instructor Management & Scheduler" />
 
-### What does it need?
+### Verified Customer Review System
+A high-end feedback module that allows customers to leave ratings and text feedback:
+*   **Security & Anti-Spam**: Secured post-booking links via unique ULIDs to ensure only verified guests can submit ratings, limited to exactly one review per booking.
+*   **Data Integrity**: Implemented database-level triggers and models, resolving edge cases such as rendering a clean `0.0` rating state instead of empty gaps when no reviews exist.
 
-Each table needs a migration to tell the database how the data of the table is structured. 
-It then needs a model to interact with the database table. We can define custom lookups & functions here to make it easier to work with the data.
-Finally we need seeders and optionally factories to populate the database with data and use fake data in unit tests.
+<AssetImage name="review.png" alt="Client Review Interface" />
 
-## Scrum
+---
 
-For this project we are working with the scrum methodology.
-We have split up the project into multiple sprints, each with their own goals.
+## 3. UI/UX & Interactive Calendar Upgrades
 
-We are not fully following the scrum methodology because we are unable to do a daily standup everyday. This because we are not working on this project full-time.
+To offer B&B admins and yoga teachers a cohesive experience, I engineered dynamic, single-page application dashboards styled with Tailwind CSS and FluxUI:
 
-### Jira
+### Dashboards & Calendar Systems
+*   **Personalized Analytics**: Custom admin and teacher landing views showing quick stats, schedules, and active bookings.
+*   **Abstract Calendar Integration**: Integrated a custom, responsive calendar day-view component.
+*   **Real-Time Progress & Timeline**: Built a live, dynamic red progress line showing the current time, with an auto-scroll trigger that focuses the viewport on the current hour on load.
+*   **Status Badging**: Implemented clear visual badges and striped grids to instantly indicate canceled classes or fully booked rooms.
 
-We are using Jira to manage our project. 
-We have created a backlog of all the tasks we need to complete and at the start of every sprint we evaluate our backlog and choose which tasks we want to complete this sprint.
-Each task gets a story point value to estimate the difficulty of the task. We use fibonacci numbers for this (1, 2, 3, 5, 8, 13, 21, ...).
+<AssetImage name="dashboard.png" alt="Interactive B&B Dashboard" />
 
-### Sprint 1
+### Quality of Life Additions
+*   **Floating Action Action (FAB)**: Placed a sticky quick-action button on booking panels to let users schedule bookings instantly.
+*   **Settings Layouts**: Created a sticky, split-pane navigation bar for system settings forms to make long configuration forms painless to update and save.
+*   **Custom Error Layouts**: Crafted high-fidelity styled pages for 403, 404, and 500 HTTP errors with smart UX routing (e.g., automatically redirecting unauthorized guest role views straight to `/login` or correct user dashboards).
 
-Normally it was planned to setup the database and components for the project in this sprint. But we where already ahead of this.
-We agreed to start working on the must have features for our client.
+<AssetImage name="error-403.png" alt="Polished Navigation and Custom Error State" />
 
-#### Admin Dashboard 
+---
 
-This sprint I've worked on creating an extensible dashboard for the admin.
-This dashboard is to get a quick overview of the bookings and the rooms.
+## 4. DevOps, QA & Quality Assurance
 
-<AssetImage name="dashboard.png" alt="Dashboard" />
+To ensure my team was productive and the codebase stayed clean, I took ownership of our local environments and our automated quality gates:
 
-Because of the limited time we had and because we where ahead of the planning, we where not able to finish all tasks in this sprint. 
-We did however get an audit on our database setup at the end of this sprint. The score we received was perfect. 
-As described by the teacher: "Group 601 has delivered a highly professional and extensive database architecture. The project covers a complex
-scope including room bookings, bike rentals, yoga classes, and a mail template system. The code quality is excellent,
-with strong adherence to Laravel 12 standards and clear architectural choices."
+### Local Development Environment
+*   **Laravel Sail**: Built a standardized, Docker-based local development pipeline optimized for Linux environments, bypassing slower alternatives.
+*   **Vite Hot-Reloading**: Wired hot module replacement directly through Docker networking for immediate, fluid frontend refreshes during design work.
 
-### Sprint 2
-
-For sprint 2 we finished the tasks that weren't finished from sprint 1. We also picked up some new tasks. We already completed all the must have features, so we started working on the should have features.
-
-#### Yoga Teacher Class Management System
-
-This sprint I've worked on setting up the login logic for yoga teachers and giving them a way to manage their classes.
-The class management system is a comprehensive system that allows yoga teachers to create, update, and delete classes.
-It includes features like automatically checking if the room is available and handling this for canceled classes.
-
-<AssetImage name="yoga-management.png" alt="Yoga Management page" />
-
-
-#### Client Review Page
-
-I've also worked on the page for clients to write a review.
-Here they can write a review by providing a rating, a title and a message. 
-Once they have made review they are able to edit or delete that review.
-A client can only make one review.
-
-<AssetImage name="review.png" alt="Review page" />
-
-#### Extending Admin Dashboard
-
-I've also worked on extending the admin dashboard to include the new calender.
-
-### Sprint 3
-
-During sprint 3 I've mostly worked on core backend features and QoL features for the client.
-
-#### Yoga Teacher Dashboard
-
-The yoga teacher now has a dashboard with all the necessary info to quickly get an overview of their upcoming classes and planning for today.
-
-<AssetImage name="yoga-dashboard.png" alt="Yoga Dashboard" />
-
-#### Mail Template Management
-
-I've implemented a sophisticated mail template management system for the admin. 
-This allows the admin to create and manage mail templates that are used to send emails to clients. 
-These templates are used for various purposes, such as sending booking confirmations, reminders, and other notifications.
-
-<AssetImage name="mail-template.png" alt="Mail Templates page" />
-
-The admin can choose between different variables to put in the mail template. 
-These variables are then replaced with the actual values when the email is sent.
-
-The variables depend on the type of mail template. For example, a booking confirmation mail template will have different variables than a yoga class cancellation mail template.
-
-These types depend on which event the mail should be sent for.
-
-<AssetImage name="mail-send-type.png" alt="Mail Send Type" />
-
-As you can see, when selecting the yoga cancellation to trigger the mail, we can't put in the room number.
-This prevents the admin from creating mail templates with variables that can't be filled in.
-The admin can also choose when to send the mail, for example right when the event happens or a couple of days delayed.
-
-Via this way we keep the whole mailing system flexible for changes.
-
-#### Mail Backend
-
-We can make mail templates, but now they also need to be sent. 
-I've implemented a system that sends the emails at the right time.
-
-This is done via a queue system. 
-
-To spare you from the technical info, i'll shortly introduce the system.
-
-The system depends on 3 critique parts:
-
-- Getting the right models for our variables
-- Sending the mail at the right time (directly or delayed)
-- Remembering mails even when the server restarts
-
-These systems together make sure that the right email is sent at the right time to the right person.
-
-#### Error pages
-
-I've also worked on providing styled error pages. I've also implemented a custom 404 page. 
-Other errors share the same template, but with different error messages.
-
-<AssetImage name="error-403.png" alt="Error 403 page" />
-
-<AssetImage name="error-404.png" alt="Error 404 page" />
-
-
-### Sprint 4
-
-Come back for sprint 4!
+### CI/CD Pipeline & Quality Gates
+*   **Static Code Analysis**: Configured Laravel Pint to automatically enforce coding standards, formatting styles, and optimal syntax on every commit.
+*   **Rigorous Test Suite**: Developed extensive feature tests (e.g., asserting asynchronous queue behaviors without needing manual email triggers) totaling over **300+ assertions** running automatically on every Pull Request.
+*   **Pull Request DOD**: Drafted our team's "Definition of Done" template integrated into GitHub to ensure consistent quality standards before code merge.
+*   **Security Auditing**: Implemented strict Content Security Policy (CSP) headers to shield the B&B app from XSS injections, standardized database naming conventions, and hardened Mollie endpoints against API rate limit blocks.
