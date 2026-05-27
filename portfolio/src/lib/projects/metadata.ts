@@ -107,6 +107,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         repo: "dotsem/Weighted-Decision-Matrix",
         link: "https://dotsem.github.io/Weighted-Decision-Matrix/",
         linkTitle: "Try it out yourself!",
+        linkOpenInNewTab: true,
         labels: ["Decision Making", "Local Storage", "Markdown Export"],
         status: ProjectStatus.Finished
     }

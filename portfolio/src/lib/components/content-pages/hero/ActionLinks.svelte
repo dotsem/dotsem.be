@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Button } from "$lib/components/ui/button";
     import type { ProjectMetadata } from "$lib/projects/metadata";
+    import * as m from "$lib/paraglide/messages";
 
     type Props = Pick<
         ProjectMetadata,
@@ -32,18 +33,10 @@
                     {@const repoPath = typeof r === "string" ? r : r.path}
                     {@const repoLabel =
                         typeof r === "string" ? r.split("/")[1] : r.name}
-                    <a
-                        href="https://github.com/{repoPath}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20 transition-all duration-300 shadow-md no-underline"
-                    >
-                        <i class="fa-brands fa-github text-lg"></i>
-                        {repoLabel}
-                    </a>
+                    {@render GitHubButton(repoPath, repoLabel)}
                 {/each}
             {:else}
-                {@render GitHubButton(repo, repo.split("/")[1])}
+                {@render GitHubButton(repo, m.view_on_github())}
             {/if}
         {/if}
         {#if link && linkTitle}

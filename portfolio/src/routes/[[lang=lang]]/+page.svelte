@@ -3,11 +3,7 @@
     import Profile from "$lib/components/profile/Profile.svelte";
     import BentoProjectCard from "$lib/components/cards/BentoProjectCard.svelte";
     import ContactForm from "$lib/components/ContactForm.svelte";
-    import {
-        projects_highlighted_title,
-        projects_highlighted_description,
-        projects_view_all,
-    } from "$lib/paraglide/messages.js";
+    import * as m from "$lib/paraglide/messages.js";
     import BgImage from "$lib/assets/bg-dark.webp";
     import ImageDivider from "$lib/components/ImageDivider.svelte";
     import AboutMe from "$lib/components/AboutMe.svelte";
@@ -89,17 +85,17 @@
             <div class="container relative mx-auto">
                 <div class="prose dark:prose-invert max-w-none mb-8">
                     <h2 class="text-4xl text-center">
-                        {projects_highlighted_title()}
+                        {m.projects_highlighted_title()}
                     </h2>
                     <p class="text-center">
-                        {projects_highlighted_description()}
+                        {m.projects_highlighted_description()}
                     </p>
                 </div>
                 <Button
                     class="absolute right-2 top-0 z-10"
                     href={i18n.resolveRoute("/projects", languageTag())}
                 >
-                    {projects_view_all()}
+                    {m.projects_view_all()}
                     <i class="fa-solid fa-arrow-right"></i>
                 </Button>
 

@@ -181,5 +181,6 @@
     "download_windows": "Windows",
     "download_macos": "macOS",
     "download_linux": "Linux",
-    "download": "Downloaden"
+    "download": "Downloaden",
+    "view_on_github": "Bekijk op GitHub"
 }
