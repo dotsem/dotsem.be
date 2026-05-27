@@ -34,6 +34,11 @@
     ]);
 </script>
 
+<svelte:head>
+    <title>{m.about_me_title()} | Sem Van Broekhoven</title>
+    <meta name="description" content={m.about_me_page_description()} />
+</svelte:head>
+
 <section
     class="flex flex-col md:flex-row container px-4 mx-auto items-center justify-center"
 >
@@ -175,7 +180,7 @@
                 <img
                     src={CVImage}
                     class=" hover:scale-105 transition-transform duration-200 ease-in-out"
-                    alt=""
+                    alt="Sem Van Broekhoven"
                 />
             </div>
         </EntryAnimation>

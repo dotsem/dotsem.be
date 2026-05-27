@@ -74,9 +74,11 @@ export function createSlug(text: string): string {
 
 export function extractHeaders(body: string): MarkdownHeader[] {
 	const headers: MarkdownHeader[] = [];
+	// strip fenced code blocks first to avoid comment collisions
+	const sanitizedBody = body.replace(/```[\s\S]*?```/g, "");
 	const regex = /^(#{2,5})\s+(.*)$/gm;
 	let match;
-	while ((match = regex.exec(body)) !== null) {
+	while ((match = regex.exec(sanitizedBody)) !== null) {
 		headers.push({
 			level: match[1].length,
 			text: match[2].trim(),

@@ -3,7 +3,7 @@ title: Philips BLE Robot
 description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun embedded bluetooth library gecombineerd met een custom mobiele app om een simpele robot via bluetooth aan te sturen.
 ---
 
-# Philips BLE Robot
+## Stageproject
 
 Tijdens mijn 2 weekse stage bij Philips Eindhoven, 
 werd ik ingezet om de [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main) 

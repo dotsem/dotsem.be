@@ -28,7 +28,6 @@ type MdsvexModule = {
 
 const modules = import.meta.glob<MdsvexModule>('/src/content/blog/*/*.svx');
 const rawModules = import.meta.glob<string>('/src/content/blog/*/*.svx', {
-    eager: true,
     query: '?raw',
     import: 'default'
 });
@@ -75,7 +74,8 @@ export async function getBlogsByLang(lang: string): Promise<Blog[]> {
             if (mod.metadata.hidden) return null;
             const imagePath = `/src/lib/assets${mod.metadata.image}`;
 
-            const rawContent = rawModules[path] || '';
+            const rawContentLoader = rawModules[path];
+            const rawContent = rawContentLoader ? await rawContentLoader() : '';
             const body = rawContent.split('---').slice(2).join('---').trim();
 
             return {
@@ -102,7 +102,8 @@ export async function getBlogBySlug(lang: string, slug: string): Promise<Blog | 
     const mod = await loader();
     if (mod.metadata.hidden) return null;
     const imagePath = `/src/lib/assets${mod.metadata.image}`;
-    const rawContent = rawModules[path] || '';
+    const rawContentLoader = rawModules[path];
+    const rawContent = rawContentLoader ? await rawContentLoader() : '';
     const body = rawContent.split('---').slice(2).join('---').trim();
 
     return {

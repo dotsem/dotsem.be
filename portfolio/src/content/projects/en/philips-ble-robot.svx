@@ -3,7 +3,7 @@ title: Philips BLE Robot
 description: A project made during my internship at Philips Eindhoven. Combining their embedded bluetooth library to control a simple robot via bluetooth via a custom mobile app.
 ---
 
-# Philips BLE Robot
+## Internship Project
 
 During my 2 week internship at Philips Eindhoven, 
 I was tasked use the [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main) 

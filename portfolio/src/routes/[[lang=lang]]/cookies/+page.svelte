@@ -5,6 +5,7 @@
 
 <svelte:head>
     <title>{m.cookie_page_title()} | Sem Van Broekhoven</title>
+    <meta name="description" content={m.cookie_page_description()} />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-12 max-w-4xl">
