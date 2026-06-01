@@ -16,7 +16,9 @@
     }: Props = $props();
 </script>
 
-<div class="relative flex items-center justify-center overflow-hidden shrink-0 {className}">
+<div
+    class="relative flex items-center justify-center overflow-hidden shrink-0 {className}"
+>
     <img
         {src}
         alt=""
@@ -31,7 +33,7 @@
     >
         <img
             {src}
-            alt={alt}
+            {alt}
             loading="lazy"
             class="unselectable h-full max-h-full w-full max-w-full rounded-lg object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:group-hover:scale-[1.12]"
         />
