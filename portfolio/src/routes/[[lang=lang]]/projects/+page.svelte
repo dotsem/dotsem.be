@@ -56,12 +56,15 @@
 <div class="container mx-auto py-10 px-4 relative">
     <h1 class="text-5xl font-bold mb-4 text-center">{m.projects_title()}</h1>
     <p class="text-xl m-0 text-center">{m.projects_description()}</p>
-    
+
     <RandomDelayGroup count={projects.length}>
         {#snippet children(delays)}
-            <div class="flex flex-wrap gap-2 justify-center mt-10">
+            <div class="flex flex-wrap gap-8 justify-center mt-10">
                 {#each projects as project, index}
-                    <EntryAnimation type="scale" delay={delays[index] ?? index * 100}>
+                    <EntryAnimation
+                        type="scale"
+                        delay={delays[index] ?? index * 100}
+                    >
                         <ProjectCard {project} />
                     </EntryAnimation>
                 {/each}
