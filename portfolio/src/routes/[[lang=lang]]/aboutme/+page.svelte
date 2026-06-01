@@ -70,7 +70,7 @@
 
 <RandomDelayGroup count={2}>
     {#snippet children(delays)}
-        <section class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
             <InfoCard title={m.profile_experience_title()} delay={delays[0]} icon="fa-flask">
                 <ul class="list-disc list-inside space-y-1">
                     {#each experienceContent as item}
@@ -145,7 +145,7 @@
 <RandomDelayGroup count={3}>
     {#snippet children(delays)}
         <section
-            class="container gap-8 pt-8 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            class="container gap-8 pt-8 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden"
         >
             <InfoCard title={m.profile_tools_prog()} delay={delays[0]} icon="fa-code">
                 <p class="pb-2">{m.profile_tools_prog_description()}</p>

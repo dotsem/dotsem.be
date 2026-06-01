@@ -19,7 +19,7 @@
     }: Props = $props();
 </script>
 
-<section class={className}>
+<section class="overflow-hidden {className}">
     <div
         class="flex {layout === 'content-first'
             ? 'flex-col-reverse md:flex-row'

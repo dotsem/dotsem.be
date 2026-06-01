@@ -112,11 +112,13 @@
         z-index: 45;
         padding: 96px 28px 40px 28px;
         transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        visibility: hidden;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #hamburger-menu.active-menu {
         transform: translateX(0);
+        visibility: visible;
     }
 
     /* Target the nav links inside the mobile menu specifically for a high-end feel */
