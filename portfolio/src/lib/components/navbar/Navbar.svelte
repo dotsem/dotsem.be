@@ -4,6 +4,7 @@
     import LangSwitch from "$lib/components/navbar/LangSwitch.svelte";
     import NavLinks from "$lib/components/navbar/NavLinks.svelte";
     import HamburgerButton from "./HamburgerButton.svelte";
+    import * as m from "$lib/paraglide/messages";
 
     let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || "en");
     let hamburgerMenuVisible = $state(false);
@@ -33,7 +34,9 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-    class="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300 z-40 {hamburgerMenuVisible ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}"
+    class="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300 z-40 {hamburgerMenuVisible
+        ? 'pointer-events-auto opacity-100'
+        : 'pointer-events-none opacity-0'}"
     onclick={() => (hamburgerMenuVisible = false)}
 ></div>
 
@@ -48,7 +51,7 @@
     >
         <span
             class="text-xs font-semibold uppercase tracking-widest text-white/30"
-            >Discover More</span
+            >{m.hero_button_main()}</span
         >
         <LangSwitch />
     </div>
@@ -98,7 +101,6 @@
         transform: translateY(-100%);
     }
 
-
     #hamburger-menu {
         height: 100vh;
         width: 320px;
@@ -113,7 +115,9 @@
         padding: 96px 28px 40px 28px;
         transform: translateX(100%);
         visibility: hidden;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        transition:
+            transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+            visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #hamburger-menu.active-menu {
