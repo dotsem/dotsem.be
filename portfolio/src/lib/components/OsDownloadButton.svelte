@@ -91,7 +91,7 @@
         class="relative overflow-hidden p-6 md:p-8 hover:border-white/20 transition-all duration-300 my-8 flex flex-col gap-6"
     >
         <div
-            class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
+            class="relative flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
             <div class="flex items-center gap-5">
                 <div
@@ -133,7 +133,7 @@
         <!-- Other Available Platforms -->
         {#if otherPlatforms.length > 0}
             <div
-                class="relative z-10 mt-6 pt-6 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                class="relative mt-6 pt-6 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
                 <span
                     class="text-xs font-semibold uppercase tracking-wider text-foreground/40"

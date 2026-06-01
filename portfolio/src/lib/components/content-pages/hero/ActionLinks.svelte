@@ -10,7 +10,8 @@
 
     let { repo, link, linkTitle, linkOpenInNewTab }: Props = $props();
 
-    const actionButtonStyle = "px-8 text-md py-2 h-full font-bold";
+    const actionButtonStyle =
+        "px-8 text-md py-2 h-full font-bold w-full md:max-w-fit";
 </script>
 
 {#snippet GitHubButton(path: string, label: string)}
@@ -33,7 +34,9 @@
                     {@const repoPath = typeof r === "string" ? r : r.path}
                     {@const repoLabel =
                         typeof r === "string"
-                            ? (r.includes("/") ? r.split("/")[1] : r)
+                            ? r.includes("/")
+                                ? r.split("/")[1]
+                                : r
                             : r.name}
                     {@render GitHubButton(repoPath, repoLabel)}
                 {/each}

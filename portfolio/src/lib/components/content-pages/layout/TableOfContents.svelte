@@ -125,7 +125,7 @@
 
         {#if isMobileMenuOpen}
             <div
-                class="absolute bottom-16 right-0 w-[85vw] sm:w-[350px] bg-background border border-border rounded-lg shadow-xl p-6 overflow-y-auto max-h-[60vh]"
+                class="absolute bottom-16 right-0 w-[85vw] sm:w-87.5 bg-background border border-border rounded-lg shadow-xl p-6 overflow-y-auto max-h-[60vh]"
             >
                 <h4 class="font-semibold mb-4 text-lg border-b pb-2">
                     {on_this_page()}

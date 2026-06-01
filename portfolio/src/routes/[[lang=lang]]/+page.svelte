@@ -72,6 +72,13 @@
 
 <svelte:window bind:innerWidth />
 
+{#snippet AllProjectButton(cls: string)}
+    <Button class={cls} href={i18n.resolveRoute("/projects", languageTag())}>
+        {m.projects_view_all()}
+        <i class="fa-solid fa-arrow-right"></i>
+    </Button>
+{/snippet}
+
 <main>
     <Hero />
     <section class="">
@@ -91,13 +98,9 @@
                         {m.projects_highlighted_description()}
                     </p>
                 </div>
-                <Button
-                    class="absolute right-2 top-0 z-10"
-                    href={i18n.resolveRoute("/projects", languageTag())}
-                >
-                    {m.projects_view_all()}
-                    <i class="fa-solid fa-arrow-right"></i>
-                </Button>
+                {@render AllProjectButton(
+                    "hidden lg:block lg:absolute right-2 top-0 z-10",
+                )}
 
                 <div
                     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px] md:auto-rows-[360px] lg:auto-rows-[340px] container mx-auto px-4"
@@ -131,6 +134,13 @@
                         </div>
                     {/each}
                 </div>
+                <EntryAnimation
+                    type="scale"
+                    delay={highlightedProjects.length * 100}
+                    class="w-full px-4 mt-6"
+                >
+                    {@render AllProjectButton("block lg:hidden ")}
+                </EntryAnimation>
             </div>
         </section>
 
