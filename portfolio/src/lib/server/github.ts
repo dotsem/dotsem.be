@@ -39,3 +39,34 @@ export async function getLatestRelease(repo: string): Promise<string | null> {
         return null;
     }
 }
+
+export async function enrichProjectWithVersion<T extends { repo?: any; trackRelease?: boolean; status?: string }>(project: T): Promise<T> {
+    if (!project.repo || !project.trackRelease) {
+        return project;
+    }
+
+    let repoToTrack: string | undefined;
+    if (Array.isArray(project.repo)) {
+        const first = project.repo[0];
+        if (typeof first === 'string') {
+            repoToTrack = first;
+        } else if (first && typeof first === 'object' && 'path' in first) {
+            repoToTrack = (first as { path: string }).path;
+        }
+    } else if (typeof project.repo === 'string') {
+        repoToTrack = project.repo;
+    }
+
+    if (repoToTrack) {
+        const version = await getLatestRelease(repoToTrack);
+        if (version) {
+            return { ...project, status: version };
+        }
+    }
+
+    return project;
+}
+
+export async function enrichProjectsWithVersions<T extends { repo?: any; trackRelease?: boolean; status?: string }>(projects: T[]): Promise<T[]> {
+    return Promise.all(projects.map(enrichProjectWithVersion));
+}

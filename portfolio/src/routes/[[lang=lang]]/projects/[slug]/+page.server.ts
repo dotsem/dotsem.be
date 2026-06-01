@@ -1,5 +1,5 @@
 import { getProjectBySlug } from '$lib/projects';
-import { getLatestRelease } from '$lib/server/github';
+import { enrichProjectWithVersion } from '$lib/server/github';
 import { languageTag } from '$lib/paraglide/runtime.js';
 import { error } from '@sveltejs/kit';
 
@@ -9,35 +9,16 @@ export const load = async ({ params, url, setHeaders }) => {
 
     if (!project) error(404, 'Project not found');
 
-    if (project.repo) {
-        if (project.trackRelease) {
-            let repoToTrack: string | undefined;
-            if (Array.isArray(project.repo)) {
-                const first = project.repo[0];
-                if (typeof first === 'string') {
-                    repoToTrack = first;
-                } else if (first && typeof first === 'object') {
-                    repoToTrack = first.path;
-                }
-            } else {
-                repoToTrack = project.repo as string;
-            }
+    const enrichedProject = await enrichProjectWithVersion(project);
 
-            if (repoToTrack) {
-                const latestVersion = await getLatestRelease(repoToTrack);
-                if (latestVersion) {
-                    project.status = latestVersion;
-                }
-            }
-        }
-
-        // Instruct CDN/Netlify to cache this page for 10 minutes
+    if (enrichedProject.repo) {
+        // cache on cdn but force browser to revalidate
         setHeaders({
-            'cache-control': 'public, max-age=600, s-maxage=600'
+            'cache-control': 'public, max-age=0, must-revalidate, s-maxage=600'
         });
     }
 
-    const { component, ...meta } = project;
+    const { component, ...meta } = enrichedProject;
     return {
         project: meta
     };
