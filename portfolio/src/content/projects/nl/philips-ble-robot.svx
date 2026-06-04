@@ -1,12 +1,55 @@
 ---
 title: Philips BLE Robot
-description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun embedded bluetooth library gecombineerd met een custom mobiele app om een simpele robot via bluetooth aan te sturen.
+description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun embedded bluetooth-bibliotheek gecombineerd met een custom mobiele app om een simpele robot via bluetooth aan te sturen.
 ---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
 
 ## Stageproject
 
-Tijdens mijn 2 weekse stage bij Philips Eindhoven, 
-werd ik ingezet om de [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main) 
-library, een heapless C++ library voor embedded systemen, te gebruiken om een simpele robot via Bluetooth aan te sturen. 
+Tijdens mijn 2-weekse stage bij Philips Eindhoven
+kreeg ik de taak om de [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main)
+bibliotheek, een heapless C++ bibliotheek voor embedded systemen, te gebruiken om een simpele robot via Bluetooth aan te sturen.
 
-De volgende stap was om een mobiele applicatie te maken om de robot aan te sturen. Ik heb hiervoor Flutter gebruikt. 
+### In het diepe gegooid met C++
+
+Ik had destijds niet erg veel ervaring met C++.
+En ik werd direct in hun codebase gegooid, die al was voorzien van aangepaste implementatiedetails om de bluetooth-stack van het apparaat te beheren.
+
+Gelukkig begeleidde mijn stagementor me en liet me de basis van hun stack zien.
+
+Ik leerde over verschillende concepten rondom codekwaliteit en unit-tests.
+Ze hanteerden een werkwijze waarbij ze eerst de unit-tests schreven en vervolgens de code om deze te laten slagen.
+
+Uiteindelijk hebben we de code geschreven waarmee de robot via bluetooth aangestuurd kon worden.
+De robot kon via bluetooth een reeks instructies ontvangen om de motoren te bedienen.
+
+<AssetImage
+    name="working.jpg"
+    alt="Tijdens het programeren van de robot"
+/>
+
+### Mobiele app
+
+De robot had natuurlijk een besturing nodig.
+Flutter was al eens kort aan me geïntroduceerd, maar ik had er nog geen ervaring mee.
+Ik moest Flutter dus ter plekke leren.
+
+Ik maakte een simpele mobiele applicatie die via bluetooth verbinding kon maken met de robot en de motoren kon aansturen.
+De app had schuifregelaars om de snelheid en richting van de motoren te regelen.
+
+### Blog
+
+Tijdens het project lanceerde ik ook mijn eerste website met een simpele blog om mijn reis en leermomenten vast te leggen.
+Hoewel deze vandaag de dag niet meer aan mijn standaarden voldoet, was het een geweldige leerervaring.
+
+### Resultaten
+
+Tijdens mijn 2-weekse stage bij Philips heb ik (met hulp van mijn mentor) een systeem ontwikkeld om een robot via bluetooth aan te sturen.
+Ik heb de app in Flutter volledig zelf geschreven, aangezien niemand op het kantoor hier ervaring mee had.
+
+Ik heb ook geleerd over het gebruik van scrum, Git, CI/CD-pipelines, unit-testing en hun specifieke softwareontwikkelingsprocessen.
+
+Ik ben erg dankbaar voor de kans en de begeleiding die ik in deze periode van mijn mentor heb gekregen.

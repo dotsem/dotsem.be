@@ -3,10 +3,53 @@ title: Philips BLE Robot
 description: A project made during my internship at Philips Eindhoven. Combining their embedded bluetooth library to control a simple robot via bluetooth via a custom mobile app.
 ---
 
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
 ## Internship Project
 
 During my 2 week internship at Philips Eindhoven, 
 I was tasked use the [embedded infralib](https://github.com/philips-software/amp-embedded-infra-lib/tree/main) 
 library, a heapless C++ library for embedded systems, to control a simple robot via Bluetooth. 
 
-The next step was to create a mobile application to control the robot. I used Flutter for this purpose. 
+### Dropped into C++
+
+I didn't have very much experience with C++ at the time. 
+And I was dropped into their codebase, already prepacked with custom implementation details to handle the bluetooth stack of the device.
+
+Luckily my internship mentor guided me and showed me the basics of their stack. 
+
+I learned about different code quality concepts & unit tests. 
+They used a way of working where they first wrote the unit tests & then wrote the code to make it pass.
+
+Eventually we created code for the robot to be controlled via bluetooth.
+It had a set of instructions that it could receive via bluetooth to control the motors.
+
+<AssetImage
+    name="working.jpg"
+    alt="While programming the robot"
+/>
+
+### Mobile App
+
+The robot needed controls of course. 
+Flutter was introduced earlier to me, but i didn't have any experience with it. 
+So i had to learn flutter on the fly.
+
+I created a simple mobile application that could connect to the robot via bluetooth and control the motors.
+It had sliders to control the speed and direction of the motors. 
+
+### Blog
+
+During the time of the project, I also launched my first website with a simple blog to document my journey and learnings. 
+Although not up to my standards today, it was a great learning experience.
+
+### Results
+
+During my 2 week internship at Philips, I created (with help of my mentor) a system to control a robot via bluetooth.
+I wrote the app in flutter all by myself as no one in the office had any experience with it. 
+
+I also learned about using scrum, Git, CI/CD pipelines, unit testing and their specific software development processes.
+
+I'm very thankful for the opportunity and guidance I received from my mentor during this period.

@@ -57,7 +57,7 @@ export const projectsMetadata: ProjectMetadata[] = [
     },
     {
         slug: "philips-ble-robot",
-        image: "/projects/Philips-BLE-robot/logo.webp",
+        image: "/projects/philips-ble-robot/logo.webp",
         languages: ["cpp", "dart", "flutter"],
         highlighted: 2,
         repo: ["dotsem/Philips-BLE-Robot-App", "dotsem/Philips-BLE-Robot-Code"],
