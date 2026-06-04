@@ -38,7 +38,7 @@
     class="blog-card-link group"
 >
     <Card.Root
-        class="blog-card overflow-hidden w-full min-h-64 flex flex-col md:flex-row relative m-0 pb-0"
+        class="blog-card overflow-hidden w-full min-h-64 gap-0 md:gap-4 flex flex-col md:flex-row relative m-0 pb-0"
     >
         {#if blog.image}
             <CardImage
@@ -60,7 +60,9 @@
             <Card.Header
                 class="pb-2 w-full overflow-hidden flex flex-col gap-2"
             >
-                <div class="flex items-center justify-between gap-4 w-full">
+                <div
+                    class="flex items-center justify-between gap-4 mt-2 w-full"
+                >
                     <div
                         class="label-scroll-container {needsScroll
                             ? 'mask-edges'
@@ -75,12 +77,19 @@
                             bind:this={contentContainer}
                         >
                             {#each blog.parsedLabels as label}
-                                <Badge variant="secondary">{label}</Badge>
+                                <Badge
+                                    variant="secondary"
+                                    class="bg-white/10 hover:bg-white/20 text-white border-none px-3.5 py-1 text-xs"
+                                >
+                                    {label}
+                                </Badge>
                             {/each}
                         </div>
                     </div>
                     {#if blog.date}
-                        <span class="text-white/40 text-xs shrink-0 font-medium font-sans">
+                        <span
+                            class="text-white/40 text-xs shrink-0 font-medium font-sans"
+                        >
                             <i class="fa-regular fa-calendar mr-1"></i>
                             {formatBlogDate(blog.date)}
                         </span>

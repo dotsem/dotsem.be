@@ -4,6 +4,8 @@ slug: the-year-of-the-linux-desktop
 image: /blog/the-year-of-the-linux-desktop/logo.webp
 description: 
 labels:
+    - linux
+    - niri
 date: 2026-05-16
 hidden: false
 ---
