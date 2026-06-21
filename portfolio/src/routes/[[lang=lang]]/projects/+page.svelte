@@ -4,18 +4,28 @@
     import RandomDelayGroup from "$lib/components/RandomDelayGroup.svelte";
     import * as m from "$lib/paraglide/messages";
     import { onMount } from "svelte";
+    import { languageTag } from "$lib/paraglide/runtime";
 
     let { data } = $props();
 
     let scrolled = $state(false);
     let hasMoreContent = $state(false);
 
+    let liveVersions = $state<Record<string, string>>({});
+
     const projects = $derived(
-        [...data.projects].sort((a, b) => {
-            if (a.highlighted && !b.highlighted) return -1;
-            if (!a.highlighted && b.highlighted) return 1;
-            return 0;
-        }),
+        data.projects
+            .map((p) => {
+                if (liveVersions[p.slug]) {
+                    return { ...p, status: liveVersions[p.slug] };
+                }
+                return p;
+            })
+            .sort((a, b) => {
+                if (a.highlighted && !b.highlighted) return -1;
+                if (!a.highlighted && b.highlighted) return 1;
+                return 0;
+            }),
     );
 
     onMount(() => {
@@ -31,11 +41,26 @@
         window.addEventListener("scroll", handleScroll, { passive: true });
         window.addEventListener("resize", checkScrollable);
 
-        // Run checks after Svelte completes rendering
+        // run checks after svelte completes rendering
         setTimeout(() => {
             checkScrollable();
             handleScroll();
         }, 100);
+
+        // fetch latest versions to override prerendered stale version data
+        fetch(`/api/projects/versions?lang=${languageTag()}`)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw new Error("Response not ok");
+            })
+            .then(({ versions }) => {
+                liveVersions = versions;
+            })
+            .catch((e) => {
+                console.error("Failed to fetch latest project versions:", e);
+            });
 
         return () => {
             window.removeEventListener("scroll", handleScroll);

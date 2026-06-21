@@ -12,6 +12,8 @@
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
 
+    import { onMount } from "svelte";
+
     let { data } = $props();
 
     let innerWidth = $state(0);
@@ -19,8 +21,28 @@
         innerWidth >= 1024 ? "full" : innerWidth >= 768 ? "wide" : "normal",
     );
 
+    let liveVersions = $state<Record<string, string>>({});
+
+    onMount(async () => {
+        try {
+            const res = await fetch(`/api/projects/versions?lang=${languageTag()}`);
+            if (res.ok) {
+                const { versions } = await res.json();
+                liveVersions = versions;
+            }
+        } catch (e) {
+            console.error("Failed to fetch latest project versions:", e);
+        }
+    });
+
     const highlightedProjects = $derived(
         data.projects
+            .map((p) => {
+                if (liveVersions[p.slug]) {
+                    return { ...p, status: liveVersions[p.slug] };
+                }
+                return p;
+            })
             .filter(
                 (p) => p.highlighted !== undefined && p.highlighted !== false,
             )
