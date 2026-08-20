@@ -22,7 +22,7 @@ export interface ProjectMetadata {
 export const projectsMetadata: ProjectMetadata[] = [
     {
         slug: "world-wide-bulb",
-        image: "/projects/world-wide-bulb/bulb_on.svg",
+        image: "/projects/world-wide-bulb/logo.webp",
         languages: ["go", "svelte", "ts", "tailwind", "sql", "docker"],
         highlighted: 4,
         repo: "dotsem/world-wide-bulb",
