@@ -1,0 +1,128 @@
+---
+title: 1 gloeilamp gedeeld over de hele wereld
+slug: one-lightbulb-shared-across-the-whole-globe
+image: /blog/one-lightbulb-shared-across-the-whole-globe/bulb_on.svg
+description: Een simpel projectje zo te zien? Ik maakte er een overkill applicatie op productie-niveau van om een echt wereldwijde gloeilamp te creëren.
+labels:
+    - Project
+    - Go
+    - SvelteKit
+
+date: 2026-08-20
+hidden: false
+---
+
+Hoe geweldig zou het zijn als we een wereldwijde gloeilamp hadden op deze aarde, zei echt helemaal niemand ooit.
+Nou ja, eigenlijk zei ik het (misschien niet hardop), en besloot ik het werkelijkheid te maken.
+
+En nu hebben we het: een echt wereldwijde gloeilamp. Je kunt de gloeilamp aandoen in Amsterdam terwijl iemand vanuit Hongkong hem in realtime ziet aangaan.
+
+Maar hoe heb ik het precies gemaakt, en ben ik te ver gegaan?
+
+## Idee
+
+Laten we beginnen bij de basis. Ik wilde een website hebben waar mensen een gloeilamp konden aandoen, waar ter wereld ze zich ook bevonden, en dat ze hem in realtime zagen aangaan.
+
+De implicaties: nul
+De mogelijkheden: eindeloos
+
+Het is het perfecte project om te oefenen met WebSockets, want WebSockets zijn goud waard.
+
+## Het Plan
+
+Het plan was simpel: 1 atomische gedeelde boolean op een backend. Iedereen op de website heeft een actieve WebSocket-verbinding en kan een verzoek doen om de gloeilamp te schakelen.
+Om te voorkomen dat bots er een epileptische aanvals-machine van maken, geldt er een cooldown van 10 seconden tussen het schakelen.
+
+Na het inschakelen van de gloeilamp kon je invullen waarom je de gloeilamp wilde inschakelen, of gewoon "hoi vanuit [plek op aarde]" schrijven denk ik.
+
+## Tech Stack
+
+Voor dit project wilde ik werken met mijn favoriete tech stack: Go & SvelteKit.
+Dit zijn de 2 technologieën waar ik de meeste ervaring mee heb en die ik heel graag gebruik.
+Ze zijn ook enorm krachtig en erg snel, en als je me kent, weet je dat ik van performance houd.
+
+Ik koos gin-gonic als mijn API-framework met gorilla/websocket, omdat ik hier in het verleden al erg prettig mee heb gewerkt.
+Voor de databaselaag probeerde ik iets nieuws. Voor een vorig project gebruikte ik GORM, maar dat is niet altijd de beste keuze.
+Dus besloot ik sqlc te gebruiken, waarbij je de ruwe SQL-queries & migraties schrijft en het deze compileert tot type-safe Go-code.
+Op deze manier weet je dat je Go-code geldig is, omdat deze gegenereerd wordt door een battle-tested SQL-naar-Go generator.
+
+Daarnaast besloot ik Lefthook te bekijken en mijn standaard linting- & formatting-tools te gebruiken naast GitHub Workflows (bedankt voor de gratis workflow runs, Microsoft).
+
+## Aan de Slag
+
+Ik begon met het aanmaken van de mapstructuur & benodigde bestanden.
+Vanaf het allereerste begin voegde ik al de GitHub Workflow-bestanden toe (gekopieerd van een ander project) en werkte ik aan het verbeteren ervan.
+
+Ik heb het programma in meerdere kleine stappen gebouwd (zeer agile).
+
+### 1. Database
+
+Ik ging aan de slag met sqlc en deed mijn uiterste best om iets te herinneren van mijn lessen Data Essentials.
+Omdat het een nieuwe tool voor me was, heb ik wat geëxperimenteerd met het toevoegen van migraties & het correct structureren van de codebase.
+
+Vervolgens voer je gewoon één commando uit en genereert sqlc alle Go-boilerplatecode voor je, als pure magie.
+En ik hoef er geen unit tests voor te schrijven, want het is door de compiler bewezen code ;)
+
+Het vereist ook geen C-compiler omdat het een pure Go SQLite-driver gebruikt. Perfect voor cross-compilatie!
+
+### 2. Basis API
+
+Het doel was om het eenvoudig te houden: nog geen geschiedenis, enkel de schakel- & WebSocket-implementatie.
+Ook nog geen frontend; alles werd gevalideerd via unit tests & integratietests. Op deze manier kon ik bijna garanderen dat het perfect zou werken.
+
+Een van de belangrijke onderdelen is dat mensen de lamp slechts één keer per 10 seconden kunnen omzetten. Dit heb ik geïmplementeerd door een combinatie van het IP-adres en een anonieme apparaat-ID in de cookies van de gebruiker bij te houden.
+Ik heb hashing gebruikt met een vleugje zout op het IP-adres + cookie om ervoor te zorgen dat er geen PII's worden opgeslagen in mijn applicatie.
+Dit betekent dat de lamp niet strikt op IP-adres geblokkeerd is, dus je kunt de lamp nog steeds omzetten als je broer hem al heeft omgezet.
+
+### 3. Frontend
+
+Tijd voor wat frontend-programmeren in mijn favoriete framework.
+Ik heb een SVG van een gloeilamp die ik op internet vond aangepast, zodat deze verschillende toestanden kon hebben en er vloeiend tussen kon animeren met CSS-transities en glow-filters.
+Ik heb hier een herbruikbare Svelte-component van gemaakt.
+
+### 4. Geschiedenis
+
+Vervolgens heb ik de geschiedenispagina toegevoegd. Ik wilde dat deze lazy loading (infinite scrolling) zou hebben, iets wat ik nog niet eerder had gemaakt.
+Het concept is erg simpel: je houdt een cursor/pointer bij van waar je bent en vraagt de volgende reeks schakelingen aan.
+
+### 5. Redenen
+
+Een leuke gimmick is dat mensen een reden konden achterlaten waarom ze de lamp omzetten. Dit brengt natuurlijk wel wat haken en ogen met zich mee.
+Mensen zouden kunnen schelden, proberen de database te hacken, of gewoon absolute onzin schrijven. Aan dat onzingedeelte kan ik weinig doen...
+De database is eenvoudig—wie schrijft er in 2026 nou nog SQL-injecties? Ik in ieder geval niet (hoop ik).
+Voor het schelden vond ik een kleine Go-bibliotheek (`go-away`) die scheldwoorden verwijdert en ook leetspeak zoals "sh!t" & "@$$hole" afvangt.
+
+### 6. Kijkerteller
+
+Een laatste gimmick waar ik eerder niet op had gerekend, was een realtime kijkerteller. Op deze manier kunnen bezoekers zien hoeveel mensen de gloeilamp daadwerkelijk live bekijken.
+Ik heb er ook een grappige roterende statustekst aan toegevoegd om het speels & interessant te houden.
+
+## Testen & Deployen
+
+Het testen gebeurt via GitHub Workflows (zoals eerder genoemd). Voor elke feature of fix maak ik een pull request aan om alle workflows te laten draaien en de codekwaliteit te controleren.
+Momenteel test ik in productie, maar in de toekomst voeg ik nog een staging-website toe.
+
+Het deployment-verhaal is erg elegant.
+Go heeft een ingebouwde functionaliteit (`embed.FS`) om statische bestanden in te bedden in de gecompileerde binary. Dit betekent dat ik de SvelteKit-frontend als statische bestanden kan builden en deze rechtstreeks in de Go-binary kan verpakken.
+Hierdoor hoef ik maar één enkele binary (of Docker-container) op mijn server te draaien.
+De container-build is super lichtgewicht—pure Go draaiend op een Alpine base image—en neemt in productie slechts 20MB in beslag!
+Je zou het niet eens merken als het op je server draait.
+
+## Zelf Hosten
+
+Ja, je bent helemaal vrij om het project zelf te hosten. Je kunt de volledige broncode vinden op GitHub.
+
+<script>
+  import ActionLinks from "$lib/components/content-pages/hero/ActionLinks.svelte";
+</script>
+
+<ActionLinks 
+  repo="https://github.com/dotsem/world-wide-bulb" 
+  link="https://wwb.dotsem.be"
+  linkTitle="Schakel 's werelds eerste globale lamp"
+  linkOpenInNewTab={true}
+/>
+
+## Toekomst
+
+Er zijn nog enkele leuke plannen voor het project, dus blijf zeker op de hoogte ;)
