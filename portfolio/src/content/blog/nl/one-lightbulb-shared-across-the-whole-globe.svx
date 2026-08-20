@@ -1,5 +1,5 @@
 ---
-title: 1 gloeilamp gedeeld over de hele wereld
+title: één lamp gedeeld over de hele wereld
 slug: one-lightbulb-shared-across-the-whole-globe
 image: /blog/one-lightbulb-shared-across-the-whole-globe/bulb_on.svg
 description: Een simpel projectje zo te zien? Ik maakte er een overkill applicatie op productie-niveau van om een echt wereldwijde gloeilamp te creëren.
