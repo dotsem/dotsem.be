@@ -21,6 +21,19 @@ export interface ProjectMetadata {
 
 export const projectsMetadata: ProjectMetadata[] = [
     {
+        slug: "world-wide-bulb",
+        image: "/projects/world-wide-bulb/bulb_on.svg",
+        languages: ["go", "svelte", "ts", "tailwind", "sql", "docker"],
+        highlighted: 4,
+        repo: "dotsem/world-wide-bulb",
+        trackRelease: true,
+        link: "https://wwb.dotsem.be",
+        linkTitle: "Flick the global lightbulb",
+        linkOpenInNewTab: true,
+        labels: ["WebSockets", "Go Concurrency", "Single Binary", "SQLite & sqlc"],
+        status: ProjectStatus.Finished
+    },
+    {
         slug: "gostrategy",
         image: "/projects/gostrategy/logo.webp",
         languages: ["svelte", "go", "ts", "tailwind", "postgresql", "docker", "nixos"],
@@ -50,7 +63,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         slug: "smart-jack",
         image: "/projects/smart-jack/logo.webp",
         languages: ["pygame", "raspberrypi", "py"],
-        highlighted: 4,
+        highlighted: false,
         repo: "dotsem/lets-go-gambling",
         labels: ["IoT", "Game Development", "Hardware Integration"],
         status: ProjectStatus.Finished

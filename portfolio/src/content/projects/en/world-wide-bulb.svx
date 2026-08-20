@@ -1,0 +1,42 @@
+---
+title: World Wide Bulb
+description: A real-time, globally synchronized digital light switch exposing a single shared state live across all connected visitors, packaged into a single lightweight Go binary.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## A Globally Synchronized Digital Light Switch
+
+World Wide Bulb (WWB) is a real-time web application where visitors from anywhere on Earth can toggle a shared digital lightbulb. Every light switch toggle is synchronized instantly across all connected clients via WebSockets.
+
+While simple in concept, the project is engineered as an overkill, production-grade application featuring rate limiting, privacy-preserving IP hashing, real-time viewer counting, infinite-scroll history tracking, and single-binary deployment.
+
+---
+
+## Technical Architecture & Key Features
+
+### High-Performance Go Backend
+* **Real-Time WebSockets**: Uses `gin-gonic` and `gorilla/websocket` to handle concurrent WebSocket connections with low latency.
+* **Type-Safe Database Layer with `sqlc`**: SQLite database interactions are powered by `sqlc`, generating type-safe, compiler-proven Go code directly from raw SQL queries & schema migrations.
+* **Pure Go Driver & Zero CGO**: Uses `modernc.org/sqlite` (a pure Go SQLite driver), removing the need for a C compiler and making cross-compilation effortless.
+* **Privacy & Anti-Abuse**: Prevents spamming via a 10-second per-user cooldown. User identifiers are computed using salted SHA-256 hashes of the IP address and session cookie, ensuring zero Personally Identifiable Information (PII) is stored.
+
+### Modern Svelte 5 Frontend
+* **Reactive Lightbulb Component**: Interactive vector SVG bulb with CSS glow filters and smooth state transition animations.
+* **Infinite-Scrolling History**: Lazy-loaded toggle log showcasing historical state changes, user timestamps, and toggle reasons.
+* **Real-Time Active Viewer Counter**: Live badge showing the exact number of active WebSocket connections watching the bulb simultaneously, accompanied by rotating status texts.
+* **Profanity Filtering**: Integrated `go-away` library to sanitize toggle reason submissions and strip offensive text/leetspeak.
+
+### Single Binary & Containerized Deployment
+* **Embedded Frontend (`embed.FS`)**: The static SvelteKit frontend is compiled and embedded directly into the Go binary. The entire application runs as a single executable (`bin/wwb`).
+* **Lightweight Docker Image**: Built via multi-stage Docker builds on top of `alpine`, resulting in a tiny 20MB container image with minimal resource overhead.
+* **Developer Workflow & Automation**: Uses [`just`](https://github.com/casey/just) for task orchestration, [`lefthook`](https://github.com/evilmartians/lefthook) for git pre-commit hooks, and GitHub Workflows for automated CI testing and single-binary release builds.
+
+---
+
+## Links & Live Demo
+
+* [Flick the Global Lightbulb Live](https://wwb.dotsem.be)
+* [Open-Source GitHub Repository](https://github.com/dotsem/world-wide-bulb)

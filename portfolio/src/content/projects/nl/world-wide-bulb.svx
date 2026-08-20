@@ -1,0 +1,42 @@
+---
+title: World Wide Bulb
+description: Een realtime, wereldwijd gesynchroniseerde digitale lichtschakelaar die één gedeelde status live toont aan alle bezoekers, verpakt in één enkele lichte Go-binary.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Een Wereldwijd Gesynchroniseerde Digitale Lichtschakelaar
+
+World Wide Bulb (WWB) is een realtime webapplicatie waarin bezoekers waar ook ter wereld een gedeelde digitale gloeilamp kunnen omzetten. Elke schakeling wordt via WebSockets direct gesynchroniseerd tussen alle verbonden bezoekers.
+
+Hoewel het concept eenvoudig is, is het project gebouwd als een overkill applicatie op productie-niveau met rate-limiting, privacy-waarborgende IP-hashing, realtime kijkertelling, een geschiedenis met infinite scrolling en deployment als één enkele binary.
+
+---
+
+## Technische Architectuur & Belangrijkste Features
+
+### High-Performance Go Backend
+* **Realtime WebSockets**: Gebruikt `gin-gonic` en `gorilla/websocket` om gelijktijdige WebSocket-verbindingen met lage latentie af te handelen.
+* **Type-Safe Databaselaag met `sqlc`**: SQLite-database-interacties worden aangedreven door `sqlc`, wat type-safe, door de compiler bewezen Go-code rechtstreeks genereert uit ruwe SQL-queries & schemamigraties.
+* **Pure Go Driver & Nul CGO**: Gebruikt `modernc.org/sqlite` (een pure Go SQLite-driver), waardoor een C-compiler niet nodig is en cross-compilatie moeiteloos verloopt.
+* **Privacy & Anti-Misbruik**: Voorkomt spammen via een cooldown van 10 seconden per gebruiker. Gebruikersidentificaties worden berekend via gezouten SHA-256 hashes van het IP-adres en de sessie-cookie, waardoor er geen persoonlijk identificeerbare informatie (PII) wordt opgeslagen.
+
+### Moderne Svelte 5 Frontend
+* **Reactieve Gloeilamp Component**: Interactieve vector SVG-lamp met CSS glow-filters en vloeiende overgangsanimaties.
+* **Geschiedenis met Infinite Scrolling**: Lazy-loaded geschiedenislogboek dat historische statuswijzigingen, tijdstempels en redenen van gebruikers toont.
+* **Realtime Actieve Kijkerteller**: Live badge die het exacte aantal actieve WebSocket-verbindingen toont die de lamp gelijktijdig bekijken, vergezeld van roterende statusteksten.
+* **Filteren van Scheldwoorden**: Geïntegreerde `go-away` bibliotheek om ingediende redenen te zuiveren en scheldwoorden/leetspeak te verwijderen.
+
+### Enkele Binary & Containerized Deployment
+* **Ingebedde Frontend (`embed.FS`)**: De statische SvelteKit-frontend wordt gecompileerd en rechtstreeks ingebed in de Go-binary. De gehele applicatie draait als één enkel uitvoerbaar bestand (`bin/wwb`).
+* **Lichtgewicht Docker Image**: Gebouwd via multi-stage Docker builds op basis van `alpine`, wat resulteert in een minuscule container-image van 20MB met minimale resource-overhead.
+* **Developer Workflow & Automatisering**: Gebruikt [`just`](https://github.com/casey/just) voor taakorkestratie, [`lefthook`](https://github.com/evilmartians/lefthook) voor git pre-commit hooks, en GitHub Workflows voor geautomatiseerde CI-tests en release builds van de enkele binary.
+
+---
+
+## Links & Live Demo
+
+* [Schakel 's Werelds Eerste Globale Lamp Live](https://wwb.dotsem.be)
+* [Open-Source GitHub Repository](https://github.com/dotsem/world-wide-bulb)
