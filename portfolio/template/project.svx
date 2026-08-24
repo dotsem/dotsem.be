@@ -1,9 +1,4 @@
 ---
 title: {title}
-slug: {slug}
-image: /projects/{slug}/logo.webp
 description: 
-languages:
-
-highlighted: false
 ---
