@@ -1,0 +1,183 @@
+---
+title: crdroid installeren op een samsung galaxy a51 2026
+slug: installing-crdroid-on-a-samsung-galaxy-a51-2026
+image: /blog/installing-crdroid-on-a-samsung-galaxy-a51-2026/logo.webp
+description: Een volledige handleiding voor het installeren van crDroid op de Samsung Galaxy A51 (SM-A515F), geef je oude trage Samsung-telefoon een nieuw leven of de-google hem.
+labels: ["android", "crdroid", "samsung", "linux", "e-cycling"]
+date: 2026-08-27
+hidden: false
+---
+
+## Waarschuwing
+
+- Data op de telefoon zal worden gewist tijdens dit proces! Zorg ervoor dat je een back-up maakt van je belangrijke bestanden!
+- Dit zal de garantie van je telefoon doen vervallen.
+- Als er iets misgaat, kan je apparaat permanent onbruikbaar raken (bricken).
+- crDroid wordt geleverd zonder Google services, deze moet je zelf nog installeren mocht je deze willen.
+
+> **Ik ben niet verantwoordelijk voor eventuele schade aan je apparaat!**
+
+Deze handleiding is gebaseerd op mijn eigen ervaring met het installeren van crDroid op mijn Samsung Galaxy A51 (SM-A515F) en is succesvol getest op 2 apparaten.
+Deze handleiding is geschreven en getest in augustus 2026 voor crDroid op Android 16. Toekomstige wijzigingen kunnen het installatieproces mogelijk veranderen, wees dus voorzichtig!
+
+## Benodigde hulpmiddelen
+
+- Oude Samsung A51 (gegevens worden gewist)
+- Windows-computer met odin3 of Linux-computer met odin4
+- USB-C kabel met ondersteuning voor dataoverdracht
+- Android-tools met fastboot & adb
+
+> opmerking: Ik heb een Linux-computer met CachyOS gebruikt, maar het zou vergelijkbaar moeten zijn op Windows, al heeft het wellicht wat aanpassingen nodig. AI kan erg handig zijn bij dit soort stappen.
+
+## Stap 1: Benodigde bestanden ophalen
+
+### Stock Samsung Firmware
+
+Dit is beschikbaar via verschillende download-tools: samloader, bifrost, ...
+
+Ik heb samloader gebruikt, een app om de firmware voor een Samsung A51 te downloaden.
+Je moet de modelnaam opgeven (SM-A515F (-> te vinden op de achterkant van je telefoon)) & een regiocode. Het viel me op dat niet alle codes werkten, maar de code voor het VK (BTU) werkte prima.
+
+Je ontvangt een zip-bestand, pak het uit & zoek naar het `AP_...tar.md5` bestand (ongeveer 5GB groot), dit is het enige bestand dat we nodig hebben.
+
+> note: samloader wordt niet meer onderhouden, het is aanbevolen om bifrost te gebruiken.
+
+### Magisk APK
+
+Je kunt de APK installeren via [GitHub](https://github.com/topjohnwu/Magisk) en alleen via GitHub! Installeer het nergens anders!
+
+Ik raad aan om het op je pc te downloaden & later via ADB naar je telefoon te pushen.
+
+### crDroid ROM
+
+Op de [crDroid-website](https://crdroid.net/a51/12) vind je de officiële ROMs voor je apparaat. Download zowel het ROM zip-bestand als de bijbehorende `recovery.img`.
+
+### Odin3 (Windows) / Odin4 (Linux)
+
+Dit is de tool die de ROM daadwerkelijk naar je telefoon gaat flashen.
+De Windows-toepassing is een GUI-toepassing, maar voor Linux is er een CLI-versie genaamd odin4.
+
+## Stap 2: Bootloader ontgrendelen
+
+Deze stap is noodzakelijk om aangepaste software op je telefoon te installeren.
+
+1. Ga naar Instellingen -> 'Info telefoon' -> 'Software-gegevens'
+2. Zoek 'Bounummer' (Build number) & tik er 7 keer op om 'Ontwikkelaarsopties' in te schakelen.
+3. Ga terug naar Instellingen & je ziet 'Ontwikkelaarsopties' onderaan staan.
+4. Schakel in 'Ontwikkelaarsopties' zowel 'OEM-ontgrendeling' als 'USB-foutopsporing' in.
+5. Schakel de telefoon uit.
+6. Houd **Volume Omhoog** + **Volume Omlaag** ingedrukt en sluit de USB-kabel aan op je computer.
+
+> opmerking: dit toont een teal (eng uitziend) waarschuwingsscherm.
+
+Als het goed is gegaan, zie je 3 opties, we willen het apparaat ontgrendelen:
+
+7. Houd volume omhoog lang ingedrukt om de ontgrendelingsmodus te selecteren.
+8. Bevestig door volume omhoog nogmaals lang ingedrukt te houden.
+
+Je telefoon zal opnieuw opstarten en elke keer dat je opstart een waarschuwingsscherm tonen, dit is normaal.
+
+> opmerking: het zal je telefoon nu terugzetten naar fabrieksinstellingen.
+
+## Stap 3: Boot image patchen met Magisk
+
+### Stock boot image uitpakken
+
+Pak `boot.img.lz4` uit het `AP_*.tar.md5` archief uit op je computer en decomprimeer het:
+
+```bash
+tar -xf AP_A515F*.tar.md5 boot.img.lz4
+lz4 -d boot.img.lz4 boot.img
+```
+
+### Magisk installeren & boot.img patchen
+
+Als je de Magisk APK al op je computer hebt gedownload, installeer deze dan via adb:
+```bash
+adb install Magisk-<version>.apk
+```
+
+Push `boot.img` naar de telefoon:
+```bash
+adb push boot.img /sdcard/Download/
+```
+
+Open de Magisk-app op je telefoon:
+1. Tik op **Installeren** op de bovenste kaart.
+2. Kies **Selecteer en patch een bestand**.
+3. Selecteer het `boot.img` bestand in je Download-map.
+
+Magisk genereert een `magisk_patched-*.img` bestand. Haal het terug naar je computer en hernoem het:
+```bash
+adb pull /sdcard/Download/magisk_patched-*.img boot.img
+```
+
+## Stap 4: Flash-archief maken
+
+Odin verwacht exacte bestandsnamen in een tar-archief. Plaats de gepatchte `boot.img` en de gedownloade `recovery.img` in dezelfde map en verpak ze:
+
+```bash
+tar -H ustar -c boot.img recovery.img > a51_flash.tar
+```
+
+## Stap 5: Flashen via Odin
+
+### Telefoon in downloadmodus zetten
+
+Terwijl de telefoon is aangesloten op de computer, zet je deze in downloadmodus:
+1. Schakel de telefoon uit / start opnieuw op.
+2. Houd **Volume Omhoog** + **Volume Omlaag** ingedrukt en sluit de USB-kabel aan op je computer.
+3. Druk één keer (*niet vasthouden!*) op de knop **Volume Omhoog** om de downloadmodus te openen.
+
+Op het scherm wordt aangegeven dat het apparaat in downloadmodus staat.
+
+### De ROM flashen
+
+**Linux (Odin4 CLI):**
+```bash
+sudo odin4 -a a51_flash.tar
+```
+
+**Windows (Odin3 GUI):**
+(Ik heb dit niet getest op Windows, dus ik ben er niet 100% zeker van dat dit werkt)
+1. Open Odin3 als Administrator.
+2. Klik op de knop **AP** en selecteer `a51_flash.tar`.
+3. Klik op **Start**.
+
+## Stap 6: Booten naar recovery
+
+1. Laat de USB-kabel aangesloten op je computer!
+2. Houd **Aan/Uit-knop** + **Volume Omlaag** ongeveer 7 seconden ingedrukt om een herstart te forceren.
+3. Zodra het scherm zwart wordt, houd je de knop **Volume Omhoog** ingedrukt en blijf je de **Aan/Uit-knop** vasthouden.
+
+Als alles goed is gegaan, zie je het recovery-menu van crDroid.
+
+## Stap 7: Data wissen & crDroid ROM sideloaden
+
+### Data wissen
+
+Navigeer via de volumetoetsen naar "*Factory Reset*" > "*Format data*".
+
+### crDroid sideloaden
+
+Ga terug naar het hoofdmenu & selecteer "*Apply Update*" > "*Apply from ADB*".
+
+Op je computer:
+```bash
+adb sideload crDroidAndroid-*.zip
+```
+
+Selecteer ten slotte "*Reboot system now*" in het recovery-menu om te herstarten naar crDroid.
+Dit zou succesvol moeten booten naar crDroid & je zou de installatiewizard moeten zien.
+Veel plezier vanaf daar!
+
+## Probleemoplossing
+
+Als er iets misgaat of er staat een fout in deze handleiding, aarzel dan niet om contact met mij op te nemen.
+AI kan ook nuttig zijn, mits in de juiste richting gestuurd.
+
+Als je problemen hebt met `vbmeta`, raadpleeg dan [deze GitHub issue](https://github.com/topjohnwu/Magisk/issues/2272).
+
+## Juridische opmerking
+
+Ik ben niet verantwoordelijk voor eventuele schade aan je apparaat!

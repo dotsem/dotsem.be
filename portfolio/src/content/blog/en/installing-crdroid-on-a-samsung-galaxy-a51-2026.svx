@@ -1,0 +1,183 @@
+---
+title: installing crdroid on a samsung galaxy a51 2026
+slug: installing-crdroid-on-a-samsung-galaxy-a51-2026
+image: /blog/installing-crdroid-on-a-samsung-galaxy-a51-2026/logo.webp
+description: A complete guide on installing crDroid on the Samsung Galaxy A51 (SM-A515F), revive your old slow Samsung phone or de-google it.
+labels: ["android", "crdroid", "samsung", "linux", "e-cycling"]
+date: 2026-08-27
+hidden: false
+---
+
+## Warning
+
+- Data on the phone will be formatted during this process! Make sure to backup your important files!
+- This will void the warranty on your phone.
+- Doing anything wrong could permanently brick your device.
+- crDroid is devliverd without Google services, you have to install it yourself in case you want it.
+
+> **I am not responsible for any damage caused to your device!**
+
+This guide is based on my own experience installing crDroid on my Samsung Galaxy A51 (SM-A515F) and has been tried out successfully on 2 devices.
+This guide is written and tested in august 2026 for crDroid running Android 16. Any future changes could potentially alter the installation process, so be careful! 
+
+## Required Tools
+
+- Old Samsung A51 (data will be wiped)
+- Windows Computer with odin3 or Linux Computer with odin4
+- USB C cable with data transfer
+- Android tools with fastboot & adb
+
+> note: I used a Linux computer with CachyOS, but it should be similar on Windows, but it may need some tweaking. AI can be very helpful for this kind of transition
+
+## Step 1: Fetching required files
+
+### Stock Samsung Firmware
+
+This is available via multiple download tools: samloader, bifrost, ...
+
+I used samloader, an app to download the firmware for the Samsung A51.
+You have to provide the model name (SM-A515F (-> on the back of your phone)) & a regional code. I noticed that not all codes worked, but the code for the UK (BTU) worked fine.
+
+You'll receive a zip file, extract it & look for the AP_...tar.md5 file (around 5GB big), this is the only file we need.
+
+> note: samloader is currently unmaintained, it is recommended to use bifrost instead.
+
+### Magisk APK
+
+You can install the APK on [GitHub](https://github.com/topjohnwu/Magisk) and only on GitHub! Don't install it somewhere else!
+
+I recommend installing it on your PC & pushing it via ADB to your phone later.
+
+### crDroid ROM
+
+On the [crDroid website](https://crdroid.net/a51/12) you can find the official ROMs for your device. Download both the ROM zip file and the corresponding `recovery.img`.
+
+### Odin3 (Windows) / Odin4 (Linux)
+
+This is the tool that will actually flash the ROM to your phone.
+The Windows application is a GUI application, but for Linux, there is a CLI version of it called odin4.
+
+## Step 2: Unlocking the Bootloader
+
+This step is necessary to install custom software on your phone.
+
+1. Go into settings -> 'About phone' -> 'Software information'
+2. Find 'Build number' & tap it 7 times to enable 'Developer options'.
+3. Go back to settings & you'll see 'Developer options' at the bottom.
+4. In 'Developer options', enable 'OEM unlocking' & 'USB debugging'.
+5. Power off the phone
+6. Hold Volume Up + Volume Down & plug in the USB cable connected to your computer.
+
+> note: this will show a teal (scary looking) warning screen.
+
+If done right, you'll see 3 options, we want to unlock the device:
+
+7. Long-press volume up to select the device unlocking mode
+8. Confirm by long-pressing volume up again.
+
+Your phone will reboot & show a warning screen every time you boot, this is normal.
+
+> note: it will now factory reset your phone.
+
+## Step 3: Patch the boot image with Magisk
+
+### Extract the stock boot image
+
+Extract `boot.img.lz4` from the `AP_*.tar.md5` archive on your computer and decompress it:
+
+```bash
+tar -xf AP_A515F*.tar.md5 boot.img.lz4
+lz4 -d boot.img.lz4 boot.img
+```
+
+### Install Magisk & Patch boot.img
+
+If you already downloaded the Magisk APK on your computer, install it via adb:
+```bash
+adb install Magisk-<version>.apk
+```
+
+Push `boot.img` to the phone:
+```bash
+adb push boot.img /sdcard/Download/
+```
+
+Open the Magisk app on your phone:
+1. Tap **Install** on the top card.
+2. Choose **Select and Patch a File**.
+3. Select the `boot.img` file in your Downloads folder.
+
+Magisk will generate a `magisk_patched-*.img` file. Pull it back to your computer and rename it:
+```bash
+adb pull /sdcard/Download/magisk_patched-*.img boot.img
+```
+
+## Step 4: Build the flash archive
+
+Odin expects precise file names in a tar archive. Put the patched `boot.img` and the downloaded `recovery.img` into the same folder and package them:
+
+```bash
+tar -H ustar -c boot.img recovery.img > a51_flash.tar
+```
+
+## Step 5: Flash via Odin
+
+### Put the phone in download mode
+
+While the phone is plugged into the computer, put it into download mode:
+1. Turn off / reboot the phone
+2. Hold **Volume Up** + **Volume Down** & plug in the USB cable connected to your computer.
+3. Press (*don't hold!*) the **Volume Up** button once to enter download mode.
+
+It will indicate on the screen that it is in download mode.
+
+### Flash the ROM
+
+**Linux (Odin4 CLI):**
+```bash
+sudo odin4 -a a51_flash.tar
+```
+
+**Windows (Odin3 GUI):**
+(I haven't tested this on Windows, so I'm not 100% sure this would work)
+1. Open Odin3 as Administrator.
+2. Click the **AP** button and select `a51_flash.tar`.
+3. Click **Start**.
+
+## Step 6: Boot into recovery
+
+1. Leave the USB cable plugged into your computer!
+2. Hold down **Power** + **Volume Down** for 7ish seconds to force a reboot.
+3. As soon as the screen goes black, hold down the **Volume Up** button & keep holding the **Power** button.
+
+If everything went right, you should see the recovery menu from crDroid.
+
+## Step 7: Wipe data & sideload crDroid ROM
+
+### Wipe data
+
+Navigate via the volume keys to "*Factory Reset*" > "*Format data*"
+
+### Sideload crDroid
+
+Go back to the main menu & select "*Apply Update*" > "*Apply from ADB*".
+
+On your computer:
+```
+adb sideload crDroidAndroid-*.zip
+```
+
+Finally, select "*Reboot system now*" in the recovery menu to reboot into crDroid.
+This should successfully boot into crDroid & you should see the setup wizard.
+From thereon, have fun.
+
+## Troubleshooting
+
+If anything goes wrong or there is an error in this tutorial, don't hesitate to contact me.
+AI can also be useful, if nudged in the right direction.
+
+If you have any issues with `vbmeta`, reference [this GitHub issue](https://github.com/topjohnwu/Magisk/issues/2272)
+
+## Legal note
+
+I am not responsible for any damage caused to your device!
