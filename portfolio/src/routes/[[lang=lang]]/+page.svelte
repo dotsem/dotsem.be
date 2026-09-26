@@ -8,6 +8,9 @@
     import ImageDivider from "$lib/components/ImageDivider.svelte";
     import AboutMe from "$lib/components/AboutMe.svelte";
     import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+    import PageSectionIndicator, {
+        type SectionItem,
+    } from "$lib/components/PageSectionIndicator.svelte";
     import { Button } from "$lib/components/ui/button";
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
@@ -62,6 +65,34 @@
                 return valA - valB;
             }),
     );
+
+    const sections = $derived<SectionItem[]>([
+        {
+            id: "hero",
+            label: "Home",
+            icon: "fa-solid fa-house",
+        },
+        {
+            id: "profile",
+            label: m.navbar_profile(),
+            icon: "fa-solid fa-user",
+        },
+        {
+            id: "projects",
+            label: m.navbar_projects(),
+            icon: "fa-solid fa-code",
+        },
+        {
+            id: "about-me",
+            label: m.navbar_aboutme(),
+            icon: "fa-solid fa-address-card",
+        },
+        {
+            id: "contact",
+            label: m.navbar_contact(),
+            icon: "fa-solid fa-envelope",
+        },
+    ]);
 </script>
 
 <svelte:head>
@@ -102,6 +133,7 @@
 {/snippet}
 
 <main>
+    <PageSectionIndicator {sections} />
     <Hero />
     <section class="">
         <ImageDivider imageUrl="" class="slanted">
@@ -110,7 +142,7 @@
     </section>
 
     <div class="bg-card slanted">
-        <section class="px-3 py-24 w-full">
+        <section id="projects" class="px-3 py-24 w-full">
             <div class="container relative mx-auto">
                 <div class="prose dark:prose-invert max-w-none mb-8">
                     <h2 class="text-4xl text-center">
