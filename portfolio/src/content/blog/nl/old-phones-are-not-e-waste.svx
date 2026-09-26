@@ -1,0 +1,10 @@
+---
+title: old phones are not e-waste
+slug: old-phones-are-not-e-waste
+image: /blog/old-phones-are-not-e-waste/logo.webp
+description: 
+labels:
+
+date: 
+hidden: true
+---

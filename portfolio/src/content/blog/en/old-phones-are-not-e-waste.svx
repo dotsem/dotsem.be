@@ -1,0 +1,50 @@
+---
+title: old phones are not e-waste
+slug: old-phones-are-not-e-waste
+image: /blog/old-phones-are-not-e-waste/logo.webp
+description: 
+labels: ["e-cycling", "android"]
+
+date: 2026-08-24
+hidden: false
+---
+
+Let me ask you a question: what do you do with your old phone when you buy a new one?
+
+Every answer would be right except throwing it in the trash. Because that's what we call 'e-waste'.
+
+Maybe the phone is slow, but is that really your phone? Or just the bloat you built up over the years.
+
+## Old phone who is this?
+
+You can do soo much with an old phone, lets first talk about some non technical things your average Joe could do:
+
+### Pass it on
+
+This could be to your children, your parents, your friends or your grandparents.
+Preferably someone who doesn't really care about the latest tech and just wants to call, text and scroll on facebook.
+
+You could also factory reset (very important) the phone and give it away to a charity or people in needs.
+Your phone will get a second life and you will make someone happy.
+
+### Toilet Game Boy
+
+You can use your old phone as a dedicated device for your bathroom.
+Disable all social media and only install games you really like or need.
+
+For example: you can run old retro games or simple games that don't take that much time to finish.
+Via this way you stop doomscrolling on your phone while on the toilet.
+
+### Music Player
+
+You can use your phone to play music and only play music. Especially old phones still have a 3.5mm jack so you can connect it to your speakers or wired headphones.
+Put it in your pocket while walking and you have no distractions. 
+
+## Technical things to do with your old phone
+
+If you are a bit more technical, you can flash a custom rom to your phone and let it operate like it was just new.
+I flashed crDroid onto 2 old Samsung A51s. Keep in mind that the newer the phone, the harder it is to flash a custom rom.
+
+### Installing crDroid on a Samsung Galaxy A51 (2026)
+
+Read my blog post: [installing crDroid on a Samsung Galaxy A51 (2026)]([[/blog/installing-crdroid-on-a-samsung-galaxy-a51-2026]])
