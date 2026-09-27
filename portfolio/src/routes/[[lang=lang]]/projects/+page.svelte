@@ -11,6 +11,8 @@
     import { onMount } from "svelte";
     import { languageTag } from "$lib/paraglide/runtime";
     import ProjectSection from "./components/ProjectSection.svelte";
+    import AnimatedCounter from "$lib/components/AnimatedCounter.svelte";
+    import ProjectHeading from "./components/ProjectHeading.svelte";
 
     let { data } = $props();
 
@@ -84,6 +86,10 @@
     <header class="text-center space-y-3 mb-12">
         <h1 class="text-5xl font-bold">{m.projects_title()}</h1>
         <p class="text-xl text-muted-foreground m-0">
+            <AnimatedCounter
+                value={projects.length}
+                class="font-semibold text-secondary"
+            />
             {m.projects_description()}
         </p>
     </header>
@@ -111,21 +117,11 @@
 
     {#if contributions.length > 0}
         <section id="open-source" class="space-y-6 scroll-mt-24">
-            <div class="flex items-center gap-3 border-b border-border/40 pb-3">
-                <div
-                    class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-base"
-                >
-                    <i class="fa-brands fa-github"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-foreground">
-                    {m.projects_section_opensource()}
-                </h2>
-                <span
-                    class="text-xs px-2.5 py-0.5 rounded-full bg-muted font-semibold text-muted-foreground"
-                >
-                    {contributions.length}
-                </span>
-            </div>
+            <ProjectHeading
+                projects={contributions}
+                title={m.projects_section_opensource()}
+                description={m.projects_section_opensource_description()}
+            />
 
             <RandomDelayGroup count={contributions.length}>
                 {#snippet children(delays)}
