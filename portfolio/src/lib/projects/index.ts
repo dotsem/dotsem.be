@@ -1,9 +1,34 @@
 import type { Component } from 'svelte';
-import { projectsMetadata, ProjectStatus, type ProjectMetadata } from './metadata';
+import {
+    projectsMetadata,
+    ProjectStatus,
+    contributions,
+    type ProjectMetadata,
+    type ProjectCategory,
+    type Contribution
+} from './metadata';
 import * as m from '$lib/paraglide/messages';
 import { extractHeaders, type MarkdownHeader } from '$lib/utils';
 
-export { ProjectStatus };
+export { ProjectStatus, contributions, type ProjectCategory, type Contribution };
+
+export function sortProjectsByHighlight<T extends { highlighted?: boolean | number }>(items: T[]): T[] {
+    return [...items].sort((a, b) => {
+        const valA =
+            typeof a.highlighted === 'number'
+                ? a.highlighted
+                : a.highlighted
+                  ? 1
+                  : 999;
+        const valB =
+            typeof b.highlighted === 'number'
+                ? b.highlighted
+                : b.highlighted
+                  ? 1
+                  : 999;
+        return valA - valB;
+    });
+}
 
 export function getLocalizedStatus(status: ProjectStatus | string | undefined): string {
     if (!status) return '';

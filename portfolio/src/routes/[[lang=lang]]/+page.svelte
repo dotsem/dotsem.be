@@ -14,6 +14,7 @@
     import { Button } from "$lib/components/ui/button";
     import { i18n } from "$lib/i18n";
     import { languageTag } from "$lib/paraglide/runtime";
+    import { sortProjectsByHighlight } from "$lib/projects";
 
     import { onMount } from "svelte";
 
@@ -39,31 +40,19 @@
     });
 
     const highlightedProjects = $derived(
-        data.projects
-            .map((p) => {
-                if (liveVersions[p.slug]) {
-                    return { ...p, status: liveVersions[p.slug] };
-                }
-                return p;
-            })
-            .filter(
-                (p) => p.highlighted !== undefined && p.highlighted !== false,
-            )
-            .sort((a, b) => {
-                const valA =
-                    typeof a.highlighted === "number"
-                        ? a.highlighted
-                        : a.highlighted
-                          ? 1
-                          : 999;
-                const valB =
-                    typeof b.highlighted === "number"
-                        ? b.highlighted
-                        : b.highlighted
-                          ? 1
-                          : 999;
-                return valA - valB;
-            }),
+        sortProjectsByHighlight(
+            data.projects
+                .map((p) => {
+                    if (liveVersions[p.slug]) {
+                        return { ...p, status: liveVersions[p.slug] };
+                    }
+                    return p;
+                })
+                .filter(
+                    (p) =>
+                        p.highlighted !== undefined && p.highlighted !== false,
+                ),
+        ),
     );
 
     const sections = $derived<SectionItem[]>([
