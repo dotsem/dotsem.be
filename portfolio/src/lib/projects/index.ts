@@ -1,9 +1,16 @@
 import type { Component } from 'svelte';
-import { projectsMetadata, ProjectStatus, type ProjectMetadata } from './metadata';
+import {
+    projectsMetadata,
+    ProjectStatus,
+    contributions,
+    type ProjectMetadata,
+    type ProjectCategory,
+    type Contribution
+} from './metadata';
 import * as m from '$lib/paraglide/messages';
 import { extractHeaders, type MarkdownHeader } from '$lib/utils';
 
-export { ProjectStatus };
+export { ProjectStatus, contributions, type ProjectCategory, type Contribution };
 
 export function getLocalizedStatus(status: ProjectStatus | string | undefined): string {
     if (!status) return '';

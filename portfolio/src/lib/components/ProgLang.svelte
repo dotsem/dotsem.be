@@ -142,6 +142,11 @@
             fullName: "Pygame",
             color: "#3572A5", // Python blue
         },
+        qml: {
+            deviconName: "qt",
+            fullName: "QML",
+            color: "#7EC343", // QT green
+        },
         openGL: {
             deviconName: "opengl", // No OpenGL icon in Devicon
             fullName: "OpenGL",
