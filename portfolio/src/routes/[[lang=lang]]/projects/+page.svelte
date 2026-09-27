@@ -10,6 +10,7 @@
     import * as m from "$lib/paraglide/messages";
     import { onMount } from "svelte";
     import { languageTag } from "$lib/paraglide/runtime";
+    import ProjectSection from "./components/ProjectSection.svelte";
 
     let { data } = $props();
 
@@ -82,113 +83,31 @@
 <div class="container mx-auto py-10 px-4 relative space-y-20">
     <header class="text-center space-y-3 mb-12">
         <h1 class="text-5xl font-bold">{m.projects_title()}</h1>
-        <p class="text-xl text-muted-foreground m-0">{m.projects_description()}</p>
+        <p class="text-xl text-muted-foreground m-0">
+            {m.projects_description()}
+        </p>
     </header>
 
-    {#if personalProjects.length > 0}
-        <section id="personal" class="space-y-6 scroll-mt-24">
-            <div class="flex items-center gap-3 border-b border-border/40 pb-3">
-                <div
-                    class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-base"
-                >
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-foreground">
-                    {m.projects_section_personal()}
-                </h2>
-                <span
-                    class="text-xs px-2.5 py-0.5 rounded-full bg-muted font-semibold text-muted-foreground"
-                >
-                    {personalProjects.length}
-                </span>
-            </div>
+    <ProjectSection
+        projects={personalProjects}
+        title={m.projects_section_personal()}
+        description={m.projects_section_personal_description()}
+        id="personal"
+    />
 
-            <RandomDelayGroup count={personalProjects.length}>
-                {#snippet children(delays)}
-                    <div class="flex flex-wrap gap-8 justify-center">
-                        {#each personalProjects as project, index}
-                            <EntryAnimation
-                                type="scale"
-                                delay={delays[index] ?? index * 100}
-                            >
-                                <ProjectCard {project} />
-                            </EntryAnimation>
-                        {/each}
-                    </div>
-                {/snippet}
-            </RandomDelayGroup>
-        </section>
-    {/if}
+    <ProjectSection
+        projects={diProjects}
+        title={m.projects_section_di()}
+        description={m.projects_section_di_description()}
+        id="di"
+    />
 
-    {#if diProjects.length > 0}
-        <section id="di" class="space-y-6 scroll-mt-24">
-            <div class="flex items-center gap-3 border-b border-border/40 pb-3">
-                <div
-                    class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-base"
-                >
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-foreground">
-                    {m.projects_section_di()}
-                </h2>
-                <span
-                    class="text-xs px-2.5 py-0.5 rounded-full bg-muted font-semibold text-muted-foreground"
-                >
-                    {diProjects.length}
-                </span>
-            </div>
-
-            <RandomDelayGroup count={diProjects.length}>
-                {#snippet children(delays)}
-                    <div class="flex flex-wrap gap-8 justify-center">
-                        {#each diProjects as project, index}
-                            <EntryAnimation
-                                type="scale"
-                                delay={delays[index] ?? index * 100}
-                            >
-                                <ProjectCard {project} />
-                            </EntryAnimation>
-                        {/each}
-                    </div>
-                {/snippet}
-            </RandomDelayGroup>
-        </section>
-    {/if}
-
-    {#if schoolProjects.length > 0}
-        <section id="school" class="space-y-6 scroll-mt-24">
-            <div class="flex items-center gap-3 border-b border-border/40 pb-3">
-                <div
-                    class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-base"
-                >
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-foreground">
-                    {m.projects_section_school()}
-                </h2>
-                <span
-                    class="text-xs px-2.5 py-0.5 rounded-full bg-muted font-semibold text-muted-foreground"
-                >
-                    {schoolProjects.length}
-                </span>
-            </div>
-
-            <RandomDelayGroup count={schoolProjects.length}>
-                {#snippet children(delays)}
-                    <div class="flex flex-wrap gap-8 justify-center">
-                        {#each schoolProjects as project, index}
-                            <EntryAnimation
-                                type="scale"
-                                delay={delays[index] ?? index * 100}
-                            >
-                                <ProjectCard {project} />
-                            </EntryAnimation>
-                        {/each}
-                    </div>
-                {/snippet}
-            </RandomDelayGroup>
-        </section>
-    {/if}
+    <ProjectSection
+        projects={schoolProjects}
+        title={m.projects_section_school()}
+        description={m.projects_section_school_description()}
+        id="school"
+    />
 
     {#if contributions.length > 0}
         <section id="open-source" class="space-y-6 scroll-mt-24">
