@@ -6,7 +6,7 @@
     import PageSectionIndicator, {
         type SectionItem,
     } from "$lib/components/PageSectionIndicator.svelte";
-    import { contributions } from "$lib/projects";
+    import { contributions, sortProjectsByHighlight } from "$lib/projects";
     import * as m from "$lib/paraglide/messages";
     import { onMount } from "svelte";
     import { languageTag } from "$lib/paraglide/runtime";
@@ -19,12 +19,14 @@
     let liveVersions = $state<Record<string, string>>({});
 
     const projects = $derived(
-        data.projects.map((p) => {
-            if (liveVersions[p.slug]) {
-                return { ...p, status: liveVersions[p.slug] };
-            }
-            return p;
-        }),
+        sortProjectsByHighlight(
+            data.projects.map((p) => {
+                if (liveVersions[p.slug]) {
+                    return { ...p, status: liveVersions[p.slug] };
+                }
+                return p;
+            }),
+        ),
     );
 
     const personalProjects = $derived(
