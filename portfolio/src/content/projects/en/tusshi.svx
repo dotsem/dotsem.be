@@ -1,0 +1,87 @@
+---
+title: tuSSHi
+description: A clean, keyboard-driven terminal manager for SSH connections with
+  live server health checks, service monitoring, and zero config lock-in.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## A Modern Terminal SSH Connection Manager
+
+Managing remote servers usually comes with a frustrating tradeoff: either
+remember dozens of IP addresses and aliases by heart, or use a bloated
+third-party manager that locks your connections into proprietary database files.
+
+**tuSSHi** is a fast, keyboard-driven Terminal User Interface (TUI) built in Go
+that makes organizing, monitoring, and connecting to your remote servers
+effortless—without changing how SSH works under the hood.
+
+--------------------------------------------------------------------------------
+
+## Why tuSSHi?
+
+### 1. Zero Lock-In (Standard Config as the Source of Truth)
+
+Unlike other tools that force you into custom JSON or SQLite databases, tuSSHi
+works directly with your standard `~/.ssh/config` file. Any server added or
+modified in tuSSHi is instantly available in your regular terminal commands,
+IDEs, and automation scripts.
+
+### 2. Live Connection Health & Status Badges
+
+Never guess if a server is reachable before attempting to log in. tuSSHi runs
+non-blocking background health checks, displaying live online/offline status
+badges and real-time response latency right next to each host in your connection
+list.
+
+### 3. SSH Services & Authentication Checks
+
+Easily distinguish regular servers from specialized Git or cloud services (like
+GitHub, GitLab, or backup targets). tuSSHi lets you test and verify SSH
+authentication keys in the background with a single command, confirming your
+keys work without having to start an interactive session.
+
+### 4. Surgical, Safe Editing
+
+Most tools wipe out your custom comments, custom indentation, and personal
+formatting whenever they save changes. tuSSHi reads your configuration structure
+intelligently, modifying only the specific connection you touch while leaving
+the rest of your formatting, spacing, and comments completely intact.
+
+### 5. Automatic Tabs for Modular Setups
+
+If you split your servers across multiple files using SSH `Include` directives
+(e.g. separate files for work, personal, and homelab servers), tuSSHi
+automatically organizes them into clean, switchable visual tabs.
+
+### 6. Lightning-Fast Keyboard Navigation
+
+Designed to keep your hands on the home row:
+
+* **Fuzzy Search (`/`):** Instantly filter servers by alias, hostname, user, or
+  tags.
+* **Instant Connect (`Enter`):** Connects to the highlighted host immediately
+  via your system's native SSH client.
+* **Tab Switching (`h` / `l`):** Quickly cycle through configuration files.
+* **Command Mode (`:`):** Add, edit, rename, and monitor hosts without leaving
+  the terminal.
+
+--------------------------------------------------------------------------------
+
+## Technical Highlights
+
+* **Pure Go & Bubble Tea:** Built with the modern Elm-inspired Bubble Tea TUI
+  ecosystem for fluid rendering and high performance.
+* **Native SSH Compatibility:** Executes your system's native `ssh` binary
+  directly, ensuring your SSH keys, `ssh-agent`, hardware tokens, and security
+  configs work out of the box.
+* **Single Lightweight Binary:** Compiles into a standalone executable for
+  Linux, macOS, and Windows with zero external runtime dependencies.
+
+--------------------------------------------------------------------------------
+
+## Links & Source
+
+* [Open-Source GitHub Repository](https://github.com/dotsem/tusshi)

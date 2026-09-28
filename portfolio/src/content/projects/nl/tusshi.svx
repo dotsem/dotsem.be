@@ -1,0 +1,54 @@
+---
+title: tuSSHi
+description: Een overzichtelijke, toetsenbord-gedreven terminal manager voor SSH-verbindingen met live statuscontroles, servicebeheer en zonder lock-in.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Een Moderne Terminal SSH Verbindingsmanager
+
+Het beheren van servers op afstand brengt vaak een frustrerende afweging met zich mee: ofwel tientallen IP-adressen en aliassen uit het hoofd leren, ofwel een logge externe tool gebruiken die je verbindingen opsluit in eigen databasebestanden.
+
+**tuSSHi** is een snelle, toetsenbord-gedreven Terminal User Interface (TUI) gebouwd in Go die het organiseren, monitoren en verbinden met je servers moeiteloos maakt — zonder de werking van SSH te veranderen.
+
+---
+
+## Waarom tuSSHi?
+
+### 1. Geen Lock-In (Standaardconfiguratie als Bron van Waarheid)
+In tegenstelling tot andere tools die je dwingen tot aangepaste JSON- of SQLite-bestanden, werkt tuSSHi rechtstreeks met je standaard `~/.ssh/config`. Elke server die je toevoegt of bewerkt in tuSSHi is direct beschikbaar in je normale terminalcommando's, IDE's en automatiseringsscripts.
+
+### 2. Live Status- en Gezondheidsbadges
+Nooit meer gokken of een server bereikbaar is voordat je probeert in te loggen. tuSSHi voert op de achtergrond niet-blokkerende statuscontroles uit en toont live online/offline-badges en realtime latentie direct naast elke host in je lijst.
+
+### 3. SSH Services & Authenticatiecontroles
+Maak eenvoudig onderscheid tussen gewone servers en speciale Git- of cloudservices (zoals GitHub, GitLab of back-updoelen). Met tuSSHi kun je SSH-sleutels op de achtergrond testen met één enkel commando om te controleren of je authenticatie werkt, zonder dat je handmatig een sessie hoeft te starten.
+
+### 4. Veilige, Chirurgische Bewerking
+Veel tools overschrijven je bestanden en wissen daarbij je persoonlijke opmerkingen, inspringing en witregels. tuSSHi begrijpt de structuur van je configuratie en past uitsluitend het specifieke blok aan dat je bewerkt, terwijl al je opmerkingen en opmaak exact bewaard blijven.
+
+### 5. Automatische Tabbladen voor Modulaire Configuraties
+Wanneer je servers over meerdere bestanden verdeelt met behulp van SSH `Include`-regels (zoals aparte bestanden voor werk, privé en homelab), organiseert tuSSHi deze automatisch in overzichtelijke, wisselbare tabbladen.
+
+### 6. Bliksemsnelle Toetsenbordnavigatie
+Ontworpen om je handen op het toetsenbord te houden:
+* **Fuzzy Zoeken (`/`):** Filter servers razendsnel op alias, hostnaam, gebruiker of tags.
+* **Direct Verbinden (`Enter`):** Start direct een verbinding via de ingebouwde SSH-client van je besturingssysteem.
+* **Tabbladen Wisselen (`h` / `l`):** Schakel soepel tussen verschillende configuratiebestanden.
+* **Commandomodus (`:`):** Voeg servers toe, bewerk ze of beheer configuraties zonder de terminal te verlaten.
+
+---
+
+## Technische Kernpunten
+
+* **Pure Go & Bubble Tea:** Gebouwd met het moderne, op Elm geïnspireerde Bubble Tea TUI-framework voor vloeiende en responsieve weergave in de terminal.
+* **Volledige SSH-Compatibiliteit:** Voert het native `ssh`-commando van je systeem rechtstreeks uit, waardoor je SSH-sleutels, `ssh-agent`, hardware-tokens en beveiligingsinstellingen direct werken zonder extra configuratie.
+* **Eén Enkele Lichte Binary:** Draait als standalone uitvoerbaar bestand op Linux, macOS en Windows zonder externe afhankelijkheden.
+
+---
+
+## Links & Broncode
+
+* [Open-Source GitHub Repository](https://github.com/dotsem/tusshi)

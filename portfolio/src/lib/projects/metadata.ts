@@ -1,11 +1,11 @@
 export enum ProjectStatus {
-    Finished = 'Finished',
-    InDevelopment = 'In Development',
-    InProgress = 'In Progress',
-    YouAreLookingAtIt = 'You are looking at it!'
+    Finished = "Finished",
+    InDevelopment = "In Development",
+    InProgress = "In Progress",
+    YouAreLookingAtIt = "You are looking at it!",
 }
 
-export type ProjectCategory = 'personal' | 'di' | 'school';
+export type ProjectCategory = "personal" | "di" | "school";
 
 export interface ProjectMetadata {
     slug: string;
@@ -28,7 +28,7 @@ export interface Contribution {
     prUrl: string;
     description: string;
     date?: string;
-    status: 'merged' | 'open' | 'closed';
+    status: "merged" | "open" | "closed";
     languages: string[];
     stars?: number;
 }
@@ -45,13 +45,26 @@ export const projectsMetadata: ProjectMetadata[] = [
         link: "https://wwb.dotsem.be",
         linkTitle: "Flick the global lightbulb",
         linkOpenInNewTab: true,
-        labels: ["WebSockets", "Go Concurrency", "Single Binary", "SQLite & sqlc"],
-        status: ProjectStatus.Finished
+        labels: [
+            "WebSockets",
+            "Go Concurrency",
+            "Single Binary",
+            "SQLite & sqlc",
+        ],
+        status: ProjectStatus.Finished,
     },
     {
         slug: "gostrategy",
         image: "/projects/gostrategy/logo.webp",
-        languages: ["svelte", "go", "ts", "tailwind", "postgresql", "docker", "nixos"],
+        languages: [
+            "svelte",
+            "go",
+            "ts",
+            "tailwind",
+            "postgresql",
+            "docker",
+            "nixos",
+        ],
         highlighted: 1,
         category: "di",
         repo: "Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy",
@@ -60,7 +73,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         linkTitle: "Play GoStrategy Live",
         linkOpenInNewTab: true,
         labels: ["WebSockets", "Go Concurrency", "NixOS Deployment"],
-        status: ProjectStatus.InDevelopment
+        status: ProjectStatus.InDevelopment,
     },
     {
         slug: "carpe-diem",
@@ -74,7 +87,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         linkTitle: "Download Carpe Diem",
         trackRelease: true,
         labels: ["Mobile App", "Local-First Planning", "Productivity"],
-        status: ProjectStatus.Finished
+        status: ProjectStatus.Finished,
     },
     {
         slug: "smart-jack",
@@ -84,7 +97,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         category: "school",
         repo: "dotsem/lets-go-gambling",
         labels: ["IoT", "Game Development", "Hardware Integration"],
-        status: ProjectStatus.Finished
+        status: ProjectStatus.Finished,
     },
     {
         slug: "philips-ble-robot",
@@ -93,8 +106,13 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: 2,
         category: "school",
         repo: ["dotsem/Philips-BLE-Robot-App", "dotsem/Philips-BLE-Robot-Code"],
-        labels: ["Internship Project", "Embedded Systems", "Mobile App", "Bluetooth"],
-        status: ProjectStatus.Finished
+        labels: [
+            "Internship Project",
+            "Embedded Systems",
+            "Mobile App",
+            "Bluetooth",
+        ],
+        status: ProjectStatus.Finished,
     },
     {
         slug: "portfolio",
@@ -104,7 +122,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         category: "personal",
         repo: "dotsem/dotsem.be",
         labels: ["Svelte 5", "i18n Support"],
-        status: ProjectStatus.YouAreLookingAtIt
+        status: ProjectStatus.YouAreLookingAtIt,
     },
     {
         slug: "skil2-chez-natalie",
@@ -113,7 +131,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: false,
         category: "school",
         labels: ["Group Project", "TALL Stack", "B&B Webapp"],
-        status: ProjectStatus.InProgress
+        status: ProjectStatus.InProgress,
     },
     {
         slug: "skil2-poutrel",
@@ -122,7 +140,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: false,
         category: "school",
         labels: ["UML Diagrams", "Figma Design", "Implementation Plan"],
-        status: ProjectStatus.Finished
+        status: ProjectStatus.Finished,
     },
     {
         slug: "waaiburg-app",
@@ -131,8 +149,12 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: false,
         category: "di",
         repo: "Thomas-More-Digital-Innovation/2526-waai-001-waaiburg-mobile-app",
-        labels: ["Mobile App Development", "Avatar Customization", "Caching & Performance"],
-        status: ProjectStatus.Finished
+        labels: [
+            "Mobile App Development",
+            "Avatar Customization",
+            "Caching & Performance",
+        ],
+        status: ProjectStatus.Finished,
     },
     {
         slug: "weighted-decision-matrix",
@@ -146,8 +168,18 @@ export const projectsMetadata: ProjectMetadata[] = [
         linkTitle: "Try it out yourself!",
         linkOpenInNewTab: true,
         labels: ["Decision Making", "Local Storage", "Markdown Export"],
-        status: ProjectStatus.Finished
-    }
+        status: ProjectStatus.Finished,
+    },
+    {
+        slug: "tusshi",
+        image: "/projects/tusshi/logo.webp",
+        languages: ["go", "svelte", "tailwind"],
+        highlighted: false,
+        status: ProjectStatus.InProgress,
+        category: "personal",
+        repo: "dotsem/tusshi",
+        trackRelease: true,
+    },
 ];
 
 export const contributions: Contribution[] = [
@@ -155,24 +187,27 @@ export const contributions: Contribution[] = [
         title: "fix mouse interactions being limited to LMB",
         repo: "VimYoung/Spell",
         prUrl: "https://github.com/VimYoung/Spell/pull/33",
-        description: "Adds support between hardware key codes & the slint key enum. Via this way we can use all 5 (6 if we include other) mouse buttons that can be used in Slint.",
+        description:
+            "Adds support between hardware key codes & the slint key enum. Via this way we can use all 5 (6 if we include other) mouse buttons that can be used in Slint.",
         status: "merged",
-        languages: ["rust"]
+        languages: ["rust"],
     },
     {
         title: "feat: add toggle switch in settings to toggle mirror origin",
         repo: "jfchenier/dms-display-mirror",
         prUrl: "https://github.com/jfchenier/dms-display-mirror/pull/3",
-        description: "This PR adds a toggle switch in the settings that adds the ability to toggle between mirroring from the current display or mirroring to the current display. This feature was introduced because it is sometimes more natural to mirror from a display (eg. giving a presentation).",
+        description:
+            "This PR adds a toggle switch in the settings that adds the ability to toggle between mirroring from the current display or mirroring to the current display. This feature was introduced because it is sometimes more natural to mirror from a display (eg. giving a presentation).",
         status: "open",
-        languages: ["qml"]
+        languages: ["qml"],
     },
     {
         title: "Add param to choose which monitor the window will be placed on",
         repo: "VimYoung/Spell",
         prUrl: "https://github.com/VimYoung/Spell/pull/10",
-        description: "I'm using the spell framework to create my own shell for hyprland. Currently the spell framework was missing the feature to choose which monitor the window should be placed on.",
+        description:
+            "I'm using the spell framework to create my own shell for hyprland. Currently the spell framework was missing the feature to choose which monitor the window should be placed on.",
         status: "merged",
-        languages: ["rust"]
-    }
+        languages: ["rust"],
+    },
 ];
