@@ -1,0 +1,57 @@
+---
+title: CapyPlayer
+description: Een aanpasbare, geanimeerde desktop mediawidget voor Wayland, gebouwd met Rust, Slint en de standalone capy-mpris crate.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Een Geanimeerde Desktop Mediaspeler voor Wayland
+
+Veel desktop-muziekwidgets zijn log, leunen op zware webtechnologieën of missen karakter. **CapyPlayer** is een lichte, native desktopwidget gebouwd in Rust en Slint die interactieve, aanpasbare muziekspelers rechtstreeks naar je Linux-bureaublad brengt.
+
+Of je nu muziek afspeelt via Spotify, Firefox of een lokale audiospeler, CapyPlayer synchroniseert live met je mediasessies om afspeelstatussen, draaiende vinyl-animaties en realtime audiospectra weer te geven.
+
+---
+
+## Belangrijkste Pijlers & Mogelijkheden
+
+### 1. De `capy-mpris` Engine
+Onder de motorkap wordt CapyPlayer aangedreven door **`capy-mpris`**, een zelfstandige, performante Rust-crate gebouwd op `zbus`. Deze beheert Linux-mediasessies met:
+* **Efficiënt Resourcebeheer:** Maakt gebruik van één enkele persistente D-Bus verbinding in plaats van herhaalde processen op te starten.
+* **Vloeiende Tijdsinterpolatie:** Berekent de voortgang van nummers vloeiend aan de client-zijde zonder de mediaspeler continu te belasten met statusverzoeken.
+* **Slimme Spelerprioritering:** Schakelt automatisch over naar de actieve bron wanneer je wisselt tussen bijvoorbeeld Spotify en een browser-tabblad.
+* **Herbruikbare Bibliotheek:** Ontworpen als een losstaande crate die ook gebruikt kan worden in taakbalken, statusbalken of CLI-tools.
+
+### 2. Modulaire, Geanimeerde Vinyl-skins
+CapyPlayer bevat verschillende visuele thema's voor elke desktop-indeling:
+* **Realistische Platenspeler:** Een nostalgische draaitafel met een ronddraaiende vinylplaat en mediaknoppen.
+* **Compacte Platenspeler:** Een slank, verticaal ontwerp, ideaal voor zijbalken of kleinere beeldschermen.
+* **Vinyl Kaart:** Een moderne horizontale kaart met nummerinformatie, albumhoes en een ingebouwde audio-visualizer.
+
+### 3. Dynamische Kleurextractie & Aanpasbare Stijl
+De widget analyseert automatisch de dominante kleuren van de huidige albumhoes. De achtergrondgloed, accentkleuren en interface-elementen passen hun kleurenpalet automatisch aan bij elk nieuw nummer.
+
+### 4. Native Wayland- & Bureaubladintegratie
+* **Layer-Shell Ondersteuning:** Integreert naadloos als bureaubladlaag binnen moderne Wayland-compositors (zoals Hyprland, Niri, Sway en River).
+* **Vloeiende CAVA Visualizer:** Toont realtime frequentiebalken en audio-animaties rechtstreeks op de kaart.
+
+### 5. Hot-Reloading Configuratie
+Wissel direct van skin of pas instellingen aan in `~/.config/capy-player/config.toml` — wijzigingen worden onmiddellijk toegepast zonder de applicatie opnieuw te moeten opstarten.
+
+---
+
+## Gebruikte Technologieën
+
+* **UI Toolkit:** Slint UI (gecompileerde native GUI).
+* **Programmeertaal:** Rust.
+* **Media & D-Bus:** `capy-mpris` (eigen standalone crate op basis van `zbus`).
+* **Bureaubladprotocol:** Wayland Layer-Shell (via `spell-framework`).
+* **Audio-visualisatie:** CAVA audio spectrum processor.
+
+---
+
+## Links & Broncode
+
+* [CapyPlayer GitHub Repository](https://github.com/dotsem/CapyPlayer)

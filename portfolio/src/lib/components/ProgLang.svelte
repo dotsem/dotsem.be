@@ -103,6 +103,11 @@
             color: "#A1EDF7", // Tauri blue
             darkText: true,
         },
+        slint: {
+            deviconName: "rust", // TODO: find actual icon
+            fullName: "Slint",
+            color: "#2379F4"
+        },
         angular: {
             deviconName: "angularjs", // Devicon uses 'angularjs' for Angular
             fullName: "Angular",

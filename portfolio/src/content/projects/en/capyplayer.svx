@@ -1,0 +1,109 @@
+---
+title: CapyPlayer
+description: A customizable, animated desktop media player widget for Wayland,
+  built with Rust, Slint, and the standalone capy-mpris crate.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## An Animated Desktop Media Player for Wayland
+
+Many desktop music widgets are bloated, rely on heavy web technologies, or lack
+personality. **CapyPlayer** is a lightweight, native desktop widget built in
+Rust and Slint that brings interactive, customizable music players directly to
+your Linux desktop surface.
+
+Whether playing music through Spotify, Firefox, or a local media player,
+CapyPlayer syncs live with your media sessions to display playback states,
+spinning vinyl record animations, and real-time audio spectrums.
+
+--------------------------------------------------------------------------------
+
+## Key Pillars & Features
+
+### 1. The `capy-mpris` Engine
+
+Under the hood, CapyPlayer is powered by **`capy-mpris`**, a standalone,
+high-performance Rust crate built on `zbus`. It manages Linux media sessions
+with:
+
+* **Efficient Resource Management:** Uses a single persistent D-Bus connection
+  instead of repeatedly spawning processes.
+* **Smooth Playback Interpolation:** Calculates song progress smoothly on the
+  client side without continuously burdening media players with status requests.
+* **Smart Player Prioritization:** Automatically switches to the active source
+  when you alternate between Spotify and a browser tab, for example.
+* **Reusable Library:** Designed as a decoupled crate that can also be used in
+  taskbars, status bars, or CLI tools.
+
+### 2. Modular, Animated Vinyl Skins
+
+CapyPlayer includes multiple visual themes for any desktop layout:
+
+* **Realistic Turntable:** A nostalgic record player with a spinning vinyl disk
+  and playback controls.
+* **Compact Turntable:** A sleek, vertical design ideal for sidebars or smaller
+  screens.
+* **Vinyl Card:** A modern horizontal card with track information, album art,
+  and an integrated audio visualizer.
+
+### 3. Dynamic Color Extraction & Adaptive Styling
+
+The widget automatically analyzes the dominant colors of the current album
+artwork. The background glow, accent colors, and interface elements dynamically
+adapt their color palette with every new song.
+
+### 4. Native Wayland & Desktop Integration
+
+* **Layer-Shell Support:** Integrates seamlessly as a desktop layer within
+  modern Wayland compositors (such as Hyprland, Niri, Sway, and River).
+* **Smooth CAVA Visualizer:** Displays real-time frequency bars and audio
+  animations directly on the card.
+
+### 5. Hot-Reloading Configuration
+
+Switch skins or adjust settings directly in `~/.config/capy-player/config.toml`
+— changes take effect immediately without needing to restart the application.
+
+--------------------------------------------------------------------------------
+
+## Technologies Used
+
+* **UI Toolkit:** Slint UI (compiled native GUI).
+* **Programming Language:** Rust.
+* **Media & D-Bus:** `capy-mpris` (custom standalone crate based on `zbus`).
+* **Desktop Protocol:** Wayland Layer-Shell (via `spell-framework`).
+* **Audio Visualization:** CAVA audio spectrum processor.
+
+## Skins
+
+### Realistic Vinyl Player
+
+A skeuomorphic turntable layout. It includes a singular button to play/pause the
+current track &.
+
+<AssetImage name="realistic-vinyl-player.gif" alt="Realistic Vinyl Player" />
+
+### Compact Vinyl Player
+
+A streamlined, vertically oriented deck designed for compact screen real estate
+or sidebar placement. It includes play/pause, next & previous buttons.
+
+<AssetImage name="compact-vinyl-player.gif" alt="Compact Vinyl Player" />
+
+
+### Vinyl Card
+
+A sleek horizontal card showcasing track metadata, vinyl album art and an audio
+visualizer. Clicking on the vinyl will hide the rest of the card, only
+displaying the vinyl.
+
+<AssetImage name="vinyl-card.gif" alt="Vinyl Card" />
+
+--------------------------------------------------------------------------------
+
+## Links & Source
+
+* [CapyPlayer GitHub Repository](https://github.com/dotsem/CapyPlayer)

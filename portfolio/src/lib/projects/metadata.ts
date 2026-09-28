@@ -173,14 +173,14 @@ export const projectsMetadata: ProjectMetadata[] = [
     {
         slug: "tusshi",
         image: "/projects/tusshi/logo.webp",
-        languages: ["go", "svelte", "tailwind"],
+        languages: ["go"],
         highlighted: false,
         status: ProjectStatus.InProgress,
         category: "personal",
         repo: "dotsem/tusshi",
         trackRelease: true,
     },
-        {
+    {
         slug: "whispertag",
         image: "/projects/whispertag/logo.svg",
         languages: ["react", "rust", "tauri", "ts", "tailwind"],
@@ -188,7 +188,16 @@ export const projectsMetadata: ProjectMetadata[] = [
         status: ProjectStatus.Finished,
         category: "di",
         repo: "Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project",
-    }
+    },
+    {
+        slug: "capyplayer",
+        image: "/projects/capyplayer/realistic-vinyl-player.gif",
+        languages: ["rust", "slint"],
+        highlighted: false,
+        status: ProjectStatus.InProgress,
+        category: "personal",
+        repo: "dotsem/capyplayer",
+    },
 ];
 
 export const contributions: Contribution[] = [
@@ -219,5 +228,4 @@ export const contributions: Contribution[] = [
         status: "merged",
         languages: ["rust"],
     },
-
 ];

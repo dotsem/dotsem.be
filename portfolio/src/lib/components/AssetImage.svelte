@@ -34,7 +34,7 @@
     const slug = $derived(propSlug || page.params.slug);
 
     const images = import.meta.glob<string>(
-        "/src/lib/assets/**/*.{png,jpg,jpeg,webp,svg}",
+        "/src/lib/assets/**/*.{png,jpg,jpeg,webp,svg,gif}",
         {
             eager: true,
             import: "default",
