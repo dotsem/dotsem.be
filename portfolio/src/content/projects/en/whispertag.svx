@@ -1,0 +1,50 @@
+---
+title: WhisperTag
+description: An interactive, tactile storytelling application that brings physical NFC cards to life with audio and animations for children with visual impairments.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## Bringing Stories to Life Through Touch and Sound
+
+Digital screens can often be isolating or inaccessible for young children — especially those with visual impairments. **WhisperTag** (formerly *I'm in tales*) bridges the gap between the physical and digital worlds by turning tactile cards and objects into an interactive storytelling experience.
+
+By placing special NFC cards onto a board with a built-in reader, children trigger live spoken stories, character voices, music, and visual scenes.
+
+---
+
+## Key Pillars & Features
+
+### 1. Tactile & Accessible Storytelling
+WhisperTag was designed from the ground up with a strong focus on accessibility. Children explore stories at their own pace through touch. The physical cards act as the controller, making interactive play intuitive without needing a mouse or keyboard.
+
+### 2. Direct Physical-to-Digital Interaction
+Placing or swapping a card on the reader board instantly triggers sound effects, voice clips, and animations. The system also supports writing custom stories directly onto new NFC cards.
+
+### 3. Featherlight & Fast (Tauri v2 + Rust)
+Instead of relying on heavy technologies that consume hundreds of megabytes of RAM, WhisperTag is built with **Tauri v2** and **Rust**. The desktop application starts up instantly, uses minimal system resources, and delivers smooth animations.
+
+### 4. Reliable Hardware Integration
+The native Rust background layer communicates directly with the USB NFC hardware. If a cable is accidentally unplugged during play, the application automatically restores the connection as soon as the reader is plugged back in, without stuttering.
+
+### 5. Available for Every Operating System
+Automated build pipelines generate native installers for all major platforms:
+* **Windows** (`.msi` / `.exe`)
+* **macOS** (`.dmg` for both Apple Silicon and Intel)
+* **Linux** (`.deb` / `AppImage`)
+
+---
+
+## Technologies Used
+
+* **Frontend**: React, TypeScript, Tailwind CSS.
+* **Native Core**: Rust & Tauri v2 with direct hardware control.
+* **Hardware**: uFR Series NFC readers.
+
+---
+
+## Links & Source
+
+* [Digital Innovation Project Repository](https://github.com/Thomas-More-Digital-Innovation)

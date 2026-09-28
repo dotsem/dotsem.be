@@ -87,10 +87,21 @@
             fullName: "SQL",
             color: "#e38c00", // MySQL orange
         },
+        react: {
+            deviconName: "react",
+            fullName: "React",
+            color: "#5FD4F2", // React blue
+        },
         arduino: {
             deviconName: "arduino",
             fullName: "Arduino",
             color: "#00979d", // Arduino teal
+        },
+        tauri: {
+            deviconName: "tauri",
+            fullName: "Tauri",
+            color: "#A1EDF7", // Tauri blue
+            darkText: true,
         },
         angular: {
             deviconName: "angularjs", // Devicon uses 'angularjs' for Angular

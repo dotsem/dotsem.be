@@ -180,6 +180,15 @@ export const projectsMetadata: ProjectMetadata[] = [
         repo: "dotsem/tusshi",
         trackRelease: true,
     },
+        {
+        slug: "whispertag",
+        image: "/projects/whispertag/logo.svg",
+        languages: ["react", "rust", "tauri", "ts", "tailwind"],
+        highlighted: false,
+        status: ProjectStatus.Finished,
+        category: "di",
+        repo: "Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project",
+    }
 ];
 
 export const contributions: Contribution[] = [
@@ -210,4 +219,5 @@ export const contributions: Contribution[] = [
         status: "merged",
         languages: ["rust"],
     },
+
 ];
