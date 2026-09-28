@@ -131,7 +131,7 @@ export const projectsMetadata: ProjectMetadata[] = [
         highlighted: false,
         category: "school",
         labels: ["Group Project", "TALL Stack", "B&B Webapp"],
-        status: ProjectStatus.InProgress,
+        status: ProjectStatus.Finished,
     },
     {
         slug: "skil2-poutrel",
