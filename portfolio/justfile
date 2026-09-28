@@ -1,0 +1,5 @@
+default:
+    @just --list
+
+new-content:
+    .venv/bin/python scripts/new-content.py
