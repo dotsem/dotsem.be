@@ -1,16 +1,18 @@
-name: CI
+name: Portfolio CI
 
 on:
   push:
     branches: ["main", "master"]
-    paths-ignore:
-      - "**.md"
-      - "**.mmd"
+    paths:
+      - "portfolio/**"
+      - "!portfolio/**.md"
+      - "!portfolio/**.mmd"
   pull_request:
     branches: ["**"]
-    paths-ignore:
-      - "**.md"
-      - "**.mmd"
+    paths:
+      - "portfolio/**"
+      - "!portfolio/**.md"
+      - "!portfolio/**.mmd"
 
 jobs:
   check-n-build:
