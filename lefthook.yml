@@ -2,14 +2,17 @@ pre-commit:
   parallel: true
   commands:
     sveltecheck:
-      run: pnpm check
+      root: "portfolio/"
       glob: '**/*.{svelte,js,ts}'
+      run: pnpm check
 
     eslint:
+      root: "portfolio/"
+      glob: '**/*.{svelte,js,ts}'
       run: pnpm exec eslint {staged_files}
-      glob: '**/*.{js,ts}'
 
     prettier:
-      run: pnpm exec prettier --write {staged_files}
+      root: "portfolio/"
       glob: '**/*.{svelte,js,ts,css}'
+      run: pnpm exec prettier --write {staged_files}
       stage_fixed: true
