@@ -1,6 +1,6 @@
 packages:
   - 'portfolio'
 
-onlyBuiltDependencies:
-  - esbuild
-  - core-js
+allowBuilds:
+  core-js: true
+  esbuild: true
