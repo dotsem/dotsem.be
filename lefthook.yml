@@ -8,7 +8,7 @@ pre-commit:
 
     eslint:
       root: "portfolio/"
-      glob: '**/*.{js,ts}'
+      glob: '**/*.{svelte,js,ts}'
       run: pnpm exec eslint {staged_files}
 
     prettier:
