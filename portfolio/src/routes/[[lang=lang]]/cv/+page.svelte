@@ -1,249 +1,227 @@
 <script lang="ts">
-    import Paper from "$lib/components/cv/Paper.svelte";
-    import { Printer } from "lucide-svelte";
-    import pfp from "$lib/assets/me.webp";
-    import * as m from "$lib/paraglide/messages";
-    import Section from "$lib/components/cv/Section.svelte";
-    import ListItem from "$lib/components/cv/ListItem.svelte";
-    import FAB from "$lib/components/cv/FAB.svelte";
-    import { handleDownload } from "$lib/components/cv/handleDownload";
-    import Experience from "$lib/components/cv/Experience.svelte";
-    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
+	import Paper from '$lib/components/cv/Paper.svelte';
+	import pfp from '$lib/assets/me.webp';
+	import * as m from '$lib/paraglide/messages';
+	import Section from '$lib/components/cv/Section.svelte';
+	import ListItem from '$lib/components/cv/ListItem.svelte';
+	import FAB from '$lib/components/cv/FAB.svelte';
+	import { handleDownload } from '$lib/components/cv/handleDownload';
+	import Experience from '$lib/components/cv/Experience.svelte';
+	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
 
-    import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
-    let pdfRef: HTMLElement | undefined = $state();
+	let pdfRef: HTMLElement | undefined = $state();
 
-    let emailHref = $state("");
-    let emailText = $state("");
+	let emailHref = $state('');
+	let emailText = $state('');
 
-    onMount(() => {
-        const email = ["cv", "dotsem.be"].join("@");
-        emailHref = "mailto:" + email;
-        emailText = email;
-    });
+	onMount(() => {
+		const email = ['cv', 'dotsem.be'].join('@');
+		emailHref = 'mailto:' + email;
+		emailText = email;
+	});
 
-    function handlePrint() {
-        window.print();
-    }
+	function handlePrint() {
+		window.print();
+	}
 </script>
 
 <svelte:head>
-    <title>{m.cv_title()} | Sem Van Broekhoven</title>
-    <meta name="description" content={m.cv_summary_content()} />
+	<title>{m.cv_title()} | Sem Van Broekhoven</title>
+	<meta name="description" content={m.cv_summary_content()} />
 </svelte:head>
 
-<div class="fixed bottom-0 right-0 print-hidden z-50">
-    <EntryAnimation delay={300} type="slide-left">
-        <FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}
-            >{m.cv_download()}</FAB
-        >
-    </EntryAnimation>
-    <EntryAnimation delay={400} type="slide-left">
-        <FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
-    </EntryAnimation>
+<div class="print-hidden fixed right-0 bottom-0 z-50">
+	<EntryAnimation delay={300} type="slide-left">
+		<FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}>{m.cv_download()}</FAB>
+	</EntryAnimation>
+	<EntryAnimation delay={400} type="slide-left">
+		<FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
+	</EntryAnimation>
 </div>
 
 <section id="cv" bind:this={pdfRef}>
-    <Paper>
-        <header
-            class="flex justify-between items-start border-b-4 pl-paper pr-paper pt-paper pb-4 border-b-primary"
-        >
-            <div class="space-y-1">
-                <h1
-                    class="text-3xl font-black uppercase tracking-tight leading-none text-black"
-                >
-                    Sem Van Broekhoven
-                </h1>
-                <p
-                    class="text-lg font-bold text-primary italic uppercase tracking-wider"
-                >
-                    {m.cv_title()}
-                </p>
-                <div class="flex gap-4 text-sm font-medium text-neutral-600">
-                    <p>
-                        <i class="fa-solid fa-location-dot mr-1"></i>
-                        {m.cv_location()}
-                    </p>
-                </div>
-            </div>
-            <div
-                class="absolute top-0 right-12 mt-paper border-4 border-primary rounded-full overflow-hidden shadow-lg"
-            >
-                <img
-                    src={pfp}
-                    alt="Sem Van Broekhoven"
-                    class="block size-40 rounded-full object-cover bg-white hover:scale-105 transition-all duration-500"
-                />
-            </div>
-        </header>
+	<Paper>
+		<header
+			class="flex items-start justify-between border-b-4 border-b-primary pt-paper pr-paper pb-4 pl-paper"
+		>
+			<div class="space-y-1">
+				<h1 class="text-3xl leading-none font-black tracking-tight text-black uppercase">
+					Sem Van Broekhoven
+				</h1>
+				<p class="text-lg font-bold tracking-wider text-primary uppercase italic">
+					{m.cv_title()}
+				</p>
+				<div class="flex gap-4 text-sm font-medium text-neutral-600">
+					<p>
+						<i class="fa-solid fa-location-dot mr-1"></i>
+						{m.cv_location()}
+					</p>
+				</div>
+			</div>
+			<div
+				class="absolute top-0 right-12 mt-paper overflow-hidden rounded-full border-4 border-primary shadow-lg"
+			>
+				<img
+					src={pfp}
+					alt="Sem Van Broekhoven"
+					class="block size-40 rounded-full bg-white object-cover transition-all duration-500 hover:scale-105"
+				/>
+			</div>
+		</header>
 
-        <main class="grid grid-cols-12 font-serif bg-white text-black">
-            <!-- Main Content -->
-            <article class="col-span-8 pl-paper pr-4 pt-4">
-                <Section title={m.cv_education()} class="mb-4">
-                    <div class="mx-2">
-                        <Experience
-                            title={m.cv_edu_bachelor_title()}
-                            location={m.cv_location_geel()}
-                            date={m.cv_edu_bachelor_date()}
-                            class="mb-4"
-                        >
-                            {m.cv_edu_bachelor_description()}
-                        </Experience>
-                        <Experience
-                            title={m.cv_edu_secondary_title()}
-                            location={m.cv_location()}
-                            date={m.cv_edu_secondary_date()}
-                        >
-                            <ul>
-                                <li>{m.cv_edu_secondary_item_1()}</li>
-                                <li>{m.cv_edu_secondary_item_2()}</li>
-                            </ul>
-                        </Experience>
-                    </div>
-                </Section>
-                <Section title={m.cv_student_jobs()} class="mb-4">
-                    <div class="mx-2">
-                        <Experience
-                            title={m.cv_job_lifeguard_title()}
-                            location={m.cv_location()}
-                            date={m.cv_job_lifeguard_date()}
-                            class="mb-4"
-                        >
-                            <ul>
-                                <li>
-                                    {m.cv_job_lifeguard_item_1()}
-                                </li>
-                                <li>
-                                    {m.cv_job_lifeguard_item_2()}
-                                </li>
-                                <li>{m.cv_job_lifeguard_item_3()}</li>
-                            </ul>
-                        </Experience>
-                        <Experience
-                            title={m.cv_job_bistro_title()}
-                            location={m.cv_location_kinrooi()}
-                            date={m.cv_job_bistro_date()}
-                        >
-                            {m.cv_job_bistro_description()}
-                        </Experience>
-                    </div>
-                </Section>
-                <Section title={m.cv_experience()}>
-                    <div class="mx-2">
-                        <Experience
-                            title={m.cv_internship_philips_title()}
-                            location={m.cv_location_eindhoven()}
-                            date={m.cv_internship_philips_date()}
-                            class="mb-4"
-                        >
-                            {m.cv_internship_philips_description()}
-                        </Experience>
-                        <Experience title={m.cv_vex_title()}>
-                            {m.cv_vex_description()}
-                            <ul>
-                                <li>
-                                    {m.cv_vex_item_1()}
-                                </li>
-                                <li>
-                                    {m.cv_vex_item_2()}
-                                </li>
-                            </ul>
-                        </Experience>
-                    </div>
-                </Section>
-            </article>
+		<main class="grid grid-cols-12 bg-white font-serif text-black">
+			<!-- Main Content -->
+			<article class="col-span-8 pt-4 pr-4 pl-paper">
+				<Section title={m.cv_education()} class="mb-4">
+					<div class="mx-2">
+						<Experience
+							title={m.cv_edu_bachelor_title()}
+							location={m.cv_location_geel()}
+							date={m.cv_edu_bachelor_date()}
+							class="mb-4"
+						>
+							{m.cv_edu_bachelor_description()}
+						</Experience>
+						<Experience
+							title={m.cv_edu_secondary_title()}
+							location={m.cv_location()}
+							date={m.cv_edu_secondary_date()}
+						>
+							<ul>
+								<li>{m.cv_edu_secondary_item_1()}</li>
+								<li>{m.cv_edu_secondary_item_2()}</li>
+							</ul>
+						</Experience>
+					</div>
+				</Section>
+				<Section title={m.cv_student_jobs()} class="mb-4">
+					<div class="mx-2">
+						<Experience
+							title={m.cv_job_lifeguard_title()}
+							location={m.cv_location()}
+							date={m.cv_job_lifeguard_date()}
+							class="mb-4"
+						>
+							<ul>
+								<li>
+									{m.cv_job_lifeguard_item_1()}
+								</li>
+								<li>
+									{m.cv_job_lifeguard_item_2()}
+								</li>
+								<li>{m.cv_job_lifeguard_item_3()}</li>
+							</ul>
+						</Experience>
+						<Experience
+							title={m.cv_job_bistro_title()}
+							location={m.cv_location_kinrooi()}
+							date={m.cv_job_bistro_date()}
+						>
+							{m.cv_job_bistro_description()}
+						</Experience>
+					</div>
+				</Section>
+				<Section title={m.cv_experience()}>
+					<div class="mx-2">
+						<Experience
+							title={m.cv_internship_philips_title()}
+							location={m.cv_location_eindhoven()}
+							date={m.cv_internship_philips_date()}
+							class="mb-4"
+						>
+							{m.cv_internship_philips_description()}
+						</Experience>
+						<Experience title={m.cv_vex_title()}>
+							{m.cv_vex_description()}
+							<ul>
+								<li>
+									{m.cv_vex_item_1()}
+								</li>
+								<li>
+									{m.cv_vex_item_2()}
+								</li>
+							</ul>
+						</Experience>
+					</div>
+				</Section>
+			</article>
 
-            <!-- Sidebar -->
-            <aside
-                class="col-span-4 bg-neutral-50/50 pt-14 border-l border-neutral-200 p-4 pr-paper pb-paper"
-            >
-                <Section title={m.cv_summary_title()} class="mt-4">
-                    {m.cv_summary_content()}
-                </Section>
-                <Section title={m.cv_skills_title()} class="mt-4">
-                    <ul class="space-y-1">
-                        <ListItem icon="fa-brands fa-python">Python</ListItem>
-                        <ListItem icon="fa-brands fa-flutter"
-                            >Flutter (Dart)</ListItem
-                        >
-                        <ListItem icon="fa-brands fa-svelte"
-                            >Svelte & SvelteKit</ListItem
-                        >
-                        <ListItem icon="fa-brands fa-golang">Go</ListItem>
-                        <ListItem icon="fa-brands fa-typescript"
-                            >TypeScript</ListItem
-                        >
-                        <ListItem icon="fa-brands fa-rust">Rust</ListItem>
-                        <ListItem icon="fa-brands fa-postgresql"
-                            >PostgreSQL</ListItem
-                        >
-                        <ListItem icon="fa-brands fa-linux">Linux</ListItem>
-                        <ListItem icon="fa-brands fa-docker">Docker</ListItem>
-                        <ListItem icon="fa-brands fa-figma">Figma</ListItem>
-                        <ListItem icon="fa-brands fa-github">GitHub</ListItem>
-                    </ul>
-                </Section>
-                <Section title={m.cv_hobbies_title()} class="mt-4">
-                    <ul class="space-y-1">
-                        <ListItem icon="fa-solid fa-guitar"
-                            >{m.cv_hobby_guitar()}</ListItem
-                        >
-                        <ListItem icon="fa-solid fa-water"
-                            >{m.cv_hobby_swimming()}</ListItem
-                        >
-                        <ListItem icon="fa-solid fa-code"
-                            >{m.cv_hobby_coding()}</ListItem
-                        >
-                    </ul>
-                </Section>
+			<!-- Sidebar -->
+			<aside
+				class="col-span-4 border-l border-neutral-200 bg-neutral-50/50 p-4 pt-14 pr-paper pb-paper"
+			>
+				<Section title={m.cv_summary_title()} class="mt-4">
+					{m.cv_summary_content()}
+				</Section>
+				<Section title={m.cv_skills_title()} class="mt-4">
+					<ul class="space-y-1">
+						<ListItem icon="fa-brands fa-python">Python</ListItem>
+						<ListItem icon="fa-brands fa-flutter">Flutter (Dart)</ListItem>
+						<ListItem icon="fa-brands fa-svelte">Svelte & SvelteKit</ListItem>
+						<ListItem icon="fa-brands fa-golang">Go</ListItem>
+						<ListItem icon="fa-brands fa-typescript">TypeScript</ListItem>
+						<ListItem icon="fa-brands fa-rust">Rust</ListItem>
+						<ListItem icon="fa-brands fa-postgresql">PostgreSQL</ListItem>
+						<ListItem icon="fa-brands fa-linux">Linux</ListItem>
+						<ListItem icon="fa-brands fa-docker">Docker</ListItem>
+						<ListItem icon="fa-brands fa-figma">Figma</ListItem>
+						<ListItem icon="fa-brands fa-github">GitHub</ListItem>
+					</ul>
+				</Section>
+				<Section title={m.cv_hobbies_title()} class="mt-4">
+					<ul class="space-y-1">
+						<ListItem icon="fa-solid fa-guitar">{m.cv_hobby_guitar()}</ListItem>
+						<ListItem icon="fa-solid fa-water">{m.cv_hobby_swimming()}</ListItem>
+						<ListItem icon="fa-solid fa-code">{m.cv_hobby_coding()}</ListItem>
+					</ul>
+				</Section>
 
-                <Section title={m.cv_languages_title()} class="mt-4">
-                    <ul class="space-y-1">
-                        <li class="list-disc list-inside text-sm">
-                            {m.cv_lang_dutch()}
-                        </li>
-                        <li class="list-disc list-inside text-sm">
-                            {m.cv_lang_english()}
-                        </li>
-                        <li class="list-disc list-inside text-sm">
-                            {m.cv_lang_french()}
-                        </li>
-                    </ul>
-                </Section>
-                <Section title={m.cv_contact_title()} class="mt-4">
-                    <ul class="space-y-1">
-                        <ListItem icon="fa-solid fa-envelope">
-                            {#if emailHref}
-                                <a
-                                    href={emailHref}
-                                    class="text-neutral-900 no-underline hover:underline"
-                                    >{emailText}</a
-                                >
-                            {:else}
-                                <span class="text-neutral-900">cv [at] dotsem.be</span>
-                            {/if}
-                        </ListItem>
-                        <ListItem icon="fa-brands fa-linkedin">
-                            <a
-                                href="https://www.linkedin.com/in/sem-van-broekhoven/"
-                                class="text-neutral-900 no-underline hover:underline"
-                                >Sem Van Broekhoven</a
-                            >
-                        </ListItem>
-                        <ListItem icon="fa-solid fa-location-dot">
-                            {m.cv_location()}
-                        </ListItem>
-                    </ul>
-                </Section>
-            </aside>
-        </main>
-    </Paper>
+				<Section title={m.cv_languages_title()} class="mt-4">
+					<ul class="space-y-1">
+						<li class="list-inside list-disc text-sm">
+							{m.cv_lang_dutch()}
+						</li>
+						<li class="list-inside list-disc text-sm">
+							{m.cv_lang_english()}
+						</li>
+						<li class="list-inside list-disc text-sm">
+							{m.cv_lang_french()}
+						</li>
+					</ul>
+				</Section>
+				<Section title={m.cv_contact_title()} class="mt-4">
+					<ul class="space-y-1">
+						<ListItem icon="fa-solid fa-envelope">
+							{#if emailHref}
+								<a
+									href={emailHref}
+									rel="external"
+									class="text-neutral-900 no-underline hover:underline">{emailText}</a
+								>
+							{:else}
+								<span class="text-neutral-900">cv [at] dotsem.be</span>
+							{/if}
+						</ListItem>
+						<ListItem icon="fa-brands fa-linkedin">
+							<a
+								href="https://www.linkedin.com/in/sem-van-broekhoven/"
+								class="text-neutral-900 no-underline hover:underline">Sem Van Broekhoven</a
+							>
+						</ListItem>
+						<ListItem icon="fa-solid fa-location-dot">
+							{m.cv_location()}
+						</ListItem>
+					</ul>
+				</Section>
+			</aside>
+		</main>
+	</Paper>
 </section>
 
 <style>
-    .font-serif {
-        font-family: Georgia, serif;
-    }
+	.font-serif {
+		font-family: Georgia, serif;
+	}
 </style>

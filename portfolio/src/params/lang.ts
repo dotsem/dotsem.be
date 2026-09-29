@@ -1,5 +1,5 @@
 import type { ParamMatcher } from '@sveltejs/kit';
 
 export const match: ParamMatcher = (param) => {
-    return ['en', 'nl'].includes(param);
+	return ['en', 'nl'].includes(param);
 };

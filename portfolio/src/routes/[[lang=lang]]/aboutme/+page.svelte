@@ -1,145 +1,125 @@
 <script lang="ts">
-    import AboutMe from "$lib/components/AboutMe.svelte";
-    import { calculateAge } from "$lib/utils";
-    import * as m from "$lib/paraglide/messages.js";
-    import MeImage from "$lib/assets/me.webp";
-    import CVImage from "$lib/assets/me2.webp";
-    import DigitalInnovation from "$lib/assets/digital-innovation.webp";
-    import SocialLinks from "$lib/components/SocialLinks.svelte";
-    import ProgLang from "$lib/components/ProgLang.svelte";
-    import InfoCard from "$lib/components/InfoCard.svelte";
-    import Button from "$lib/components/ui/button/button.svelte";
-    import TextWithImageContainer from "$lib/components/TextWithImageContainer.svelte";
-    import PLprog from "$lib/components/profile/PLprog.svelte";
-    import PLtools from "$lib/components/profile/PLtools.svelte";
-    import ContactForm from "$lib/components/ContactForm.svelte";
-    import { i18n } from "$lib/i18n";
-    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
-    import RandomDelayGroup from "$lib/components/RandomDelayGroup.svelte";
+	import AboutMe from '$lib/components/AboutMe.svelte';
+	import { calculateAge } from '$lib/utils';
+	import * as m from '$lib/paraglide/messages.js';
+	import MeImage from '$lib/assets/me.webp';
+	import CVImage from '$lib/assets/me2.webp';
+	import DigitalInnovation from '$lib/assets/digital-innovation.webp';
+	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import ProgLang from '$lib/components/ProgLang.svelte';
+	import InfoCard from '$lib/components/InfoCard.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import TextWithImageContainer from '$lib/components/TextWithImageContainer.svelte';
+	import PLprog from '$lib/components/profile/PLprog.svelte';
+	import PLtools from '$lib/components/profile/PLtools.svelte';
+	import ContactForm from '$lib/components/ContactForm.svelte';
+	import { i18n } from '$lib/i18n';
+	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
+	import RandomDelayGroup from '$lib/components/RandomDelayGroup.svelte';
 
-    let age = calculateAge("2006-08-31");
+	let age = calculateAge('2006-08-31');
 
-    let experienceContent = $derived([
-        m.profile_experience_content_0(),
-        m.profile_experience_content_1(),
-        m.profile_experience_content_2(),
-        m.profile_experience_content_3(),
-        m.profile_experience_content_4(),
-        m.profile_experience_content_5(),
-    ]);
+	let experienceContent = $derived([
+		m.profile_experience_content_0(),
+		m.profile_experience_content_1(),
+		m.profile_experience_content_2(),
+		m.profile_experience_content_3(),
+		m.profile_experience_content_4(),
+		m.profile_experience_content_5()
+	]);
 
-    let achievementsContent = $derived([
-        m.profile_achievements_content_0(),
-        m.profile_achievements_content_1(),
-    ]);
+	let achievementsContent = $derived([
+		m.profile_achievements_content_0(),
+		m.profile_achievements_content_1()
+	]);
 </script>
 
 <svelte:head>
-    <title>{m.about_me_title()} | Sem Van Broekhoven</title>
-    <meta name="description" content={m.about_me_page_description()} />
+	<title>{m.about_me_title()} | Sem Van Broekhoven</title>
+	<meta name="description" content={m.about_me_page_description()} />
 </svelte:head>
 
-<section
-    class="flex flex-col md:flex-row container px-4 mx-auto items-center justify-center"
->
-    <div class="flex-1">
-        <img
-            id="me-image"
-            src={MeImage}
-            class="w-[60%] mx-auto unselectable"
-            alt="thats me!"
-        />
-    </div>
-    <div class="flex-1">
-        <h1
-            class="text-2xl sm:text-4xl md:text-6xl font-bold text-center md:text-start"
-        >
-            Sem Van Broekhoven
-        </h1>
-        <p class="py-2 md:py-4 text-center md:text-start">
-            {m.profile_description({ age })}
-        </p>
-        <div class="hidden md:flex flex-wrap justify-start gap-[0.35rem] py-1">
-            <PLprog />
-            <ProgLang name="linux"></ProgLang>
-        </div>
-        <SocialLinks class="justify-evenly md:justify-start" />
-    </div>
+<section class="container mx-auto flex flex-col items-center justify-center px-4 md:flex-row">
+	<div class="flex-1">
+		<img id="me-image" src={MeImage} class="unselectable mx-auto w-[60%]" alt="thats me!" />
+	</div>
+	<div class="flex-1">
+		<h1 class="text-center text-2xl font-bold sm:text-4xl md:text-start md:text-6xl">
+			Sem Van Broekhoven
+		</h1>
+		<p class="py-2 text-center md:py-4 md:text-start">
+			{m.profile_description({ age })}
+		</p>
+		<div class="hidden flex-wrap justify-start gap-[0.35rem] py-1 md:flex">
+			<PLprog />
+			<ProgLang name="linux"></ProgLang>
+		</div>
+		<SocialLinks class="justify-evenly md:justify-start" />
+	</div>
 </section>
 <AboutMe showTitle={false} class="py-8!" />
 
 <RandomDelayGroup count={2}>
-    {#snippet children(delays)}
-        <section
-            class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden"
-        >
-            <InfoCard
-                title={m.profile_experience_title()}
-                delay={delays[0]}
-                icon="fa-flask"
-            >
-                <ul class="list-disc list-inside space-y-1">
-                    {#each experienceContent as item}
-                        <li>{item}</li>
-                    {/each}
-                </ul>
-            </InfoCard>
+	{#snippet children(delays)}
+		<section class="container mx-auto grid grid-cols-1 gap-8 overflow-hidden px-4 md:grid-cols-2">
+			<InfoCard title={m.profile_experience_title()} delay={delays[0]} icon="fa-flask">
+				<ul class="list-inside list-disc space-y-1">
+					{#each experienceContent as item (item)}
+						<li>{item}</li>
+					{/each}
+				</ul>
+			</InfoCard>
 
-            <InfoCard
-                title={m.profile_achievements_title()}
-                delay={delays[1]}
-                icon="fa-star"
-            >
-                <ul class="list-disc list-inside space-y-1">
-                    {#each achievementsContent as item}
-                        <li>{item}</li>
-                    {/each}
-                </ul>
-            </InfoCard>
-        </section>
-    {/snippet}
+			<InfoCard title={m.profile_achievements_title()} delay={delays[1]} icon="fa-star">
+				<ul class="list-inside list-disc space-y-1">
+					{#each achievementsContent as item (item)}
+						<li>{item}</li>
+					{/each}
+				</ul>
+			</InfoCard>
+		</section>
+	{/snippet}
 </RandomDelayGroup>
 
-<TextWithImageContainer class="bg-card slanted my-4">
-    {#snippet image()}
-        <EntryAnimation distance={"100px"} type="slide-left">
-            <img
-                src={DigitalInnovation}
-                class="w-[60%] mx-auto unselectable"
-                alt="Digital Innovation @ Thomas More"
-            />
-        </EntryAnimation>
-    {/snippet}
+<TextWithImageContainer class="slanted my-4 bg-card">
+	{#snippet image()}
+		<EntryAnimation distance="100px" type="slide-left">
+			<img
+				src={DigitalInnovation}
+				class="unselectable mx-auto w-[60%]"
+				alt="Digital Innovation @ Thomas More"
+			/>
+		</EntryAnimation>
+	{/snippet}
 
-    <h2 class="text-2xl md:text-4xl py-2 font-bold text-center md:text-start">
-        Digital Innovation @ Thomas More
-    </h2>
-    <p class="py-2">
-        {m.di_description()}
-    </p>
-    <p class="py-2">
-        {m.di_description_2()}
-    </p>
-    <p class="py-2">
-        {m.di_description_3()}
-    </p>
-    <div class="mt-4 flex flex-wrap gap-2">
-        <EntryAnimation delay={300} class="flex-1" type="slide-up">
-            <Button
-                class="w-full"
-                href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
-                >{m.di_button()}</Button
-            >
-        </EntryAnimation>
-        <EntryAnimation delay={600} class="flex-1" type="slide-up">
-            <Button
-                class="w-full"
-                variant="outline"
-                href="https://github.com/Thomas-More-Digital-Innovation"
-                >{m.di_button_secondary()}</Button
-            >
-        </EntryAnimation>
-    </div>
+	<h2 class="py-2 text-center text-2xl font-bold md:text-start md:text-4xl">
+		Digital Innovation @ Thomas More
+	</h2>
+	<p class="py-2">
+		{m.di_description()}
+	</p>
+	<p class="py-2">
+		{m.di_description_2()}
+	</p>
+	<p class="py-2">
+		{m.di_description_3()}
+	</p>
+	<div class="mt-4 flex flex-wrap gap-2">
+		<EntryAnimation delay={300} class="flex-1" type="slide-up">
+			<Button
+				class="w-full"
+				href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
+				>{m.di_button()}</Button
+			>
+		</EntryAnimation>
+		<EntryAnimation delay={600} class="flex-1" type="slide-up">
+			<Button
+				class="w-full"
+				variant="outline"
+				href="https://github.com/Thomas-More-Digital-Innovation">{m.di_button_secondary()}</Button
+			>
+		</EntryAnimation>
+	</div>
 </TextWithImageContainer>
 
 <!-- <TextWithImageContainer layout="image-first" class="py-4">
@@ -153,99 +133,79 @@
 </TextWithImageContainer> -->
 
 <RandomDelayGroup count={3}>
-    {#snippet children(delays)}
-        <section
-            class="container gap-8 pt-8 p-4 pb-12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden"
-        >
-            <InfoCard
-                title={m.profile_tools_prog()}
-                delay={delays[0]}
-                icon="fa-code"
-            >
-                <p class="pb-2">{m.profile_tools_prog_description()}</p>
-                <div class="flex flex-wrap gap-1">
-                    <PLprog />
-                </div>
-            </InfoCard>
-            <InfoCard
-                title={m.profile_tools_tools()}
-                delay={delays[1]}
-                icon="fa-screwdriver-wrench"
-            >
-                <p class="pb-2">{m.profile_tools_tools_description()}</p>
-                <div class="flex flex-wrap gap-1">
-                    <PLtools />
-                </div>
-            </InfoCard>
-            <InfoCard
-                class="col-span-1 md:col-span-2 lg:col-span-1"
-                title={m.profile_tools_soft_skills()}
-                delay={delays[2]}
-                icon="fa-comments"
-            >
-                <p class="pb-2">{m.profile_tools_soft_skills_description()}</p>
-            </InfoCard>
-        </section>
-    {/snippet}
+	{#snippet children(delays)}
+		<section
+			class="container mx-auto grid grid-cols-1 gap-8 overflow-hidden p-4 pt-8 pb-12 md:grid-cols-2 lg:grid-cols-3"
+		>
+			<InfoCard title={m.profile_tools_prog()} delay={delays[0]} icon="fa-code">
+				<p class="pb-2">{m.profile_tools_prog_description()}</p>
+				<div class="flex flex-wrap gap-1">
+					<PLprog />
+				</div>
+			</InfoCard>
+			<InfoCard title={m.profile_tools_tools()} delay={delays[1]} icon="fa-screwdriver-wrench">
+				<p class="pb-2">{m.profile_tools_tools_description()}</p>
+				<div class="flex flex-wrap gap-1">
+					<PLtools />
+				</div>
+			</InfoCard>
+			<InfoCard
+				class="col-span-1 md:col-span-2 lg:col-span-1"
+				title={m.profile_tools_soft_skills()}
+				delay={delays[2]}
+				icon="fa-comments"
+			>
+				<p class="pb-2">{m.profile_tools_soft_skills_description()}</p>
+			</InfoCard>
+		</section>
+	{/snippet}
 </RandomDelayGroup>
 
-<TextWithImageContainer class="bg-card slanted" layout="image-first">
-    {#snippet image()}
-        <EntryAnimation distance={"100px"} type="slide-right">
-            <div
-                class="overflow-hidden w-[60%] mx-auto rounded-full aspect-square"
-            >
-                <img
-                    src={CVImage}
-                    class=" hover:scale-105 transition-transform duration-200 ease-in-out"
-                    alt="Sem Van Broekhoven"
-                />
-            </div>
-        </EntryAnimation>
-    {/snippet}
+<TextWithImageContainer class="slanted bg-card" layout="image-first">
+	{#snippet image()}
+		<EntryAnimation distance="100px" type="slide-right">
+			<div class="mx-auto aspect-square w-[60%] overflow-hidden rounded-full">
+				<img
+					src={CVImage}
+					class=" transition-transform duration-200 ease-in-out hover:scale-105"
+					alt="Sem Van Broekhoven"
+				/>
+			</div>
+		</EntryAnimation>
+	{/snippet}
 
-    <h2 class="text-2xl md:text-4xl py-2 font-bold text-center md:text-start">
-        {m.about_cv_title()}
-    </h2>
-    <p class="py-2">{m.about_cv_description()}</p>
-    <div class="flex flex-wrap gap-2 w-full">
-        <EntryAnimation class="flex-1" delay={300} type="slide-up">
-            <Button class="w-full" href={i18n.resolveRoute("/cv")}
-                >{m.about_cv_button()}</Button
-            >
-        </EntryAnimation>
-        <EntryAnimation class="flex-1" delay={600} type="slide-up">
-            <Button
-                class="w-full"
-                href="https://www.linkedin.com/in/sem-van-broekhoven/"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outline">{m.about_cv_button_secondary()}</Button
-            >
-        </EntryAnimation>
-    </div>
+	<h2 class="py-2 text-center text-2xl font-bold md:text-start md:text-4xl">
+		{m.about_cv_title()}
+	</h2>
+	<p class="py-2">{m.about_cv_description()}</p>
+	<div class="flex w-full flex-wrap gap-2">
+		<EntryAnimation class="flex-1" delay={300} type="slide-up">
+			<Button class="w-full" href={i18n.resolveRoute('/cv')}>{m.about_cv_button()}</Button>
+		</EntryAnimation>
+		<EntryAnimation class="flex-1" delay={600} type="slide-up">
+			<Button
+				class="w-full"
+				href="https://www.linkedin.com/in/sem-van-broekhoven/"
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="outline">{m.about_cv_button_secondary()}</Button
+			>
+		</EntryAnimation>
+	</div>
 </TextWithImageContainer>
 
 <ContactForm />
 
 <style>
-    #me-image {
-        -webkit-mask-image: linear-gradient(
-            to bottom,
-            var(--color-background) 70%,
-            transparent 95%
-        );
-        mask-image: linear-gradient(
-            to bottom,
-            var(--color-background) 70%,
-            transparent 95%
-        );
+	#me-image {
+		-webkit-mask-image: linear-gradient(to bottom, var(--color-background) 70%, transparent 95%);
+		mask-image: linear-gradient(to bottom, var(--color-background) 70%, transparent 95%);
 
-        transform: scale(1);
-        transition: transform 0.2s ease-in-out;
+		transform: scale(1);
+		transition: transform 0.2s ease-in-out;
 
-        &:hover {
-            transform: scale(1.05);
-        }
-    }
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
 </style>

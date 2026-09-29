@@ -1,5 +1,5 @@
 <script>
-    import ProgLang from "../ProgLang.svelte";
+	import ProgLang from '../ProgLang.svelte';
 </script>
 
 <ProgLang name="flutter"></ProgLang>
