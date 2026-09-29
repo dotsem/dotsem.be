@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  commands:
+    sveltecheck:
+      run: pnpm check
+      glob: '**/*.{svelte,js,ts}'
+
+    eslint:
+      run: pnpm exec eslint {staged_files}
+      glob: '**/*.{js,ts}'
+
+    prettier:
+      run: pnpm exec prettier --write {staged_files}
+      glob: '**/*.{svelte,js,ts,css}'
+      stage_fixed: true
