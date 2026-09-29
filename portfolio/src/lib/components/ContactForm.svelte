@@ -41,7 +41,7 @@
 				if (untrack(() => widgetId)) return;
 
 				widgetId = window.turnstile.render(container, {
-					sitekey: env.PUBLIC_TURNSTILE_SITE_KEY,
+					sitekey: env.PUBLIC_TURNSTILE_SITE_KEY ?? '',
 					theme: 'dark',
 					size: 'flexible'
 				});
