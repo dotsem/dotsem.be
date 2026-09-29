@@ -1,0 +1,6 @@
+packages:
+  - 'portfolio'
+
+onlyBuiltDependencies:
+  - esbuild
+  - core-js
