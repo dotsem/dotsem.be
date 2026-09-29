@@ -64,7 +64,7 @@
 		<section class="container mx-auto grid grid-cols-1 gap-8 overflow-hidden px-4 md:grid-cols-2">
 			<InfoCard title={m.profile_experience_title()} delay={delays[0]} icon="fa-flask">
 				<ul class="list-inside list-disc space-y-1">
-					{#each experienceContent as item}
+					{#each experienceContent as item (item)}
 						<li>{item}</li>
 					{/each}
 				</ul>
@@ -72,7 +72,7 @@
 
 			<InfoCard title={m.profile_achievements_title()} delay={delays[1]} icon="fa-star">
 				<ul class="list-inside list-disc space-y-1">
-					{#each achievementsContent as item}
+					{#each achievementsContent as item (item)}
 						<li>{item}</li>
 					{/each}
 				</ul>
@@ -83,7 +83,7 @@
 
 <TextWithImageContainer class="slanted my-4 bg-card">
 	{#snippet image()}
-		<EntryAnimation distance={'100px'} type="slide-left">
+		<EntryAnimation distance="100px" type="slide-left">
 			<img
 				src={DigitalInnovation}
 				class="unselectable mx-auto w-[60%]"
@@ -163,7 +163,7 @@
 
 <TextWithImageContainer class="slanted bg-card" layout="image-first">
 	{#snippet image()}
-		<EntryAnimation distance={'100px'} type="slide-right">
+		<EntryAnimation distance="100px" type="slide-right">
 			<div class="mx-auto aspect-square w-[60%] overflow-hidden rounded-full">
 				<img
 					src={CVImage}

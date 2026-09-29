@@ -161,7 +161,7 @@
 	ontouchstart={handleTouchStart}
 	ontouchend={handleTouchEnd}
 >
-	{#each sections as item}
+	{#each sections as item (item.id)}
 		{@const isActive = activeId === item.id}
 		<button
 			type="button"

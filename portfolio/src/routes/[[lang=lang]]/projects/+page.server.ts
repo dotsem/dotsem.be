@@ -8,7 +8,11 @@ export const load = async ({ url, setHeaders }) => {
 	const projects = await getProjectsByLang(lang);
 
 	const projectsWithVersions = await enrichProjectsWithVersions(
-		projects.map(({ component, ...meta }) => meta)
+		projects.map((p) => {
+			const meta = { ...p };
+			delete (meta as { component?: unknown }).component;
+			return meta;
+		})
 	);
 
 	// cache on cdn but force browser to revalidate

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Paper from '$lib/components/cv/Paper.svelte';
-	import { Printer } from 'lucide-svelte';
 	import pfp from '$lib/assets/me.webp';
 	import * as m from '$lib/paraglide/messages';
 	import Section from '$lib/components/cv/Section.svelte';
@@ -196,8 +195,10 @@
 					<ul class="space-y-1">
 						<ListItem icon="fa-solid fa-envelope">
 							{#if emailHref}
-								<a href={emailHref} class="text-neutral-900 no-underline hover:underline"
-									>{emailText}</a
+								<a
+									href={emailHref}
+									rel="external"
+									class="text-neutral-900 no-underline hover:underline">{emailText}</a
 								>
 							{:else}
 								<span class="text-neutral-900">cv [at] dotsem.be</span>

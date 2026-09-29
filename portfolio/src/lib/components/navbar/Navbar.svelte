@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { i18n } from '$lib/i18n';
 	import LangSwitch from '$lib/components/navbar/LangSwitch.svelte';
@@ -65,7 +66,7 @@
 	class:nav-hidden={!visible}
 >
 	<a
-		href={i18n.resolveRoute('/', currentLang)}
+		href={resolve(i18n.resolveRoute('/', currentLang))}
 		onclick={() => {
 			hamburgerMenuVisible = false;
 		}}

@@ -140,7 +140,7 @@
 				<div
 					class="container mx-auto grid auto-rows-[340px] grid-cols-1 gap-6 px-4 md:auto-rows-[360px] md:grid-cols-2 lg:auto-rows-[340px] lg:grid-cols-3"
 				>
-					{#each highlightedProjects as project, index}
+					{#each highlightedProjects as project, index (project.slug)}
 						<div
 							class={index === 0
 								? 'col-span-1 row-span-1 md:col-span-2 md:col-start-1 md:row-span-1 md:row-start-1 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1'

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ProjectCard from '$lib/components/cards/ProjectCard.svelte';
 	import ContributionCard from '$lib/components/cards/ContributionCard.svelte';
 	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
 	import RandomDelayGroup from '$lib/components/RandomDelayGroup.svelte';
@@ -121,7 +120,7 @@
 			<RandomDelayGroup count={contributions.length}>
 				{#snippet children(delays)}
 					<div class="flex flex-wrap justify-center gap-8">
-						{#each contributions as contribution, index}
+						{#each contributions as contribution, index (contribution.prUrl)}
 							<EntryAnimation type="scale" delay={delays[index] ?? index * 100}>
 								<ContributionCard {contribution} />
 							</EntryAnimation>

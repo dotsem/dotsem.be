@@ -69,7 +69,7 @@
 			{#if data.metadata.repo}
 				<LeftSidebarContent label={m.projects_sidebar_repository()}>
 					{#if Array.isArray(data.metadata.repo)}
-						{#each data.metadata.repo as r}
+						{#each data.metadata.repo as r (typeof r === 'string' ? r : r.path)}
 							{@const repoPath = typeof r === 'string' ? r : r.path}
 							{@const repoLabel =
 								typeof r === 'string' ? (r.includes('/') ? r.split('/')[1] : r) : r.name}
@@ -87,7 +87,7 @@
 			{/if}
 			{#if data.metadata.labels}
 				<LeftSidebarContent label={m.projects_sidebar_labels()}>
-					{#each data.metadata.labels as label}
+					{#each data.metadata.labels as label (label)}
 						<Badge
 							variant="secondary"
 							class="m-1 border-none bg-white/10 px-3.5 py-1 text-xs text-white hover:bg-white/20"

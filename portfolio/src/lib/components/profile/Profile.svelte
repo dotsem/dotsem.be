@@ -153,7 +153,7 @@
 							{m.profile_experience_title()}
 						</h3>
 						<ul>
-							{#each experienceContent as content}
+							{#each experienceContent as content (content)}
 								<li>{content}</li>
 							{/each}
 						</ul>
@@ -161,7 +161,7 @@
 							{m.profile_achievements_title()}
 						</h3>
 						<ul>
-							{#each achievementsContent as content}
+							{#each achievementsContent as content (content)}
 								<li>{content}</li>
 							{/each}
 						</ul>
@@ -175,13 +175,13 @@
 					<div id="profile-education" class="glossy-tile m-0! h-full w-full p-4">
 						<h3 class="mx-4 mt-4 mb-1">{m.profile_hs_title()}</h3>
 						<ul>
-							{#each hsContent as content}
+							{#each hsContent as content (content)}
 								<li>{content}</li>
 							{/each}
 						</ul>
 						<h3 class="mx-4 mt-4 mb-1">{m.profile_uni_title()}</h3>
 						<ul>
-							{#each uniContent as content}
+							{#each uniContent as content (content)}
 								<li>{content}</li>
 							{/each}
 						</ul>

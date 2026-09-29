@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 	import { i18n } from '$lib/i18n';
 	import { availableLanguageTags } from '$lib/paraglide/runtime';
@@ -69,7 +70,7 @@
 		<meta name="google" content="notranslate" />
 	{/if}
 
-	{#each availableLanguageTags as locale}
+	{#each availableLanguageTags as locale (locale)}
 		<link
 			rel="alternate"
 			hreflang={locale}
@@ -106,8 +107,8 @@
 		<Navbar />
 		<main class="flex-1 pt-16">{@render children()}</main>
 		<div style="display:none">
-			{#each availableLanguageTags as locale}
-				<a href={i18n.resolveRoute(i18n.route(page.url.pathname), locale)}>
+			{#each availableLanguageTags as locale (locale)}
+				<a href={resolve(i18n.resolveRoute(i18n.route(page.url.pathname), locale))}>
 					{locale}
 				</a>
 			{/each}

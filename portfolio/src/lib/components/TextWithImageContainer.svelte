@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { ClassArray } from 'clsx';
 	import type { Snippet } from 'svelte';
 
 	type layout = 'content-first' | 'image-first';

@@ -3,7 +3,7 @@
 	interface Props {
 		gap?: string;
 		class?: string;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { gap = '16px', class: className = '', ...restProps }: Props = $props();

@@ -41,7 +41,7 @@ export async function getLatestRelease(repo: string): Promise<string | null> {
 }
 
 export async function enrichProjectWithVersion<
-	T extends { repo?: any; trackRelease?: boolean; status?: string }
+	T extends { repo?: unknown; trackRelease?: boolean; status?: string }
 >(project: T): Promise<T> {
 	if (!project.repo || !project.trackRelease) {
 		return project;
@@ -70,7 +70,7 @@ export async function enrichProjectWithVersion<
 }
 
 export async function enrichProjectsWithVersions<
-	T extends { repo?: any; trackRelease?: boolean; status?: string }
+	T extends { repo?: unknown; trackRelease?: boolean; status?: string }
 >(projects: T[]): Promise<T[]> {
 	return Promise.all(projects.map(enrichProjectWithVersion));
 }

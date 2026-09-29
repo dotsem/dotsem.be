@@ -36,7 +36,7 @@
 		style="--scroll-duration: {scrollDuration}s"
 		bind:this={contentContainer}
 	>
-		{#each languages as lang}
+		{#each languages as lang (lang)}
 			<ProgLang name={lang} size={0.65} />
 		{/each}
 	</div>

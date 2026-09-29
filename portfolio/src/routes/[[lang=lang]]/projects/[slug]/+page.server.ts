@@ -19,7 +19,8 @@ export const load = async ({ params, url, setHeaders }) => {
 		});
 	}
 
-	const { component, ...meta } = enrichedProject;
+	const meta = { ...enrichedProject };
+	delete (meta as { component?: unknown }).component;
 	return {
 		project: meta
 	};

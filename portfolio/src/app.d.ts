@@ -18,7 +18,7 @@ declare global {
 					theme?: 'light' | 'dark' | 'auto';
 					size?: 'normal' | 'flexible' | 'compact';
 					callback?: (token: string) => void;
-					'error-callback'?: (error: any) => void;
+					'error-callback'?: (error: unknown) => void;
 					'expired-callback'?: () => void;
 					'timeout-callback'?: () => void;
 				}

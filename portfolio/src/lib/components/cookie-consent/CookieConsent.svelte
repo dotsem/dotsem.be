@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import * as m from '$lib/paraglide/messages.js';
@@ -61,7 +62,7 @@
 					</h2>
 					<p class="text-sm text-white">
 						{m.cookie_banner_message()}
-						<a href={i18n.resolveRoute('/cookies')}>
+						<a href={resolve(i18n.resolveRoute('/cookies'))}>
 							{m.cookie_banner_more()}
 						</a>
 					</p>

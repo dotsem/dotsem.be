@@ -1,6 +1,7 @@
 <script lang="ts">
 	import List from '@lucide/svelte/icons/list';
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
+	import { SvelteSet } from 'svelte/reactivity';
 	import { on_this_page } from '$lib/paraglide/messages';
 
 	interface Header {
@@ -19,7 +20,7 @@
 	let isMobileMenuOpen = $state(false);
 
 	onMount(() => {
-		const visibleHeaders = new Set<string>();
+		const visibleHeaders = new SvelteSet<string>();
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -78,9 +79,7 @@
 				{on_this_page()}
 			</h4>
 			<nav class="pointer-events-auto relative flex flex-col gap-2">
-				{#each headers as header}
-					<!-- svelte-ignore a11y_click_events_have_key_events -->
-					<!-- svelte-ignore a11y_no_static_element_interactions -->
+				{#each headers as header (header.id)}
 					<a
 						href="#{header.id}"
 						onclick={(e) => {
@@ -127,9 +126,7 @@
 					{on_this_page()}
 				</h4>
 				<nav class="flex flex-col gap-3">
-					{#each headers as header}
-						<!-- svelte-ignore a11y_click_events_have_key_events -->
-						<!-- svelte-ignore a11y_no_static_element_interactions -->
+					{#each headers as header (header.id)}
 						<a
 							href="#{header.id}"
 							onclick={(e) => {

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ProgLang from '$lib/components/ProgLang.svelte';
-	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import { ContentHeroCTA, ContentHeroImage, ContentHeroLabels, ContentHeroTitle } from '.';
 	import ContentHeroActionLinks from './hero/ActionLinks.svelte';
 	import type { ProjectMetadata } from '$lib/projects/metadata';
@@ -57,7 +56,7 @@
 				<!-- language badges -->
 				{#if languages.length > 0}
 					<div class="flex flex-wrap gap-2.5 pt-2">
-						{#each languages as language}
+						{#each languages as language (language)}
 							<ProgLang name={language} size={0.8} />
 						{/each}
 					</div>

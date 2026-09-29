@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as Card from '$lib/components/ui/card';
 	import * as m from '$lib/paraglide/messages.js';
 	import { calculateAge } from '$lib/utils';
 	import InfoCard from './InfoCard.svelte';
@@ -39,7 +38,7 @@
 		<RandomDelayGroup count={sections.length}>
 			{#snippet children(delays)}
 				<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{#each sections as section, index}
+					{#each sections as section, index (section.title)}
 						<InfoCard
 							title={section.title}
 							icon={section.icon}

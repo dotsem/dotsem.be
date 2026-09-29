@@ -26,7 +26,7 @@
 	<div class="flex flex-wrap gap-4 pt-4">
 		{#if repo}
 			{#if Array.isArray(repo)}
-				{#each repo as r}
+				{#each repo as r (typeof r === 'string' ? r : r.path)}
 					{@const repoPath = typeof r === 'string' ? r : r.path}
 					{@const repoLabel =
 						typeof r === 'string' ? (r.includes('/') ? r.split('/')[1] : r) : r.name}

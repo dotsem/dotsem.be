@@ -6,7 +6,7 @@
 		location?: string;
 		date?: string;
 		children: Snippet;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { title, location, date, children, ...restProps }: Props = $props();

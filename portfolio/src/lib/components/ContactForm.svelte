@@ -18,7 +18,7 @@
 	import Button from './ui/button/button.svelte';
 	import EntryAnimation from './EntryAnimation.svelte';
 	import { env } from '$env/dynamic/public';
-	import { onMount, untrack } from 'svelte';
+	import { untrack } from 'svelte';
 
 	let status = $state('idle'); // 'idle' | 'sending' | 'success' | 'error'
 	let turnstileContainer = $state<HTMLElement | null>(null);
@@ -33,7 +33,7 @@
 
 		let retries = 0;
 		const maxRetries = 50;
-		let timeoutId: number | undefined;
+		let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
 		const renderTurnstile = () => {
 			if (window.turnstile) {
@@ -47,7 +47,7 @@
 				});
 			} else if (retries < maxRetries) {
 				retries++;
-				timeoutId = setTimeout(renderTurnstile, 100) as any;
+				timeoutId = setTimeout(renderTurnstile, 100);
 			} else {
 				console.warn(
 					'Cloudflare Turnstile failed to load after 5 seconds. Adblocker might be active.'
@@ -96,7 +96,7 @@
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
-				body: new URLSearchParams(formData as any).toString()
+				body: new URLSearchParams(formData as unknown as Record<string, string>).toString()
 			});
 
 			if (response.ok) {

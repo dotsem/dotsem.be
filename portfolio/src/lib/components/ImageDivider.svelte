@@ -2,6 +2,9 @@
 	import { onMount } from 'svelte';
 
 	interface Props {
+		id?: string;
+		class?: string;
+		style?: string;
 		imageUrl: string;
 		paddingY?: string;
 		offset?: string;
@@ -9,10 +12,13 @@
 		scaleStart?: number;
 		scaleEnd?: number;
 		children?: import('svelte').Snippet;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let {
+		id,
+		class: className = '',
+		style = '',
 		imageUrl,
 		paddingY = '4rem',
 		offset = '2rem',
@@ -62,10 +68,11 @@
 </script>
 
 <div
-	id={rest.id}
+	{id}
 	bind:this={slitContainer}
-	class="static-bg-container {rest.class}"
-	style="padding-top: {paddingY}; padding-bottom: {paddingY}; top: {offset}; {rest.style || ''}"
+	class="static-bg-container {className}"
+	style="padding-top: {paddingY}; padding-bottom: {paddingY}; top: {offset}; {style}"
+	{...rest}
 >
 	{#if isVisible && imageUrl}
 		<div class="image-container">

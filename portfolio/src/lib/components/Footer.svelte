@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { Button } from './ui/button';
 	import { footer_copyright, footer_credits, footer_email } from '$lib/paraglide/messages';
 	import { i18n } from '$lib/i18n';
@@ -20,7 +21,9 @@
 		<p>{footer_copyright({ year: new Date().getFullYear() })}</p>
 		<p>
 			{footer_credits()}
-			<a href={i18n.resolveRoute('/aboutme', currentLang)} class="font-bold">Sem Van Broekhoven</a>
+			<a href={resolve(i18n.resolveRoute('/aboutme', currentLang))} class="font-bold"
+				>Sem Van Broekhoven</a
+			>
 		</p>
 	</div>
 	<div class="flex flex-col justify-center gap-2">
@@ -31,8 +34,8 @@
 			<Button variant="secondary" href={emailHref || null}>{footer_email()}</Button>
 		</div>
 		<div class="flex gap-4">
-			<a href={i18n.resolveRoute('/cookies', currentLang)}>Cookies</a>
-			<a href={i18n.resolveRoute('/privacy', currentLang)}>Privacy</a>
+			<a href={resolve(i18n.resolveRoute('/cookies', currentLang))}>Cookies</a>
+			<a href={resolve(i18n.resolveRoute('/privacy', currentLang))}>Privacy</a>
 		</div>
 	</div>
 

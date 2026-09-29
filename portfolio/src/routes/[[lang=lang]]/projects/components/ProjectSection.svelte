@@ -14,7 +14,7 @@
 		<RandomDelayGroup count={projects.length}>
 			{#snippet children(delays)}
 				<div class="flex flex-wrap justify-center gap-8">
-					{#each projects as project, index}
+					{#each projects as project, index (project.slug)}
 						<EntryAnimation type="scale" delay={delays[index] ?? index * 100}>
 							<ProjectCard {project} />
 						</EntryAnimation>

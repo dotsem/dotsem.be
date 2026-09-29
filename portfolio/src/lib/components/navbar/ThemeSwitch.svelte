@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ModeWatcher, mode, toggleMode } from 'mode-watcher';
+	import { mode, toggleMode } from 'mode-watcher';
 	import Button from '$lib/components/ui/button/button.svelte';
 
 	function handleToggle() {

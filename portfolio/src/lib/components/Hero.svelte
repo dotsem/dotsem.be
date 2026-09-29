@@ -41,6 +41,7 @@
 		>
 			<EntryAnimation type="slide-up">
 				<h1 class="text-center text-5xl font-bold sm:text-right lg:text-7xl">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html hero_title()}
 				</h1>
 			</EntryAnimation>

@@ -59,7 +59,7 @@
 
 		{#if allLabels.length > 0}
 			<div class="mb-8 flex flex-wrap gap-2">
-				{#each allLabels as label}
+				{#each allLabels as label (label)}
 					<button onclick={() => toggleLabel(label)}>
 						<Badge
 							variant={selectedLabels.includes(label) ? 'default' : 'outline'}
@@ -75,7 +75,7 @@
 
 	{#if filteredBlogs.length > 0}
 		<div class="flex flex-col gap-6">
-			{#each filteredBlogs as blog, i}
+			{#each filteredBlogs as blog, i (blog.slug)}
 				<EntryAnimation delay={i * 100} type="slide-right">
 					<BlogCard {blog} />
 				</EntryAnimation>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import * as Card from '$lib/components/ui/card';
 	import { i18n } from '$lib/i18n';
 	import { languageTag } from '$lib/paraglide/runtime';
@@ -14,7 +15,7 @@
 </script>
 
 <a
-	href={i18n.resolveRoute('/projects/' + project.slug, languageTag())}
+	href={resolve(i18n.resolveRoute('/projects/' + project.slug, languageTag()))}
 	class="group block text-inherit no-underline"
 >
 	<Card.Root

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { i18n } from '$lib/i18n';
 	import { page } from '$app/state';
 	import {
@@ -14,7 +15,7 @@
 	interface Props {
 		onclick?: MouseEventHandler<HTMLAnchorElement>;
 		class?: string;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { onclick = () => {}, ...restProps }: Props = $props();
@@ -29,19 +30,27 @@
 </script>
 
 <div class="nav-links unselectable {restProps.class}">
-	<a href={i18n.resolveRoute('/#profile', currentLang)} {onclick}>
+	<a href={resolve(i18n.resolveRoute('/#profile', currentLang))} {onclick}>
 		{navbar_profile(undefined, { languageTag: currentLang })}
 	</a>
-	<a href={i18n.resolveRoute('/aboutme', currentLang)} class={isActive('/aboutme')} {onclick}>
+	<a
+		href={resolve(i18n.resolveRoute('/aboutme', currentLang))}
+		class={isActive('/aboutme')}
+		{onclick}
+	>
 		{navbar_aboutme(undefined, { languageTag: currentLang })}
 	</a>
-	<a href={i18n.resolveRoute('/projects', currentLang)} class={isActive('/projects')} {onclick}>
+	<a
+		href={resolve(i18n.resolveRoute('/projects', currentLang))}
+		class={isActive('/projects')}
+		{onclick}
+	>
 		{navbar_projects(undefined, { languageTag: currentLang })}
 	</a>
-	<a href={i18n.resolveRoute('/blog', currentLang)} class={isActive('/blog')} {onclick}>
+	<a href={resolve(i18n.resolveRoute('/blog', currentLang))} class={isActive('/blog')} {onclick}>
 		{navbar_blog(undefined, { languageTag: currentLang })}
 	</a>
-	<a href={i18n.resolveRoute('/#contact', currentLang)} {onclick}>
+	<a href={resolve(i18n.resolveRoute('/#contact', currentLang))} {onclick}>
 		{navbar_contact(undefined, { languageTag: currentLang })}
 	</a>
 </div>

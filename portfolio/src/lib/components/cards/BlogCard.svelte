@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import * as Card from '$lib/components/ui/card';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import { i18n } from '$lib/i18n';
@@ -29,7 +30,10 @@
 	});
 </script>
 
-<a href={i18n.resolveRoute('/blog/' + blog.slug, languageTag())} class="blog-card-link group">
+<a
+	href={resolve(i18n.resolveRoute('/blog/' + blog.slug, languageTag()))}
+	class="blog-card-link group"
+>
 	<Card.Root
 		class="blog-card relative m-0 flex min-h-64 w-full flex-col gap-0 overflow-hidden pb-0 md:flex-row md:gap-4"
 	>
@@ -61,7 +65,7 @@
 							style="--scroll-duration: {scrollDuration}s"
 							bind:this={contentContainer}
 						>
-							{#each blog.parsedLabels as label}
+							{#each blog.parsedLabels as label (label)}
 								<Badge
 									variant="secondary"
 									class="border-none bg-white/10 px-3.5 py-1 text-xs text-white hover:bg-white/20"

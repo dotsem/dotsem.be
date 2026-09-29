@@ -17,7 +17,7 @@
 <a
 	href={contribution.prUrl}
 	target="_blank"
-	rel="noreferrer noopener"
+	rel="noreferrer noopener external"
 	class="group block text-inherit no-underline {className}"
 >
 	<Card.Root

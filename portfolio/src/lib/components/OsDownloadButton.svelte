@@ -58,19 +58,6 @@
 	const activePlatform = $derived(platforms.find((p) => p.key === detectedOs) || platforms[0]);
 
 	const otherPlatforms = $derived(platforms.filter((p) => p.key !== activePlatform?.key));
-
-	function getOsDisplayName(os: OS): string {
-		switch (os) {
-			case 'windows':
-				return m.download_windows();
-			case 'macos':
-				return m.download_macos();
-			case 'linux':
-				return m.download_linux();
-			default:
-				return '';
-		}
-	}
 </script>
 
 {#if platforms.length > 0}
@@ -121,7 +108,7 @@
 					{m.download_other_platforms()}
 				</span>
 				<div class="flex flex-wrap gap-2.5">
-					{#each otherPlatforms as platform}
+					{#each otherPlatforms as platform (platform.key)}
 						<Button
 							href={platform.url}
 							variant="outline"
