@@ -15,12 +15,12 @@ declare global {
 				container: string | HTMLElement,
 				options: {
 					sitekey: string;
-					theme?: "light" | "dark" | "auto";
-					size?: "normal" | "flexible" | "compact";
+					theme?: 'light' | 'dark' | 'auto';
+					size?: 'normal' | 'flexible' | 'compact';
 					callback?: (token: string) => void;
-					"error-callback"?: (error: any) => void;
-					"expired-callback"?: () => void;
-					"timeout-callback"?: () => void;
+					'error-callback'?: (error: any) => void;
+					'expired-callback'?: () => void;
+					'timeout-callback'?: () => void;
 				}
 			) => string;
 			reset: (widgetId: string) => void;
@@ -30,4 +30,4 @@ declare global {
 	}
 }
 
-export { };
+export {};

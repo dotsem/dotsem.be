@@ -1,90 +1,84 @@
 <script lang="ts">
-    import { i18n } from "$lib/i18n";
-    import { languageTag } from "$lib/paraglide/runtime";
-    import * as m from "$lib/paraglide/messages";
+	import { i18n } from '$lib/i18n';
+	import { languageTag } from '$lib/paraglide/runtime';
+	import * as m from '$lib/paraglide/messages';
 
-    interface PaginationItem {
-        title: string;
-        slug: string;
-    }
+	interface PaginationItem {
+		title: string;
+		slug: string;
+	}
 
-    interface Props {
-        prev: PaginationItem | null;
-        next: PaginationItem | null;
-        type: "project" | "blog";
-    }
+	interface Props {
+		prev: PaginationItem | null;
+		next: PaginationItem | null;
+		type: 'project' | 'blog';
+	}
 
-    let { prev, next, type }: Props = $props();
+	let { prev, next, type }: Props = $props();
 
-    const basePath = $derived(type === "project" ? "/projects/" : "/blog/");
-    const prevLabel = $derived(
-        type === "project" ? m.pagination_prev_project() : m.pagination_prev_blog(),
-    );
-    const nextLabel = $derived(
-        type === "project" ? m.pagination_next_project() : m.pagination_next_blog(),
-    );
+	const basePath = $derived(type === 'project' ? '/projects/' : '/blog/');
+	const prevLabel = $derived(
+		type === 'project' ? m.pagination_prev_project() : m.pagination_prev_blog()
+	);
+	const nextLabel = $derived(
+		type === 'project' ? m.pagination_next_project() : m.pagination_next_blog()
+	);
 </script>
 
-<div
-    class="mt-16 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-6 not-prose"
->
-    <!-- Previous Button -->
-    {#if prev}
-        <a
-            href={i18n.resolveRoute(basePath + prev.slug, languageTag())}
-            class="flex no-underline items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/15 transition-all duration-300 group text-left"
-        >
-            <div
-                class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300 text-white shrink-0"
-            >
-                <i
-                    class="fa-solid fa-arrow-left transition-transform duration-300 group-hover:-translate-x-1"
-                ></i>
-            </div>
-            <div class="flex flex-col min-w-0">
-                <span
-                    class="text-[10px] uppercase tracking-widest text-white/50 font-bold"
-                >
-                    {prevLabel}
-                </span>
-                <span
-                    class="text-base font-semibold text-white mt-0.5 truncate group-hover:text-primary transition-colors"
-                >
-                    {prev.title}
-                </span>
-            </div>
-        </a>
-    {:else}
-        <div></div>
-    {/if}
+<div class="not-prose mt-16 grid grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:grid-cols-2">
+	<!-- Previous Button -->
+	{#if prev}
+		<a
+			href={i18n.resolveRoute(basePath + prev.slug, languageTag())}
+			class="group flex items-center gap-4 rounded-xl border border-white/5 bg-white/5 p-4 text-left no-underline transition-all duration-300 hover:border-white/15 hover:bg-white/10"
+		>
+			<div
+				class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white transition-all duration-300 group-hover:bg-primary/10 group-hover:text-primary"
+			>
+				<i
+					class="fa-solid fa-arrow-left transition-transform duration-300 group-hover:-translate-x-1"
+				></i>
+			</div>
+			<div class="flex min-w-0 flex-col">
+				<span class="text-[10px] font-bold tracking-widest text-white/50 uppercase">
+					{prevLabel}
+				</span>
+				<span
+					class="mt-0.5 truncate text-base font-semibold text-white transition-colors group-hover:text-primary"
+				>
+					{prev.title}
+				</span>
+			</div>
+		</a>
+	{:else}
+		<div></div>
+	{/if}
 
-    <!-- Next Button -->
-    {#if next}
-        <a
-            href={i18n.resolveRoute(basePath + next.slug, languageTag())}
-            class="flex items-center no-underline justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/15 transition-all duration-300 group text-right"
-        >
-            <div class="flex flex-col min-w-0 text-left sm:text-right w-full">
-                <span
-                    class="text-[10px] uppercase tracking-widest text-white/50 font-bold"
-                >
-                    {nextLabel}
-                </span>
-                <span
-                    class="text-base font-semibold text-white mt-0.5 truncate group-hover:text-primary transition-colors"
-                >
-                    {next.title}
-                </span>
-            </div>
-            <div
-                class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300 text-white ml-4 shrink-0"
-            >
-                <i
-                    class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"
-                ></i>
-            </div>
-        </a>
-    {:else}
-        <div></div>
-    {/if}
+	<!-- Next Button -->
+	{#if next}
+		<a
+			href={i18n.resolveRoute(basePath + next.slug, languageTag())}
+			class="group flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4 text-right no-underline transition-all duration-300 hover:border-white/15 hover:bg-white/10"
+		>
+			<div class="flex w-full min-w-0 flex-col text-left sm:text-right">
+				<span class="text-[10px] font-bold tracking-widest text-white/50 uppercase">
+					{nextLabel}
+				</span>
+				<span
+					class="mt-0.5 truncate text-base font-semibold text-white transition-colors group-hover:text-primary"
+				>
+					{next.title}
+				</span>
+			</div>
+			<div
+				class="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white transition-all duration-300 group-hover:bg-primary/10 group-hover:text-primary"
+			>
+				<i
+					class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"
+				></i>
+			</div>
+		</a>
+	{:else}
+		<div></div>
+	{/if}
 </div>

@@ -1,212 +1,193 @@
 <script lang="ts">
-    import Hero from "../../lib/components/Hero.svelte";
-    import Profile from "$lib/components/profile/Profile.svelte";
-    import BentoProjectCard from "$lib/components/cards/BentoProjectCard.svelte";
-    import ContactForm from "$lib/components/ContactForm.svelte";
-    import * as m from "$lib/paraglide/messages.js";
-    import BgImage from "$lib/assets/bg-dark.webp";
-    import ImageDivider from "$lib/components/ImageDivider.svelte";
-    import AboutMe from "$lib/components/AboutMe.svelte";
-    import EntryAnimation from "$lib/components/EntryAnimation.svelte";
-    import PageSectionIndicator, {
-        type SectionItem,
-    } from "$lib/components/PageSectionIndicator.svelte";
-    import { Button } from "$lib/components/ui/button";
-    import { i18n } from "$lib/i18n";
-    import { languageTag } from "$lib/paraglide/runtime";
-    import { sortProjectsByHighlight } from "$lib/projects";
+	import Hero from '../../lib/components/Hero.svelte';
+	import Profile from '$lib/components/profile/Profile.svelte';
+	import BentoProjectCard from '$lib/components/cards/BentoProjectCard.svelte';
+	import ContactForm from '$lib/components/ContactForm.svelte';
+	import * as m from '$lib/paraglide/messages.js';
+	import BgImage from '$lib/assets/bg-dark.webp';
+	import ImageDivider from '$lib/components/ImageDivider.svelte';
+	import AboutMe from '$lib/components/AboutMe.svelte';
+	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
+	import PageSectionIndicator, {
+		type SectionItem
+	} from '$lib/components/PageSectionIndicator.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { i18n } from '$lib/i18n';
+	import { languageTag } from '$lib/paraglide/runtime';
+	import { sortProjectsByHighlight } from '$lib/projects';
 
-    import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
-    let { data } = $props();
+	let { data } = $props();
 
-    let innerWidth = $state(0);
-    let bestProjectVariant = $derived<"normal" | "wide" | "tall" | "full">(
-        innerWidth >= 1024 ? "full" : innerWidth >= 768 ? "wide" : "normal",
-    );
+	let innerWidth = $state(0);
+	let bestProjectVariant = $derived<'normal' | 'wide' | 'tall' | 'full'>(
+		innerWidth >= 1024 ? 'full' : innerWidth >= 768 ? 'wide' : 'normal'
+	);
 
-    let liveVersions = $state<Record<string, string>>({});
+	let liveVersions = $state<Record<string, string>>({});
 
-    onMount(async () => {
-        try {
-            const res = await fetch(`/api/projects/versions?lang=${languageTag()}`);
-            if (res.ok) {
-                const { versions } = await res.json();
-                liveVersions = versions;
-            }
-        } catch (e) {
-            console.error("Failed to fetch latest project versions:", e);
-        }
-    });
+	onMount(async () => {
+		try {
+			const res = await fetch(`/api/projects/versions?lang=${languageTag()}`);
+			if (res.ok) {
+				const { versions } = await res.json();
+				liveVersions = versions;
+			}
+		} catch (e) {
+			console.error('Failed to fetch latest project versions:', e);
+		}
+	});
 
-    const highlightedProjects = $derived(
-        sortProjectsByHighlight(
-            data.projects
-                .map((p) => {
-                    if (liveVersions[p.slug]) {
-                        return { ...p, status: liveVersions[p.slug] };
-                    }
-                    return p;
-                })
-                .filter(
-                    (p) =>
-                        p.highlighted !== undefined && p.highlighted !== false,
-                ),
-        ),
-    );
+	const highlightedProjects = $derived(
+		sortProjectsByHighlight(
+			data.projects
+				.map((p) => {
+					if (liveVersions[p.slug]) {
+						return { ...p, status: liveVersions[p.slug] };
+					}
+					return p;
+				})
+				.filter((p) => p.highlighted !== undefined && p.highlighted !== false)
+		)
+	);
 
-    const sections = $derived<SectionItem[]>([
-        {
-            id: "hero",
-            label: "Home",
-            icon: "fa-solid fa-house",
-        },
-        {
-            id: "profile",
-            label: m.navbar_profile(),
-            icon: "fa-solid fa-user",
-        },
-        {
-            id: "projects",
-            label: m.navbar_projects(),
-            icon: "fa-solid fa-code",
-        },
-        {
-            id: "about-me",
-            label: m.navbar_aboutme(),
-            icon: "fa-solid fa-address-card",
-        },
-        {
-            id: "contact",
-            label: m.navbar_contact(),
-            icon: "fa-solid fa-envelope",
-        },
-    ]);
+	const sections = $derived<SectionItem[]>([
+		{
+			id: 'hero',
+			label: 'Home',
+			icon: 'fa-solid fa-house'
+		},
+		{
+			id: 'profile',
+			label: m.navbar_profile(),
+			icon: 'fa-solid fa-user'
+		},
+		{
+			id: 'projects',
+			label: m.navbar_projects(),
+			icon: 'fa-solid fa-code'
+		},
+		{
+			id: 'about-me',
+			label: m.navbar_aboutme(),
+			icon: 'fa-solid fa-address-card'
+		},
+		{
+			id: 'contact',
+			label: m.navbar_contact(),
+			icon: 'fa-solid fa-envelope'
+		}
+	]);
 </script>
 
 <svelte:head>
-    <title>Sem Van Broekhoven | Software Engineer Portfolio</title>
-    <meta
-        name="description"
-        content="Official portfolio of Sem Van Broekhoven, a software engineer specializing in building innovative technology solutions. Studying Digital Innovation at Thomas More. Discover my projects and blog posts."
-    />
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Sem Van Broekhoven",
-            "url": "https://dotsem.be",
-            "jobTitle": "Software Engineer",
-            "sameAs": [
-                "https://github.com/dotsem",
-                "https://www.linkedin.com/in/sem-van-broekhoven/",
-                "https://www.instagram.com/sem_van_broekhoven/",
-                "https://www.facebook.com/profile.php?id=100089528472654"
-            ]
-        }
-    </script>
+	<title>Sem Van Broekhoven | Software Engineer Portfolio</title>
+	<meta
+		name="description"
+		content="Official portfolio of Sem Van Broekhoven, a software engineer specializing in building innovative technology solutions. Studying Digital Innovation at Thomas More. Discover my projects and blog posts."
+	/>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Sem Van Broekhoven",
+			"url": "https://dotsem.be",
+			"jobTitle": "Software Engineer",
+			"sameAs": [
+				"https://github.com/dotsem",
+				"https://www.linkedin.com/in/sem-van-broekhoven/",
+				"https://www.instagram.com/sem_van_broekhoven/",
+				"https://www.facebook.com/profile.php?id=100089528472654"
+			]
+		}
+	</script>
 
-    <meta
-        name="google-site-verification"
-        content="fyZMegxDAVo_uFpoYd9SFJwe_YxEfG3rrvpjjnQ5C4E"
-    />
+	<meta name="google-site-verification" content="fyZMegxDAVo_uFpoYd9SFJwe_YxEfG3rrvpjjnQ5C4E" />
 </svelte:head>
 
 <svelte:window bind:innerWidth />
 
 {#snippet AllProjectButton(cls: string)}
-    <Button class={cls} href={i18n.resolveRoute("/projects", languageTag())}>
-        {m.projects_view_all()}
-        <i class="fa-solid fa-arrow-right"></i>
-    </Button>
+	<Button class={cls} href={i18n.resolveRoute('/projects', languageTag())}>
+		{m.projects_view_all()}
+		<i class="fa-solid fa-arrow-right"></i>
+	</Button>
 {/snippet}
 
 <main>
-    <PageSectionIndicator {sections} />
-    <Hero />
-    <section class="">
-        <ImageDivider imageUrl="" class="slanted">
-            <Profile />
-        </ImageDivider>
-    </section>
+	<PageSectionIndicator {sections} />
+	<Hero />
+	<section class="">
+		<ImageDivider imageUrl="" class="slanted">
+			<Profile />
+		</ImageDivider>
+	</section>
 
-    <div class="bg-card slanted">
-        <section id="projects" class="px-3 py-24 w-full">
-            <div class="container relative mx-auto">
-                <div class="prose dark:prose-invert max-w-none mb-8">
-                    <h2 class="text-4xl text-center">
-                        {m.projects_highlighted_title()}
-                    </h2>
-                    <p class="text-center">
-                        {m.projects_highlighted_description()}
-                    </p>
-                </div>
-                {@render AllProjectButton(
-                    "hidden lg:block lg:absolute right-2 top-0 z-10",
-                )}
+	<div class="slanted bg-card">
+		<section id="projects" class="w-full px-3 py-24">
+			<div class="relative container mx-auto">
+				<div class="prose mb-8 max-w-none dark:prose-invert">
+					<h2 class="text-center text-4xl">
+						{m.projects_highlighted_title()}
+					</h2>
+					<p class="text-center">
+						{m.projects_highlighted_description()}
+					</p>
+				</div>
+				{@render AllProjectButton('hidden lg:block lg:absolute right-2 top-0 z-10')}
 
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px] md:auto-rows-[360px] lg:auto-rows-[340px] container mx-auto px-4"
-                >
-                    {#each highlightedProjects as project, index}
-                        <div
-                            class={index === 0
-                                ? "col-span-1 row-span-1 md:col-start-1 md:row-start-1 md:col-span-2 md:row-span-1 lg:col-start-2 lg:row-start-1 lg:col-span-1 lg:row-span-2"
-                                : index === 1
-                                  ? "col-span-1 row-span-1 md:col-start-1 md:row-start-2 md:col-span-1 md:row-span-1 lg:col-start-1 lg:row-start-1 lg:col-span-1 lg:row-span-1"
-                                  : index === 2
-                                    ? "col-span-1 row-span-1 md:col-start-2 md:row-start-2 md:col-span-1 md:row-span-1 lg:col-start-3 lg:row-start-2 lg:col-span-1 lg:row-span-1"
-                                    : index === 3
-                                      ? "col-span-1 row-span-1 md:col-start-1 md:row-start-3 md:col-span-1 md:row-span-1 lg:col-start-1 lg:row-start-2 lg:col-span-1 lg:row-span-1"
-                                      : index === 4
-                                        ? "col-span-1 row-span-1 md:col-start-2 md:row-start-3 md:col-span-1 md:row-span-1 lg:col-start-3 lg:row-start-1 lg:col-span-1 lg:row-span-1"
-                                        : ""}
-                        >
-                            <EntryAnimation
-                                type="scale"
-                                delay={index * 100}
-                                class="h-full w-full"
-                            >
-                                <BentoProjectCard
-                                    {project}
-                                    variant={index === 0
-                                        ? bestProjectVariant
-                                        : "normal"}
-                                />
-                            </EntryAnimation>
-                        </div>
-                    {/each}
-                </div>
-                <EntryAnimation
-                    type="scale"
-                    delay={highlightedProjects.length * 100}
-                    class="w-full px-4 mt-6"
-                >
-                    {@render AllProjectButton("block lg:hidden ")}
-                </EntryAnimation>
-            </div>
-        </section>
+				<div
+					class="container mx-auto grid auto-rows-[340px] grid-cols-1 gap-6 px-4 md:auto-rows-[360px] md:grid-cols-2 lg:auto-rows-[340px] lg:grid-cols-3"
+				>
+					{#each highlightedProjects as project, index}
+						<div
+							class={index === 0
+								? 'col-span-1 row-span-1 md:col-span-2 md:col-start-1 md:row-span-1 md:row-start-1 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1'
+								: index === 1
+									? 'col-span-1 row-span-1 md:col-span-1 md:col-start-1 md:row-span-1 md:row-start-2 lg:col-span-1 lg:col-start-1 lg:row-span-1 lg:row-start-1'
+									: index === 2
+										? 'col-span-1 row-span-1 md:col-span-1 md:col-start-2 md:row-span-1 md:row-start-2 lg:col-span-1 lg:col-start-3 lg:row-span-1 lg:row-start-2'
+										: index === 3
+											? 'col-span-1 row-span-1 md:col-span-1 md:col-start-1 md:row-span-1 md:row-start-3 lg:col-span-1 lg:col-start-1 lg:row-span-1 lg:row-start-2'
+											: index === 4
+												? 'col-span-1 row-span-1 md:col-span-1 md:col-start-2 md:row-span-1 md:row-start-3 lg:col-span-1 lg:col-start-3 lg:row-span-1 lg:row-start-1'
+												: ''}
+						>
+							<EntryAnimation type="scale" delay={index * 100} class="h-full w-full">
+								<BentoProjectCard {project} variant={index === 0 ? bestProjectVariant : 'normal'} />
+							</EntryAnimation>
+						</div>
+					{/each}
+				</div>
+				<EntryAnimation
+					type="scale"
+					delay={highlightedProjects.length * 100}
+					class="mt-6 w-full px-4"
+				>
+					{@render AllProjectButton('block lg:hidden ')}
+				</EntryAnimation>
+			</div>
+		</section>
 
-        <ImageDivider
-            imageUrl={BgImage}
-            class="slanted"
-            offset="-28px"
-            paddingY="6rem"
-            scaleOnScroll={true}
-            scaleEnd={2}
-        >
-            <EntryAnimation type="slide-up" delay={0}>
-                <p class="text-4xl font-bold py-2">
-                    “Talk is cheap. Show me the code.”
-                </p>
-                <p class="text-2xl">- Linus Torvalds</p>
-            </EntryAnimation>
-        </ImageDivider>
+		<ImageDivider
+			imageUrl={BgImage}
+			class="slanted"
+			offset="-28px"
+			paddingY="6rem"
+			scaleOnScroll={true}
+			scaleEnd={2}
+		>
+			<EntryAnimation type="slide-up" delay={0}>
+				<p class="py-2 text-4xl font-bold">“Talk is cheap. Show me the code.”</p>
+				<p class="text-2xl">- Linus Torvalds</p>
+			</EntryAnimation>
+		</ImageDivider>
 
-        <AboutMe />
-    </div>
+		<AboutMe />
+	</div>
 
-    <ContactForm />
+	<ContactForm />
 </main>
 
 <style>
