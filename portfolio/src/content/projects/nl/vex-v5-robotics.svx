@@ -1,0 +1,101 @@
+---
+title: VEX V5 Robotics
+description: In onze STEAM-club deden we mee aan de VEX V5 Robotics-competitie.
+  Ik was verantwoordelijk voor het ontwerpen, bouwen en programmeren van de robot.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## VEX Robotics
+
+Tijdens mijn middelbare school zat ik in het VEX Robotics-team van onze
+STEAM-club. Twee seizoenen lang leidde ik het programmeerwerk en hielp ik volop
+mee met het ontwerpen en bouwen van de robot.
+
+## VEX 2022-2023: Spin Up
+
+Dit was het debuut van onze school in VEX Robotics. Het was ook het allereerste
+jaar dat er een nationaal kampioenschap in België werd gehouden.
+
+Het doel van het spel was om gele schijven in een mand te schieten, rollers naar
+de kleur van je team te draaien, en in het endgame zoveel mogelijk veldtegels aan
+te raken voor extra punten.
+
+### De robot bouwen
+
+Ik nam de leiding over het mechanisch ontwerp. Onze robot was een tikkeltje
+scrappy en geïmproviseerd, maar werkte super goed! Voor het endgame bouwden we
+een touwwerper die binnen een paar seconden bijna het hele speelveld kon
+bedekken.
+
+<AssetImage name="robot-2023.jpg" alt="Spin Up Robot" width="500" />
+
+### De robot programmeren
+
+In ons eerste seizoen programmeerde ik de robot met blokken (VEXcode Blocks). In
+het begin werkte dat prima, maar naarmate het programma groter werd, werd de
+blokken-interface op mijn laptop ontzettend traag en onhandig om in te werken.
+
+### Nationaal kampioenschap
+
+We deden mee aan het Belgisch kampioenschap zonder te weten wat we konden
+verwachten. Uiteindelijk won ons team het toernooi, waarmee we meteen een ticket
+pakten voor de wereldfinale in Dallas, Texas!
+
+<AssetImage name="awards-2023.jpg" alt="Awards Nationaal Kampioenschap" width="500" />
+
+### Wereldfinale in Dallas
+
+Naar Dallas vliegen om in ons eerste jaar al op de wereldfinale te staan was een
+geweldige ervaring. We eindigden niet hoog, maar het was een enorm leerzame
+ervaring om het op te nemen tegen de beste teams ter wereld.
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <AssetImage name="block-code.jpg" caption="Programmeren met blokken" />
+    <AssetImage name="worlds-stand.jpg" caption="Onze stand op de Wereldfinale" />
+</div>
+
+## VEX 2023-2024: Over Under
+
+Het seizoen daarna waren er weer andere regels: eikelvormige "triballs" in
+doelen scoren, aan het einde van de match in een paal klimmen, en triballs uit
+het doel van de tegenstander stelen.
+
+Na het succes van vorig jaar breidde ons team uit met een tweede groep jongere
+studenten.
+
+### "Mark E." bouwen
+
+We bouwden onze robot—bijgenaamd *Mark E.*—rond de steel-mechaniek. Om onder de
+balk van het doel door te passen en snel triballs weg te halen, moesten we een
+heel plat chassis ontwerpen. Mechanisch was dat een flinke uitdaging.
+
+### De robot programmeren in C++
+
+Om mezelf meer uit te dagen wilde ik af van blokcode. Ik dacht eerst aan Python,
+maar na een toffe stage bij Philips met low-level code was ik helemaal verkocht
+aan modern C++.
+
+### Nationaal kampioenschap in Antwerpen
+
+Dit toernooi in Antwerpen had veel sterkere tegenstanders. Op de wedstrijddag
+mocht ik zelfs achter het stuur kruipen als hoofdbestuurder. Best stressvol,
+maar de robot reageerde gelukkig betrouwbaar.
+
+Samen met het junior team van onze school stonden we in de finale en wonnen we!
+Omdat er maar één team naar Dallas mocht, mocht het junior team gaan om België te
+vertegenwoordigen.
+
+<AssetImage name="robot-2024.webp" caption="Mark E. gebouwd voor het Over Under-seizoen" width="500" />
+
+Tot op de dag van vandaag heeft onze school 3 van de 3 nationale kampioenschappen
+gewonnen.
+
+## Broncode
+
+De code voor *Mark E.* staat open-source op
+[GitHub](https://github.com/dotsem/over-under_mark-e). Als ik er nu naar
+terugkijk, is het een toffe herinnering aan hoeveel ik sindsdien als developer
+ben gegroeid.

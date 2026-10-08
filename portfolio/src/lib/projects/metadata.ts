@@ -107,6 +107,15 @@ export const projectsMetadata: ProjectMetadata[] = [
 		status: ProjectStatus.YouAreLookingAtIt
 	},
 	{
+		slug: 'vex-v5-robotics',
+		image: '/projects/vex-v5-robotics/robot-2024.webp',
+		languages: ['cpp'],
+		highlighted: false,
+		status: ProjectStatus.Finished,
+		repo: 'dotsem/over-under_mark-e',
+		category: 'school'
+	},
+	{
 		slug: 'skil2-chez-natalie',
 		image: '/projects/skil2-chez-natalie/logo.webp',
 		languages: ['php', 'laravel', 'tailwind', 'sql', 'uml'],

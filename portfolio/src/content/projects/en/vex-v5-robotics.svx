@@ -1,0 +1,103 @@
+---
+title: VEX V5 Robotics
+description: As part of our STEAM club, we competed in the VEX V5 Robotics
+  competition. I was responsible for designing, building, and programming the robot.
+---
+
+<script>
+    import AssetImage from "$lib/components/AssetImage.svelte";
+</script>
+
+## VEX Robotics
+
+During middle school, I was part of our STEAM club's VEX Robotics team. Over two
+seasons, I led the robot's software development and contributed heavily to its
+mechanical design and assembly.
+
+## VEX 2022-2023: Spin Up
+
+This marked our school's debut in VEX Robotics, coinciding with the first-ever
+official national tournament hosted in Belgium.
+
+The game objective was to launch yellow foam discs into an elevated basket, spin
+field rollers to match your alliance's color, and trigger an endgame mechanism
+to touch as many field tiles as possible for bonus points.
+
+### Building the Robot
+
+I took the lead on mechanical design. Our setup was unconventional and a bit
+scrappy, but it proved remarkably effective. For the endgame, we engineered a
+string launcher capable of expanding across nearly the entire field in seconds.
+
+<AssetImage name="robot-2023.jpg" alt="Spin Up Robot" width="500" />
+
+### Programming the Robot
+
+For our first season, I programmed the robot using block-based coding (VEXcode
+Blocks). While straightforward initially, the visual workspace eventually became
+sluggish and cumbersome to navigate on my laptop as the codebase grew in
+complexity.
+
+### National Championship
+
+We entered the Belgian national competition unsure of what to expect from other
+teams. To our excitement, our alliance went on to win the tournament—securing
+our ticket to the VEX World Championship in Dallas, Texas!
+
+<AssetImage name="awards-2023.jpg" alt="National Competition Awards" width="500" />
+
+### World Finals in Dallas
+
+Traveling to Dallas to compete on the world stage in our very first season was
+an incredible experience. While we didn't rank among the top global contenders,
+competing against elite international teams was an eye-opening masterclass in
+robotics engineering.
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <AssetImage name="block-code.jpg" caption="Programming in Blocks" />
+    <AssetImage name="worlds-stand.jpg" caption="Our stand at the World Finals" />
+</div>
+
+## VEX 2023-2024: Over Under
+
+The following season introduced a new challenge: scoring acorn-shaped "triballs"
+into goals, climbing an elevated center pole during the endgame, and defending
+against opponent descoring maneuvers.
+
+Following the previous year's success, our robotics program expanded to include
+a second team formed by younger students.
+
+### Building "Mark E."
+
+We designed our robot—nicknamed *Mark E.*—around an aggressive offensive
+strategy. To slip underneath the goal barrier and rapidly descore triballs, we
+had to engineer an ultra-low-profile chassis, which presented tight packaging
+and mechanical constraints.
+
+### Programming the robot in C++
+
+Determined to level up my programming skills, I abandoned block code completely.
+While I considered Python, my positive experience with low-level systems during
+an internship at Philips pushed me straight toward modern C++.
+
+### National Championship in Antwerp
+
+The national tournament took place in Antwerp against significantly tougher
+competition. On game day, I was asked to take the controls as the primary
+driver. Despite the high-pressure matches, the robot handled reliably.
+
+We advanced to the grand finals alongside our school's junior team and took the
+title together! Because only one invitation to the Dallas World Finals was
+awarded, our junior team earned the spot to represent Belgium.
+
+<AssetImage name="robot-2024.webp" caption="Mark E. built for the Over Under season" width="500" />
+
+To this day, our school has maintained a flawless 3-for-3 streak in national
+championship titles.
+
+## Codebase
+
+The code for *Mark E.* is open source on
+[GitHub](https://github.com/dotsem/over-under_mark-e). Looking back at it today,
+it serves as a fun milestone showing just how much I've grown as a developer
+since then.
