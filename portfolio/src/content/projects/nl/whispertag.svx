@@ -1,6 +1,8 @@
 ---
 title: WhisperTag
-description: Een interactieve, tastbare verhalenapplicatie die fysieke NFC-kaartjes tot leven brengt met audio en animaties voor kinderen met een visuele beperking.
+description: Een interactieve, tastbare verhalenapplicatie die fysieke
+  NFC-kaartjes tot leven brengt met audio en animaties voor kinderen met een
+  visuele beperking.
 ---
 
 <script>
@@ -9,33 +11,58 @@ description: Een interactieve, tastbare verhalenapplicatie die fysieke NFC-kaart
 
 ## Verhalen Tot Leven Brengen Via Tast en Geluid
 
-Digitale schermen zijn voor jonge kinderen — en in het bijzonder voor kinderen met een visuele beperking — vaak ontoegankelijk of afstandelijk. **WhisperTag** (voorheen *I'm in tales*) overbrugt de kloof tussen de fysieke en digitale wereld door tastbare kaartjes en voorwerpen om te toveren tot een interactieve verhalenervaring.
+Digitale schermen zijn voor jonge kinderen — en in het bijzonder voor kinderen
+met een visuele beperking — vaak ontoegankelijk of afstandelijk. **WhisperTag**
+(voorheen *I'm in tales*) overbrugt de kloof tussen de fysieke en digitale
+wereld door tastbare kaartjes en voorwerpen om te toveren tot een interactieve
+verhalenervaring.
 
-Door speciale NFC-kaartjes op een bord met een ingebouwde lezer te leggen, activeren kinderen live gesproken verhalen, personagestemmen, muziek en visuele scènes.
+Door speciale NFC-kaartjes op een bord met een ingebouwde lezer te leggen,
+activeren kinderen live gesproken verhalen, personagestemmen, muziek en visuele
+scènes.
 
----
+--------------------------------------------------------------------------------
 
 ## Belangrijkste Pijlers & Mogelijkheden
 
 ### 1. Tastbare & Toegankelijke Verhalen
-WhisperTag is ontworpen met een sterke focus op toegankelijkheid. Kinderen verkennen verhalen op hun eigen tempo via aanraking. De fysieke kaartjes dienen als controller, waardoor interactief spelen intuïtief aanvoelt zonder dat muis of toetsenbord nodig zijn.
+
+WhisperTag is ontworpen met een sterke focus op toegankelijkheid. Kinderen
+verkennen verhalen op hun eigen tempo via aanraking. De fysieke kaartjes dienen
+als controller, waardoor interactief spelen intuïtief aanvoelt zonder dat muis
+of toetsenbord nodig zijn.
 
 ### 2. Directe Fysiek-naar-Digitaal Interactie
-Het neerleggen of verwisselen van een kaartje op het leesbord activeert onmiddellijk geluidseffecten, stemfragmenten en animaties. Het systeem ondersteunt ook het rechtstreeks beschrijven van nieuwe NFC-kaartjes met eigen verhalen.
+
+Het neerleggen of verwisselen van een kaartje op het leesbord activeert
+onmiddellijk geluidseffecten, stemfragmenten en animaties. Het systeem
+ondersteunt ook het rechtstreeks beschrijven van nieuwe NFC-kaartjes met eigen
+verhalen.
 
 ### 3. Vederlicht & Razendsnel (Tauri v2 + Rust)
-In plaats van zware technologieën die honderden megabytes aan werkgeheugen verbruiken, is WhisperTag gebouwd met **Tauri v2** en **Rust**. De desktopapplicatie start razendsnel op, gebruikt minimale systeembronnen en toont vloeiende animaties.
+
+In plaats van zware technologieën die honderden megabytes aan werkgeheugen
+verbruiken, is WhisperTag gebouwd met **Tauri v2** en **Rust**. De
+desktopapplicatie start razendsnel op, gebruikt minimale systeembronnen en toont
+vloeiende animaties.
 
 ### 4. Betrouwbare Hardware-integratie
-De native Rust-achtergrondlaag communiceert direct met de USB NFC-hardware. Mocht een kabel per ongeluk losraken tijdens het spelen, dan herstelt de applicatie de verbinding automatisch zodra de lezer weer is aangesloten, zonder te haperen.
+
+De native Rust-achtergrondlaag communiceert direct met de USB NFC-hardware.
+Mocht een kabel per ongeluk losraken tijdens het spelen, dan herstelt de
+applicatie de verbinding automatisch zodra de lezer weer is aangesloten, zonder
+te haperen.
 
 ### 5. Beschikbaar voor Elk Besturingssysteem
-Geautomatiseerde build-pipelines genereren native installatiebestanden voor alle platforms:
+
+Geautomatiseerde build-pipelines genereren native installatiebestanden voor alle
+platforms:
+
 * **Windows** (`.msi` / `.exe`)
 * **macOS** (`.dmg` voor zowel Apple Silicon als Intel)
 * **Linux** (`.deb` / `AppImage`)
 
----
+--------------------------------------------------------------------------------
 
 ## Gebruikte Technologieën
 
@@ -43,8 +70,22 @@ Geautomatiseerde build-pipelines genereren native installatiebestanden voor alle
 * **Native Core**: Rust & Tauri v2 met directe hardware-aansturing.
 * **Hardware**: uFR Series NFC-lezers.
 
----
+--------------------------------------------------------------------------------
+
+## Waarom Tauri?
+
+Electron bundelt een complete browser bij je app. Tauri doet dat niet — het
+gebruikt Rust voor de backend en de ingebouwde webview van het
+besturingssysteem, waardoor de bundle compact blijft en de prestaties optimaal
+zijn.
+
+Het uiteindelijke installatiebestand bleef beperkt tot slechts enkele megabytes
+in plaats van honderden, wat een groot verschil maakt op schoollaptops met
+beperkte opslagruimte.
+
+--------------------------------------------------------------------------------
 
 ## Links & Broncode
 
-* [Digital Innovation Project Repository](https://github.com/Thomas-More-Digital-Innovation)
+* [Digital Innovation Project
+  Repository](https://github.com/Thomas-More-Digital-Innovation)
