@@ -36,6 +36,15 @@ Carpe Diem is a privacy-focused, local-first planning application designed to el
 
 ---
 
+## Why Flutter?
+
+I dislike resource-heavy background apps that eat up RAM all day (looking at you, Electron). A fully native toolkit like GTK was an option, but a daily planner needs to live on both desktop and mobile. 
+
+Flutter was the best fit: it delivers smooth cross-platform performance with a low footprint and near native performance, perfectly matching the project's desktop and mobile targets. 
+After all, I like the Flutter framework and think it is very promising!
+
+---
+
 ## Downloads & Source
 
 <OsDownloadButton
