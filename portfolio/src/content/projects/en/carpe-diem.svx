@@ -1,6 +1,7 @@
 ---
 title: Carpe Diem
-description: A high-performance, local-first planning application built with Flutter to streamline daily productivity and project tracking.
+description: A high-performance, local-first planning application built with
+  Flutter to streamline daily productivity and project tracking.
 ---
 
 <script>
@@ -12,38 +13,59 @@ description: A high-performance, local-first planning application built with Flu
 
 ## Local-First Productivity
 
-Carpe Diem is a privacy-focused, local-first planning application designed to eliminate bloat and keep you in the flow. By planning day-by-day and keeping a backlog at your fingertips, you maintain focus without the lag or distractions of online tools.
+Carpe Diem is a privacy-focused, local-first planning application designed to
+eliminate bloat and keep you in the flow. By planning day-by-day and keeping a
+backlog at your fingertips, you maintain focus without the lag or distractions
+of online tools.
 
 <AssetImage name="quote.png" alt="Carpe Diem Quote" width="500" />
 
----
+--------------------------------------------------------------------------------
 
 ## Technical Architecture & Core Pillars
 
 ### Local-First Architecture
-*   **Zero Latency & Offline Integrity**: Built entirely offline-first using Flutter for desktop (Linux, macOS, Windows). Your planning data is stored locally for instant startup and total privacy.
-*   **Native Performance**: Compiles to high-efficiency native code across all three desktop operating systems, ensuring smooth animations and immediate task state updates.
+
+* **Zero Latency & Offline Integrity**: Built entirely offline-first using
+  Flutter for desktop (Linux, macOS, Windows). Your planning data is stored
+  locally for instant startup and total privacy.
+* **Native Performance**: Compiles to high-efficiency native code across all
+  three desktop operating systems, ensuring smooth animations and immediate task
+  state updates.
 
 ### Feature Engineering & Workflow
-*   **Backlog & Planning Engine**: Gather raw ideas in the backlog, and easily plan them for today, tomorrow, or up to 7 days ahead.
-*   **Smart Overdue Mechanics**: Uncompleted tasks automatically carry over to the next day with an overdue badge, keeping your agenda realistic.
-*   **Real-time Board Views**: Instantly toggle between a Kanban board (Todo, In Progress, Done) and a compact list view.
-*   **Task Blockers & Bulk Tools**: Add dependencies to prevent starting blocked tasks. Use bulk-edit actions to reschedule, categorize, or delete multiple tasks in one click.
+
+* **Backlog & Planning Engine**: Gather raw ideas in the backlog, and easily
+  plan them for today, tomorrow, or up to 7 days ahead.
+* **Smart Overdue Mechanics**: Uncompleted tasks automatically carry over to the
+  next day with an overdue badge, keeping your agenda realistic.
+* **Real-time Board Views**: Instantly toggle between a Kanban board (Todo, In
+  Progress, Done) and a compact list view.
+* **Task Blockers & Bulk Tools**: Add dependencies to prevent starting blocked
+  tasks. Use bulk-edit actions to reschedule, categorize, or delete multiple
+  tasks in one click.
 
 ### Extensibility & Analytics
-*   **Markdown Importer**: Parse standard Markdown lists into structured tasks and projects automatically.
-*   **Insights & Metrics**: Track historical completed tasks and view graphical productivity statistics over custom time ranges.
 
----
+* **Markdown Importer**: Parse standard Markdown lists into structured tasks and
+  projects automatically.
+* **Insights & Metrics**: Track historical completed tasks and view graphical
+  productivity statistics over custom time ranges.
+
+--------------------------------------------------------------------------------
 
 ## Why Flutter?
 
-I dislike resource-heavy background apps that eat up RAM all day (looking at you, Electron). A fully native toolkit like GTK was an option, but a daily planner needs to live on both desktop and mobile. 
+I dislike resource-heavy background apps that eat up RAM all day (looking at
+you, Electron). A fully native toolkit like GTK was an option, but a daily
+planner needs to live on both desktop and mobile.
 
-Flutter was the best fit: it delivers smooth cross-platform performance with a low footprint and near native performance, perfectly matching the project's desktop and mobile targets. 
-After all, I like the Flutter framework and think it is very promising!
+Flutter was the best fit: it delivers smooth cross-platform performance with a
+low footprint and near native performance, perfectly matching the project's
+desktop and mobile targets. After all, I like the Flutter framework and think it
+is very promising!
 
----
+--------------------------------------------------------------------------------
 
 ## Downloads & Source
 
@@ -54,9 +76,9 @@ After all, I like the Flutter framework and think it is very promising!
   title="Carpe Diem"
 />
 
-*   [Source Code & Releases](https://github.com/dotsem/Carpe-Diem)
+* [Source Code & Releases](https://github.com/dotsem/Carpe-Diem)
 
----
+--------------------------------------------------------------------------------
 
 ## Application Showcase
 

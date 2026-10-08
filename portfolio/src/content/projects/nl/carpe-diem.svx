@@ -1,6 +1,7 @@
 ---
 title: Carpe Diem
-description: Een krachtige, local-first planning-applicatie gebouwd met Flutter om dagelijkse productiviteit en projectbeheer te stroomlijnen.
+description: Een krachtige, local-first planning-applicatie gebouwd met Flutter
+  om dagelijkse productiviteit en projectbeheer te stroomlijnen.
 ---
 
 <script>
@@ -12,38 +13,61 @@ description: Een krachtige, local-first planning-applicatie gebouwd met Flutter 
 
 ## Local-First Productiviteit
 
-Carpe Diem is een privacy-gerichte, local-first planning-app ontworpen om afleidingen te elimineren en je in de flow te houden. Door dag-tot-dag te plannen en een flexibele backlog te gebruiken, behoud je focus zonder de vertraging of privacyrisico's van online tools.
+Carpe Diem is een privacy-gerichte, local-first planning-app ontworpen om
+afleidingen te elimineren en je in de flow te houden. Door dag-tot-dag te
+plannen en een flexibele backlog te gebruiken, behoud je focus zonder de
+vertraging of privacyrisico's van online tools.
 
 <AssetImage name="quote.png" alt="Carpe Diem Quote" width="500" />
 
----
+--------------------------------------------------------------------------------
 
 ## Technische Architectuur & Kernzuilen
 
 ### Local-First Architectuur
-*   **Geen Latency & Offline Integriteit**: Volledig offline-first gebouwd met Flutter voor desktop (Linux, macOS, Windows). Je data blijft lokaal opgeslagen voor instant opstarttijden en complete privacy.
-*   **Native Prestaties**: Compileert naar uiterst efficiënte native code op alle drie desktop-besturingssystemen, wat zorgt voor vloeiende animaties en directe status-updates.
+
+* **Geen Latency & Offline Integriteit**: Volledig offline-first gebouwd met
+  Flutter voor desktop (Linux, macOS, Windows). Je data blijft lokaal opgeslagen
+  voor instant opstarttijden en complete privacy.
+* **Native Prestaties**: Compileert naar uiterst efficiënte native code op alle
+  drie desktop-besturingssystemen, wat zorgt voor vloeiende animaties en directe
+  status-updates.
 
 ### Feature Engineering & Workflow
-*   **Backlog & Planning Engine**: Verzamel ideeën in de backlog en plan ze eenvoudig in voor vandaag, morgen of tot 7 dagen vooruit.
-*   **Slimme Overdue Logica**: Niet-voltooide taken verschuiven automatisch naar de volgende dag met een 'overdue' badge om je agenda realistisch te houden.
-*   **Realtime Kanban & Lijst**: Schakel direct tussen een Kanban-bord (Todo, In Progress, Done) en een compacte lijstweergave.
-*   **Task Blockers & Bulk Acties**: Voeg afhankelijkheden toe om geblokkeerde taken visueel te markeren. Gebruik bulk-edit acties om meerdere taken in één klik te herplannen, labelen of verwijderen.
+
+* **Backlog & Planning Engine**: Verzamel ideeën in de backlog en plan ze
+  eenvoudig in voor vandaag, morgen of tot 7 dagen vooruit.
+* **Slimme Overdue Logica**: Niet-voltooide taken verschuiven automatisch naar
+  de volgende dag met een 'overdue' badge om je agenda realistisch te houden.
+* **Realtime Kanban & Lijst**: Schakel direct tussen een Kanban-bord (Todo, In
+  Progress, Done) en een compacte lijstweergave.
+* **Task Blockers & Bulk Acties**: Voeg afhankelijkheden toe om geblokkeerde
+  taken visueel te markeren. Gebruik bulk-edit acties om meerdere taken in één
+  klik te herplannen, labelen of verwijderen.
 
 ### Extensibiliteit & Statistieken
-*   **Markdown Importer**: Importeer en parseer standaard Markdown-bestanden automatisch naar gestructureerde taken en projecten.
-*   **Inzichten & Metrics**: Houd een geschiedenis bij van alle voltooide taken en analyseer je productiviteit via grafische statistieken over aangepaste periodes.
 
----
+* **Markdown Importer**: Importeer en parseer standaard Markdown-bestanden
+  automatisch naar gestructureerde taken en projecten.
+* **Inzichten & Metrics**: Houd een geschiedenis bij van alle voltooide taken en
+  analyseer je productiviteit via grafische statistieken over aangepaste
+  periodes.
+
+--------------------------------------------------------------------------------
 
 ## Waarom Flutter?
 
-Ik houd niet van zware achtergrond-apps die de hele dag je RAM opeten (ja, ik kijk naar jou, Electron). Een volledig native toolkit zoals GTK was een optie, maar een dagelijkse planner moet zowel op desktop als op telefoon beschikbaar zijn.
+Ik houd niet van zware achtergrond-apps die de hele dag je RAM opeten (ja, ik
+kijk naar jou, Electron). Een volledig native toolkit zoals GTK was een optie,
+maar een dagelijkse planner moet zowel op desktop als op telefoon beschikbaar
+zijn.
 
-Flutter paste hier het beste bij: het levert vloeiende cross-platform prestaties met een laag geheugengebruik en vrijwel native snelheid, wat perfect aansluit bij de desktop- en mobiele doelstellingen van dit project.
-Bovendien vind ik het Flutter-framework erg fijn om mee te werken en zie ik er veel potentie in!
+Flutter paste hier het beste bij: het levert vloeiende cross-platform prestaties
+met een laag geheugengebruik en vrijwel native snelheid, wat perfect aansluit
+bij de desktop- en mobiele doelstellingen van dit project. Bovendien vind ik het
+Flutter-framework erg fijn om mee te werken en zie ik er veel potentie in!
 
----
+--------------------------------------------------------------------------------
 
 ## Downloads & Broncode
 
@@ -54,9 +78,9 @@ Bovendien vind ik het Flutter-framework erg fijn om mee te werken en zie ik er v
   title="Carpe Diem"
 />
 
-*   [Broncode & Releases](https://github.com/dotsem/Carpe-Diem)
+* [Broncode & Releases](https://github.com/dotsem/Carpe-Diem)
 
----
+--------------------------------------------------------------------------------
 
 ## Demonstratie
 
