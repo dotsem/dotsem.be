@@ -1,6 +1,8 @@
 ---
 title: GoStrategy
-description: An open-source re-engineering of the classic GoStrategy board game. Features a high-performance Go backend with WebSockets, a modern SvelteKit client, strategic heuristic AIs, and declarative NixOS deployment.
+description: An open-source re-engineering of the classic GoStrategy board game.
+  Features a high-performance Go backend with WebSockets, a modern SvelteKit
+  client, strategic heuristic AIs, and declarative NixOS deployment.
 ---
 
 <script>
@@ -9,37 +11,80 @@ description: An open-source re-engineering of the classic GoStrategy board game.
 
 ## Re-Engineering a Classic
 
-GoStrategy modernizes the traditional strategic board game into an extensible, high-performance platform. It is engineered not just for human-vs-human play, but as a robust testing ground for real-time game simulation and strategic AI model training.
+GoStrategy modernizes the traditional strategic board game into an extensible,
+high-performance platform. It is engineered not just for human-vs-human play,
+but as a robust testing ground for real-time game simulation and strategic AI
+model training.
 
----
+--------------------------------------------------------------------------------
 
 ## Technical Architecture & Core Pillars
 
 ### High-Performance Go Backend
-*   **Concurrency-First Game Engine**: Leverages Go's lightweight goroutines and channels to run isolated, concurrent game loops. Each active match is handled as a lightweight thread, communicating with client sessions via persistent WebSockets.
-*   **Decoupled CLI & Headless Training**: The backend can run fully headless to train and benchmark AI strategies at maximum CPU clock speeds, completely independent of the visual DOM.
-*   **Robust Quality Assurance**: Key board rules, piece movement algorithms, and battle resolution matrices are covered by a dense suite of Go unit tests to prevent regressions.
+
+* **Concurrency-First Game Engine**: Leverages Go's lightweight goroutines and
+  channels to run isolated, concurrent game loops. Each active match is handled
+  as a lightweight thread, communicating with client sessions via persistent
+  WebSockets.
+* **Decoupled CLI & Headless Training**: The backend can run fully headless to
+  train and benchmark AI strategies at maximum CPU clock speeds, completely
+  independent of the visual DOM.
+* **Robust Quality Assurance**: Key board rules, piece movement algorithms, and
+  battle resolution matrices are covered by a dense suite of Go unit tests to
+  prevent regressions.
 
 ### SvelteKit Client-Side Frontend
-*   **Reactive & Atomic UI**: Built using SvelteKit and TypeScript. The UI bypasses heavy SSR in favor of a fast, client-side SPA architecture, styling exclusively with a custom-themed Tailwind system.
-*   **Interactive Custom Assets**: Designed playful, modern battlefield pieces inspired by the Go "Gopher" mascot. Standard ranks are updated to modern counterparts (e.g., tanks, IT specialists, and mortars) while keeping the original game mechanics intact.
+
+* **Reactive & Atomic UI**: Built using SvelteKit and TypeScript. The UI
+  bypasses heavy SSR in favor of a fast, client-side SPA architecture, styling
+  exclusively with a custom-themed Tailwind system.
+* **Interactive Custom Assets**: Designed playful, modern battlefield pieces
+  inspired by the Go "Gopher" mascot. Standard ranks are updated to modern
+  counterparts (e.g., tanks, IT specialists, and mortars) while keeping the
+  original game mechanics intact.
 
 ### Strategic AI Integration
-*   **FAFO (Random Strategy)**: The baseline "F*ck Around and Find Out" AI. Executes random valid moves to serve as a pure stochastic control reference.
-*   **FATO (Heuristic Strategy)**: The "F*ck Around and Try Out" AI. Evaluates board layout metrics and applies static heuristics to prioritize offensive, defensive, and capture-oriented paths before falling back on random moves.
+
+* **FAFO (Random Strategy)**: The baseline "F\*ck Around and Find Out" AI.
+  Executes random valid moves to serve as a pure stochastic control reference.
+* **FATO (Heuristic Strategy)**: The "F\*ck Around and Try Out" AI. Evaluates
+  board layout metrics and applies static heuristics to prioritize offensive,
+  defensive, and capture-oriented paths before falling back on random moves.
 
 ### Declarative Infrastructure & CD
-*   **Docker Containerization**: Multi-stage Docker builds isolate backend binaries and frontend assets, minimizing execution footprints and ensuring parity across development and production.
-*   **NixOS Hosting & CD**: Deployed deterministically on a self-hosted NixOS VM via a Proxmox virtualized environment. Git pushes trigger an automated CI/CD pipeline that builds, tests, and deploys the stack seamlessly.
 
----
+* **Docker Containerization**: Multi-stage Docker builds isolate backend
+  binaries and frontend assets, minimizing execution footprints and ensuring
+  parity across development and production.
+* **NixOS Hosting & CD**: Deployed deterministically on a self-hosted NixOS VM
+  via a Proxmox virtualized environment. Git pushes trigger an automated CI/CD
+  pipeline that builds, tests, and deploys the stack seamlessly.
+
+--------------------------------------------------------------------------------
+
+## Why This Tech Stack?
+
+### Go
+
+Go hits the sweet spot between high performance and simplicity. Goroutines make
+handling simultaneous WebSocket matches effortless, and the compiled speed
+dramatically accelerates AI simulation runs.
+
+### SvelteKit
+
+SvelteKit provides a great developer experience without the bloat. Because
+Svelte compiles down to lean, reactive JavaScript instead of relying on a
+virtual DOM, board updates feel immediate and lightweight.
+
+--------------------------------------------------------------------------------
 
 ## Links & Live Demo
 
-*   [Play GoStrategy Live](https://gostrategy.dotsem.be)
-*   [Open-Source GitHub Repository](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
+* [Play GoStrategy Live](https://gostrategy.dotsem.be)
+* [Open-Source GitHub
+  Repository](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
 
----
+--------------------------------------------------------------------------------
 
 ## Asset & Character Designs
 

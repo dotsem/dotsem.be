@@ -1,6 +1,8 @@
 ---
 title: GoStrategy
-description: Een open-source herontwerp van het klassieke GoStrategy bordspel. Bevat een krachtige Go-backend met WebSockets, een moderne SvelteKit-client, strategische heuristische AI's en declaratieve NixOS-deployment.
+description: Een open-source herontwerp van het klassieke GoStrategy bordspel.
+  Bevat een krachtige Go-backend met WebSockets, een moderne SvelteKit-client,
+  strategische heuristische AI's en declaratieve NixOS-deployment.
 ---
 
 <script>
@@ -9,37 +11,81 @@ description: Een open-source herontwerp van het klassieke GoStrategy bordspel. B
 
 ## Herontwerp van een Klassieker
 
-GoStrategy moderniseert het traditionele strategische bordspel tot een uitbreidbaar, krachtig platform. Het is niet alleen ontworpen voor mens-tegen-mens-wedstrijden, maar dient ook als een robuuste testomgeving voor realtime gamesimulatie en het trainen van strategische AI-modellen.
+GoStrategy moderniseert het traditionele strategische bordspel tot een
+uitbreidbaar, krachtig platform. Het is niet alleen ontworpen voor
+mens-tegen-mens-wedstrijden, maar dient ook als een robuuste testomgeving voor
+realtime gamesimulatie en het trainen van strategische AI-modellen.
 
----
+--------------------------------------------------------------------------------
 
 ## Technische Architectuur & Kernzuilen
 
 ### High-Performance Go Backend
-*   **Concurrency-First Game Engine**: Maakt gebruik van Go's lichte goroutines en channels om geïsoleerde, concurrerende gameloops te draaien. Elke actieve wedstrijd wordt afgehandeld in een aparte thread en communiceert met clients via persistente WebSockets.
-*   **Ontkoppelde CLI & Headless Training**: De backend kan volledig headless worden uitgevoerd om AI-strategieën met maximale CPU-snelheid te trainen en te benchmarken, onafhankelijk van de visuele DOM.
-*   **Robuuste Kwaliteitsbewaking**: Kritieke spelregels, stukbewegingen en gevechtsresoluties zijn volledig gedekt door een dichte suite van Go unit-tests.
+
+* **Concurrency-First Game Engine**: Maakt gebruik van Go's lichte goroutines en
+  channels om geïsoleerde, concurrerende gameloops te draaien. Elke actieve
+  wedstrijd wordt afgehandeld in een aparte thread en communiceert met clients
+  via persistente WebSockets.
+* **Ontkoppelde CLI & Headless Training**: De backend kan volledig headless
+  worden uitgevoerd om AI-strategieën met maximale CPU-snelheid te trainen en te
+  benchmarken, onafhankelijk van de visuele DOM.
+* **Robuuste Kwaliteitsbewaking**: Kritieke spelregels, stukbewegingen en
+  gevechtsresoluties zijn volledig gedekt door een dichte suite van Go
+  unit-tests.
 
 ### SvelteKit Frontend
-*   **Reactieve & Atomische UI**: Gebouwd met SvelteKit en TypeScript. De interface omzeilt zware SSR ten gunste van een snelle, client-side SPA-architectuur en is gestyled met een Tailwind-ontwerpsysteem.
-*   **Interactieve Custom Assets**: Ontwierp speelse, moderne speelstukken geïnspireerd door de Go "Gopher" mascotte. Klassieke rangen zijn gemoderniseerd (zoals tanks, IT-specialisten en mortieren) met behoud van de originele spelregels.
+
+* **Reactieve & Atomische UI**: Gebouwd met SvelteKit en TypeScript. De
+  interface omzeilt zware SSR ten gunste van een snelle, client-side
+  SPA-architectuur en is gestyled met een Tailwind-ontwerpsysteem.
+* **Interactieve Custom Assets**: Ontwierp speelse, moderne speelstukken
+  geïnspireerd door de Go "Gopher" mascotte. Klassieke rangen zijn
+  gemoderniseerd (zoals tanks, IT-specialisten en mortieren) met behoud van de
+  originele spelregels.
 
 ### Strategische AI-Integratie
-*   **FAFO (Willekeurige Strategie)**: De baseline "F*ck Around and Find Out" AI. Voert willekeurige geldige zetten uit om te dienen als pure stochastische controle.
-*   **FATO (Heuristische Strategie)**: De "F*ck Around and Try Out" AI. Analyseert het spelbord en past statische heuristieken toe om aanvallende, verdedigende en vangstgerichte paden te prioriteren.
+
+* **FAFO (Willekeurige Strategie)**: De baseline "F\*ck Around and Find Out" AI.
+  Voert willekeurige geldige zetten uit om te dienen als pure stochastische
+  controle.
+* **FATO (Heuristische Strategie)**: De "F\*ck Around and Try Out" AI.
+  Analyseert het spelbord en past statische heuristieken toe om aanvallende,
+  verdedigende en vangstgerichte paden te prioriteren.
 
 ### Declaratieve Infrastructuur & CD
-*   **Docker Containerisatie**: Multi-stage Docker builds isoleren backend binaries en frontend assets, waardoor de footprint tot een minimum wordt beperkt en consistente werking in elke omgeving gegarandeerd is.
-*   **NixOS Hosting & CD**: Deploys worden deterministisch uitgevoerd op een zelf-gehoste NixOS VM binnen een Proxmox-omgeving. Git-pushes triggeren een automatische CI/CD-pipeline die de stack naadloos bouwt, test en live zet.
 
----
+* **Docker Containerisatie**: Multi-stage Docker builds isoleren backend
+  binaries en frontend assets, waardoor de footprint tot een minimum wordt
+  beperkt en consistente werking in elke omgeving gegarandeerd is.
+* **NixOS Hosting & CD**: Deploys worden deterministisch uitgevoerd op een
+  zelf-gehoste NixOS VM binnen een Proxmox-omgeving. Git-pushes triggeren een
+  automatische CI/CD-pipeline die de stack naadloos bouwt, test en live zet.
+
+--------------------------------------------------------------------------------
+
+## Waarom deze tech-stack?
+
+### Go
+
+Go vindt de ideale balans tussen hoge prestaties en eenvoud. Dankzij goroutines
+is het gelijktijdig verwerken van meerdere WebSocket-wedstrijden moeiteloos, en
+de gecompileerde snelheid versnelt de AI-simulatieruns aanzienlijk.
+
+### SvelteKit
+
+SvelteKit biedt een uitstekende developer experience zonder overbodige ballast.
+Omdat Svelte direct compileert naar compacte, reactieve JavaScript in plaats van
+te leunen op een virtuele DOM, voelen bord-updates direct en snel aan.
+
+--------------------------------------------------------------------------------
 
 ## Links & Live Demo
 
-*   [Speel GoStrategy Live](https://gostrategy.dotsem.be)
-*   [Open-Source GitHub Repository](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
+* [Speel GoStrategy Live](https://gostrategy.dotsem.be)
+* [Open-Source GitHub
+  Repository](https://github.com/Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy)
 
----
+--------------------------------------------------------------------------------
 
 ## Grafische Ontwerpen & Stukken
 
