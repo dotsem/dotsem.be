@@ -20,8 +20,8 @@ Dit was het debuut van onze school in VEX Robotics. Het was ook het allereerste
 jaar dat er een nationaal kampioenschap in België werd gehouden.
 
 Het doel van het spel was om gele schijven in een mand te schieten, rollers naar
-de kleur van je team te draaien, en in het endgame zoveel mogelijk veldtegels aan
-te raken voor extra punten.
+de kleur van je team te draaien, en in het endgame zoveel mogelijk veldtegels
+aan te raken voor extra punten.
 
 ### De robot bouwen
 
@@ -30,7 +30,7 @@ scrappy en geïmproviseerd, maar werkte super goed! Voor het endgame bouwden we
 een touwwerper die binnen een paar seconden bijna het hele speelveld kon
 bedekken.
 
-<AssetImage name="robot-2023.jpg" alt="Spin Up Robot" width="500" />
+<AssetImage name="robot-2023.webp" alt="Spin Up Robot" width="500" />
 
 ### De robot programmeren
 
@@ -44,7 +44,7 @@ We deden mee aan het Belgisch kampioenschap zonder te weten wat we konden
 verwachten. Uiteindelijk won ons team het toernooi, waarmee we meteen een ticket
 pakten voor de wereldfinale in Dallas, Texas!
 
-<AssetImage name="awards-2023.jpg" alt="Awards Nationaal Kampioenschap" width="500" />
+<AssetImage name="awards-2023.webp" alt="Awards Nationaal Kampioenschap" width="500" />
 
 ### Wereldfinale in Dallas
 
@@ -53,8 +53,8 @@ geweldige ervaring. We eindigden niet hoog, maar het was een enorm leerzame
 ervaring om het op te nemen tegen de beste teams ter wereld.
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <AssetImage name="block-code.jpg" caption="Programmeren met blokken" />
-    <AssetImage name="worlds-stand.jpg" caption="Onze stand op de Wereldfinale" />
+    <AssetImage name="block-code.webp" caption="Programmeren met blokken" />
+    <AssetImage name="worlds-stand.webp" caption="Onze stand op de Wereldfinale" />
 </div>
 
 ## VEX 2023-2024: Over Under
@@ -85,13 +85,13 @@ mocht ik zelfs achter het stuur kruipen als hoofdbestuurder. Best stressvol,
 maar de robot reageerde gelukkig betrouwbaar.
 
 Samen met het junior team van onze school stonden we in de finale en wonnen we!
-Omdat er maar één team naar Dallas mocht, mocht het junior team gaan om België te
-vertegenwoordigen.
+Omdat er maar één team naar Dallas mocht, mocht het junior team gaan om België
+te vertegenwoordigen.
 
 <AssetImage name="robot-2024.webp" caption="Mark E. gebouwd voor het Over Under-seizoen" width="500" />
 
-Tot op de dag van vandaag heeft onze school 3 van de 3 nationale kampioenschappen
-gewonnen.
+Tot op de dag van vandaag heeft onze school 3 van de 3 nationale
+kampioenschappen gewonnen.
 
 ## Broncode
 

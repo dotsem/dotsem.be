@@ -29,7 +29,7 @@ I took the lead on mechanical design. Our setup was unconventional and a bit
 scrappy, but it proved remarkably effective. For the endgame, we engineered a
 string launcher capable of expanding across nearly the entire field in seconds.
 
-<AssetImage name="robot-2023.jpg" alt="Spin Up Robot" width="500" />
+<AssetImage name="robot-2023.webp" alt="Spin Up Robot" width="500" />
 
 ### Programming the Robot
 
@@ -44,7 +44,7 @@ We entered the Belgian national competition unsure of what to expect from other
 teams. To our excitement, our alliance went on to win the tournament—securing
 our ticket to the VEX World Championship in Dallas, Texas!
 
-<AssetImage name="awards-2023.jpg" alt="National Competition Awards" width="500" />
+<AssetImage name="awards-2023.webp" alt="National Competition Awards" width="500" />
 
 ### World Finals in Dallas
 
@@ -54,8 +54,8 @@ competing against elite international teams was an eye-opening masterclass in
 robotics engineering.
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <AssetImage name="block-code.jpg" caption="Programming in Blocks" />
-    <AssetImage name="worlds-stand.jpg" caption="Our stand at the World Finals" />
+    <AssetImage name="block-code.webp" caption="Programming in Blocks" />
+    <AssetImage name="worlds-stand.webp" caption="Our stand at the World Finals" />
 </div>
 
 ## VEX 2023-2024: Over Under
