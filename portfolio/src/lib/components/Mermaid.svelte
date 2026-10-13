@@ -14,7 +14,7 @@
 
 	let {
 		code = '',
-		title = 'Architecture Diagram',
+		title = 'Mermaid Diagram',
 		class: className = '',
 		startingScale = 1,
 		aspectRatio,
@@ -115,8 +115,7 @@
 		class="mb-2 flex items-center justify-between border-b border-border/40 px-2 pb-2 text-xs text-muted-foreground"
 	>
 		<span class="flex items-center gap-1.5 font-medium">
-			<i class="fa-solid fa-diagram-project text-sm text-primary"></i>
-			<span>{title}</span>
+			{title}
 		</span>
 		<div class="flex items-center gap-1">
 			<button
