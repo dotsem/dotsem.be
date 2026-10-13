@@ -1,53 +1,63 @@
 ---
 title: Weighted Decision Matrix
-description: Een handige website om eenvoudig gewogen beslissingsmatrices te maken en naar markdown te exporteren.
+description: Een handige website om eenvoudig gewogen beslissingsmatrices te
+  maken en naar markdown te exporteren.
 ---
 
 <script>
     import Image from '$lib/components/Image.svelte';
 </script>
 
-
 ## Een simpele Gewogen Beslissingsmatrix
 
-Het maken van een gewogen beslissingsmatrix is een geweldige manier om geïnformeerde beslissingen te nemen.
-In de praktijk is er een daadwerkelijk een maken vaak een ander verhaal. De één tekent het gewoon, de ander gebruikt Excel, de volgende Google Sheets, enzovoort.
+Het maken van een gewogen beslissingsmatrix is een geweldige manier om
+geïnformeerde beslissingen te nemen. In de praktijk is er een daadwerkelijk een
+maken vaak een ander verhaal. De één tekent het gewoon, de ander gebruikt Excel,
+de volgende Google Sheets, enzovoort.
 
-Deze website helpt je bij het maken van gewogen beslissingsmatrices en het exporteren ervan naar markdown om ze eenvoudig met anderen te delen.
+Deze website helpt je bij het maken van gewogen beslissingsmatrices en het
+exporteren ervan naar markdown om ze eenvoudig met anderen te delen.
 
 ## Functionaliteiten
 
 - Maak een gewogen beslissingsmatrix (uiteraard)
 - Exporteer naar markdown
 
-De website biedt een fijne interface met een raster om je criteria en opties in te voeren.
-Het geeft ook een overzicht van de resultaten die in realtime worden bijgewerkt.
+De website biedt een fijne interface met een raster om je criteria en opties in
+te voeren. Het geeft ook een overzicht van de resultaten die in realtime worden
+bijgewerkt.
 
 ## Website
 
-De website heeft een simpele interface met een raster om je criteria en opties in te voeren.
-Het geeft ook een overzicht van de resultaten die in realtime worden bijgewerkt.
+De website heeft een simpele interface met een raster om je criteria en opties
+in te voeren. Het geeft ook een overzicht van de resultaten die in realtime
+worden bijgewerkt.
 
 <Image src="example1.png" alt="Screenshot van de Weighted Decision Matrix website" />
 <Image src="example2.png" alt="Screenshot van de Weighted Decision Matrix website" />
 
 ## Export naar Markdown
 
-De website stelt je in staat om je gewogen beslissingsmatrix naar markdown te exporteren. Je kunt de tekst kopiëren of als bestand downloaden.
-Dit is handig voor het delen van je resultaten met anderen of om je besluitvormingsproces vast te leggen.
+De website stelt je in staat om je gewogen beslissingsmatrix naar markdown te
+exporteren. Je kunt de tekst kopiëren of als bestand downloaden. Dit is handig
+voor het delen van je resultaten met anderen of om je besluitvormingsproces vast
+te leggen.
 
-<div class="flex gap-4 justify-center flex-wrap">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <Image src="markdown1.png" alt="Screenshot van de Weighted Decision Matrix website" />
     <Image src="markdown2.png" alt="Screenshot van de Weighted Decision Matrix website" />
 </div>
 
 ## Onthoudt gegevens
 
-De app slaat je gegevens op in de lokale opslag van je browser, zodat je de website kunt sluiten en later kunt terugkomen om verder te gaan waar je gebleven was.
+De app slaat je gegevens op in de lokale opslag van je browser, zodat je de
+website kunt sluiten en later kunt terugkomen om verder te gaan waar je gebleven
+was.
 
 ## Probeer het zelf!
 
-<a href="https://dotsem.github.io/Weighted-Decision-Matrix/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Probeer het zelf!</a>
+<a href="https://dotsem.github.io/Weighted-Decision-Matrix/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Probeer
+het zelf!</a>
 
 ## Broncode
 
