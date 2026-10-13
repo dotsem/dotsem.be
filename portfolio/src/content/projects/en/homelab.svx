@@ -11,48 +11,34 @@ description: A fully declarative, resilient homelab infrastructure powered by
 
     const topology = `
 flowchart TD
-    Internet["Internet / WAN"] --> OPNsense["OPNsense VM<br/><i>Isolated Subnet: 192.168.10.0/24</i>"]
+    WAN["Internet / WAN"] --> Router["Dell Laptop: OPNsense Router<br/><i>3rd Cluster Quorum Node (No Battery)</i>"]
 
-    subgraph Cluster["Proxmox VE 3-Node Cluster (Corosync Quorum)"]
+    Router --> Edge
+
+    subgraph Cluster["Proxmox VE Compute Cluster (Dual ThinkCentres)"]
         direction TB
 
-        subgraph QuorumNode["Dell Laptop (Battery Removed / 3rd Quorum Device)"]
-            OPNsense
+        subgraph Edge["Edge & Networking"]
+            BattleBus["battle-bus<br/>Cloudflare Tunnel & Nginx"]
+            Tailscale["tailscale<br/>Subnet Router & Mesh"]
         end
 
-        subgraph ComputeNodes["Dual ThinkCentre Compute Nodes"]
-            direction TB
-
-            subgraph Ingress["Ingress & Edge"]
-                BattleBus["battle-bus<br/>Cloudflare Tunnel & Nginx"]
-            end
-
-            subgraph DNS["DNS & Resolution"]
-                AdGuard["adguard-home<br/>Redundant DNS Sync"]
-            end
-
-            subgraph Observability["Observability"]
-                Lobby["lobby<br/>Homepage & Gatus"]
-                LonelyLodge["lonely-lodge<br/>Grafana & Prometheus"]
-            end
-
-            subgraph Services["Logistics & Media"]
-                GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
-                RiskyReels["risky-reels<br/>Jellyfin VA-API"]
-            end
-
-            subgraph Applications["Production & Staging"]
-                RetailRow["retail-row<br/>GoStrategy & WWB (Prod)"]
-                SaltySprings["salty-springs<br/>Staging Apps"]
-            end
-
-            subgraph Mesh["Mesh Access"]
-                Tailscale["tailscale<br/>Subnet Router"]
-            end
+        subgraph Core["Core & Observability"]
+            AdGuard["adguard-home<br/>Redundant DNS Sync"]
+            Lobby["lobby<br/>Homepage & Gatus"]
+            LonelyLodge["lonely-lodge<br/>Grafana & Prometheus"]
         end
+
+        subgraph Workloads["Apps & Media Services"]
+            RetailRow["retail-row<br/>GoStrategy & WWB"]
+            SaltySprings["salty-springs<br/>Staging Apps"]
+            GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
+            RiskyReels["risky-reels<br/>Jellyfin VA-API"]
+        end
+
+        Edge --> Core
+        Edge --> Workloads
     end
-
-    OPNsense --> ComputeNodes
 `;
 </script>
 
@@ -132,7 +118,7 @@ systems).
 Servers are named after Fortnite POIs, structured into distinct functional
 clusters:
 
-<Mermaid code={topology} />
+<Mermaid code={topology} aspectRatio="1:1" startingScale={1.5} />
 
 * **Core Infrastructure & DNS (`adguard-home`):** Redundant dual AdGuard Home
   instances providing local split-horizon DNS resolution, malware filtering, and
