@@ -4,7 +4,7 @@ description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun e
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Stageproject
@@ -26,8 +26,8 @@ Ze hanteerden een werkwijze waarbij ze eerst de unit-tests schreven en vervolgen
 Uiteindelijk hebben we de code geschreven waarmee de robot via bluetooth aangestuurd kon worden.
 De robot kon via bluetooth een reeks instructies ontvangen om de motoren te bedienen.
 
-<AssetImage
-    name="working.jpg"
+<Image
+    src="working.jpg"
     alt="Tijdens het programeren van de robot"
 />
 

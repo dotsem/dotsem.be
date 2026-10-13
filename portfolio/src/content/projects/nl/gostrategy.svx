@@ -6,7 +6,7 @@ description: Een open-source herontwerp van het klassieke GoStrategy bordspel.
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Herontwerp van een Klassieker
@@ -89,20 +89,20 @@ te leunen op een virtuele DOM, voelen bord-updates direct en snel aan.
 
 ## Grafische Ontwerpen & Stukken
 
-<AssetImage name="pieces-blue.png" alt="Blauwe Stukken" width={700} caption="De op maat ontworpen blauwe legerstukken, variërend van IT-specialisten tot hooggeplaatste Maarschalken." />
+<Image src="pieces-blue.png" alt="Blauwe Stukken" width={700} caption="De op maat ontworpen blauwe legerstukken, variërend van IT-specialisten tot hooggeplaatste Maarschalken." />
 
-<AssetImage name="pieces-red.png" alt="Rode Stukken" width={700} caption="De bijbehorende rode legerstukken." />
+<Image src="pieces-red.png" alt="Rode Stukken" width={700} caption="De bijbehorende rode legerstukken." />
 
 ### Maak kennis met de AI's
 
 <div class="flex gap-8 justify-center items-center not-prose text-white mt-8">
     <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
-        <AssetImage name="fafo.png" alt="FAFO AI" width={96} height={96} />
+        <Image src="fafo.png" alt="FAFO AI" width={96} height={96} />
         <h4 class="font-bold text-lg mt-4 text-primary">FAFO</h4>
         <p class="text-xs text-muted-foreground mt-2">Puur willekeurige zetten voor nulmetingen en stresstests.</p>
     </div>
     <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
-        <AssetImage name="fato.png" alt="FATO AI" width={96} height={96} />
+        <Image src="fato.png" alt="FATO AI" width={96} height={96} />
         <h4 class="font-bold text-lg mt-4 text-primary">FATO</h4>
         <p class="text-xs text-muted-foreground mt-2">Heuristisch gestuurde strategische besluitvorming.</p>
     </div>

@@ -6,7 +6,7 @@ description: An interactive, tactile storytelling application that brings
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Bringing Stories to Life Through Touch and Sound

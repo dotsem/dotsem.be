@@ -5,7 +5,7 @@ description: A high-performance, local-first planning application built with
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
   import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
 
   export let latestRelease = "";
@@ -18,7 +18,7 @@ eliminate bloat and keep you in the flow. By planning day-by-day and keeping a
 backlog at your fingertips, you maintain focus without the lag or distractions
 of online tools.
 
-<AssetImage name="quote.png" alt="Carpe Diem Quote" width="500" />
+<Image src="quote.png" alt="Carpe Diem Quote" width="500" />
 
 --------------------------------------------------------------------------------
 
@@ -82,10 +82,10 @@ is very promising!
 
 ## Application Showcase
 
-<AssetImage name="example1.png" alt="Project Hub" caption="Organize tasks into distinct projects with labels, priorities, and deadlines." />
+<Image src="example1.png" alt="Project Hub" caption="Organize tasks into distinct projects with labels, priorities, and deadlines." />
 
-<AssetImage name="example2.png" alt="Backlog Management" caption="Filter and bulk-plan your backlog tasks for today or tomorrow." />
+<Image src="example2.png" alt="Backlog Management" caption="Filter and bulk-plan your backlog tasks for today or tomorrow." />
 
-<AssetImage name="example7.png" alt="Kanban & List Board" caption="Switch between a structured list view and a visual 3-column Kanban board." />
+<Image src="example7.png" alt="Kanban & List Board" caption="Switch between a structured list view and a visual 3-column Kanban board." />
 
-<AssetImage name="example9.png" alt="Project Details" caption="Drill down into individual projects to check progress and remaining tasks." />
+<Image src="example9.png" alt="Project Details" caption="Drill down into individual projects to check progress and remaining tasks." />

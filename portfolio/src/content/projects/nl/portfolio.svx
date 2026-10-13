@@ -4,7 +4,7 @@ description: Mijn portfolio is natuurlijk een project om trots op te zijn. Het b
 ---
 
 <script lang="ts">
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Mijn Portfolio
@@ -27,7 +27,7 @@ Dit zijn geen op zichzelf staande doelen, maar eerder een systeem om ervoor te z
 
 Ik ben begonnen met het maken van een ontwerp in Figma. Hierdoor kon ik mijn ontwerp en lay-out plannen voordat ik een enkele regel code schreef.
 
-<AssetImage name="figma.png" alt="Figma Ontwerp" />
+<Image src="figma.png" alt="Figma Ontwerp" />
 
 ## Tech Stack
 

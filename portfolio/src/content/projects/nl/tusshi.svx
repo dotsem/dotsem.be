@@ -4,7 +4,7 @@ description: Een overzichtelijke, toetsenbord-gedreven terminal manager voor SSH
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Een Moderne Terminal SSH Verbindingsmanager

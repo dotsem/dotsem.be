@@ -4,7 +4,7 @@ description: An IOT project including an custom blackjack game made with pygame,
 ---
 
 <script>
-  import AssetImage from '$lib/components/AssetImage.svelte';
+  import Image from '$lib/components/Image.svelte';
 
 </script>
 
@@ -49,20 +49,20 @@ An arcade game is nothing without a good looking cabinet.
 We used the available laser cutter at school to cut the wooden panels for the cabinet.
 They were then assembled using screws.
 
-<AssetImage name="side.jpg" alt="Smart Jack Cabinet" width="500" caption="
+<Image src="side.jpg" alt="Smart Jack Cabinet" width="500" caption="
 The overall cabinet was a bit wobbly, but it worked."
  />
 
 ## Final Result
 
-<AssetImage name="showcase.jpg" alt="Smart Jack" width="500" />
+<Image src="showcase.jpg" alt="Smart Jack" width="500" />
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-  <AssetImage class="my-0!" name="register-id.jpg" alt="Registering an eID card" />
-  <AssetImage class="my-0!" name="play.jpg" alt="Playing a game" />
-  <AssetImage class="my-0!" name="blackjack.jpg" alt="Blackjack game" />
-  <AssetImage class="my-0!" name="inside.jpg" alt="Inside of the cabinet" />
-  <AssetImage class="my-0!" name="telemetry.jpg" alt="Telemetry" caption="Part of the project was to collect telemetry data." />
-  <AssetImage class="my-0!" name="logo.jpg" alt="Smart Jack" />
+  <Image class="my-0!" src="register-id.jpg" alt="Registering an eID card" />
+  <Image class="my-0!" src="play.jpg" alt="Playing a game" />
+  <Image class="my-0!" src="blackjack.jpg" alt="Blackjack game" />
+  <Image class="my-0!" src="inside.jpg" alt="Inside of the cabinet" />
+  <Image class="my-0!" src="telemetry.jpg" alt="Telemetry" caption="Part of the project was to collect telemetry data." />
+  <Image class="my-0!" src="logo.jpg" alt="Smart Jack" />
 </div>
 

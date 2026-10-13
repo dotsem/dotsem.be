@@ -12,7 +12,7 @@ hidden: false
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Niri - The best window manager
@@ -67,7 +67,7 @@ Because an extra dimension of worries is added, you sometimes loose track of you
 Niri has a built in overview mode, which shows you all your windows in a grid. It is not only fancy, it is also highly functional.
 All shortcuts still work, so you can still navigate with your keyboard shortcuts like you normally would.
 
-<AssetImage name="overview.png" alt="Overview mode" />
+<Image src="overview.png" alt="Overview mode" />
 
 ## Influenced by gaming
 

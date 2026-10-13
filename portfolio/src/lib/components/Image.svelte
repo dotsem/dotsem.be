@@ -5,7 +5,7 @@
 	interface Props {
 		type?: 'blog' | 'projects';
 		slug?: string;
-		name: string;
+		src: string;
 		alt?: string;
 		class?: string;
 		caption?: string;
@@ -17,7 +17,7 @@
 	let {
 		type: propType,
 		slug: propSlug,
-		name,
+		src,
 		alt = '',
 		class: className = '',
 		caption = '',
@@ -35,11 +35,28 @@
 		eager: true,
 		import: 'default'
 	});
-	const assetPath = $derived(`/src/lib/assets/${type}/${slug}/${name}`);
-	const resolvedSrc = $derived(images[assetPath]);
+
+	const isExternalOrAbsolute = $derived(
+		src.startsWith('/') ||
+			src.startsWith('http://') ||
+			src.startsWith('https://') ||
+			src.startsWith('data:')
+	);
+
+	const assetPath = $derived(isExternalOrAbsolute ? src : `/src/lib/assets/${type}/${slug}/${src}`);
+
+	const resolvedSrc = $derived(
+		src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:')
+			? src
+			: (images[assetPath] ?? (src.startsWith('/') ? src : undefined))
+	);
+
+	const alignClass = $derived(
+		align === 'left' ? 'items-start' : align === 'right' ? 'items-end' : 'items-center'
+	);
 </script>
 
-<figure class="my-4! flex flex-col items-{align} {className}">
+<figure class="my-4! flex flex-col {alignClass} {className}">
 	{#if resolvedSrc}
 		<button
 			onclick={() => (isModalOpen = true)}

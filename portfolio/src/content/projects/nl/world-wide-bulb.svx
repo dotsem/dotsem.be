@@ -4,7 +4,7 @@ description: Een realtime, wereldwijd gesynchroniseerde digitale lichtschakelaar
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Een Wereldwijd Gesynchroniseerde Digitale Lichtschakelaar

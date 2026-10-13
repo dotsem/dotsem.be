@@ -4,7 +4,7 @@ description: My portfolio is of course a project to be proud of. It implements i
 ---
 
 <script lang="ts">
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## My Portfolio
@@ -27,7 +27,7 @@ These are not standalone goals, but rather a system to ensure that I can create 
 
 I started by creating a design on Figma. This allowed me to plan my design and layout before writing a single line of code.
 
-<AssetImage name="figma.png" alt="Figma Design" />
+<Image src="figma.png" alt="Figma Design" />
 
 ## Tech Stack
 

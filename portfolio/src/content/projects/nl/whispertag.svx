@@ -6,7 +6,7 @@ description: Een interactieve, tastbare verhalenapplicatie die fysieke
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Verhalen Tot Leven Brengen Via Tast en Geluid

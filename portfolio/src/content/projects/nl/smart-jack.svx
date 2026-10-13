@@ -4,7 +4,7 @@ description: Een IoT-project bestaande uit een aangepast blackjack-spel gemaakt 
 ---
 
 <script>
-  import AssetImage from '$lib/components/AssetImage.svelte';
+  import Image from '$lib/components/Image.svelte';
 
 </script>
 
@@ -49,19 +49,19 @@ Een arcadespel is niets zonder een mooi uitziende behuizing.
 We hebben de beschikbare lasersnijder op school gebruikt om de houten panelen voor de behuizing te snijden.
 Deze zijn vervolgens met schroeven in elkaar gezet.
 
-<AssetImage name="side.jpg" alt="Smart Jack Behuizing" width="500" caption="
+<Image src="side.jpg" alt="Smart Jack Behuizing" width="500" caption="
 De behuizing was een beetje wankel, maar het werkte."
  />
 
 ## Eindresultaat
 
-<AssetImage name="showcase.jpg" alt="Smart Jack" width="500" />
+<Image src="showcase.jpg" alt="Smart Jack" width="500" />
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-  <AssetImage class="my-0!" name="register-id.jpg" alt="Registreren van een eID-kaart" />
-  <AssetImage class="my-0!" name="play.jpg" alt="Een spelletje spelen" />
-  <AssetImage class="my-0!" name="blackjack.jpg" alt="Blackjack spel" />
-  <AssetImage class="my-0!" name="inside.jpg" alt="Binnenkant van de behuizing" />
-  <AssetImage class="my-0!" name="telemetry.jpg" alt="Telemetrie" caption="Onderdeel van het project was het verzamelen van telemetriegegevens." />
-  <AssetImage class="my-0!" name="logo.jpg" alt="Smart Jack" />
+  <Image class="my-0!" src="register-id.jpg" alt="Registreren van een eID-kaart" />
+  <Image class="my-0!" src="play.jpg" alt="Een spelletje spelen" />
+  <Image class="my-0!" src="blackjack.jpg" alt="Blackjack spel" />
+  <Image class="my-0!" src="inside.jpg" alt="Binnenkant van de behuizing" />
+  <Image class="my-0!" src="telemetry.jpg" alt="Telemetrie" caption="Onderdeel van het project was het verzamelen van telemetriegegevens." />
+  <Image class="my-0!" src="logo.jpg" alt="Smart Jack" />
 </div>

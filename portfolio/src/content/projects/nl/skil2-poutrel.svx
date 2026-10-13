@@ -4,7 +4,7 @@ description: Een end-to-end implementatie- en systeemontwerpplan voor een gesimu
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Projectoverzicht
@@ -20,13 +20,13 @@ Om het systeemgedrag en de datarelaties in kaart te brengen, hebben we gedetaill
 *   **Entity Relationship Diagram (ERD)**: Bepaalt de belangrijkste data-entiteiten en hun onderlinge relaties, wat zorgt voor een genormaliseerd schema dat direct klaar is voor database-ontwikkelaars.
 *   **Use Case Diagram (UCD)**: Structureert de functionaliteiten en rechten van verschillende rollen (Klanten, Docenten, Admins).
 
-<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
-<AssetImage name="ucd.png" alt="Use Case Diagram" />
+<Image src="erd.png" alt="Entity Relationship Diagram" />
+<Image src="ucd.png" alt="Use Case Diagram" />
 
 ### Use Case Specificaties
 We hebben elk diagram onderbouwd met formele use-case beschrijvingen om functionele validatie te vergemakkelijken en de interactiepatronen nauwkeurig vast te leggen.
 
-<AssetImage name="description.png" alt="Use Case Beschrijving" />
+<Image src="description.png" alt="Use Case Beschrijving" />
 
 ---
 
@@ -34,7 +34,7 @@ We hebben elk diagram onderbouwd met formele use-case beschrijvingen om function
 
 Als vertaling van onze functionele specificaties hebben we interactieve, high-fidelity wireframes en mockups ontworpen in Figma. Dit resulteerde in een logische en intuïtieve navigatieflow die direct aansluit op onze use-case definities.
 
-<AssetImage name="figma.png" alt="Figma Ontwerp" />
+<Image src="figma.png" alt="Figma Ontwerp" />
 
 ---
 

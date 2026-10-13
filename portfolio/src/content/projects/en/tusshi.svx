@@ -5,7 +5,7 @@ description: A clean, keyboard-driven terminal manager for SSH connections with
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## A Modern Terminal SSH Connection Manager

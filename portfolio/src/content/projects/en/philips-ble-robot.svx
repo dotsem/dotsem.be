@@ -4,7 +4,7 @@ description: A project made during my internship at Philips Eindhoven. Combining
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Internship Project
@@ -26,8 +26,8 @@ They used a way of working where they first wrote the unit tests & then wrote th
 Eventually we created code for the robot to be controlled via bluetooth.
 It had a set of instructions that it could receive via bluetooth to control the motors.
 
-<AssetImage
-    name="working.jpg"
+<Image
+    src="working.jpg"
     alt="While programming the robot"
 />
 

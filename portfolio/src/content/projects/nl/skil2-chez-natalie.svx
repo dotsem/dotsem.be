@@ -4,7 +4,7 @@ description: Een B&B webapplicatie gebouwd met de TALL-stack, uitgerust met een 
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Projectoverzicht
@@ -25,7 +25,7 @@ Ik heb de volledige databaselaag vanaf nul ontworpen en geïmplementeerd met beh
 Ons database-ontwerp ontving een uitstekende **9.5 / 10 evaluatie** van de examinatoren:
 > *"Groep 601 heeft een zeer professionele en uitgebreide database-architectuur opgeleverd. Het project omvat een complexe scope, waaronder kamerboekingen, fietsverhuur, yogalessen en een mailtemplatesysteem. De codekwaliteit is uitstekend, met een sterke naleving van de Laravel-standaarden en duidelijke architecturale keuzes."*
 
-<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
+<Image src="erd.png" alt="Entity Relationship Diagram" />
 
 ---
 
@@ -38,8 +38,8 @@ Om toekomstige API-depreciatie te voorkomen, heb ik zelf een geavanceerde visuel
 *   **Flexibele Delay Engine**: Een intuïtieve UI-selector voor het instellen van verzendvertragingen (direct verzenden, of X uur/dagen voor of na een evenement).
 *   **Resiliente Wachtrij**: Aangedreven door Laravel Queues om een gegarandeerde bezorging, persistentie bij serverrestarts en automatische placeholder-vervanging bij verzending te waarborgen.
 
-<AssetImage name="mail-template.png" alt="Custom WYSIWYG Mail Template Editor" />
-<AssetImage name="mail-send-type.png" alt="Contextuele Variabele-validatie & Verzendvertragingen" />
+<Image src="mail-template.png" alt="Custom WYSIWYG Mail Template Editor" />
+<Image src="mail-send-type.png" alt="Contextuele Variabele-validatie & Verzendvertragingen" />
 
 ### Yogadocenten Lesbeheer & Dashboard
 Ontwikkeling van een uitgebreide administratieve werkomgeving en dashboard voor yoga-instructeurs:
@@ -47,14 +47,14 @@ Ontwikkeling van een uitgebreide administratieve werkomgeving en dashboard voor 
 *   **Dynamische Zaalbezetting**: Live bezettingsoverzichten die asynchroon updaten zodra de datum- of tijdvelden worden gewijzigd.
 *   **Openingsuren-validatie**: Regels die starttijden en lesduur automatisch valideren en beperken op basis van de operationele openingsuren.
 
-<AssetImage name="yoga-management.png" alt="Yoga Management & Planner voor Instructeurs" />
+<Image src="yoga-management.png" alt="Yoga Management & Planner voor Instructeurs" />
 
 ### Klant Review Module
 Een premium feedbackmodule waarmee klanten na hun boeking beoordelingen en tekstuele feedback kunnen achterlaten:
 *   **Beveiliging & Anti-Spam**: Unieke ULIDs voor review-koppelingen om te garanderen dat alleen geverifieerde gasten exact één review per boeking kunnen indienen.
 *   **Databeheer**: Ontwikkeling van de database-modellen en seeders, inclusief foutafhandeling (zoals het correct tonen van een `0.0` score in plaats van lege waarden als er nog geen reviews zijn).
 
-<AssetImage name="review.png" alt="Klant Review Interface" />
+<Image src="review.png" alt="Klant Review Interface" />
 
 ---
 
@@ -68,14 +68,14 @@ Om beheerders en docenten een naadloze ervaring te bieden, heb ik dynamic dashbo
 *   **Realtime Tijdlijn & Auto-scroll**: Een dynamische rode tijdsindicator die de huidige tijd toont, inclusief automatische scrolling naar het actuele tijdstip bij het laden.
 *   **Statusindicatoren**: Duidelijke badging en visuele arcering in de kalender die in één oogopslag tonen of een yogales geannuleerd is.
 
-<AssetImage name="dashboard.png" alt="Interactief B&B Dashboard" />
+<Image src="dashboard.png" alt="Interactief B&B Dashboard" />
 
 ### UI Kwaliteitsverbeteringen
 *   **Floating Action Button (FAB)**: Een zwevende sneltoets op het boekingsoverzicht waarmee gebruikers direct een nieuwe boeking kunnen starten.
 *   **Sticky Layouts**: Een modern, zwevend navigatie-paneel voor instellingen en een zwevende actiebalk, waardoor grote formulieren makkelijk op te slaan zijn zonder te scrollen.
 *   **Custom Errorpagina's**: Op maat gemaakte pagina's voor 403-, 404- en 500-fouten met slimme redirects (bijv. niet-ingelogde gebruikers automatisch omleiden naar `/login` bij een 403-fout).
 
-<AssetImage name="error-403.png" alt="Gepolijste Navigatie en Custom Error Layout" />
+<Image src="error-403.png" alt="Gepolijste Navigatie en Custom Error Layout" />
 
 ---
 

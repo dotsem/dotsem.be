@@ -12,7 +12,7 @@ hidden: false
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Niri - De beste window manager
@@ -67,7 +67,7 @@ Omdat er een extra dimensie aan kopzorgen is toegevoegd, verlies je soms het ove
 Niri heeft een ingebouwde overzichtsmodus die al je vensters in een raster toont. Het ziet er niet alleen gelikt uit, het is ook zeer functioneel.
 Alle sneltoetsen werken nog steeds, dus je kunt nog gewoon navigeren met je vertrouwde toetsenbordsneltoetsen.
 
-<AssetImage name="overview.png" alt="Overzichtsmodus" />
+<Image src="overview.png" alt="Overzichtsmodus" />
 
 ## Beïnvloed door gaming
 

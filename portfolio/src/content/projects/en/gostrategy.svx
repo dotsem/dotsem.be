@@ -6,7 +6,7 @@ description: An open-source re-engineering of the classic GoStrategy board game.
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Re-Engineering a Classic
@@ -88,20 +88,20 @@ virtual DOM, board updates feel immediate and lightweight.
 
 ## Asset & Character Designs
 
-<AssetImage name="pieces-blue.png" alt="Blue Pieces" width={700} caption="The custom blue battlefield pieces, ranging from IT specialists to high-ranking Marshals." />
+<Image src="pieces-blue.png" alt="Blue Pieces" width={700} caption="The custom blue battlefield pieces, ranging from IT specialists to high-ranking Marshals." />
 
-<AssetImage name="pieces-red.png" alt="Red Pieces" width={700} caption="The corresponding custom red team pieces." />
+<Image src="pieces-red.png" alt="Red Pieces" width={700} caption="The corresponding custom red team pieces." />
 
 ### Meet the AIs
 
 <div class="flex gap-8 justify-center items-center not-prose text-white mt-8">
     <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
-        <AssetImage name="fafo.png" alt="FAFO AI" width={96} height={96} />
+        <Image src="fafo.png" alt="FAFO AI" width={96} height={96} />
         <h4 class="font-bold text-lg mt-4 text-primary">FAFO</h4>
         <p class="text-xs text-muted-foreground mt-2">Purely random gameplay for baseline metrics.</p>
     </div>
     <div class="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl p-6 text-center max-w-[200px]">
-        <AssetImage name="fato.png" alt="FATO AI" width={96} height={96} />
+        <Image src="fato.png" alt="FATO AI" width={96} height={96} />
         <h4 class="font-bold text-lg mt-4 text-primary">FATO</h4>
         <p class="text-xs text-muted-foreground mt-2">Heuristics-driven strategic decision-making.</p>
     </div>

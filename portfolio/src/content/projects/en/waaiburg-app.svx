@@ -4,7 +4,7 @@ description: Performance analysis, updates & new features for the Waaiburg mobil
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Waaiburg Mobile App
@@ -38,4 +38,4 @@ The cherry on top was to preload the videos the moment the user opened the inter
 
 [Check out my LinkedIn post about this project!](https://www.linkedin.com/feed/update/urn:li:activity:7438206490622001152/?originTrackingId=tGYXsoSeSoDsJHQRu4Dv5A%3D%3D)
 
-<AssetImage name="flyer.png" alt="Flyer" />
+<Image src="flyer.png" alt="Flyer" />

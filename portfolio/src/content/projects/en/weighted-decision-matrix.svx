@@ -4,7 +4,7 @@ description: A handy website to easily create weighted decision matrices and exp
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 
@@ -28,8 +28,8 @@ It also gives you a nice overview of the results that update in real time.
 The website has a simple interface with a grid to enter your criteria and options.
 It also gives you a nice overview of the results that update in real time.
 
-<AssetImage name="example1.png" alt="Screenshot of the Weighted Decision Matrix website" />
-<AssetImage name="example2.png" alt="Screenshot of the Weighted Decision Matrix website" />
+<Image src="example1.png" alt="Screenshot of the Weighted Decision Matrix website" />
+<Image src="example2.png" alt="Screenshot of the Weighted Decision Matrix website" />
 
 ## Export to Markdown
 
@@ -37,8 +37,8 @@ The website allows you to export your weighted decision matrix to markdown. You 
 This is useful for sharing your results with others or for keeping a record of your decision-making process.
 
 <div class="flex gap-4 justify-center flex-wrap">
-    <AssetImage name="markdown1.png" alt="Screenshot of the Weighted Decision Matrix website" />
-    <AssetImage name="markdown2.png" alt="Screenshot of the Weighted Decision Matrix website" />
+    <Image src="markdown1.png" alt="Screenshot of the Weighted Decision Matrix website" />
+    <Image src="markdown2.png" alt="Screenshot of the Weighted Decision Matrix website" />
 </div>
 
 ## Stateful

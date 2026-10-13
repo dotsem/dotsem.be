@@ -5,7 +5,7 @@ description: A customizable, animated desktop media player widget for Wayland,
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## An Animated Desktop Media Player for Wayland
@@ -84,14 +84,14 @@ Switch skins or adjust settings directly in `~/.config/capy-player/config.toml`
 A skeuomorphic turntable layout. It includes a singular button to play/pause the
 current track &.
 
-<AssetImage name="realistic-vinyl-player.gif" alt="Realistic Vinyl Player" />
+<Image src="realistic-vinyl-player.gif" alt="Realistic Vinyl Player" />
 
 ### Compact Vinyl Player
 
 A streamlined, vertically oriented deck designed for compact screen real estate
 or sidebar placement. It includes play/pause, next & previous buttons.
 
-<AssetImage name="compact-vinyl-player.gif" alt="Compact Vinyl Player" />
+<Image src="compact-vinyl-player.gif" alt="Compact Vinyl Player" />
 
 
 ### Vinyl Card
@@ -100,7 +100,7 @@ A sleek horizontal card showcasing track metadata, vinyl album art and an audio
 visualizer. Clicking on the vinyl will hide the rest of the card, only
 displaying the vinyl.
 
-<AssetImage name="vinyl-card.gif" alt="Vinyl Card" />
+<Image src="vinyl-card.gif" alt="Vinyl Card" />
 
 --------------------------------------------------------------------------------
 

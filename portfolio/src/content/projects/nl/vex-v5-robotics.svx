@@ -5,7 +5,7 @@ description: In onze STEAM-club deden we mee aan de VEX V5 Robotics-competitie.
 ---
 
 <script>
-    import AssetImage from "$lib/components/AssetImage.svelte";
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 ## VEX Robotics
@@ -30,7 +30,7 @@ scrappy en geïmproviseerd, maar werkte super goed! Voor het endgame bouwden we
 een touwwerper die binnen een paar seconden bijna het hele speelveld kon
 bedekken.
 
-<AssetImage name="robot-2023.webp" alt="Spin Up Robot" width="500" />
+<Image src="robot-2023.webp" alt="Spin Up Robot" width="500" />
 
 ### De robot programmeren
 
@@ -44,7 +44,7 @@ We deden mee aan het Belgisch kampioenschap zonder te weten wat we konden
 verwachten. Uiteindelijk won ons team het toernooi, waarmee we meteen een ticket
 pakten voor de wereldfinale in Dallas, Texas!
 
-<AssetImage name="awards-2023.webp" alt="Awards Nationaal Kampioenschap" width="500" />
+<Image src="awards-2023.webp" alt="Awards Nationaal Kampioenschap" width="500" />
 
 ### Wereldfinale in Dallas
 
@@ -53,8 +53,8 @@ geweldige ervaring. We eindigden niet hoog, maar het was een enorm leerzame
 ervaring om het op te nemen tegen de beste teams ter wereld.
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <AssetImage name="block-code.webp" caption="Programmeren met blokken" />
-    <AssetImage name="worlds-stand.webp" caption="Onze stand op de Wereldfinale" />
+    <Image src="block-code.webp" caption="Programmeren met blokken" />
+    <Image src="worlds-stand.webp" caption="Onze stand op de Wereldfinale" />
 </div>
 
 ## VEX 2023-2024: Over Under
@@ -88,7 +88,7 @@ Samen met het junior team van onze school stonden we in de finale en wonnen we!
 Omdat er maar één team naar Dallas mocht, mocht het junior team gaan om België
 te vertegenwoordigen.
 
-<AssetImage name="robot-2024.webp" caption="Mark E. gebouwd voor het Over Under-seizoen" width="500" />
+<Image src="robot-2024.webp" caption="Mark E. gebouwd voor het Over Under-seizoen" width="500" />
 
 Tot op de dag van vandaag heeft onze school 3 van de 3 nationale
 kampioenschappen gewonnen.

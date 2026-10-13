@@ -5,7 +5,7 @@ description: Een krachtige, local-first planning-applicatie gebouwd met Flutter
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
   import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
 
   export let latestRelease = "";
@@ -18,7 +18,7 @@ afleidingen te elimineren en je in de flow te houden. Door dag-tot-dag te
 plannen en een flexibele backlog te gebruiken, behoud je focus zonder de
 vertraging of privacyrisico's van online tools.
 
-<AssetImage name="quote.png" alt="Carpe Diem Quote" width="500" />
+<Image src="quote.png" alt="Carpe Diem Quote" width="500" />
 
 --------------------------------------------------------------------------------
 
@@ -84,10 +84,10 @@ Flutter-framework erg fijn om mee te werken en zie ik er veel potentie in!
 
 ## Demonstratie
 
-<AssetImage name="example1.png" alt="Project Hub" caption="Organiseer taken in specifieke projecten met labels, prioriteiten en deadlines." />
+<Image src="example1.png" alt="Project Hub" caption="Organiseer taken in specifieke projecten met labels, prioriteiten en deadlines." />
 
-<AssetImage name="example2.png" alt="Backlog Beheer" caption="Filter en plan backlog-taken in bulk voor vandaag of morgen." />
+<Image src="example2.png" alt="Backlog Beheer" caption="Filter en plan backlog-taken in bulk voor vandaag of morgen." />
 
-<AssetImage name="example7.png" alt="Kanban & Lijstweergave" caption="Schakel flexibel tussen een strakke lijstweergave en een visueel 3-koloms Kanban-bord." />
+<Image src="example7.png" alt="Kanban & Lijstweergave" caption="Schakel flexibel tussen een strakke lijstweergave en een visueel 3-koloms Kanban-bord." />
 
-<AssetImage name="example9.png" alt="Projectdetails" caption="Zoom in op individuele projecten om voortgang en openstaande taken te analyseren." />
+<Image src="example9.png" alt="Projectdetails" caption="Zoom in op individuele projecten om voortgang en openstaande taken te analyseren." />

@@ -4,7 +4,7 @@ description: An end-to-end implementation and system design plan for a simulated
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Project Overview
@@ -20,13 +20,13 @@ To map out system behavior and data relationships, we created detailed UML diagr
 *   **Entity Relationship Diagram (ERD)**: Establishes the core data entities and their relations, ensuring a clean schema structure ready for database developers.
 *   **Use Case Diagram (UCD)**: Visually structures the permissions and features of different roles (Clients, Coaches, Admins).
 
-<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
-<AssetImage name="ucd.png" alt="Use Case Diagram" />
+<Image src="erd.png" alt="Entity Relationship Diagram" />
+<Image src="ucd.png" alt="Use Case Diagram" />
 
 ### Use Case Specifications
 We backed every diagram with formal use case descriptions to guide development validation and ensure precise interaction mapping.
 
-<AssetImage name="description.png" alt="Use Case Description" />
+<Image src="description.png" alt="Use Case Description" />
 
 ---
 
@@ -34,7 +34,7 @@ We backed every diagram with formal use case descriptions to guide development v
 
 Translating our functional specifications, we crafted interactive high-fidelity wireframes and mockups in Figma, ensuring a cohesive navigation flow aligned directly with our use case definitions.
 
-<AssetImage name="figma.png" alt="Figma design" />
+<Image src="figma.png" alt="Figma design" />
 
 ---
 

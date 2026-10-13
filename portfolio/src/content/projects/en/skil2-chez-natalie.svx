@@ -4,7 +4,7 @@ description: A group B&B web application built with the TALL stack, featuring a 
 ---
 
 <script>
-  import AssetImage from "$lib/components/AssetImage.svelte";
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Project Overview
@@ -25,7 +25,7 @@ I designed and implemented the entire database layer from scratch using Laravel 
 Our database design received a **9.5 / 10 evaluation** from the examiners:
 > *"Group 601 has delivered a highly professional and extensive database architecture. The project covers a complex scope including room bookings, bike rentals, yoga classes, and a mail template system. The code quality is excellent, with strong adherence to Laravel standards and clear architectural choices."*
 
-<AssetImage name="erd.png" alt="Entity Relationship Diagram" />
+<Image src="erd.png" alt="Entity Relationship Diagram" />
 
 ---
 
@@ -38,8 +38,8 @@ To prevent future API deprecations, I built a custom visual WYSIWYG mail editor 
 *   **Flexible Delay Engine**: Integrated an intuitive UI delay selector enabling direct or scheduled background mail delivery.
 *   **Robust Queue**: Supported by Laravel Queues to guarantee bulletproof delivery, persistence across server restarts, and automatic template-variable replacement.
 
-<AssetImage name="mail-template.png" alt="Custom WYSIWYG Mail Template Editor" />
-<AssetImage name="mail-send-type.png" alt="Contextual Variable Validation & Sending Delays" />
+<Image src="mail-template.png" alt="Custom WYSIWYG Mail Template Editor" />
+<Image src="mail-send-type.png" alt="Contextual Variable Validation & Sending Delays" />
 
 ### Yoga Class Management
 Developed a comprehensive administrative workspace and frontend dashboard for yoga instructors:
@@ -47,14 +47,14 @@ Developed a comprehensive administrative workspace and frontend dashboard for yo
 *   **Dynamic Room Checkers**: Live room availability states that update asynchronously as the date and time fields are edited.
 *   **Open Hours Enforcement**: Validation rules that automatically restrict lesson start times and durations based on B&B operational guidelines.
 
-<AssetImage name="yoga-management.png" alt="Yoga Instructor Management & Scheduler" />
+<Image src="yoga-management.png" alt="Yoga Instructor Management & Scheduler" />
 
 ### Verified Customer Review System
 A high-end feedback module that allows customers to leave ratings and text feedback:
 *   **Security & Anti-Spam**: Secured post-booking links via unique ULIDs to ensure only verified guests can submit ratings, limited to exactly one review per booking.
 *   **Data Integrity**: Implemented database-level triggers and models, resolving edge cases such as rendering a clean `0.0` rating state instead of empty gaps when no reviews exist.
 
-<AssetImage name="review.png" alt="Client Review Interface" />
+<Image src="review.png" alt="Client Review Interface" />
 
 ---
 
@@ -68,14 +68,14 @@ To offer B&B admins and yoga teachers a cohesive experience, I engineered dynami
 *   **Real-Time Progress & Timeline**: Built a live, dynamic red progress line showing the current time, with an auto-scroll trigger that focuses the viewport on the current hour on load.
 *   **Status Badging**: Implemented clear visual badges and striped grids to instantly indicate canceled classes or fully booked rooms.
 
-<AssetImage name="dashboard.png" alt="Interactive B&B Dashboard" />
+<Image src="dashboard.png" alt="Interactive B&B Dashboard" />
 
 ### Quality of Life Additions
 *   **Floating Action Action (FAB)**: Placed a sticky quick-action button on booking panels to let users schedule bookings instantly.
 *   **Settings Layouts**: Created a sticky, split-pane navigation bar for system settings forms to make long configuration forms painless to update and save.
 *   **Custom Error Layouts**: Crafted high-fidelity styled pages for 403, 404, and 500 HTTP errors with smart UX routing (e.g., automatically redirecting unauthorized guest role views straight to `/login` or correct user dashboards).
 
-<AssetImage name="error-403.png" alt="Polished Navigation and Custom Error State" />
+<Image src="error-403.png" alt="Polished Navigation and Custom Error State" />
 
 ---
 
