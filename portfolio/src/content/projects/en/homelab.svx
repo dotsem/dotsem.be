@@ -1,0 +1,167 @@
+---
+title: Homelab
+description: A fully declarative, resilient homelab infrastructure powered by
+  NixOS, Proxmox VE, and OPNsense. Eliminates configuration drift with GitOps,
+  isolates workloads across dedicated subnets, and provides zero-trust remote access.
+---
+
+<script>
+    import Image from '$lib/components/Image.svelte';
+    import Mermaid from '$lib/components/Mermaid.svelte';
+
+    const topology = `
+flowchart TD
+    Internet["Internet / WAN"] --> OPNsense["OPNsense VM<br/><i>Isolated Subnet: 192.168.10.0/24</i>"]
+
+    subgraph Cluster["Proxmox VE 3-Node Cluster (Corosync Quorum)"]
+        direction TB
+
+        subgraph QuorumNode["Dell Laptop (Battery Removed / 3rd Quorum Device)"]
+            OPNsense
+        end
+
+        subgraph ComputeNodes["Dual ThinkCentre Compute Nodes"]
+            direction TB
+
+            subgraph Ingress["Ingress & Edge"]
+                BattleBus["battle-bus<br/>Cloudflare Tunnel & Nginx"]
+            end
+
+            subgraph DNS["DNS & Resolution"]
+                AdGuard["adguard-home<br/>Redundant DNS Sync"]
+            end
+
+            subgraph Observability["Observability"]
+                Lobby["lobby<br/>Homepage & Gatus"]
+                LonelyLodge["lonely-lodge<br/>Grafana & Prometheus"]
+            end
+
+            subgraph Services["Logistics & Media"]
+                GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
+                RiskyReels["risky-reels<br/>Jellyfin VA-API"]
+            end
+
+            subgraph Applications["Production & Staging"]
+                RetailRow["retail-row<br/>GoStrategy & WWB (Prod)"]
+                SaltySprings["salty-springs<br/>Staging Apps"]
+            end
+
+            subgraph Mesh["Mesh Access"]
+                Tailscale["tailscale<br/>Subnet Router"]
+            end
+        end
+    end
+
+    OPNsense --> ComputeNodes
+`;
+</script>
+
+## Declarative Infrastructure & Resilient Self-Hosting
+
+What started on a single discarded laptop running Proxmox VE has evolved into a
+multi-node, reproducible homelab cluster. Instead of relying on brittle manual
+configurations, mental notes, or unversioned backup images, this infrastructure
+is engineered around a core philosophy: **every server, container, and
+configuration must be 100% reproducible from Git.**
+
+By pairing **NixOS** and **Proxmox** with a dedicated **OPNsense** router, the
+entire homelab operates like modern cloud infrastructure—declarative, isolated,
+and restorable from scratch in minutes.
+
+<Image src="homelab.webp" alt="Homelab Hardware Setup" caption="The homelab hardware stack: dual ThinkCentre compute nodes and the de-batteried Dell laptop acting as router and quorum node." />
+
+--------------------------------------------------------------------------------
+
+## Architectural Challenges & Declarative Solutions
+
+### 1. The Zero-Backup Dilemma: Declarative GitOps with NixOS
+
+* **The Problem:** Without enterprise NAS appliances or secondary offsite backup
+  servers, traditional hypervisor backups were an impractical luxury. A dead
+  drive or broken configuration update would mean hours of manual rebuilding.
+* **The Solution:** Fully declarative GitOps using **Nix Flakes**, **Disko**,
+  and **sops-nix**. System states, package sets, firewall rules, and container
+  definitions are tracked in a single Git repository and easily sharable between
+  systems.
+* **Instant Recovery:** Disk partitioning and filesystems are defined as code
+  via Disko. Secrets are encrypted with Age keys and safely committed to Git. If
+  any node suffers complete hardware failure, spinning up an identical
+  replacement takes a single `nixos-anywhere` command.
+
+### 2. Hardware Evolution: ThinkCentres, Battery-Less Laptop & 3-Node Quorum
+
+* **The Problem:** Consumer laptops make okay-ish starter servers, but their
+  firmware lacks basic server capabilities—most critically, the ability to
+  automatically power back on after an AC power failure. Furthermore, leaving an
+  aging laptop battery plugged into mains 24/7 represents a severe swelling and
+  fire hazard.
+* **The Solution:** Primary compute duties were migrated to compact **Lenovo
+  ThinkCentre** mini-PCs configured with hardware-level "Power On After AC Loss"
+  forming the core compute workhorses.
+* **De-Batteried Laptop as a 3rd Quorum Node & Router:** An older Dell laptop
+  was repurposed, but with its **battery physically removed** to eliminate fire
+  risk. Instead of running bare-metal, the laptop runs **Proxmox VE** as the
+  third physical cluster member. This provides the essential odd-numbered vote
+  for **Corosync quorum**, preventing split-brain scenarios across the cluster.
+  Inside this node, **OPNsense** runs virtualized in a dedicated VM, delivering
+  isolated routing and firewall protection. It was also a laptop that supported
+  "Power On After AC Loss", ideal for a router.
+
+### 3. Blast Radius & Security: Network Segmentation & Zero Open Ports
+
+* **The Problem:** Hosting public-facing projects (like GoStrategy and World
+  Wide Bulb) while running experimental homelab services risks exposing private
+  home devices if the network is flat.
+* **The Solution:** Physical and logical network segmentation via OPNsense. The
+  entire homelab runs within an isolated subnet (`192.168.10.0/24`), separated
+  from my home network.
+* **Zero-Trust Access:** No router ports are forwarded to the public internet:
+  * **Public Ingress:** Handled by edge gateways running Nginx and Cloudflare
+    Tunnels.
+  * **Private Management:** Admin interfaces and internal nodes are accessed
+    through an encrypted **Tailscale** mesh subnet router, enabling secure,
+    wireguard-speed access from anywhere in the world.
+
+### 4. Workload Density & The Fortnite Ecosystem
+
+To maximize CPU efficiency and memory utilization across the cluster, workloads
+are partitioned between lightweight **NixOS LXC containers** (for core daemons)
+and dedicated **KVM Virtual Machines** (for production isolation and non-Linux
+systems).
+
+Servers are named after Fortnite POIs, structured into distinct functional
+clusters:
+
+<Mermaid code={topology} />
+
+* **Core Infrastructure & DNS (`adguard-home`):** Redundant dual AdGuard Home
+  instances providing local split-horizon DNS resolution, malware filtering, and
+  ad-blocking.
+* **Edge Ingress (`battle-bus`):** Reverse proxy gateway managing Nginx and
+  routing traffic through encrypted Cloudflare Tunnels.
+* **Telemetry & Observability (`lonely-lodge` & `lobby`):** Centralized
+  telemetry stack running Dockerized Grafana, Loki, Promtail, and Prometheus,
+  complemented by a Homepage dashboard and automated health checks via Gatus and
+  `ntfy`.
+* **Internal Logistics & Media (`greasy-grove` & `risky-reels`):** Kitchen and
+  inventory management through KitchenOwl and Homebox, alongside media streaming
+  with Jellyfin.
+* **Application Environments (`retail-row` & `salty-springs`):** Dedicated
+  production and staging environments hosting full-stack applications running in
+  Docker containers.
+
+--------------------------------------------------------------------------------
+
+## Operational Automation with Just
+
+Day-to-day maintenance is automated with a centralized `justfile`. Rolling
+updates across the entire server farm, rebuilding individual LXCs, or checking
+encrypted secrets can be executed locally or remotely with a single command:
+
+```bash
+# Rebuild all homelab targets in parallel
+just rebuild-all --parallel
+
+# Verify and audit Age secret encryption
+just check-secrets
+```

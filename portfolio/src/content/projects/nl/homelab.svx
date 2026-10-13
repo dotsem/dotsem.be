@@ -1,0 +1,169 @@
+---
+title: Homelab
+description: Een volledig declaratieve, veerkrachtige homelab-infrastructuur
+  aangedreven door NixOS, Proxmox VE en OPNsense. Elimineert configuratiedrift
+  met GitOps, isoleert workloads in gescheiden subnetten en biedt zero-trust
+  externe toegang.
+---
+
+<script>
+    import Image from '$lib/components/Image.svelte';
+    import Mermaid from '$lib/components/Mermaid.svelte';
+
+    const topology = `
+flowchart TD
+    Internet["Internet / WAN"] --> OPNsense["OPNsense VM<br/><i>Geïsoleerd Subnet: 192.168.10.0/24</i>"]
+
+    subgraph Cluster["Proxmox VE 3-Node Cluster (Corosync Quorum)"]
+        direction TB
+
+        subgraph QuorumNode["Dell Laptop (Batterij Verwijderd / 3e Quorum Device)"]
+            OPNsense
+        end
+
+        subgraph ComputeNodes["Dual ThinkCentre Compute Nodes"]
+            direction TB
+
+            subgraph Ingress["Ingress & Edge"]
+                BattleBus["battle-bus<br/>Cloudflare Tunnel & Nginx"]
+            end
+
+            subgraph DNS["DNS & Resolutie"]
+                AdGuard["adguard-home<br/>Redundante DNS Sync"]
+            end
+
+            subgraph Observability["Monitoring & Status"]
+                Lobby["lobby<br/>Homepage & Gatus"]
+                LonelyLodge["lonely-lodge<br/>Grafana & Prometheus"]
+            end
+
+            subgraph Services["Logistiek & Media"]
+                GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
+                RiskyReels["risky-reels<br/>Jellyfin VA-API"]
+            end
+
+            subgraph Applications["Productie & Staging"]
+                RetailRow["retail-row<br/>GoStrategy & WWB (Prod)"]
+                SaltySprings["salty-springs<br/>Staging Apps"]
+            end
+
+            subgraph Mesh["Mesh Toegang"]
+                Tailscale["tailscale<br/>Subnet Router"]
+            end
+        end
+    end
+
+    OPNsense --> ComputeNodes
+`;
+</script>
+
+## Declaratieve Infrastructuur & Betrouwbare Self-Hosting
+
+Wat begon op een enkele oude laptop met Proxmox VE, is uitgegroeid tot een
+robuust, reproduceerbaar homelab-cluster over meerdere nodes. In plaats van te
+vertrouwen op kwetsbare handmatige configuraties, notities of statische back-up
+images, is deze infrastructuur ontworpen rondom één kernprincipe: **elke server,
+container en configuratie moet 100% reproduceerbaar zijn vanuit Git.**
+
+Door **NixOS** en **Proxmox** te combineren met een dedicated **OPNsense** router,
+functioneert het volledige homelab als een moderne cloud-omgeving—declaratief,
+geïsoleerd en binnen enkele minuten vanaf nul herstelbaar.
+
+<Image src="homelab.webp" alt="Homelab Hardware Setup" caption="De homelab hardware-stack: dual ThinkCentre compute nodes en de batterijloze Dell laptop als router en quorum-node." />
+
+--------------------------------------------------------------------------------
+
+## Architecturale Uitdagingen & Declaratieve Oplossingen
+
+### 1. Het Geen-Back-ups Dilemma: Declaratieve GitOps met NixOS
+
+* **Het Probleem:** Zonder een enterprise NAS of externe back-upserver waren
+  traditionele virtuele-machineback-ups een onpraktische luxe. Een defecte schijf
+  of een mislukte configuratie-update zou urenlang handmatig herstelwerk
+  betekenen.
+* **De Oplossing:** Volledig declaratieve GitOps met behulp van **Nix Flakes**,
+  **Disko** en **sops-nix**. De volledige systeemstatus, pakketten, firewallregels
+  en containerdefinities worden centraal beheerd in een Git-repository en zijn
+  eenvoudig te delen tussen systemen.
+* **Onmiddellijk Herstel:** Schijfindelingen en bestandssystemen zijn als code
+  vastgelegd via Disko. Gevoelige gegevens en geheimen zijn versleuteld met
+  Age-sleutels en veilig opgeslagen in Git. Mocht een node hardwarematig falen, dan
+  volstaat een enkel `nixos-anywhere` commando om een identieke vervanger op te
+  zetten.
+
+### 2. Hardware-evolutie: ThinkCentres, Batterijloze Laptop & 3-Node Quorum
+
+* **Het Probleem:** Consumentenlaptops zijn prima servers om mee te beginnen,
+  maar hun firmware mist essentiële serverfunctionaliteiten—met name de optie om
+  automatisch weer in te schakelen na stroomuitval ("Power On After AC Loss").
+  Bovendien vormt een verouderde laptopbatterij die 24/7 aan de netstroom hangt
+  een reëel risico op opzwellen en brandgevaar.
+* **De Oplossing:** De primaire rekentaken werden overgeheveld naar compacte
+  **Lenovo ThinkCentre** mini-pc's met hardwarematige herstart bij stroomherstel,
+  die de kern van het rekenwerk vormen.
+* **Laptop Zonder Batterij als 3e Quorum-node & Router:** Een oudere Dell laptop
+  werd hergebruikt, waarbij de **batterij fysiek werd verwijderd** om brandgevaar
+  uit te sluiten. In plaats van een losse router draait de laptop nu **Proxmox
+  VE** als volwaardige derde fysieke cluster-node. Deze levert de essentiële
+  oneven stem voor **Corosync quorum**, wat split-brain situaties tussen de
+  ThinkCentres voorkomt. Binnen deze node draait **OPNsense** gevirtualiseerd in
+  een dedicated VM voor geïsoleerde routing en firewalling. Het was bovendien een
+  laptop die "Power On After AC Loss" ondersteunt, ideaal voor een router.
+
+### 3. Beveiliging & Schadebeperking: Netwerkisolatie & Geen Open Poorten
+
+* **Het Probleem:** Het hosten van publiek toegankelijke applicaties (zoals
+  GoStrategy en World Wide Bulb) naast interne experimentservices brengt risico's
+  met zich mee wanneer het netwerk niet gescheiden is van privéapparaten.
+* **De Oplossing:** Fysieke en logische netwerksegmentatie via OPNsense. Het
+  volledige homelab draait in een afgezonderd subnet (`192.168.10.0/24`),
+  gescheiden van mijn thuisnetwerk.
+* **Zero-Trust Toegang:** Er worden geen routerpoorten doorgestuurd naar het
+  publieke internet:
+  * **Publieke Ingress:** Verkeer voor publieke diensten loopt veilig via Nginx
+    edge gateways en versleutelde Cloudflare Tunnels.
+  * **Beheer op Afstand:** Administratieve dashboards en interne nodes zijn
+    uitsluitend bereikbaar via een versleutelde **Tailscale** mesh subnet router,
+    voor veilige toegang op WireGuard-snelheid vanaf elke locatie.
+
+### 4. Werkloaddichtheid & Het Fortnite Ecosysteem
+
+Om rekenkracht en geheugen optimaal te benutten, zijn workloads verdeeld tussen
+extreem lichte **NixOS LXC-containers** (voor microservices en daemons) en
+volledige **KVM Virtual Machines** (voor productie-isolatie en niet-Linux
+systemen).
+
+Alle servers zijn vernoemd naar Fortnite POI's, gestructureerd in functionele
+clusters:
+
+<Mermaid code={topology} />
+
+* **Basis Infrasctructuur & DNS (`adguard-home`):** Redundante AdGuard Home
+  instanties die zorgen voor lokale split-horizon DNS-resolutie, malwarefiltering
+  en advertentieblokkering.
+* **Edge Ingress (`battle-bus`):** Reverse proxy gateway die Nginx beheert en
+  inkomend verkeer doorstuurt via versleutelde Cloudflare Tunnels.
+* **Monitoring & Observability (`lonely-lodge` & `lobby`):** Gecentraliseerde
+  telemetriestack met Dockerized Grafana, Loki, Promtail en Prometheus, gecombineerd
+  met een Homepage dashboard en geautomatiseerde statuscontroles via Gatus en `ntfy`.
+* **Interne Logistiek & Media (`greasy-grove` & `risky-reels`):** Voorraadbeheer en
+  keukenlogistiek via KitchenOwl en Homebox, plus mediastreaming met Jellyfin.
+* **Applicatie-omgevingen (`retail-row` & `salty-springs`):** Dedicated
+  productie- en staging-omgevingen voor full-stack applicaties die draaien in
+  Docker containers.
+
+--------------------------------------------------------------------------------
+
+## Operationele Automatisering met Just
+
+Het dagelijks onderhoud is geautomatiseerd met een centrale `justfile`. Updates
+uitrollen over het hele serverpark, specifieke LXC-containers opnieuw bouwen of
+geheimen controleren gebeurt met één commando:
+
+```bash
+# Alle homelab servers parallel opnieuw bouwen
+just rebuild-all --parallel
+
+# Versleuteling van Age-geheimen controleren
+just check-secrets
+```

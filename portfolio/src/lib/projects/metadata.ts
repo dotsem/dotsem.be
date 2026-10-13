@@ -173,6 +173,15 @@ export const projectsMetadata: ProjectMetadata[] = [
 		status: ProjectStatus.InProgress,
 		category: 'personal',
 		repo: 'dotsem/capyplayer'
+	},
+	{
+		slug: 'homelab',
+		image: '/projects/homelab/logo.webp',
+		languages: ['proxmox', 'nixos', 'linux'],
+		highlighted: false,
+		status: ProjectStatus.InProgress,
+		category: 'personal',
+		repo: 'dotsem/nix-config'
 	}
 ];
 
