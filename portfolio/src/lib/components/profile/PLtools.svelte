@@ -11,3 +11,4 @@
 <ProgLang name="figma"></ProgLang>
 <ProgLang name="nixos"></ProgLang>
 <ProgLang name="uml"></ProgLang>
+<ProgLang name="playwright"></ProgLang>

@@ -9,5 +9,6 @@
 <ProgLang name="ts"></ProgLang>
 <ProgLang name="rust"></ProgLang>
 <ProgLang name="py"></ProgLang>
+<ProgLang name="cpp"></ProgLang>
 <ProgLang name="tailwind"></ProgLang>
 <ProgLang name="postgresql"></ProgLang>

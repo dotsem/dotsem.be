@@ -269,7 +269,14 @@
 		bun: {
 			deviconName: 'bun',
 			fullName: 'Bun',
-			color: '#000000' // Bun black
+			color: '#FBF0DF',
+			darkText: true
+		},
+		playwright: {
+			deviconName: 'playwright',
+			fullName: 'Playwright',
+			color: '#58C15D',
+			darkText: true
 		},
 		unknown: {
 			deviconName: 'bub',

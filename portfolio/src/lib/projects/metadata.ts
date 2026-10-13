@@ -37,7 +37,7 @@ export const projectsMetadata: ProjectMetadata[] = [
 	{
 		slug: 'world-wide-bulb',
 		image: '/projects/world-wide-bulb/logo.webp',
-		languages: ['go', 'svelte', 'ts', 'tailwind', 'sql', 'docker'],
+		languages: ['go', 'svelte', 'ts', 'tailwind', 'sql', 'docker', 'playwright'],
 		highlighted: 4,
 		category: 'personal',
 		repo: 'dotsem/world-wide-bulb',
@@ -51,7 +51,7 @@ export const projectsMetadata: ProjectMetadata[] = [
 	{
 		slug: 'gostrategy',
 		image: '/projects/gostrategy/logo.webp',
-		languages: ['svelte', 'go', 'ts', 'tailwind', 'postgresql', 'docker', 'nixos'],
+		languages: ['svelte', 'go', 'ts', 'tailwind', 'postgresql', 'docker', 'nixos', 'playwright'],
 		highlighted: 1,
 		category: 'di',
 		repo: 'Thomas-More-Digital-Innovation/2526-DI-004-GoStrategy',
