@@ -278,6 +278,11 @@
 			color: '#58C15D',
 			darkText: true
 		},
+		sdl: {
+			deviconName: 'sdl',
+			fullName: 'SDL',
+			color: '#132B48'
+		},
 		unknown: {
 			deviconName: 'bub',
 			fullName: 'Unknown',
