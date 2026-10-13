@@ -7,7 +7,6 @@
 		LeftSidebarContent,
 		ContentPagination
 	} from '$lib/components/content-pages';
-	import { Badge } from '$lib/components/ui/badge';
 	import { getLocalizedStatus } from '$lib/projects';
 
 	let { data } = $props();
@@ -29,7 +28,6 @@
 	linkTitle={data.metadata.linkTitle}
 	linkOpenInNewTab={data.metadata.linkOpenInNewTab}
 	languages={data.metadata.languages}
-	labels={data.metadata.labels}
 	status={data.metadata.status}
 	type="project"
 />
@@ -83,18 +81,6 @@
 								: data.metadata.repo
 						)}
 					{/if}
-				</LeftSidebarContent>
-			{/if}
-			{#if data.metadata.labels}
-				<LeftSidebarContent label={m.projects_sidebar_labels()}>
-					{#each data.metadata.labels as label (label)}
-						<Badge
-							variant="secondary"
-							class="m-1 border-none bg-white/10 px-3.5 py-1 text-xs text-white hover:bg-white/20"
-						>
-							{label}
-						</Badge>
-					{/each}
 				</LeftSidebarContent>
 			{/if}
 		</LeftSidebar>

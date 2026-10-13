@@ -8,6 +8,7 @@
 		title: string;
 		description: string;
 		type?: string;
+		labels?: string[];
 	}
 
 	let {

@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { ProjectMetadata } from '$lib/projects/metadata';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 
-	type Props = Pick<ProjectMetadata, 'labels'>;
+	interface Props {
+		labels?: string[];
+	}
 
-	let { labels }: Props = $props();
+	let { labels = [] }: Props = $props();
 </script>
 
 {#if (labels ?? []).length > 0}

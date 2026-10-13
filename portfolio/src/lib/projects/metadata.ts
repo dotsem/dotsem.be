@@ -18,7 +18,6 @@ export interface ProjectMetadata {
 	link?: string;
 	linkOpenInNewTab?: boolean;
 	linkTitle?: string;
-	labels?: string[];
 	status?: ProjectStatus | string;
 }
 
@@ -45,7 +44,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		link: 'https://wwb.dotsem.be',
 		linkTitle: 'Flick the global lightbulb',
 		linkOpenInNewTab: true,
-		labels: ['WebSockets', 'Go Concurrency', 'Single Binary', 'SQLite & sqlc'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -59,7 +57,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		link: 'https://gostrategy.dotsem.be',
 		linkTitle: 'Play GoStrategy Live',
 		linkOpenInNewTab: true,
-		labels: ['WebSockets', 'Go Concurrency', 'NixOS Deployment'],
 		status: ProjectStatus.InDevelopment
 	},
 	{
@@ -73,7 +70,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		link: '#download-here',
 		linkTitle: 'Download Carpe Diem',
 		trackRelease: true,
-		labels: ['Mobile App', 'Local-First Planning', 'Productivity'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -83,7 +79,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		highlighted: false,
 		category: 'school',
 		repo: 'dotsem/lets-go-gambling',
-		labels: ['IoT', 'Game Development', 'Hardware Integration'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -93,7 +88,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		highlighted: 2,
 		category: 'school',
 		repo: ['dotsem/Philips-BLE-Robot-App', 'dotsem/Philips-BLE-Robot-Code'],
-		labels: ['Internship Project', 'Embedded Systems', 'Mobile App', 'Bluetooth'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -103,7 +97,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		highlighted: 5,
 		category: 'personal',
 		repo: 'dotsem/dotsem.be',
-		labels: ['Svelte 5', 'i18n Support'],
 		status: ProjectStatus.YouAreLookingAtIt
 	},
 	{
@@ -121,7 +114,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		languages: ['php', 'laravel', 'tailwind', 'sql', 'uml'],
 		highlighted: false,
 		category: 'school',
-		labels: ['Group Project', 'TALL Stack', 'B&B Webapp'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -130,7 +122,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		languages: ['uml', 'figma'],
 		highlighted: false,
 		category: 'school',
-		labels: ['UML Diagrams', 'Figma Design', 'Implementation Plan'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -140,7 +131,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		highlighted: false,
 		category: 'di',
 		repo: 'Thomas-More-Digital-Innovation/2526-waai-001-waaiburg-mobile-app',
-		labels: ['Mobile App Development', 'Avatar Customization', 'Caching & Performance'],
 		status: ProjectStatus.Finished
 	},
 	{
@@ -154,7 +144,6 @@ export const projectsMetadata: ProjectMetadata[] = [
 		link: 'https://dotsem.github.io/Weighted-Decision-Matrix/',
 		linkTitle: 'Try it out yourself!',
 		linkOpenInNewTab: true,
-		labels: ['Decision Making', 'Local Storage', 'Markdown Export'],
 		status: ProjectStatus.Finished
 	},
 	{
