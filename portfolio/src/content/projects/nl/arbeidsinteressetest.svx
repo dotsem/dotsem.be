@@ -1,0 +1,112 @@
+---
+title: Arbeidsinteressetest
+description: Een toegankelijke webapplicatie waarmee mensen met een
+  verstandelijke beperking hun werkinteresses ontdekken, gebouwd met Laravel,
+  Livewire en Alpine.js voor MPI Oosterlo en zorginstellingen in Vlaanderen.
+---
+
+<script>
+	import Image from '$lib/components/Image.svelte';
+</script>
+
+## Toegankelijke Werkinteresses Ontdekken
+
+Tijdens het startproject van Digital Innovation (2DI) werkten we met alle
+tweedejaarsstudenten aan een maatschappelijk relevant project: een vernieuwde
+**Arbeidsinteressetest** voor [MPI Oosterlo](https://www.mpi-oosterlo.be/).
+
+De originele tool werd al jarenlang gebruikt door MPI Oosterlo en ongeveer
+honderd andere zorginstellingen in Vlaanderen om te peilen naar de interesses
+van mensen met een verstandelijke beperking. Omdat de oorspronkelijke codebase
+(ontwikkeld door studenten toegepaste psychologie in samenwerking met de
+Universiteit van Volgograd) verouderd raakte en de technische ondersteuning
+wegviel, kregen wij de opdracht om een moderne, schaalbare en eenvoudig
+beheerbare applicatie te bouwen.
+
+--------------------------------------------------------------------------------
+
+## Hoe Werkt de Test?
+
+Het centrale doel van de applicatie is om een laagdrempelig startpunt te bieden
+voor het gesprek tussen cliënten en hun begeleiders:
+
+* **Visuele Keuzes**: Cliënten krijgen foto's en media van uiteenlopende
+  werksituaties en taken te zien.
+* **Intuïtieve 3-Knoppenbediening**:
+  * 🟢 **Groen**: *"Dit wil ik graag doen"*
+  * 🔴 **Rood**: *"Dit wil ik niet doen"*
+  * ➡️ **Pijl**: *"Foto negeren / Geen mening"*
+* **Gespreksbasis**: De resultaten vormen een objectieve leidraad voor
+  jobcoaches en mentoren om gerichte begeleidingstrajecten op te starten.
+
+--------------------------------------------------------------------------------
+
+## Belangrijkste Features & Architectuur
+
+### 1. Privacy & Rolgebaseerd Toegangsbeheer
+
+* Duidelijke scheiding tussen **organisatie-beheerders**, **mentoren** en
+  **cliënten**.
+* Strikte gegevensbescherming: individuele testresultaten zijn uitsluitend
+  inzichtelijk voor de gekoppelde mentor, terwijl geanonimiseerde data
+  beschikbaar is voor administratieve statistieken.
+
+### 2. Rijke Multimedia & Toegankelijkheid
+
+* Ondersteuning voor meerdere mediatypes: naast statische foto's kunnen ook
+  GIF's, YouTube-video's en audiofragmenten worden ingeladen om beter aan te
+  sluiten bij verschillende sensorische behoeften.
+* **Meertaligheid**: De testinterface is meertalig opgezet, zodat anderstalige
+  cliënten de test zonder taalbarrière kunnen doorlopen.
+
+### 3. Dynamisch Test- & Mediabeheer
+
+* Beheerders kunnen zelf nieuwe tests samenstellen, categorieën indelen en eigen
+  beeldmateriaal uploaden.
+
+### 4. Response-analyse
+
+* **Tijdsregistratie per vraag**: Het systeem meet hoe lang een cliënt twijfelt
+  over een afbeelding. Langere reactietijden geven begeleiders direct inzicht in
+  situaties die extra toelichting vragen.
+
+### 5. Data-inzichten & Beleidsondersteuning
+
+* Integratie van historische data van voorgaande jaren.
+* Voorbereid voor een Business Intelligence (BI) dashboard om trends in
+  werkvraag en capaciteit op regionaal en nationaal niveau te ondersteunen.
+
+--------------------------------------------------------------------------------
+
+## Samenwerking & Teamervaring
+
+Als startproject voor DI was dit niet alleen technisch uitdagend, maar ook een
+fijne kennismaking met al mijn medestudenten. Binnen zes weken leerden we
+elkaars sterktes kennen, verdeelden we rollen op het vlak van analyse, design,
+frontend en backend, en leverden we een werkend product af.
+
+--------------------------------------------------------------------------------
+
+## Gebruikte Technologieën
+
+* **Backend & Framework**: PHP & Laravel
+* **Reactiviteit**: Livewire & Alpine.js
+* **Styling**: Tailwind CSS
+* **Database**: MariaDB
+* **Analyse & Methodologie**: Projectanalyse, UI/UX Design met Figma & UML
+
+--------------------------------------------------------------------------------
+
+## Poster
+
+<Image src="logo.jpeg" alt="Arbeidsinteressetest Logo" caption="De Arbeidsinteressetest voor MPI Oosterlo" />
+
+--------------------------------------------------------------------------------
+
+## Links & Broncode
+
+* [GitHub
+  Repository](https://github.com/Thomas-More-Digital-Innovation/2526-MPI-001-Employment-Interest-Tool)
+* [MPI Oosterlo Officiële Website](https://www.mpi-oosterlo.be/)
+
+<Image src="logo.jpeg" alt="Arbeidsinteressetest Logo" caption="De Arbeidsinteressetest voor MPI Oosterlo" />

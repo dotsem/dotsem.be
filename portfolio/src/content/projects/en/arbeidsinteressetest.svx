@@ -1,0 +1,114 @@
+---
+title: Employment Interest Tool
+description: An accessible web application empowering individuals with
+  intellectual disabilities to discover their work interests, built with
+  Laravel, Livewire, and Alpine.js for MPI Oosterlo and healthcare institutions
+  across Flanders.
+---
+
+<script>
+	import Image from '$lib/components/Image.svelte';
+</script>
+
+## Empowering Inclusive Career Exploration
+
+During the kickoff project in Digital Innovation (2DI), our entire cohort
+collaborated on a socially impactful platform: a modernized **Work Interest
+Test** for [MPI Oosterlo](https://www.mpi-oosterlo.be/).
+
+The original tool had been utilized for years by MPI Oosterlo and roughly one
+hundred other healthcare institutions across Flanders to gauge the vocational
+interests of individuals with intellectual disabilities. Because the legacy
+codebase (originally developed by applied psychology students in partnership
+with the University of Volgograd) faced declining maintenance and support, we
+were tasked with building a modern, reliable, and easily maintainable
+replacement.
+
+--------------------------------------------------------------------------------
+
+## How the Assessment Works
+
+The core philosophy of the application is providing an accessible, objective
+foundation for exploratory conversations between clients and their counselors:
+
+* **Visual Work Scenarios**: Clients are presented with curated media showcasing
+  various vocational activities and workplace settings.
+* **Intuitive 3-State Interaction**:
+  * 🟢 **Green**: *"I want to do this"*
+  * 🔴 **Red**: *"I don't want to do this"*
+  * ➡️ **Arrow**: *"Ignore this photo / No preference"*
+* **Dialogue Catalyst**: The resulting interest profile serves as a concrete
+  starting point for mentors and job coaches to plan personalized guidance.
+
+--------------------------------------------------------------------------------
+
+## Key Features & Architecture
+
+### 1. Privacy & Role-Based Access Control (RBAC)
+
+* Structured separation between **Institution Administrators**,
+  **Mentors/Counselors**, and **Clients**.
+* Privacy-first data isolation: individual client results are strictly
+  confidential and accessible solely by their assigned mentor, while anonymized
+  aggregate metrics can be leveraged for administrative analytics.
+
+### 2. Multi-Format Media & Accessibility
+
+* Flexible media handling: supports static photography, animated GIFs, YouTube
+  video embeds, and audio clips to accommodate diverse cognitive and sensory
+  needs.
+* **Multilingual Assessment**: The client-facing test runner supports multiple
+  languages, ensuring individuals from diverse linguistic backgrounds can
+  complete it comfortably.
+
+### 3. Dynamic Test & Asset Management
+
+* Administrators can dynamically configure custom tests, group items into
+  categories, and manage media libraries directly through the admin panel.
+
+### 4. Response Analysis
+
+* **Response Latency Tracking**: Records the time taken per question,
+  highlighting hesitation patterns that help mentors identify topics needing
+  deeper discussion.
+
+### 5. Data Intelligence & BI Capabilities
+
+* Seamless migration and integration of multi-year historical assessment data.
+* Architected for integration with Business Intelligence (BI) dashboards to
+  support strategic decision-making regarding employment trends at regional and
+  national levels.
+
+--------------------------------------------------------------------------------
+
+## Collaborative Teamwork
+
+As the kickoff project for DI, this was both a technical challenge and a
+team-building journey for our entire student cohort. Over the course of six
+weeks, we discovered each other's strengths across project analysis, UI design,
+frontend engineering, and backend architecture, delivering a production-ready
+application.
+
+--------------------------------------------------------------------------------
+
+## Technology Stack
+
+* **Backend & Framework**: PHP & Laravel
+* **Reactivity**: Livewire & Alpine.js
+* **Styling**: Tailwind CSS
+* **Database**: MariaDB
+* **Analysis & Design**: Project Analysis, UI/UX Design with Figma & UML
+
+--------------------------------------------------------------------------------
+
+## Poster
+
+<Image src="logo.jpeg" alt="Work Interest Test Logo" caption="The Employment Interest Tool for MPI Oosterlo" />
+
+--------------------------------------------------------------------------------
+
+## Links & Repository
+
+* [GitHub
+  Repository](https://github.com/Thomas-More-Digital-Innovation/2526-MPI-001-Employment-Interest-Tool)
+* [MPI Oosterlo Official Website](https://www.mpi-oosterlo.be/)

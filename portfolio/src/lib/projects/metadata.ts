@@ -182,6 +182,15 @@ export const projectsMetadata: ProjectMetadata[] = [
 		status: ProjectStatus.InProgress,
 		category: 'personal',
 		repo: 'dotsem/nix-config'
+	},
+	{
+		slug: 'arbeidsinteressetest',
+		image: '/projects/arbeidsinteressetest/logo.jpeg',
+		repo: 'Thomas-More-Digital-Innovation/2526-MPI-001-Employment-Interest-Tool',
+		languages: ['php', 'laravel', 'tailwind', 'sql', 'uml', 'figma'],
+		highlighted: false,
+		status: ProjectStatus.Finished,
+		category: 'di'
 	}
 ];
 
