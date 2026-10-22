@@ -1,0 +1,198 @@
+---
+title: Meshcore Tracker
+description: Een energiezuinig volgsysteem voor waardevolle schoolkoffers,
+  gebaseerd op op maat gemaakte Heltec V4 LoRa-firmware, RF-nabijheidsanalyse,
+  een Python-gateway en een SvelteKit-dashboard.
+---
+
+<script>
+    import Image from '$lib/components/Image.svelte';
+</script>
+
+## Waardevolle Koffers Volgen met LoRa
+
+Op school worden er regelmatig dure koffers met gespecialiseerde labsets
+uitgeleend aan studenten. Het beheer hiervan brengt een aantal praktische vragen
+met zich mee: hoe weten we wanneer een koffer wordt meegenomen, of hij nog op
+school is of misschien gestolen wordt, en waar hij ongeveer uithangt?
+
+Traditionele trackers werken vaak met gps en 4G, maar een maandelijks
+simkaart-abonnement per koffer loopt snel op. Daarom heb ik onderzocht of we dit
+konden oplossen met een Proof of Concept op basis van **Meshcore**, een
+open-source mesh-framework dat over LoRa communiceert.
+
+--------------------------------------------------------------------------------
+
+## De Hardware Setup
+
+Voor dit project had ik de beschikking over twee **Heltec WiFi LoRa 32 V4**
+bordjes en een **Orange Pi**:
+
+* **De Zender (in de koffer)**: Een Heltec V4 met een 3000mAh LiPo-batterij.
+  Hierop draait custom C++-firmware die het energiebeheer, de metingen en het
+  versturen van berichten regelt.
+* **De Ontvanger (gateway)**: Een tweede Heltec V4 op school, ingesteld op een
+  privaat LoRa-kanaal. Deze luistert continu naar berichten en stuurt ze via
+  USB-serieel naar de Orange Pi.
+* **Backend & Database (Orange Pi)**: Een Python-service in Docker die de
+  seriële pakketten uitleest, de versleutelde data decodeert en alles opslaat in
+  een SQLite-database.
+* **Dashboard (SvelteKit)**: Een webinterface die de actuele status,
+  batterijpercentages, locaties en nabijheid van de koffers overzichtelijk
+  toont.
+
+--------------------------------------------------------------------------------
+
+## Batterijduur & Custom Firmware
+
+Een koffer kan wekenlang ongebruikt in een lokaal of kast liggen. Het zendertje
+moest dus zo min mogelijk stroom verbruiken.
+
+### Ruststroom Beperken
+
+Standaard verbruikt een ESP32-S3 ontwikkelbord veel te veel stroom door actieve
+chips en sensoren. In de zenderfirmware schakel ik vóór de deep sleep de
+gps-module en de LoRa-radio expliciet uit, worden ongebruikte pinnen
+losgekoppeld en gaat het oled-scherm uit. Hiermee daalde het verbruik in deep
+sleep naar **20-40µA**, waardoor de 3000mAh batterij maanden meegaat.
+
+### De GPS "Streak"-methode
+
+Continu naar gps-satellieten zoeken trekt een batterij binnen een paar uur leeg.
+Daarom heb ik in het RTC-geheugen een fail-counter bijgehouden:
+
+1. **Snelle Pre-check (10s)**: Bij het wakker worden zoekt het bordje 10
+   seconden of er überhaupt satellieten te zien zijn.
+2. **Meteen Stoppen bij Geen Signaal**: Ziet hij niets? Dan stopt hij direct,
+   stuurt een lichtgewicht "Alive"-berichtje (coördinaten 0,0 +
+   batterijspanning) en gaat meteen weer slapen.
+3. **Volledige Zoektocht (60s)**: Pas bij een koude start of na elke 10e
+   mislukte pre-check probeert hij 60 seconden lang een echte fix te forceren.
+
+--------------------------------------------------------------------------------
+
+## Protocol v1: Alles in 11 Bytes
+
+Om de zendtijd (Time on Air) en daarmee het batterijverbruik minimaal te houden,
+is alle data samengeperst in een binair formaat van 11 bytes (88 bits):
+
+  | Veld                   | Grootte | Uitleg                           |
+  | :--------------------- | :------ | :------------------------------- |
+  | **Jaar**               | 7 bits  | Offset vanaf 2026 (0-127)        |
+  | **Dag van het Jaar**   | 9 bits  | Dagnummer (0-365)                |
+  | **Minuut van de Dag**  | 11 bits | Tijdstip in minuten (0-1439)     |
+  | **Batterij**           | 8 bits  | Voltage geschaald van 0 tot 4.2V |
+  | **Breedtegraad (Lat)** | 21 bits | Gecomprimeerde coördinaat        |
+  | **Lengtegraad (Lon)**  | 22 bits | Gecomprimeerde coördinaat        |
+
+Het apparaat-ID hoeft niet in de payload te zitten, omdat Meshcore zelf al
+adressering heeft. Binnen Meshcore wordt dit pakket versleuteld met **AES-256**
+en voorzien van een **CRC16**-checksum (in totaal 22 bytes dus).
+
+--------------------------------------------------------------------------------
+
+## Waarom GPS Binnenshuis Niet Werkt
+
+Buiten werkte de gps (meestal) wel, maar in de praktijk liggen deze koffers
+**meer dan 90% van de tijd binnen**: in klaslokalen, laboratoria of metalen
+kasten.
+
+Gps heeft een directe zichtlijn naar de lucht nodig. Dik beton en staal
+blokkeren het satellietsignaal volledig, wat resulteert in een fix-percentage
+van 0%. Blijven zoeken naar gps heeft binnen dus geen enkele zin en kost alleen
+maar onnodig batterij.
+
+--------------------------------------------------------------------------------
+
+## Locatie Bepalen met SNR & RSSI
+
+Als gps binnen niet werkt, hoe weet je dan waar een koffer is? Hiervoor heb ik
+onderzocht of we de signaalmetingen van de LoRa-ontvanger konden gebruiken:
+**RSSI** (signaalsterkte) en **SNR** (signaal-ruisverhouding).
+
+### De Fysische Realiteit van RSSI en SNR
+
+* **RSSI meet signaalsterkte (in dBm)**: Hoe dichterbij de zender, hoe sterker
+  het signaal. Maar binnenshuis heb je te maken met muren en reflecties
+  (multipath fading). Bij 869 MHz is de golflengte ongeveer 34 cm. Als je het
+  bordje 17 cm verschuift, kan de RSSI door interferentie zomaar 10 tot 15 dBm
+  inzakken zonder dat de afstand echt verandert! Afstand in exacte meters
+  omrekenen werkt binnen dus niet.
+* **SNR meet signaalkwaliteit (in dB)**: Op korte en middellange afstand blijft
+  de SNR steken op een maximum (+10 tot +14 dB). Pas wanneer het signaal heel
+  zwak wordt en tegen de ruisvloer aan zit, zakt de SNR. Je kunt SNR dus niet
+  gebruiken om afstand te meten, maar wél als kwaliteitsfilter: als SNR &lt; 0
+  dB, is het signaal te veel verstoord en kun je de RSSI niet vertrouwen.
+
+### Eerste Hop & Schoolrepeaters
+
+Een cruciaal inzicht bij LoRa-mesh is hoe een pakketje binnenkomt:
+
+* **Directe ontvangst (0 hops)**: Het signaal komt rechtstreeks van de koffer
+  binnen bij onze centrale ontvanger. De gemeten RSSI en SNR zeggen dan echt
+  iets over hoe dicht de koffer bij die ontvanger is.
+* **Via een repeater (> 0 hops)**: Komt een berichtje binnen via een repeater
+  van de school, dan meet onze ontvanger de signaalsterkte van de *repeater*, en
+  niet van de koffer. De originele RSSI van de koffer is dan verloren. De
+  backend zet de RF-metingen in dat geval op `None` om foute afstanden te
+  voorkomen.
+* **Locatie bepalen via repeaters**: Omdat de school vaste repeaters heeft
+  hangen en we kunnen zien welke node het berichtje als eerste heeft opgepikt
+  (de eerste hop), weten we alsnog precies in welk gebouw of welke vleugel de
+  koffer zich bevindt.
+
+Zo kunnen we vrij nauwkeurig inschatten wanneer een koffer zich op het
+schoolterrein bevindt, zolang hij niet diep in de kelder verdwijnt.
+
+### Protocol v3 & Seriële Logs Koppelen
+
+Om deze data uit de Heltec-ontvanger te krijgen waren nog twee technische
+ingrepen nodig:
+
+1. **Protocol v3 forceren**: Standaard stuurt de companion-firmware van Meshcore
+   geen SNR mee (protocol v0). De Python-backend stuurt daarom bij het opstarten
+   direct een `CMD_DEVICE_QUERY`-commando over de seriële poort om de ontvanger
+   naar protocol v3 te promoveren, waardoor SNR met 0.25 dB resolutie meekomt.
+2. **Asynchrone RSSI-koppeling**: RSSI zit niet in het versleutelde kanaalframe,
+   maar komt via aparte `RX_LOG_DATA`-berichten binnen. De backend koppelt deze
+   twee stromen aan elkaar door te zoeken naar berichten met een identieke SNR
+   binnen een tijdvenster van maximaal 500 milliseconden.
+
+### Stabiele Zones in Plaats van Valse Meters
+
+Omdat exacte meters binnenshuis niet betrouwbaar zijn, gebruikt de backend een
+rollende mediaan van 5 metingen en deelt de positie in praktische zones in:
+
+* 🟢 **Direct in de buurt** (≥ -65 dBm): Koffer is in dezelfde ruimte als de
+  ontvanger (&lt; 5 meter).
+* 🟡 **Dichtbij** (-65 tot -85 dBm): In dezelfde gang of vleugel (ongeveer 5-25
+  meter).
+* 🟠 **Verderop** (-85 tot -105 dBm): Verderop in het gebouw (ongeveer 25-80
+  meter).
+* ⚪ **Rand van bereik** (&lt; -105 dBm): Op de grens van de dekking.
+
+--------------------------------------------------------------------------------
+
+## Webdashboard
+
+In het SvelteKit-dashboard komt alles samen:
+
+* **Realtime Berichtenlijst**: Toont direct binnenkomende data, batterijniveaus,
+  laatst geziene tijd en via welke route het bericht binnenkwam (Direct,
+  Gebouw-repeater of Relayed).
+* **Nabijheidsindicatoren**: Geeft aan de hand van de gefilterde zones direct
+  inzicht in waar een koffer ongeveer staat.
+* **Kaartweergave**: Zodra een koffer buiten wél een gps-fix krijgt, worden de
+  coördinaten automatisch op een interactieve kaart getoond.
+
+<Image src="dashboard.webp" alt="Dashboard" />
+
+--------------------------------------------------------------------------------
+
+## Gebruikte Technologieën
+
+* **Hardware**: Heltec WiFi LoRa 32 V4, Orange Pi
+* **Firmware**: C++, PlatformIO, ESP-IDF Deep Sleep
+* **Netwerk & Protocol**: Meshcore
+* **Gateway & Backend**: Python, SQLite, Docker & Docker Compose
+* **Frontend**: SvelteKit, TypeScript, Tailwind CSS

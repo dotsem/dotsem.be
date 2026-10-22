@@ -191,6 +191,15 @@ export const projectsMetadata: ProjectMetadata[] = [
 		highlighted: false,
 		status: ProjectStatus.Finished,
 		category: 'di'
+	},
+	{
+		slug: 'meshcore-tracker',
+		image: '/projects/meshcore-tracker/logo.webp',
+		languages: ['cpp', 'py', 'svelte', 'ts', 'tailwind', 'docker'],
+		highlighted: false,
+		status: ProjectStatus.InProgress,
+		category: 'di'
+		// TODO: add repo once opensourced
 	}
 ];
 
