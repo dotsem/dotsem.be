@@ -161,9 +161,12 @@ export const projectsMetadata: ProjectMetadata[] = [
 		image: '/projects/whispertag/logo.svg',
 		languages: ['react', 'rust', 'tauri', 'ts', 'tailwind'],
 		highlighted: false,
+		trackRelease: true,
 		status: ProjectStatus.Finished,
 		category: 'di',
-		repo: 'Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project'
+		repo: 'Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project',
+		link: '#download-here',
+		linkTitle: 'Download WhisperTag'
 	},
 	{
 		slug: 'capyplayer',

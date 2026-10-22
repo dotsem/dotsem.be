@@ -7,6 +7,9 @@ description: Een interactieve, tastbare verhalenapplicatie die fysieke
 
 <script>
     import Image from '$lib/components/Image.svelte';
+      import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
+
+  export let latestRelease = "";
 </script>
 
 ## Verhalen Tot Leven Brengen Via Tast en Geluid
@@ -85,7 +88,14 @@ beperkte opslagruimte.
 
 --------------------------------------------------------------------------------
 
-## Links & Broncode
+## Downloads & Broncode
+
+<OsDownloadButton
+  windowsUrl="https://github.com/Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project/releases/download/{latestRelease}/whispertag_{latestRelease.replace('v', '')}_x64-setup.exe"
+  macosUrl="https://github.com/Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project/releases/download/{latestRelease}/whispertag_{latestRelease.replace('v', '')}_aarch64.dmg"
+  linuxUrl="https://github.com/Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project/releases/download/{latestRelease}/whispertag_x64.app.tar.gz"
+  title="WhisperTag"
+/>
 
 * [Digital Innovation Project
   Repository](https://github.com/Thomas-More-Digital-Innovation)
