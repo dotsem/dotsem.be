@@ -1,18 +1,27 @@
 pre-commit:
   parallel: true
-  commands:
-    sveltecheck:
-      root: "portfolio/"
-      glob: '**/*.{svelte,js,ts}'
-      run: pnpm check
+  jobs:
+    - name: gitleaks
+      tags:
+        - security
+      run: gitleaks protect --verbose --staged
 
-    eslint:
+    - name: portfolio
+      tags:
+        - frontend
+        - portfolio
       root: "portfolio/"
-      glob: '**/*.{svelte,js,ts}'
-      run: pnpm exec eslint {staged_files}
-
-    prettier:
-      root: "portfolio/"
-      glob: '**/*.{svelte,js,ts,css}'
-      run: pnpm exec prettier --write {staged_files}
-      stage_fixed: true
+      group:
+        parallel: false
+        piped: true
+        jobs:
+          - name: format
+            glob: "**/*.{svelte,js,ts,css}"
+            run: pnpm exec prettier --write {staged_files}
+            stage_fixed: true
+          - name: lint
+            glob: "**/*.{svelte,js,ts}"
+            run: pnpm exec eslint {staged_files}
+          - name: check
+            glob: "**/*.{svelte,js,ts}"
+            run: pnpm check
