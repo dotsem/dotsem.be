@@ -12,9 +12,13 @@
 	}
 
 	let { project }: Props = $props();
+
+	let isHovered = $state(false);
 </script>
 
 <a
+	onmouseenter={() => (isHovered = true)}
+	onmouseleave={() => (isHovered = false)}
 	href={resolve(i18n.resolveRoute('/projects/' + project.slug, languageTag()))}
 	class="group block text-inherit no-underline"
 >
@@ -25,7 +29,7 @@
 	>
 		<CardImage src={project.image} alt={project.title} class="h-48" paddingClass="p-4" />
 
-		<ScrollingLangList languages={project.languages} class="px-6" />
+		<ScrollingLangList languages={project.languages} active={isHovered} class="px-6" />
 
 		<Card.Header class="flex w-full flex-col gap-2 overflow-hidden pb-2">
 			<Card.Title class="text-xl font-bold tracking-tight">{project.title}</Card.Title>
@@ -49,7 +53,7 @@
 				class="glossy-tile absolute top-1 left-1 z-10 m-0 rounded-md px-1 py-0.5 text-xs transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
 					? ''
-					: 'has-hover:-translate-x-[110%] has-hover:group-hover:translate-x-0'}"
+					: 'has-hover:translate-x-[-110%] has-hover:group-hover:translate-x-0'}"
 			>
 				{getLocalizedStatus(project.status)}
 			</span>

@@ -6,9 +6,10 @@
 	interface Props {
 		languages: string[];
 		class?: string;
+		active?: boolean;
 	}
 
-	let { languages, class: className = '' }: Props = $props();
+	let { languages, class: className = '', active = true }: Props = $props();
 
 	let scrollContainer: HTMLElement | undefined = $state();
 	let contentContainer: HTMLElement | undefined = $state();
@@ -26,13 +27,11 @@
 </script>
 
 <div
-	class="@container w-full overflow-hidden {needsScroll
-		? 'mask-linear-to-r to-black1rem:to-black calc(100%-1rem):to-transparent from-transparent'
-		: ''} {className}"
+	class="@container w-full overflow-hidden {needsScroll ? 'mask-edges' : ''} {className}"
 	bind:this={scrollContainer}
 >
 	<div
-		class="inline-flex w-max gap-[0.4rem] {needsScroll ? 'animate-saw' : ''}"
+		class="inline-flex w-max gap-[0.4rem] {needsScroll && active ? 'animate-saw' : ''}"
 		style="--scroll-duration: {scrollDuration}s"
 		bind:this={contentContainer}
 	>
@@ -47,9 +46,25 @@
 		animation: saw-scroll var(--scroll-duration, 4s) linear infinite alternate;
 	}
 
+	.mask-edges {
+		mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 1rem,
+			black calc(100% - 1rem),
+			transparent
+		);
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 1rem,
+			black calc(100% - 1rem),
+			transparent
+		);
+	}
+
 	@keyframes saw-scroll {
-		0%,
-		15% {
+		0% {
 			transform: translateX(0);
 		}
 		85%,
