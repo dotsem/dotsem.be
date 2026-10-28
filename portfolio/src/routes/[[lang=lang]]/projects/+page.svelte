@@ -8,7 +8,7 @@
 	import { contributions, sortProjectsByHighlight } from '$lib/projects';
 	import * as m from '$lib/paraglide/messages';
 	import { onMount } from 'svelte';
-	import { languageTag } from '$lib/paraglide/runtime';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import ProjectSection from './components/ProjectSection.svelte';
 	import AnimatedCounter from '$lib/components/AnimatedCounter.svelte';
 	import ProjectHeading from './components/ProjectHeading.svelte';
@@ -56,7 +56,7 @@
 	]);
 
 	onMount(() => {
-		fetch(`/api/projects/versions?lang=${languageTag()}`)
+		fetch(`/api/projects/versions?lang=${getLocale()}`)
 			.then((res) => {
 				if (res.ok) {
 					return res.json();

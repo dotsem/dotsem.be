@@ -13,7 +13,7 @@
 	} from '$lib/components/PageSectionIndicator.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { i18n } from '$lib/i18n';
-	import { languageTag } from '$lib/paraglide/runtime';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import { sortProjectsByHighlight } from '$lib/projects';
 
 	import { onMount } from 'svelte';
@@ -29,7 +29,7 @@
 
 	onMount(async () => {
 		try {
-			const res = await fetch(`/api/projects/versions?lang=${languageTag()}`);
+			const res = await fetch(`/api/projects/versions?lang=${getLocale()}`);
 			if (res.ok) {
 				const { versions } = await res.json();
 				liveVersions = versions;
@@ -109,7 +109,7 @@
 <svelte:window bind:innerWidth />
 
 {#snippet AllProjectButton(cls: string)}
-	<Button class={cls} href={i18n.resolveRoute('/projects', languageTag())}>
+	<Button class={cls} href={i18n.resolveRoute('/projects', getLocale())}>
 		{m.projects_view_all()}
 		<i class="fa-solid fa-arrow-right"></i>
 	</Button>

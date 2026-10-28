@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import * as Card from '$lib/components/ui/card';
 	import { i18n } from '$lib/i18n';
-	import { languageTag } from '$lib/paraglide/runtime';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import { type ProjectMeta, getLocalizedStatus } from '$lib/projects';
 	import ScrollingLangList from '$lib/components/ScrollingLangList.svelte';
 	import CardImage from '$lib/components/cards/CardImage.svelte';
@@ -19,7 +19,7 @@
 <a
 	onmouseenter={() => (isHovered = true)}
 	onmouseleave={() => (isHovered = false)}
-	href={resolve(i18n.resolveRoute('/projects/' + project.slug, languageTag()))}
+	href={resolve(i18n.resolveRoute('/projects/' + project.slug, getLocale()))}
 	class="group block text-inherit no-underline"
 >
 	<Card.Root

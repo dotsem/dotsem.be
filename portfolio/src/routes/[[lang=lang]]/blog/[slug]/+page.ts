@@ -1,9 +1,9 @@
-import { languageTag } from '$lib/paraglide/runtime.js';
+import { getLocale } from '$lib/paraglide/runtime.js';
 import { getBlogBySlug, getBlogsByLang } from '$lib/blog';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, url }) => {
-	const lang = url.pathname.split('/').find((s) => ['en', 'nl'].includes(s)) || languageTag();
+	const lang = url.pathname.split('/').find((s) => ['en', 'nl'].includes(s)) || getLocale();
 	const blog = await getBlogBySlug(lang, params.slug);
 
 	if (!blog) {

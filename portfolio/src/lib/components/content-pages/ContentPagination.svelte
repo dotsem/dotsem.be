@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { i18n } from '$lib/i18n';
-	import { languageTag } from '$lib/paraglide/runtime';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages';
 
 	interface PaginationItem {
@@ -30,7 +30,7 @@
 	<!-- Previous Button -->
 	{#if prev}
 		<a
-			href={resolve(i18n.resolveRoute(basePath + prev.slug, languageTag()))}
+			href={resolve(i18n.resolveRoute(basePath + prev.slug, getLocale()))}
 			class="group flex items-center gap-4 rounded-xl border border-white/5 bg-white/5 p-4 text-left no-underline transition-all duration-300 hover:border-white/15 hover:bg-white/10"
 		>
 			<div
@@ -58,7 +58,7 @@
 	<!-- Next Button -->
 	{#if next}
 		<a
-			href={resolve(i18n.resolveRoute(basePath + next.slug, languageTag()))}
+			href={resolve(i18n.resolveRoute(basePath + next.slug, getLocale()))}
 			class="group flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4 text-right no-underline transition-all duration-300 hover:border-white/15 hover:bg-white/10"
 		>
 			<div class="flex w-full min-w-0 flex-col text-left sm:text-right">

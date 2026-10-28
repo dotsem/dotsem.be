@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 	import { i18n } from '$lib/i18n';
-	import { availableLanguageTags } from '$lib/paraglide/runtime';
+	import { locales } from '$lib/paraglide/runtime';
 	import { page } from '$app/state';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.png';
@@ -70,7 +69,7 @@
 		<meta name="google" content="notranslate" />
 	{/if}
 
-	{#each availableLanguageTags as locale (locale)}
+	{#each locales as locale (locale)}
 		<link
 			rel="alternate"
 			hreflang={locale}
@@ -102,19 +101,17 @@
 <ModeWatcher defaultMode="dark" />
 <Toaster />
 
-<ParaglideJS {i18n}>
-	<div class="flex min-h-screen flex-col">
-		<Navbar />
-		<main class="flex-1 pt-16">{@render children()}</main>
-		<div style="display:none">
-			{#each availableLanguageTags as locale (locale)}
-				<a href={resolve(i18n.resolveRoute(i18n.route(page.url.pathname), locale))}>
-					{locale}
-				</a>
-			{/each}
-		</div>
-		<Footer />
+<div class="flex min-h-screen flex-col">
+	<Navbar />
+	<main class="flex-1 pt-16">{@render children()}</main>
+	<div style="display:none">
+		{#each locales as locale (locale)}
+			<a href={resolve(i18n.resolveRoute(i18n.route(page.url.pathname), locale))}>
+				{locale}
+			</a>
+		{/each}
 	</div>
-	<!-- Current website is cookie free -->
-	<!-- <CookieConsent /> -->
-</ParaglideJS>
+	<Footer />
+</div>
+<!-- Current website is cookie free -->
+<!-- <CookieConsent /> -->

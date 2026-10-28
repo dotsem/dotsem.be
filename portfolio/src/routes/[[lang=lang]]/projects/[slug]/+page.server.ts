@@ -1,11 +1,10 @@
 import { getProjectBySlug } from '$lib/projects';
 import { enrichProjectWithVersion } from '$lib/server/github';
-import { languageTag } from '$lib/paraglide/runtime.js';
+import { getLocale } from '$lib/paraglide/runtime.js';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, url, setHeaders }) => {
-	const lang =
-		url.pathname.split('/').find((s: string) => ['en', 'nl'].includes(s)) || languageTag();
+	const lang = url.pathname.split('/').find((s: string) => ['en', 'nl'].includes(s)) || getLocale();
 	const project = await getProjectBySlug(lang, params.slug);
 
 	if (!project) error(404, 'Project not found');
