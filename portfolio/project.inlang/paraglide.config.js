@@ -21,35 +21,35 @@ export default {
 			pattern: '/projects',
 			localized: [
 				['en', '/projects'],
-				['nl', '/projecten']
+				['nl', '/nl/projecten']
 			]
 		},
 		{
 			pattern: '/projects/:slug',
 			localized: [
 				['en', '/projects/:slug'],
-				['nl', '/projecten/:slug']
+				['nl', '/nl/projecten/:slug']
 			]
 		},
 		{
 			pattern: '/aboutme',
 			localized: [
 				['en', '/aboutme'],
-				['nl', '/over-mij']
+				['nl', '/nl/over-mij']
 			]
 		},
 		{
 			pattern: '/cookies',
 			localized: [
 				['en', '/cookies'],
-				['nl', '/cookies']
+				['nl', '/nl/cookies']
 			]
 		},
 		{
 			pattern: '/privacy',
 			localized: [
 				['en', '/privacy'],
-				['nl', '/privacy']
+				['nl', '/nl/privacy']
 			]
 		},
 		{
