@@ -1,6 +1,6 @@
 import { getProjectsByLang } from '$lib/projects';
 import { getBlogsByLang } from '$lib/blog';
-import { availableLanguageTags } from '$lib/paraglide/runtime';
+import { locales } from '$lib/paraglide/runtime';
 import { i18n } from '$lib/i18n';
 
 export const prerender = true;
@@ -27,7 +27,7 @@ export async function GET() {
 	const pages: { urlPath: string; originalPath: string }[] = [];
 
 	// Add localized versions of constant pages
-	for (const lang of availableLanguageTags) {
+	for (const lang of locales) {
 		for (const path of pathnames) {
 			pages.push({
 				urlPath: i18n.resolveRoute(path, lang),
@@ -37,7 +37,7 @@ export async function GET() {
 	}
 
 	// Fetch and add localized versions of dynamic content
-	for (const lang of availableLanguageTags) {
+	for (const lang of locales) {
 		const projects = await getProjectsByLang(lang);
 		const blogs = await getBlogsByLang(lang);
 
@@ -69,7 +69,7 @@ export async function GET() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${uniquePages
 	.map((page) => {
-		const alternates = availableLanguageTags
+		const alternates = locales
 			.map((locale) => {
 				const altUrl = `${baseUrl}${i18n.resolveRoute(page.originalPath, locale)}`;
 				return `        <xhtml:link rel="alternate" hreflang="${locale}" href="${altUrl}"/>`;

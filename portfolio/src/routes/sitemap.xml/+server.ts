@@ -1,6 +1,6 @@
 import { getProjectsByLang } from '$lib/projects';
 import { getBlogsByLang } from '$lib/blog';
-import { availableLanguageTags } from '$lib/paraglide/runtime';
+import { locales } from '$lib/paraglide/runtime';
 import { i18n } from '$lib/i18n';
 
 export const prerender = true;
@@ -27,7 +27,7 @@ export async function GET() {
 	const pages: { url: string; path: string }[] = [];
 
 	// Add localized versions of constant pages
-	for (const lang of availableLanguageTags) {
+	for (const lang of locales) {
 		for (const path of pathnames) {
 			pages.push({
 				url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
@@ -37,7 +37,7 @@ export async function GET() {
 	}
 
 	// Fetch all dynamic content
-	for (const lang of availableLanguageTags) {
+	for (const lang of locales) {
 		const projects = await getProjectsByLang(lang);
 		const blogs = await getBlogsByLang(lang);
 

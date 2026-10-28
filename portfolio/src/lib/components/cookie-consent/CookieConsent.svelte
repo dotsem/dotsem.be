@@ -7,7 +7,7 @@
 	import Card from '../ui/card/card.svelte';
 	import Button from '../ui/button/button.svelte';
 	import { CardFooter, CardHeader } from '../ui/card';
-	import { languageTag } from '$lib/paraglide/runtime';
+	import { getLocale } from '$lib/paraglide/runtime';
 
 	let visible = $state(false);
 
@@ -25,14 +25,14 @@
 	function acceptAllCookies() {
 		localStorage.setItem('cookie-consent', 'all');
 		document.cookie = 'cookie-consent=all;max-age=31536000;path=/;SameSite=Lax';
-		document.cookie = `paraglide_lang=${languageTag()};max-age=31536000;path=/;SameSite=Lax`;
+		document.cookie = `paraglide_lang=${getLocale()};max-age=31536000;path=/;SameSite=Lax`;
 		visible = false;
 	}
 
 	function acceptNecessaryCookies() {
 		localStorage.setItem('cookie-consent', 'necessary');
 		document.cookie = 'cookie-consent=necessary;max-age=31536000;path=/;SameSite=Lax';
-		document.cookie = `paraglide_lang=${languageTag()};max-age=31536000;path=/;SameSite=Lax`;
+		document.cookie = `paraglide_lang=${getLocale()};max-age=31536000;path=/;SameSite=Lax`;
 
 		visible = false;
 	}
@@ -58,26 +58,24 @@
 				</div>
 				<div>
 					<h2 class="text-2xl font-bold text-white">
-						{m.cookie_banner_title()}
+						{m.consent_title()}
 					</h2>
 					<p class="text-sm text-white">
-						{m.cookie_banner_message()}
+						{m.consent_message()}
 						<a href={resolve(i18n.resolveRoute('/cookies'))}>
-							{m.cookie_banner_more()}
+							{m.consent_more()}
 						</a>
 					</p>
 				</div>
 			</CardHeader>
 			<CardFooter class="flex flex-wrap justify-end gap-2 md:gap-4">
 				<Button variant="ghost" onclick={declineAllCookies} class="w-full md:w-auto"
-					>{m.cookie_banner_decline()}</Button
+					>{m.consent_decline()}</Button
 				>
 				<Button variant="outline" onclick={acceptNecessaryCookies} class="w-full md:w-auto"
-					>{m.cookie_banner_necessary()}</Button
+					>{m.consent_necessary()}</Button
 				>
-				<Button onclick={acceptAllCookies} class="w-full md:w-auto"
-					>{m.cookie_banner_accept()}</Button
-				>
+				<Button onclick={acceptAllCookies} class="w-full md:w-auto">{m.consent_accept()}</Button>
 			</CardFooter>
 		</Card>
 	</div>

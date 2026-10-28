@@ -31,27 +31,27 @@
 
 <div class="nav-links unselectable {restProps.class}">
 	<a href={resolve(i18n.resolveRoute('/#profile', currentLang))} {onclick}>
-		{navbar_profile(undefined, { languageTag: currentLang })}
+		{navbar_profile(undefined, { locale: currentLang })}
 	</a>
 	<a
 		href={resolve(i18n.resolveRoute('/aboutme', currentLang))}
 		class={isActive('/aboutme')}
 		{onclick}
 	>
-		{navbar_aboutme(undefined, { languageTag: currentLang })}
+		{navbar_aboutme(undefined, { locale: currentLang })}
 	</a>
 	<a
 		href={resolve(i18n.resolveRoute('/projects', currentLang))}
 		class={isActive('/projects')}
 		{onclick}
 	>
-		{navbar_projects(undefined, { languageTag: currentLang })}
+		{navbar_projects(undefined, { locale: currentLang })}
 	</a>
 	<a href={resolve(i18n.resolveRoute('/blog', currentLang))} class={isActive('/blog')} {onclick}>
-		{navbar_blog(undefined, { languageTag: currentLang })}
+		{navbar_blog(undefined, { locale: currentLang })}
 	</a>
 	<a href={resolve(i18n.resolveRoute('/#contact', currentLang))} {onclick}>
-		{navbar_contact(undefined, { languageTag: currentLang })}
+		{navbar_contact(undefined, { locale: currentLang })}
 	</a>
 </div>
 

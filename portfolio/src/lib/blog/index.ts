@@ -1,5 +1,5 @@
 import type { Component } from 'svelte';
-import { languageTag } from '$lib/paraglide/runtime';
+import { getLocale } from '$lib/paraglide/runtime';
 import { extractHeaders, type MarkdownHeader } from '$lib/utils';
 
 export interface BlogMeta {
@@ -57,7 +57,7 @@ export function formatBlogDate(dateStr: string | undefined): string {
 	if (isNaN(parsed)) return dateStr;
 
 	const date = new Date(parsed);
-	const lang = languageTag();
+	const lang = getLocale();
 
 	return new Intl.DateTimeFormat(lang, {
 		day: 'numeric',
