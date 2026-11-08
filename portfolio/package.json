@@ -19,7 +19,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"@inlang/paraglide-js": "^2.29.2",
+		"@inlang/paraglide-js": "^2.29.3",
 		"@internationalized/date": "^3.12.4",
 		"@lucide/svelte": "^0.577.0",
 		"@sveltejs/adapter-netlify": "^5.2.4",
