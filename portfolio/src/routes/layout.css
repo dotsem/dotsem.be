@@ -248,16 +248,6 @@ body {
 		z-index: 1;
 		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 	}
-
-	.glossy-tile:hover {
-		background-color: color-mix(in oklch, var(--card), transparent 40%) !important;
-		border-radius: var(--radius-xl);
-		box-shadow: var(--primary) 0px 0px 20px -10px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		transform: translateY(-2px);
-		-webkit-backdrop-filter: blur(16px) saturate(200%);
-		backdrop-filter: blur(16px) saturate(200%);
-	}
 }
 
 @layer base {
