@@ -60,6 +60,11 @@
 		transition-duration: var(--duration, 500ms);
 		transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 		transition-delay: var(--delay, 0s);
+	}
+
+	/* will-change on opacity/filter makes the wrapper a backdrop root, which stops
+	   backdrop-filter (.glossy-frost) inside it from seeing what's behind. Only hint before reveal. */
+	.entry-animation:not(.visible) {
 		will-change: opacity, transform, filter;
 	}
 
@@ -121,7 +126,7 @@
 	}
 	.blur.visible {
 		opacity: 1;
-		filter: blur(0);
+		filter: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

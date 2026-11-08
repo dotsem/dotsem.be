@@ -70,6 +70,7 @@
 	"contact_message_label": "Message",
 	"contact_message_placeholder": "What is your message?",
 	"contact_button_send": "Send",
+	"contact_button_sending": "Sending...",
 	"contact_success": "Message sent successfully! Thank you.",
 	"contact_error": "Something went wrong. Please try again or message me via info@dotsem.be.",
 	"_header_footer": "",
@@ -204,5 +205,7 @@
 	"download_macos": "macOS",
 	"download_linux": "Linux",
 	"download": "Download",
-	"view_on_github": "View on GitHub"
+	"view_on_github": "View on GitHub",
+	"card_read_more": "Read more",
+	"card_read_blog": "Read this blog"
 }

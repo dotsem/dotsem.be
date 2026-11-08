@@ -51,9 +51,7 @@
 	});
 </script>
 
-<div
-	class="relative flex flex-col gap-3 overflow-hidden rounded-2xl bg-white/3 p-5 backdrop-blur-md"
->
+<div class="relative flex flex-col gap-3 overflow-hidden rounded-2xl bg-card p-5">
 	<!-- svg reading progress border -->
 	<svg class="pointer-events-none absolute inset-0 z-10 h-full w-full" overflow="visible">
 		<!-- static background border -->
@@ -64,7 +62,7 @@
 			height="calc(100% - 1.5px)"
 			rx="16"
 			fill="none"
-			stroke="rgba(255, 255, 255, 0.05)"
+			stroke="var(--border)"
 			stroke-width="1"
 		/>
 		<!-- active reading progress border -->
@@ -85,7 +83,7 @@
 		/>
 	</svg>
 
-	<h3 class="relative z-20 text-xs font-bold tracking-widest text-white/40 uppercase">
+	<h3 class="relative z-20 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 		{title}
 	</h3>
 	<div class="relative z-20 mt-2 flex flex-col gap-4 text-sm">

@@ -83,7 +83,7 @@
 							class="ob-infinite unselectable flex w-full flex-col items-center justify-center"
 							class:ob-show={isVisible}
 						>
-							<img src={MeImage} alt="thats me!" class="my-0! flex w-[60%]" />
+							<img src={MeImage} alt="Sem Van Broekhoven" class="my-0! flex w-[60%]" />
 							<div></div>
 						</div>
 					</div>

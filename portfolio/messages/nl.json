@@ -59,6 +59,7 @@
 	"contact_message_label": "Bericht",
 	"contact_message_placeholder": "Wat is je bericht?",
 	"contact_button_send": "Verstuur",
+	"contact_button_sending": "Versturen...",
 	"footer_copyright": "Copyright © {year} Sem Van Broekhoven",
 	"footer_credits": "Gemaakt met ❤️ door",
 	"footer_email": "Contacteer Mij Via E-mail",
@@ -187,5 +188,7 @@
 	"download_macos": "macOS",
 	"download_linux": "Linux",
 	"download": "Downloaden",
-	"view_on_github": "Bekijk op GitHub"
+	"view_on_github": "Bekijk op GitHub",
+	"card_read_more": "Lees meer",
+	"card_read_blog": "Lees deze blog"
 }

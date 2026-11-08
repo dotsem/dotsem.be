@@ -3,6 +3,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import { i18n } from '$lib/i18n';
 	import { getLocale } from '$lib/paraglide/runtime';
+	import { card_read_more } from '$lib/paraglide/messages.js';
 	import { type ProjectMeta, getLocalizedStatus } from '$lib/projects';
 	import ScrollingLangList from '$lib/components/ScrollingLangList.svelte';
 	import CardImage from '$lib/components/cards/CardImage.svelte';
@@ -20,7 +21,7 @@
 	class="group block h-full w-full text-inherit no-underline"
 >
 	<Card.Root
-		class=" m-0! flex! h-full w-full flex-col gap-2! overflow-hidden border-white/10! bg-white/5! backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10!
+		class=" m-0! flex! h-full w-full flex-col gap-2! overflow-hidden border-white/10! bg-white/5! transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10!
         {variant === 'wide'
 			? 'md:flex-row md:gap-0! md:pb-0!'
 			: variant === 'full'
@@ -72,18 +73,11 @@
 
 			<!-- BOTTOM READ MORE ACTION -->
 			<span
-				class="absolute right-0 bottom-0 left-0 bg-primary pb-4 text-center text-xl font-bold transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:translate-y-12 has-hover:group-hover:translate-y-4 no-hover:hidden"
+				class="absolute right-0 bottom-0 left-0 bg-primary pb-4 text-center text-xl font-bold text-primary-foreground transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:translate-y-12 has-hover:group-hover:translate-y-4 no-hover:hidden"
 			>
-				Read more
+				{card_read_more()}
 			</span>
 		</div>
-
-		<!-- HIGHLIGHTED / STAR BADGE -->
-		{#if project.highlighted}
-			<i
-				class="fa-solid fa-star absolute top-2 right-2 z-10 text-2xl text-yellow-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
-			></i>
-		{/if}
 
 		<!-- STATUS BADGE -->
 		{#if project.status}
@@ -91,7 +85,7 @@
 				class="glossy-tile absolute top-2 left-2 z-10 m-0 rounded-md border border-white/10 px-1.5 py-0.5 text-xs font-semibold backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
 					? ''
-					: 'has-hover:-translate-x-[120%] has-hover:group-hover:translate-x-0'}"
+					: 'has-hover:translate-x-[-120%] has-hover:group-hover:translate-x-0'}"
 			>
 				{getLocalizedStatus(project.status)}
 			</span>

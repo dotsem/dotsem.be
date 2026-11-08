@@ -16,7 +16,7 @@
 <div id="hero" class="relative overflow-hidden bg-background">
 	<img
 		src={Bg}
-		alt="Hero"
+		alt=""
 		class="absolute top-0 left-0 z-0 h-full w-full object-cover object-top-right blur-sm"
 		fetchpriority="high"
 		loading="eager"
@@ -27,7 +27,7 @@
 			<img
 				src={HeroImageMobile}
 				id="hero-image"
-				alt="Hero"
+				alt="Sem Van Broekhoven"
 				class="h-full w-full object-cover object-top-right"
 				fetchpriority="high"
 				loading="eager"
@@ -52,8 +52,8 @@
 			</EntryAnimation>
 			<EntryAnimation type="slide-up" delay={400}>
 				<div class="flex justify-center gap-4 sm:justify-end">
-					<Button class="px-8 font-bold" href="#profile">{hero_button_main()}</Button>
-					<Button class="px-8 font-bold" href="#contact" variant="outline"
+					<Button size="lg" class="px-8 font-bold" href="#profile">{hero_button_main()}</Button>
+					<Button size="lg" class="px-8 font-bold" href="#contact" variant="outline"
 						>{hero_button_secondary()}</Button
 					>
 				</div>

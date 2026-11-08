@@ -4,6 +4,7 @@
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import { i18n } from '$lib/i18n';
 	import { getLocale } from '$lib/paraglide/runtime';
+	import { card_read_blog } from '$lib/paraglide/messages.js';
 	import { onMount } from 'svelte';
 	import { type BlogMeta, formatBlogDate } from '$lib/blog';
 	import { labelScroller } from '$lib/utils';
@@ -89,8 +90,8 @@
 			</Card.Header>
 
 			<span
-				class="call-to-action absolute right-0 bottom-0 left-0 bg-primary text-center text-xl font-bold md:rounded-tl-xl"
-				>Read This Blog</span
+				class="call-to-action absolute right-0 bottom-0 left-0 bg-primary text-center text-xl font-bold text-primary-foreground md:rounded-tl-xl"
+				>{card_read_blog()}</span
 			>
 		</div>
 	</Card.Root>
@@ -105,8 +106,6 @@
 
 	:global(.blog-card) {
 		background: rgba(255, 255, 255, 0.03) !important;
-		backdrop-filter: blur(16px);
-		-webkit-backdrop-filter: blur(16px);
 		border: 1px solid rgba(255, 255, 255, 0.1) !important;
 		transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
 	}

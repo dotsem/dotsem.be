@@ -1,7 +1,5 @@
 <script lang="ts">
 	import ContributionCard from '$lib/components/cards/ContributionCard.svelte';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
-	import RandomDelayGroup from '$lib/components/RandomDelayGroup.svelte';
 	import PageSectionIndicator, {
 		type SectionItem
 	} from '$lib/components/PageSectionIndicator.svelte';
@@ -117,17 +115,11 @@
 				description={m.projects_section_opensource_description()}
 			/>
 
-			<RandomDelayGroup count={contributions.length}>
-				{#snippet children(delays)}
-					<div class="flex flex-wrap justify-center gap-8">
-						{#each contributions as contribution, index (contribution.prUrl)}
-							<EntryAnimation type="scale" delay={delays[index] ?? index * 100}>
-								<ContributionCard {contribution} />
-							</EntryAnimation>
-						{/each}
-					</div>
-				{/snippet}
-			</RandomDelayGroup>
+			<div class="flex flex-wrap justify-center gap-8">
+				{#each contributions as contribution (contribution.prUrl)}
+					<ContributionCard {contribution} />
+				{/each}
+			</div>
 		</section>
 	{/if}
 </div>

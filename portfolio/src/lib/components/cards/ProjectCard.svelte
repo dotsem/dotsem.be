@@ -3,6 +3,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import { i18n } from '$lib/i18n';
 	import { getLocale } from '$lib/paraglide/runtime';
+	import { card_read_more } from '$lib/paraglide/messages.js';
 	import { type ProjectMeta, getLocalizedStatus } from '$lib/projects';
 	import ScrollingLangList from '$lib/components/ScrollingLangList.svelte';
 	import CardImage from '$lib/components/cards/CardImage.svelte';
@@ -39,18 +40,18 @@
 		</Card.Header>
 
 		<span
-			class="absolute right-0 bottom-0 left-0 bg-primary pb-4 text-center text-xl font-bold transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:translate-y-12 has-hover:group-hover:translate-y-4 no-hover:hidden"
+			class="absolute right-0 bottom-0 left-0 bg-primary pb-4 text-center text-xl font-bold text-primary-foreground transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] has-hover:translate-y-12 has-hover:group-hover:translate-y-4 no-hover:hidden"
 		>
-			Read more
+			{card_read_more()}
 		</span>
 
 		{#if project.highlighted}
-			<i class="fa-solid fa-star absolute top-1 right-1 z-10 text-2xl text-yellow-400"></i>
+			<i class="fa-solid fa-star absolute top-1 right-1 z-10 text-2xl text-primary"></i>
 		{/if}
 
 		{#if project.status}
 			<span
-				class="glossy-tile absolute top-1 left-1 z-10 m-0 rounded-md px-1 py-0.5 text-xs transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+				class="glossy-tile glossy-frost absolute top-1 left-1 z-10 m-0 rounded-md px-1 py-0.5 text-xs transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
 					? ''
 					: 'has-hover:translate-x-[-110%] has-hover:group-hover:translate-x-0'}"

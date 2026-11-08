@@ -55,7 +55,8 @@
 	});
 
 	$effect(() => {
-		if (scaleOnScroll && isVisible) {
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (scaleOnScroll && isVisible && !reducedMotion) {
 			window.addEventListener('scroll', updateScroll, { passive: true });
 			updateScroll();
 			return () => window.removeEventListener('scroll', updateScroll);
@@ -78,7 +79,7 @@
 		<div class="image-container">
 			<img
 				src={imageUrl}
-				alt="static background"
+				alt=""
 				class="unselectable"
 				class:scaling={scaleOnScroll}
 				style="transform: scale({currentScale});"

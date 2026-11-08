@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { mode } from 'mode-watcher';
 	import type { Snippet } from 'svelte';
 
 	interface Props {
@@ -32,7 +31,6 @@
 	$effect(() => {
 		if (!browser) return;
 
-		const isDark = mode.current !== 'light';
 		const rawCode = code.trim() || sourceRef?.textContent?.trim() || '';
 		if (!rawCode) return;
 
@@ -42,49 +40,49 @@
 					startOnLoad: false,
 					theme: 'base',
 					themeVariables: {
-						darkMode: isDark,
+						darkMode: true,
 						background: 'transparent',
 						fontFamily: 'inherit',
 						fontSize: '16px',
-						primaryColor: isDark ? '#18181b' : '#ffffff',
-						primaryTextColor: isDark ? '#f4f4f5' : '#18181b',
-						primaryBorderColor: isDark ? '#3f3f46' : '#d4d4d8',
-						lineColor: isDark ? '#71717a' : '#a1a1aa',
-						textColor: isDark ? '#f4f4f5' : '#18181b',
+						primaryColor: '#18181b',
+						primaryTextColor: '#f4f4f5',
+						primaryBorderColor: '#3f3f46',
+						lineColor: '#71717a',
+						textColor: '#f4f4f5',
 						clusterBkg: 'transparent',
-						clusterBorder: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
-						edgeLabelBackground: isDark ? '#18181b' : '#ffffff'
+						clusterBorder: 'rgba(255, 255, 255, 0.15)',
+						edgeLabelBackground: '#18181b'
 					},
 					themeCSS: `
 						.cluster rect {
 							fill: transparent !important;
-							stroke: ${isDark ? 'rgba(255, 255, 255, 0.16)' : 'rgba(0, 0, 0, 0.14)'} !important;
+							stroke: rgba(255, 255, 255, 0.16) !important;
 							stroke-width: 1px !important;
 							stroke-dasharray: 4 4 !important;
 							rx: 12px !important;
 						}
 						.cluster text {
-							fill: ${isDark ? '#e4e4e7' : '#27272a'} !important;
+							fill: #e4e4e7 !important;
 							font-weight: 600 !important;
 							font-size: 16px !important;
 						}
 						.node rect, .node circle, .node polygon {
-							fill: ${isDark ? '#18181b' : '#ffffff'} !important;
-							stroke: ${isDark ? '#3f3f46' : '#d4d4d8'} !important;
+							fill: #18181b !important;
+							stroke: #3f3f46 !important;
 							stroke-width: 1.2px !important;
 							rx: 8px !important;
 						}
 						.node text {
-							fill: ${isDark ? '#f4f4f5' : '#18181b'} !important;
+							fill: #f4f4f5 !important;
 							font-weight: 500 !important;
 							font-size: 15px !important;
 						}
 						.edgePath path {
-							stroke: ${isDark ? '#71717a' : '#a1a1aa'} !important;
+							stroke: #71717a !important;
 							stroke-width: 1.5px !important;
 						}
 						.arrowheadPath {
-							fill: ${isDark ? '#71717a' : '#a1a1aa'} !important;
+							fill: #71717a !important;
 						}
 					`,
 					securityLevel: 'loose'
@@ -109,7 +107,7 @@
 </script>
 
 <figure
-	class="my-6 flex flex-col rounded-xl border border-border/60 bg-card/30 p-2 shadow-sm backdrop-blur-sm sm:p-4 {className}"
+	class="my-6 flex flex-col rounded-xl border border-border/60 bg-card/30 p-2 shadow-sm sm:p-4 {className}"
 >
 	<div
 		class="mb-2 flex items-center justify-between border-b border-border/40 px-2 pb-2 text-xs text-muted-foreground"

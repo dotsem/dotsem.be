@@ -41,7 +41,12 @@
 
 <section class="container mx-auto flex flex-col items-center justify-center px-4 md:flex-row">
 	<div class="flex-1">
-		<img id="me-image" src={MeImage} class="unselectable mx-auto w-[60%]" alt="thats me!" />
+		<img
+			id="me-image"
+			src={MeImage}
+			class="unselectable mx-auto w-[60%]"
+			alt="Sem Van Broekhoven"
+		/>
 	</div>
 	<div class="flex-1">
 		<h1 class="text-center text-2xl font-bold sm:text-4xl md:text-start md:text-6xl">
@@ -105,20 +110,20 @@
 		{m.di_description_3()}
 	</p>
 	<div class="mt-4 flex flex-wrap gap-2">
-		<EntryAnimation delay={300} class="flex-1" type="slide-up">
+		<div class="flex-1">
 			<Button
 				class="w-full"
 				href="https://thomasmore.be/nl/opleidingen/professionele-bachelor/toegepaste-informatica/digital-innovation/geel/basistraject"
 				>{m.di_button()}</Button
 			>
-		</EntryAnimation>
-		<EntryAnimation delay={600} class="flex-1" type="slide-up">
+		</div>
+		<div class="flex-1">
 			<Button
 				class="w-full"
 				variant="outline"
 				href="https://github.com/Thomas-More-Digital-Innovation">{m.di_button_secondary()}</Button
 			>
-		</EntryAnimation>
+		</div>
 	</div>
 </TextWithImageContainer>
 
@@ -179,10 +184,10 @@
 	</h2>
 	<p class="py-2">{m.about_cv_description()}</p>
 	<div class="flex w-full flex-wrap gap-2">
-		<EntryAnimation class="flex-1" delay={300} type="slide-up">
+		<div class="flex-1">
 			<Button class="w-full" href={i18n.resolveRoute('/cv')}>{m.about_cv_button()}</Button>
-		</EntryAnimation>
-		<EntryAnimation class="flex-1" delay={600} type="slide-up">
+		</div>
+		<div class="flex-1">
 			<Button
 				class="w-full"
 				href="https://www.linkedin.com/in/sem-van-broekhoven/"
@@ -190,7 +195,7 @@
 				rel="noopener noreferrer"
 				variant="outline">{m.about_cv_button_secondary()}</Button
 			>
-		</EntryAnimation>
+		</div>
 	</div>
 </TextWithImageContainer>
 

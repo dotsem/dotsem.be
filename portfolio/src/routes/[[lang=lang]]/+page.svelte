@@ -118,10 +118,8 @@
 <main>
 	<PageSectionIndicator {sections} />
 	<Hero />
-	<section class="">
-		<ImageDivider imageUrl="" class="slanted">
-			<Profile />
-		</ImageDivider>
+	<section class="py-16">
+		<Profile />
 	</section>
 
 	<div class="slanted bg-card">
@@ -138,7 +136,7 @@
 				{@render AllProjectButton('hidden lg:block lg:absolute right-2 top-0 z-10')}
 
 				<div
-					class="container mx-auto grid auto-rows-[340px] grid-cols-1 gap-6 px-4 md:auto-rows-[360px] md:grid-cols-2 lg:auto-rows-[340px] lg:grid-cols-3"
+					class="container mx-auto grid auto-rows-85 grid-cols-1 gap-6 px-4 md:auto-rows-90 md:grid-cols-2 lg:auto-rows-85 lg:grid-cols-3"
 				>
 					{#each highlightedProjects as project, index (project.slug)}
 						<div
@@ -160,13 +158,9 @@
 						</div>
 					{/each}
 				</div>
-				<EntryAnimation
-					type="scale"
-					delay={highlightedProjects.length * 100}
-					class="mt-6 w-full px-4"
-				>
-					{@render AllProjectButton('block lg:hidden ')}
-				</EntryAnimation>
+				<div class="mt-6 w-full px-4">
+					{@render AllProjectButton('block lg:hidden')}
+				</div>
 			</div>
 		</section>
 
