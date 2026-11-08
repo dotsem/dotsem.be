@@ -71,3 +71,14 @@
 		transform: translateY(0%);
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+	#profile-who-image-container {
+		img,
+		> div {
+			animation: none !important;
+			clip-path: none !important;
+			transform: none !important;
+		}
+	}
+}

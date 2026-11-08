@@ -26,24 +26,9 @@
 	}: Props = $props();
 </script>
 
-<!-- premium split hero banner -->
 <div
-	class="relative w-full overflow-hidden border-b border-white/5 bg-[#070709] px-4 pt-32 pb-20 md:px-8"
+	class="relative w-full overflow-hidden border-b border-border bg-background px-4 pt-32 pb-20 md:px-8"
 >
-	<!-- ambient radial blur auras -->
-	<div
-		class="pointer-events-none absolute top-1/2 left-1/4 z-0 h-125 w-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[140px]"
-	></div>
-	<div
-		class="pointer-events-none absolute top-1/3 left-3/4 z-0 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary/5 blur-[120px]"
-	></div>
-	{#if image}
-		<div
-			class="pointer-events-none absolute inset-0 z-0 scale-125 bg-cover bg-center bg-no-repeat opacity-[0.03] blur-3xl"
-			style="background-image: url('{image}')"
-		></div>
-	{/if}
-
 	<div class="relative z-10 container mx-auto">
 		<div class="flex flex-col-reverse items-center justify-between gap-12 lg:flex-row lg:gap-16">
 			<!-- left details column -->

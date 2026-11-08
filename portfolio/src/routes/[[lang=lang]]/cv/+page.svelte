@@ -7,7 +7,6 @@
 	import FAB from '$lib/components/cv/FAB.svelte';
 	import { handleDownload } from '$lib/components/cv/handleDownload';
 	import Experience from '$lib/components/cv/Experience.svelte';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
 
 	import { onMount } from 'svelte';
 
@@ -33,12 +32,8 @@
 </svelte:head>
 
 <div class="print-hidden fixed right-0 bottom-0 z-50">
-	<EntryAnimation delay={300} type="slide-left">
-		<FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}>{m.cv_download()}</FAB>
-	</EntryAnimation>
-	<EntryAnimation delay={400} type="slide-left">
-		<FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
-	</EntryAnimation>
+	<FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}>{m.cv_download()}</FAB>
+	<FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
 </div>
 
 <section id="cv" bind:this={pdfRef}>

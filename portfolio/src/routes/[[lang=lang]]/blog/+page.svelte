@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BlogCard from '$lib/components/cards/BlogCard.svelte';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as m from '$lib/paraglide/messages';
 
@@ -75,10 +74,8 @@
 
 	{#if filteredBlogs.length > 0}
 		<div class="flex flex-col gap-6">
-			{#each filteredBlogs as blog, i (blog.slug)}
-				<EntryAnimation delay={i * 100} type="slide-right">
-					<BlogCard {blog} />
-				</EntryAnimation>
+			{#each filteredBlogs as blog (blog.slug)}
+				<BlogCard {blog} />
 			{/each}
 		</div>
 	{:else}

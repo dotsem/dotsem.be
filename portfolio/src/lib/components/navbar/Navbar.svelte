@@ -5,7 +5,6 @@
 	import LangSwitch from '$lib/components/navbar/LangSwitch.svelte';
 	import NavLinks from '$lib/components/navbar/NavLinks.svelte';
 	import HamburgerButton from './HamburgerButton.svelte';
-	import * as m from '$lib/paraglide/messages';
 
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 	let hamburgerMenuVisible = $state(false);
@@ -47,10 +46,7 @@
 	class="flex flex-col min-[901px]:hidden"
 	class:active-menu={hamburgerMenuVisible}
 >
-	<div class="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
-		<span class="text-xs font-semibold tracking-widest text-white/30 uppercase"
-			>{m.hero_button_main()}</span
-		>
+	<div class="mb-4 flex items-center justify-end border-b border-white/10 pb-4">
 		<LangSwitch />
 	</div>
 	<NavLinks
@@ -75,7 +71,6 @@
 
 	<div class="hidden items-center gap-6 min-[901px]:flex">
 		<NavLinks />
-		<!-- <ThemeSwitch /> -->
 		<LangSwitch />
 	</div>
 
@@ -90,8 +85,6 @@
 <style>
 	nav {
 		background: var(--header-footer-bg);
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
 	}
 
 	.nav-hidden {
@@ -122,7 +115,7 @@
 		visibility: visible;
 	}
 
-	/* Target the nav links inside the mobile menu specifically for a high-end feel */
+	/* Mobile menu nav links */
 	#hamburger-menu :global(.nav-links) {
 		display: flex;
 		flex-direction: column;
@@ -147,7 +140,6 @@
 		color: #ffffff !important;
 		background: rgba(255, 255, 255, 0.06);
 		border-color: rgba(255, 255, 255, 0.1);
-		padding-left: 1.75rem; /* modern sliding hover transition */
 	}
 
 	#hamburger-menu :global(.nav-links a.active) {

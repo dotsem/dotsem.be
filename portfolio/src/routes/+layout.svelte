@@ -8,7 +8,6 @@
 	import 'devicon/devicon.min.css';
 	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
-	import { ModeWatcher } from 'mode-watcher';
 	import Footer from '$lib/components/Footer.svelte';
 	import { onNavigate, afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -98,7 +97,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
-<ModeWatcher defaultMode="dark" />
 <Toaster />
 
 <div class="flex min-h-screen flex-col">
