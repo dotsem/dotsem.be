@@ -2,6 +2,7 @@
 	import type { Snippet, Component as SvelteComponent } from 'svelte';
 	import TableOfContents from '$lib/components/content-pages/layout/TableOfContents.svelte';
 	import HardHat from '@lucide/svelte/icons/hard-hat';
+	import { navbar } from '$lib/navbar.svelte';
 
 	interface Props {
 		headers: Array<{ level: number; text: string; id: string }>;
@@ -22,14 +23,18 @@
 		leftSidebar,
 		children
 	}: Props = $props();
+
+	const stickyClass = $derived(
+		`sticky transition-[top] duration-300 ease-in-out ${navbar.visible ? 'top-24' : 'top-8'}`
+	);
 </script>
 
 <!-- main layout content with sidebars -->
-<div id="content" class="w-full bg-[#070709] px-4 py-16 md:px-8">
+<div id="content" class="w-full bg-background px-4 py-16 md:px-8">
 	<div class="container mx-auto flex flex-col gap-12 lg:flex-row">
 		<!-- left sidebar: project/post meta details -->
 		<aside class="hidden w-65 shrink-0 lg:block">
-			<div class="sticky top-28 flex flex-col gap-8">
+			<div class="{stickyClass} flex flex-col gap-8">
 				{#if leftSidebar}
 					{@render leftSidebar()}
 				{/if}
@@ -46,7 +51,7 @@
 						class="not-prose flex flex-col items-center justify-center py-20 text-center opacity-70"
 					>
 						<EmptyIcon class="mt-8 mb-4 h-16 w-16 animate-bounce text-primary" />
-						<h2 class="m-0 mb-4 text-3xl font-bold text-white">
+						<h2 class="m-0 mb-4 text-3xl font-bold text-foreground">
 							{emptyTitle}
 						</h2>
 						<p class="m-0 max-w-lg text-xl text-foreground/75">
@@ -59,7 +64,7 @@
 
 		<!-- right sidebar: table of contents -->
 		<aside class="relative z-40 block w-0 lg:shrink-0 xl:w-65">
-			<div class="sticky top-28">
+			<div class={stickyClass}>
 				<TableOfContents {headers} />
 			</div>
 		</aside>
