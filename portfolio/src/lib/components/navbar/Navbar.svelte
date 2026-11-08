@@ -5,30 +5,43 @@
 	import LangSwitch from '$lib/components/navbar/LangSwitch.svelte';
 	import NavLinks from '$lib/components/navbar/NavLinks.svelte';
 	import HamburgerButton from './HamburgerButton.svelte';
+	import { navbar } from '$lib/navbar.svelte';
 
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 	let hamburgerMenuVisible = $state(false);
 
 	let lastScrollY = 0;
+	let peek = $state(false);
 	let visible = $state(true);
-	let scrollY = $state(0);
 
-	$effect(() => {
-		if (hamburgerMenuVisible) {
-			visible = true;
-			return;
-		}
-
+	function handleScroll() {
+		const scrollY = window.scrollY;
 		if (scrollY > lastScrollY && scrollY > 100) {
 			visible = false;
 		} else {
 			visible = true;
+			peek = false;
 		}
 		lastScrollY = scrollY;
+	}
+
+	let navEl: HTMLElement | undefined = $state();
+	let hoverZoneEl: HTMLElement | undefined = $state();
+	let shown = $derived(visible || peek || hamburgerMenuVisible);
+
+	$effect(() => {
+		navbar.visible = shown;
 	});
+
+	function leaveNavArea(e: MouseEvent | FocusEvent) {
+		const next = e.relatedTarget as Node | null;
+		if (next && (navEl?.contains(next) || hoverZoneEl?.contains(next))) return;
+		if (!next && e instanceof MouseEvent && e.clientY <= 0) return;
+		peek = false;
+	}
 </script>
 
-<svelte:window bind:scrollY />
+<svelte:window onscroll={handleScroll} />
 
 <!-- Backdrop blur overlay (placed outside nav to prevent clipping by parent transform) -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -57,9 +70,24 @@
 	/>
 </div>
 
+{#if !visible}
+	<!-- Invisible strip where the navbar sits; hovering it brings the navbar back (mouse devices only) -->
+	<div
+		bind:this={hoverZoneEl}
+		class="fixed inset-x-0 top-0 z-49 hidden h-16 [@media(hover:hover)_and_(pointer:fine)]:block"
+		aria-hidden="true"
+		onmouseenter={() => (peek = true)}
+		onmouseleave={leaveNavArea}
+	></div>
+{/if}
+
 <nav
+	bind:this={navEl}
 	class="fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-6 py-0 transition-transform duration-300 ease-in-out md:px-10"
-	class:nav-hidden={!visible}
+	class:nav-hidden={!shown}
+	onmouseleave={leaveNavArea}
+	onfocusin={() => (peek = true)}
+	onfocusout={leaveNavArea}
 >
 	<a
 		href={resolve(i18n.resolveRoute('/', currentLang))}

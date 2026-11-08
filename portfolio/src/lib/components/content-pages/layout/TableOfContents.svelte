@@ -71,7 +71,7 @@
 
 <!-- Desktop TOC -->
 <div class="toc hidden w-64 shrink-0 px-4 xl:block">
-	<div class="pointer-events-auto sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4">
+	<div class="pointer-events-auto max-h-[calc(100vh-4rem)] overflow-y-auto pr-4">
 		{#if headers.length > 0}
 			<h4
 				class="mb-4 w-full border-b pb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase"
