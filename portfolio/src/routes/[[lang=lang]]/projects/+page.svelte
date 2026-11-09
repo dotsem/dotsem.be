@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import ContributionCard from '$lib/components/cards/ContributionCard.svelte';
 	import PageSectionIndicator, {
 		type SectionItem
@@ -70,10 +71,7 @@
 	});
 </script>
 
-<svelte:head>
-	<title>Projects - Sem Van Broekhoven</title>
-	<meta name="description" content="Projects of Sem Van Broekhoven" />
-</svelte:head>
+<Seo title={m.projects_title()} description={m.projects_description()} />
 
 <PageSectionIndicator {sections} />
 

@@ -1,12 +1,10 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import CookieItem from '$lib/components/cookie-consent/CookieItem.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 </script>
 
-<svelte:head>
-	<title>{m.cookie_page_title()} | Sem Van Broekhoven</title>
-	<meta name="description" content={m.cookie_page_description()} />
-</svelte:head>
+<Seo title={m.cookie_page_title()} description={m.cookie_page_description()} />
 
 <div class="container mx-auto max-w-4xl px-4 py-12">
 	<div>

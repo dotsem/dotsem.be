@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import { i18n } from '$lib/i18n';
 	import { page } from '$app/state';
@@ -8,10 +9,7 @@
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 </script>
 
-<svelte:head>
-	<title>{m.privacy_page_title()} | Sem Van Broekhoven</title>
-	<meta name="description" content={m.privacy_page_description()} />
-</svelte:head>
+<Seo title={m.privacy_page_title()} description={m.privacy_page_description()} />
 
 <div class="container mx-auto max-w-4xl px-4 py-24">
 	<div class="prose prose-lg max-w-none prose-invert">

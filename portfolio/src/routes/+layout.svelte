@@ -3,6 +3,7 @@
 	import { i18n } from '$lib/i18n';
 	import { locales } from '$lib/paraglide/runtime';
 	import { page } from '$app/state';
+	import { absoluteUrl, canonicalUrl, stripTrailingSlash } from '$lib/site';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.png';
 	import 'devicon/devicon.min.css';
@@ -15,20 +16,12 @@
 
 	let { children } = $props();
 
-	const removeTrailingSlashFromPathname = (pathname: string) => {
-		return pathname.replace(/\/$/, '');
-	};
-
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
-	let canonicalUrl = $derived(
-		removeTrailingSlashFromPathname(
-			`https://dotsem.be${i18n.resolveRoute(i18n.route(page.url.pathname), currentLang)}`
-		)
-	);
+	let canonical = $derived(canonicalUrl(page.url));
 
 	onNavigate((navigation) => {
-		const toPath = removeTrailingSlashFromPathname(navigation.to?.url.pathname || '');
-		const fromPath = removeTrailingSlashFromPathname(navigation.from?.url.pathname || '');
+		const toPath = stripTrailingSlash(navigation.to?.url.pathname || '');
+		const fromPath = stripTrailingSlash(navigation.from?.url.pathname || '');
 
 		// If we're navigating to a different page, make it instant
 		if (toPath !== fromPath) {
@@ -72,28 +65,23 @@
 		<link
 			rel="alternate"
 			hreflang={locale}
-			href="https://dotsem.be{removeTrailingSlashFromPathname(
-				i18n.resolveRoute(i18n.route(page.url.pathname), locale)
-			)}"
+			href={absoluteUrl(
+				stripTrailingSlash(i18n.resolveRoute(i18n.route(page.url.pathname), locale))
+			)}
 		/>
 	{/each}
 	<link
 		rel="alternate"
 		hreflang="x-default"
-		href="https://dotsem.be{removeTrailingSlashFromPathname(
-			i18n.resolveRoute(i18n.route(page.url.pathname), 'en')
-		)}"
+		href={absoluteUrl(stripTrailingSlash(i18n.resolveRoute(i18n.route(page.url.pathname), 'en')))}
 	/>
 
 	<title>Sem Van Broekhoven</title>
 
-	<link rel="canonical" href={canonicalUrl} />
+	<link rel="canonical" href={canonical} />
 
 	<meta name="author" content="Sem Van Broekhoven" />
 	<meta property="og:site_name" content="Sem Van Broekhoven Portfolio" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={canonicalUrl} />
-	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 

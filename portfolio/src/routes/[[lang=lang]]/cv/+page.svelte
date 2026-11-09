@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import Paper from '$lib/components/cv/Paper.svelte';
 	import pfp from '$lib/assets/me.webp';
 	import * as m from '$lib/paraglide/messages';
@@ -26,10 +27,7 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{m.cv_title()} | Sem Van Broekhoven</title>
-	<meta name="description" content={m.cv_summary_content()} />
-</svelte:head>
+<Seo title={m.cv_title()} description={m.cv_summary_content()} />
 
 <div class="print-hidden fixed right-0 bottom-0 z-50">
 	<FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}>{m.cv_download()}</FAB>
