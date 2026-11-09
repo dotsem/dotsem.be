@@ -1,10 +1,4 @@
 ---
 title: {title}
-slug: {slug}
-image: /blog/{slug}/logo.webp
 description: 
-labels:
-
-date: 
-hidden: true
 ---

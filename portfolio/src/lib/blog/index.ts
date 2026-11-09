@@ -1,17 +1,13 @@
 import type { Component } from 'svelte';
 import { getLocale } from '$lib/paraglide/runtime';
 import { extractHeaders, readingTime, type MarkdownHeader } from '$lib/utils';
+import { blogsMetadata, type BlogMetadata } from './metadata';
 
-export interface BlogMeta {
+export type { BlogMetadata };
+
+export interface BlogMeta extends BlogMetadata {
 	title: string;
-	slug: string;
 	description: string;
-	image: string;
-	labels?: string[] | string;
-	hidden?: boolean;
-	date?: string;
-	/** Slug of the project this post is about (same slug in every language). */
-	project?: string;
 	readingTime?: number;
 }
 
@@ -20,14 +16,14 @@ export type BlogHeader = MarkdownHeader;
 export interface Blog extends BlogMeta {
 	component: Component;
 	hasContent: boolean;
-	parsedLabels: string[];
 	headers: BlogHeader[];
 	readingTime: number;
 }
 
 type MdsvexModule = {
 	default: Component;
-	metadata: BlogMeta;
+	/** The .svx frontmatter only holds the text that differs per language */
+	metadata: { title: string; description: string };
 };
 
 const modules = import.meta.glob<MdsvexModule>('/src/content/blog/*/*.svx');
@@ -39,15 +35,6 @@ const images = import.meta.glob<string>('/src/lib/assets/blog/**/*.{png,jpg,jpeg
 	eager: true,
 	import: 'default'
 });
-
-function parseLabels(labels: string[] | string | undefined): string[] {
-	if (!labels) return [];
-	if (Array.isArray(labels)) return labels;
-	return labels
-		.split(',')
-		.map((l) => l.trim())
-		.filter(Boolean);
-}
 
 export function parseBlogDate(dateStr: string | undefined): number {
 	if (!dateStr) return 0;
@@ -71,20 +58,26 @@ export function formatBlogDate(dateStr: string | undefined): string {
 }
 
 async function loadBlog(path: string, loader: () => Promise<MdsvexModule>): Promise<Blog | null> {
-	const mod = await loader();
-	if (mod.metadata.hidden) return null;
+	const slug = path.split('/').pop()?.replace('.svx', '') ?? '';
+	const meta = blogsMetadata.find((b) => b.slug === slug);
+	if (!meta) {
+		console.warn(`Blog post "${slug}" has no entry in src/lib/blog/metadata.ts, skipping it.`);
+		return null;
+	}
+	if (meta.hidden) return null;
 
-	const imagePath = `/src/lib/assets${mod.metadata.image}`;
+	const mod = await loader();
 	const rawContentLoader = rawModules[path];
 	const rawContent = rawContentLoader ? await rawContentLoader() : '';
 	const body = rawContent.split('---').slice(2).join('---').trim();
 
 	return {
-		...mod.metadata,
-		image: images[imagePath] || mod.metadata.image,
+		...meta,
+		title: mod.metadata.title,
+		description: mod.metadata.description,
+		image: images[`/src/lib/assets${meta.image}`] || meta.image,
 		component: mod.default,
 		hasContent: body.length > 0,
-		parsedLabels: parseLabels(mod.metadata.labels),
 		headers: extractHeaders(body),
 		readingTime: readingTime(body)
 	};

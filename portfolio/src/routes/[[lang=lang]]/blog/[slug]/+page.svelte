@@ -12,11 +12,16 @@
 		SidebarLink,
 		ContentPagination
 	} from '$lib/components/content-pages';
-	import { formatBlogDate } from '$lib/blog';
+	import { formatBlogDate, parseBlogDate } from '$lib/blog';
 
 	let { data } = $props();
 
 	const Component = $derived(data.blog.component);
+
+	// only worth showing once the post was actually changed after publishing
+	const updated = $derived(
+		parseBlogDate(data.blog.updated) > parseBlogDate(data.blog.date) ? data.blog.updated : undefined
+	);
 </script>
 
 <Seo
@@ -31,7 +36,7 @@
 	title={data.blog.title}
 	description={data.blog.description}
 	image={data.blog.image}
-	labels={data.blog.parsedLabels}
+	labels={data.blog.labels}
 	type="blog"
 />
 
@@ -45,9 +50,12 @@
 	{#snippet leftSidebar()}
 		<LeftSidebar title={m.blog_sidebar_title()}>
 			<LeftSidebarContent label={m.blog_sidebar_author()}>Sem Van Broekhoven</LeftSidebarContent>
-			{#if data.blog.date}
-				<LeftSidebarContent label={m.blog_sidebar_published()}>
-					{formatBlogDate(data.blog.date)}
+			<LeftSidebarContent label={m.blog_sidebar_published()}>
+				{formatBlogDate(data.blog.date)}
+			</LeftSidebarContent>
+			{#if updated}
+				<LeftSidebarContent label={m.blog_sidebar_updated()}>
+					{formatBlogDate(updated)}
 				</LeftSidebarContent>
 			{/if}
 			<LeftSidebarContent label={m.blog_sidebar_reading_time()}>

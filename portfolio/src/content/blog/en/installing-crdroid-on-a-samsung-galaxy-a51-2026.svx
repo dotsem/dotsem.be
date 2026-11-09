@@ -1,11 +1,6 @@
 ---
 title: installing crdroid on a samsung galaxy a51 2026
-slug: installing-crdroid-on-a-samsung-galaxy-a51-2026
-image: /blog/installing-crdroid-on-a-samsung-galaxy-a51-2026/logo.webp
 description: A complete guide on installing crDroid on the Samsung Galaxy A51 (SM-A515F), revive your old slow Samsung phone or de-google it.
-labels: ["android", "crdroid", "samsung", "linux", "e-cycling"]
-date: 2026-08-27
-hidden: false
 ---
 
 ## Warning

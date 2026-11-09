@@ -25,7 +25,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			<title>${escapeXml(blog.title)}</title>
 			<link>${link}</link>
 			<guid isPermaLink="true">${link}</guid>${published ? `\n\t\t\t<pubDate>${new Date(published).toUTCString()}</pubDate>` : ''}
-			<description>${escapeXml(blog.description)}</description>${blog.parsedLabels
+			<description>${escapeXml(blog.description)}</description>${blog.labels
 				.map((label) => `\n\t\t\t<category>${escapeXml(label)}</category>`)
 				.join('')}
 		</item>`;
