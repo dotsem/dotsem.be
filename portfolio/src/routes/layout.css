@@ -274,3 +274,34 @@ body {
 		margin-bottom: 0 !important;
 	}
 }
+
+/* Reduced motion: one switch for everything CSS-driven (hover lifts, entry reveals, profile
+   photo, navbar, toasts, bounce). Reveals still happen, they are just instant. What CSS can't
+   reach is handled in JS via scrollBehavior()/prefersReducedMotion() from $lib/utils. */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		/* also beats the inline scroll-behavior that +layout.svelte sets after navigation */
+		scroll-behavior: auto !important;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-delay: 0ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		transition-delay: 0ms !important;
+	}
+
+	/* a loading indicator is essential feedback, not decoration */
+	.animate-spin {
+		animation-duration: 1s !important;
+		animation-iteration-count: infinite !important;
+	}
+
+	/* a single 'alternate' pass would end scrolled to the far end and clip the labels */
+	.animate-saw {
+		animation: none !important;
+	}
+}

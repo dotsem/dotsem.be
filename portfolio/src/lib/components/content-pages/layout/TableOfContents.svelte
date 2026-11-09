@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { on_this_page } from '$lib/paraglide/messages';
+	import { scrollBehavior } from '$lib/utils';
 
 	interface Header {
 		level: number;
@@ -69,7 +70,7 @@
 		// shows it (top-24 = 96px). A fixed scroll-padding would leave a gap in the first case.
 		const top = element.getBoundingClientRect().top + window.scrollY;
 		const offset = top > window.scrollY ? 32 : 96;
-		window.scrollTo({ top: top - offset, behavior: 'smooth' });
+		window.scrollTo({ top: top - offset, behavior: scrollBehavior() });
 	}
 </script>
 

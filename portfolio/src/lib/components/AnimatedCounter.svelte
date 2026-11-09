@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { prefersReducedMotion } from '$lib/utils';
 
 	interface Props {
 		value: number;
@@ -35,7 +36,7 @@
 		hasAnimated = true;
 
 		// Skip animation if user prefers reduced motion
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		if (prefersReducedMotion()) {
 			displayValue = value;
 			return;
 		}

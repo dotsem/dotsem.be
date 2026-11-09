@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { scrollBehavior } from '$lib/utils';
 
 	export interface SectionItem {
 		id: string;
@@ -79,7 +80,7 @@
 
 		const target = document.getElementById(id);
 		if (target) {
-			target.scrollIntoView({ behavior: 'smooth' });
+			target.scrollIntoView({ behavior: scrollBehavior() });
 			activeId = id;
 			history.replaceState(null, '', `#${id}`);
 		}
