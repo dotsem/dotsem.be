@@ -9,6 +9,7 @@ labels:
     - SvelteKit
 
 date: 2026-08-20
+project: world-wide-bulb
 hidden: false
 ---
 

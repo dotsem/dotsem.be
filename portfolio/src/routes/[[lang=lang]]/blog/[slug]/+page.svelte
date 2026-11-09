@@ -1,12 +1,15 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { resolve } from '$app/paths';
+	import { i18n } from '$lib/i18n';
 	import ContentHero from '$lib/components/content-pages/ContentHero.svelte';
 	import ContentLayout from '$lib/components/content-pages/ContentLayout.svelte';
 	import PenTool from '@lucide/svelte/icons/pen-tool';
 	import {
 		LeftSidebar,
 		LeftSidebarContent,
+		SidebarLink,
 		ContentPagination
 	} from '$lib/components/content-pages';
 	import { formatBlogDate } from '$lib/blog';
@@ -42,12 +45,21 @@
 	{#snippet leftSidebar()}
 		<LeftSidebar title={m.blog_sidebar_title()}>
 			<LeftSidebarContent label={m.blog_sidebar_author()}>Sem Van Broekhoven</LeftSidebarContent>
-			<LeftSidebarContent label={m.blog_sidebar_topic()}>
-				{data.blog.slug.replace(/-/g, ' ')}
-			</LeftSidebarContent>
 			{#if data.blog.date}
 				<LeftSidebarContent label={m.blog_sidebar_published()}>
 					{formatBlogDate(data.blog.date)}
+				</LeftSidebarContent>
+			{/if}
+			<LeftSidebarContent label={m.blog_sidebar_reading_time()}>
+				{data.blog.readingTime} min
+			</LeftSidebarContent>
+			{#if data.project}
+				<LeftSidebarContent label={m.blog_sidebar_project()}>
+					<SidebarLink
+						href={resolve(i18n.resolveRoute('/projects/' + data.project.slug, data.lang))}
+					>
+						{data.project.title}
+					</SidebarLink>
 				</LeftSidebarContent>
 			{/if}
 		</LeftSidebar>

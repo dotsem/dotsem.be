@@ -1,6 +1,6 @@
 import type { Component } from 'svelte';
 import { getLocale } from '$lib/paraglide/runtime';
-import { extractHeaders, type MarkdownHeader } from '$lib/utils';
+import { extractHeaders, readingTime, type MarkdownHeader } from '$lib/utils';
 
 export interface BlogMeta {
 	title: string;
@@ -10,6 +10,9 @@ export interface BlogMeta {
 	labels?: string[] | string;
 	hidden?: boolean;
 	date?: string;
+	/** Slug of the project this post is about (same slug in every language). */
+	project?: string;
+	readingTime?: number;
 }
 
 export type BlogHeader = MarkdownHeader;
@@ -19,6 +22,7 @@ export interface Blog extends BlogMeta {
 	hasContent: boolean;
 	parsedLabels: string[];
 	headers: BlogHeader[];
+	readingTime: number;
 }
 
 type MdsvexModule = {
@@ -66,42 +70,10 @@ export function formatBlogDate(dateStr: string | undefined): string {
 	}).format(date);
 }
 
-export async function getBlogsByLang(lang: string): Promise<Blog[]> {
-	const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
-
-	const blogs = await Promise.all(
-		entries.map(async ([path, loader]) => {
-			const mod = await loader();
-			if (mod.metadata.hidden) return null;
-			const imagePath = `/src/lib/assets${mod.metadata.image}`;
-
-			const rawContentLoader = rawModules[path];
-			const rawContent = rawContentLoader ? await rawContentLoader() : '';
-			const body = rawContent.split('---').slice(2).join('---').trim();
-
-			return {
-				...mod.metadata,
-				image: images[imagePath] || mod.metadata.image,
-				component: mod.default,
-				hasContent: body.length > 0,
-				parsedLabels: parseLabels(mod.metadata.labels),
-				headers: extractHeaders(body)
-			};
-		})
-	);
-
-	return blogs
-		.filter((blog): blog is Blog => blog !== null)
-		.sort((a, b) => parseBlogDate(b.date) - parseBlogDate(a.date));
-}
-
-export async function getBlogBySlug(lang: string, slug: string): Promise<Blog | null> {
-	const path = `/src/content/blog/${lang}/${slug}.svx`;
-	const loader = modules[path];
-	if (!loader) return null;
-
+async function loadBlog(path: string, loader: () => Promise<MdsvexModule>): Promise<Blog | null> {
 	const mod = await loader();
 	if (mod.metadata.hidden) return null;
+
 	const imagePath = `/src/lib/assets${mod.metadata.image}`;
 	const rawContentLoader = rawModules[path];
 	const rawContent = rawContentLoader ? await rawContentLoader() : '';
@@ -113,6 +85,22 @@ export async function getBlogBySlug(lang: string, slug: string): Promise<Blog | 
 		component: mod.default,
 		hasContent: body.length > 0,
 		parsedLabels: parseLabels(mod.metadata.labels),
-		headers: extractHeaders(body)
+		headers: extractHeaders(body),
+		readingTime: readingTime(body)
 	};
+}
+
+export async function getBlogsByLang(lang: string): Promise<Blog[]> {
+	const entries = Object.entries(modules).filter(([path]) => path.includes(`/${lang}/`));
+	const blogs = await Promise.all(entries.map(([path, loader]) => loadBlog(path, loader)));
+
+	return blogs
+		.filter((blog): blog is Blog => blog !== null)
+		.sort((a, b) => parseBlogDate(b.date) - parseBlogDate(a.date));
+}
+
+export async function getBlogBySlug(lang: string, slug: string): Promise<Blog | null> {
+	const path = `/src/content/blog/${lang}/${slug}.svx`;
+	const loader = modules[path];
+	return loader ? loadBlog(path, loader) : null;
 }
