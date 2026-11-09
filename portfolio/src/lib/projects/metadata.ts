@@ -150,7 +150,7 @@ export const projectsMetadata: ProjectMetadata[] = [
 	},
 	{
 		slug: 'tusshi',
-		image: '/projects/tusshi/logo.webp',
+		image: '/projects/tusshi/logo.svg',
 		languages: ['go'],
 		highlighted: false,
 		status: ProjectStatus.InProgress,
