@@ -2,11 +2,17 @@
 	import { page } from '$app/state';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Error404 from '$lib/components/Error404.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 </script>
 
 {#if page.status === 404}
 	<Error404 />
 {:else}
+	<Seo
+		title={String(page.status)}
+		description={page.error?.message || 'An unexpected error occurred'}
+		noindex
+	/>
 	<div class="flex h-full flex-col items-center justify-center gap-4">
 		<h1 class="text-4xl font-bold">{page.status}</h1>
 		<p class="text-xl">

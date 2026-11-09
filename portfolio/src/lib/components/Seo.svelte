@@ -13,6 +13,8 @@
 		publishedTime?: string;
 		/** Append " | Sem Van Broekhoven" to the <title>. */
 		suffix?: boolean;
+		/** Ask search engines to leave this page out of their index (error pages). */
+		noindex?: boolean;
 	}
 
 	let {
@@ -21,7 +23,8 @@
 		image,
 		type = 'website',
 		publishedTime,
-		suffix = true
+		suffix = true,
+		noindex = false
 	}: Props = $props();
 
 	const OG_LOCALE: Record<string, string> = { en: 'en_US', nl: 'nl_BE' };
@@ -40,6 +43,9 @@
 <svelte:head>
 	<title>{fullTitle}</title>
 	<meta name="description" content={description} />
+	{#if noindex}
+		<meta name="robots" content="noindex" />
+	{/if}
 
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />

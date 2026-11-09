@@ -6,7 +6,7 @@
 	import * as m from '$lib/paraglide/messages';
 </script>
 
-<Seo title={m.error_404_title()} description={m.error_404_description()} />
+<Seo title={m.error_404_title()} description={m.error_404_description()} noindex />
 
 <img src={bg} alt="404" class="unselectable absolute top-0 left-0 h-full w-full object-cover" />
 

@@ -85,7 +85,7 @@
 <Seo
 	title="Sem Van Broekhoven | Software Engineer Portfolio"
 	suffix={false}
-	description="Official portfolio of Sem Van Broekhoven, a software engineer specializing in building innovative technology solutions. Studying Digital Innovation at Thomas More. Discover my projects and blog posts."
+	description={m.home_description()}
 />
 
 <svelte:head>
