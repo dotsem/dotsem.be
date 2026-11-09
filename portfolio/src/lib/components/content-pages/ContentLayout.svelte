@@ -25,15 +25,15 @@
 	}: Props = $props();
 
 	const stickyClass = $derived(
-		`sticky transition-[top] duration-300 ease-in-out ${navbar.visible ? 'top-24' : 'top-8'}`
+		`lg:sticky transition-[top] duration-300 ease-in-out ${navbar.visible ? 'top-24' : 'top-8'}`
 	);
 </script>
 
 <!-- main layout content with sidebars -->
 <div id="content" class="w-full bg-background px-4 py-16 md:px-8">
-	<div class="container mx-auto flex flex-col gap-12 lg:flex-row">
-		<!-- left sidebar: project/post meta details -->
-		<aside class="hidden w-65 shrink-0 lg:block">
+	<div class="container mx-auto flex flex-col gap-8 lg:flex-row lg:gap-12">
+		<!-- left sidebar: project/post meta details (card above the article below lg, sticky column from lg) -->
+		<aside class="w-full lg:w-65 lg:shrink-0">
 			<div class="{stickyClass} flex flex-col gap-8">
 				{#if leftSidebar}
 					{@render leftSidebar()}

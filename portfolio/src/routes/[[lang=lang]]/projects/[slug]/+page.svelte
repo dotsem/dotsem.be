@@ -45,7 +45,8 @@
 >
 	{#snippet leftSidebar()}
 		<LeftSidebar title={m.projects_sidebar_title()}>
-			<LeftSidebarContent label={m.projects_sidebar_project()}>
+			<!-- below lg the hero already shows the title and the repository buttons -->
+			<LeftSidebarContent label={m.projects_sidebar_project()} class="max-lg:hidden">
 				{data.metadata.title}
 			</LeftSidebarContent>
 			{#if data.metadata.status}
@@ -60,7 +61,7 @@
 				{/if}
 			{/if}
 			{#if data.metadata.repo}
-				<LeftSidebarContent label={m.projects_sidebar_repository()}>
+				<LeftSidebarContent label={m.projects_sidebar_repository()} class="max-lg:hidden">
 					{#if Array.isArray(data.metadata.repo)}
 						{#each data.metadata.repo as r (typeof r === 'string' ? r : r.path)}
 							{@const repoPath = typeof r === 'string' ? r : r.path}

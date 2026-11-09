@@ -51,9 +51,14 @@
 	});
 </script>
 
-<div class="relative flex flex-col gap-3 overflow-hidden rounded-2xl bg-card p-5">
-	<!-- svg reading progress border -->
-	<svg class="pointer-events-none absolute inset-0 z-10 h-full w-full" overflow="visible">
+<div
+	class="relative flex flex-col gap-3 overflow-hidden rounded-2xl bg-card p-5 max-lg:border max-lg:border-border"
+>
+	<!-- svg reading progress border (desktop only: below lg the card is static above the article) -->
+	<svg
+		class="pointer-events-none absolute inset-0 z-10 h-full w-full max-lg:hidden"
+		overflow="visible"
+	>
 		<!-- static background border -->
 		<rect
 			x="0.75"
@@ -86,7 +91,9 @@
 	<h3 class="relative z-20 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 		{title}
 	</h3>
-	<div class="relative z-20 mt-2 flex flex-col gap-4 text-sm">
+	<div
+		class="relative z-20 mt-2 flex flex-col gap-4 text-sm max-lg:grid max-lg:grid-cols-2 max-lg:gap-x-6"
+	>
 		{@render children()}
 	</div>
 </div>
