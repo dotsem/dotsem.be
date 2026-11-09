@@ -3,7 +3,7 @@
 	import { i18n } from '$lib/i18n';
 	import { locales } from '$lib/paraglide/runtime';
 	import { page } from '$app/state';
-	import { absoluteUrl, canonicalUrl, stripTrailingSlash } from '$lib/site';
+	import { SITE_NAME, absoluteUrl, canonicalUrl, stripTrailingSlash } from '$lib/site';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.png';
 	import headingFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
@@ -46,6 +46,12 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title="{SITE_NAME} - Blog"
+		href={absoluteUrl(i18n.resolveRoute('/blog/rss.xml', currentLang))}
+	/>
 	<link rel="preload" as="font" type="font/woff2" href={headingFont} crossorigin="anonymous" />
 	<script
 		src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"

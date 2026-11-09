@@ -36,6 +36,10 @@
 		<div class="flex gap-4">
 			<a href={resolve(i18n.resolveRoute('/cookies', currentLang))}>Cookies</a>
 			<a href={resolve(i18n.resolveRoute('/privacy', currentLang))}>Privacy</a>
+			<!-- full page load: the feed is an XML endpoint, not a SvelteKit page -->
+			<a href={resolve(i18n.resolveRoute('/blog/rss.xml', currentLang))} data-sveltekit-reload
+				>RSS</a
+			>
 		</div>
 	</div>
 

@@ -3,6 +3,9 @@
 	import BlogCard from '$lib/components/cards/BlogCard.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as m from '$lib/paraglide/messages';
+	import { resolve } from '$app/paths';
+	import { i18n } from '$lib/i18n';
+	import { getLocale } from '$lib/paraglide/runtime';
 
 	let { data } = $props();
 
@@ -43,7 +46,18 @@
 		<div class="mb-6 flex flex-col justify-between gap-4 md:flex-row">
 			<div>
 				<h1 class="mb-4 text-5xl font-bold">{m.blog_title()}</h1>
-				<h2 class="mb-6 text-2xl font-bold">{m.blog_description()}</h2>
+				<div class="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+					<h2 class="text-2xl font-bold">{m.blog_description()}</h2>
+					<!-- full page load: this is an XML file, not a SvelteKit page -->
+					<a
+						href={resolve(i18n.resolveRoute('/blog/rss.xml', getLocale()))}
+						data-sveltekit-reload
+						class="inline-flex items-center gap-2 font-mono text-sm"
+					>
+						<i class="fa-solid fa-rss"></i>
+						RSS
+					</a>
+				</div>
 			</div>
 			<input
 				type="search"
