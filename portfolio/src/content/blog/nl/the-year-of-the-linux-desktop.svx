@@ -1,13 +1,6 @@
 ---
 title: Het jaar van de Linux desktop
-slug: the-year-of-the-linux-desktop
-image: /blog/the-year-of-the-linux-desktop/logo.webp
 description: Mijn ervaring met het achterlaten van Windows en de overstap naar Linux als mijn primaire desktopbesturingssysteem. Over de aanpasbaarheid, de community en waarom Linux nog nooit zo goed is geweest.
-labels:
-    - linux
-    - niri
-date: 2026-05-16
-hidden: false
 ---
 
 ## Het jaar van de Linux desktop

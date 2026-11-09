@@ -12,9 +12,7 @@
 	let searchQuery = $state('');
 	let selectedLabels = $state<string[]>([]);
 
-	let allLabels = $derived(
-		Array.from(new Set(data.blogs.flatMap((blog) => blog.parsedLabels))).sort()
-	);
+	let allLabels = $derived(Array.from(new Set(data.blogs.flatMap((blog) => blog.labels))).sort());
 
 	function toggleLabel(label: string) {
 		if (selectedLabels.includes(label)) {
@@ -31,8 +29,7 @@
 				blog.description.toLowerCase().includes(searchQuery.toLowerCase());
 
 			const matchesLabels =
-				selectedLabels.length === 0 ||
-				selectedLabels.every((label) => blog.parsedLabels.includes(label));
+				selectedLabels.length === 0 || selectedLabels.every((label) => blog.labels.includes(label));
 
 			return matchesSearch && matchesLabels;
 		})

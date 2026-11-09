@@ -1,16 +1,6 @@
 ---
 title: one lightbulb shared across the whole globe
-slug: one-lightbulb-shared-across-the-whole-globe
-image: /blog/one-lightbulb-shared-across-the-whole-globe/bulb_on.svg
 description: An easy project it seems? I made it into an overkill production grade application to create the truly global lightbulb.
-labels:
-    - Project
-    - Go
-    - SvelteKit
-
-date: 2026-08-20
-project: world-wide-bulb
-hidden: false
 ---
 
 How great would it be if we had a global lightbulb in this world, nobody said ever.

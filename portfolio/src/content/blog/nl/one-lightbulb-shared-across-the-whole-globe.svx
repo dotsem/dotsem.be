@@ -1,16 +1,6 @@
 ---
 title: één lamp gedeeld over de hele wereld
-slug: one-lightbulb-shared-across-the-whole-globe
-image: /blog/one-lightbulb-shared-across-the-whole-globe/bulb_on.svg
 description: Een simpel projectje zo te zien? Ik maakte er een overkill applicatie op productie-niveau van om een echt wereldwijde gloeilamp te creëren.
-labels:
-    - Project
-    - Go
-    - SvelteKit
-
-date: 2026-08-20
-project: world-wide-bulb
-hidden: false
 ---
 
 Hoe geweldig zou het zijn als we een wereldwijde gloeilamp hadden op deze aarde, zei echt helemaal niemand ooit.

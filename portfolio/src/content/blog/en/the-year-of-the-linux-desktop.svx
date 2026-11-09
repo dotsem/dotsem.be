@@ -1,13 +1,6 @@
 ---
 title: The year of the Linux desktop
-slug: the-year-of-the-linux-desktop
-image: /blog/the-year-of-the-linux-desktop/logo.webp
 description: My journey of leaving Windows behind and switching to Linux as my primary desktop operating system. Exploring the customization, community, and why Linux has never been better.
-labels:
-    - linux
-    - niri
-date: 2026-05-16
-hidden: false
 ---
 
 ## The year of the Linux desktop

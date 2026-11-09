@@ -11,7 +11,7 @@
 	import CardImage from '$lib/components/cards/CardImage.svelte';
 
 	interface Props {
-		blog: BlogMeta & { parsedLabels: string[] };
+		blog: BlogMeta;
 	}
 
 	let { blog }: Props = $props();
@@ -75,7 +75,7 @@
 							style="--scroll-duration: {scrollDuration}s"
 							bind:this={contentContainer}
 						>
-							{#each blog.parsedLabels as label (label)}
+							{#each blog.labels as label (label)}
 								<Badge
 									variant="secondary"
 									class="border-none bg-foreground/10 px-3.5 py-1 text-xs text-foreground hover:bg-foreground/20"

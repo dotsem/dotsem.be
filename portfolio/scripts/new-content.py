@@ -1,5 +1,6 @@
 import re
 import questionary
+from datetime import date
 from pathlib import Path
 
 def slugify(text: str) -> str:
@@ -8,8 +9,7 @@ def slugify(text: str) -> str:
     text = re.sub(r'[\s_-]+', '-', text)
     return text.strip('-')
 
-def update_projects_metadata(slug: str, languages: list[str]) -> bool:
-    metadata_path = Path("src") / "lib" / "projects" / "metadata.ts"
+def append_metadata_entry(metadata_path: Path, slug: str, entry_lines: list[str]) -> bool:
     if not metadata_path.exists():
         print(f"\033[31mError: {metadata_path} not found.\033[0m")
         return False
@@ -18,25 +18,14 @@ def update_projects_metadata(slug: str, languages: list[str]) -> bool:
         content = f.read()
 
     if f'slug: "{slug}"' in content or f"slug: '{slug}'" in content:
-        print(f"\033[33mMetadata entry for '{slug}' already exists in metadata.ts. Skipping...\033[0m")
+        print(f"\033[33mMetadata entry for '{slug}' already exists in {metadata_path.name}. Skipping...\033[0m")
         return False
 
-    langs_formatted = "[" + ", ".join(f'"{lang}"' for lang in languages) + "]"
-
-    entry_lines = [
-        "    {",
-        f'        slug: "{slug}",',
-        f'        image: "/projects/{slug}/logo.webp",',
-        f'        languages: {langs_formatted},',
-        '        highlighted: false,',
-        '        status: ""',
-        "    }"
-    ]
     new_entry_str = "\n".join(entry_lines)
 
     r_idx = content.rfind("];")
     if r_idx == -1:
-        print("\033[31mError: Could not find '];' in metadata.ts.\033[0m")
+        print(f"\033[31mError: Could not find '];' in {metadata_path.name}.\033[0m")
         return False
 
     prefix = content[:r_idx].rstrip()
@@ -51,6 +40,33 @@ def update_projects_metadata(slug: str, languages: list[str]) -> bool:
 
     print(f"\033[32mSuccessfully updated {metadata_path}\033[0m")
     return True
+
+def update_projects_metadata(slug: str, languages: list[str]) -> bool:
+    langs_formatted = "[" + ", ".join(f'"{lang}"' for lang in languages) + "]"
+
+    entry_lines = [
+        "    {",
+        f'        slug: "{slug}",',
+        f'        image: "/projects/{slug}/logo.webp",',
+        f'        languages: {langs_formatted},',
+        '        highlighted: false,',
+        '        status: ""',
+        "    }"
+    ]
+    return append_metadata_entry(Path("src") / "lib" / "projects" / "metadata.ts", slug, entry_lines)
+
+def update_blogs_metadata(slug: str) -> bool:
+    # new posts start hidden (draft); remove `hidden` once the post is ready
+    entry_lines = [
+        "    {",
+        f'        slug: "{slug}",',
+        f'        image: "/blog/{slug}/logo.webp",',
+        '        labels: [],',
+        f'        date: "{date.today().isoformat()}",',
+        '        hidden: true',
+        "    }"
+    ]
+    return append_metadata_entry(Path("src") / "lib" / "blog" / "metadata.ts", slug, entry_lines)
 
 def main():
     print("\033[36m--- Content Creator ---\033[0m")
@@ -119,6 +135,8 @@ def main():
 
     if type_key == "projects":
         update_projects_metadata(slug, languages)
+    else:
+        update_blogs_metadata(slug)
 
     if created_files:
         print("\033[32mSuccessfully created files:\033[0m")
