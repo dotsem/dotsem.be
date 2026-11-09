@@ -14,7 +14,7 @@
 <button
 	{onclick}
 	class="glossy-tile glossy-frost flex flex-1 cursor-pointer items-center gap-2 rounded-lg px-4
-     py-2 text-white shadow-xl transition-all hover:scale-105"
+     py-2 text-foreground shadow-xl transition-all hover:scale-105"
 >
 	<i class={icon}></i>
 	{@render children()}

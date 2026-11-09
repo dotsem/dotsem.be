@@ -59,7 +59,7 @@
 	class="flex flex-col min-[901px]:hidden"
 	class:active-menu={hamburgerMenuVisible}
 >
-	<div class="mb-4 flex items-center justify-end border-b border-white/10 pb-4">
+	<div class="mb-4 flex items-center justify-end border-b border-foreground/10 pb-4">
 		<LangSwitch />
 	</div>
 	<NavLinks

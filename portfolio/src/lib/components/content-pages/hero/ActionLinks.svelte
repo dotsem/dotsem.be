@@ -15,7 +15,7 @@
 		href="https://github.com/{path}"
 		target="_blank"
 		rel="noopener noreferrer"
-		class="{actionButtonStyle} border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-white/20 hover:bg-white/10 "
+		class="{actionButtonStyle} border border-foreground/10 bg-foreground/5 text-foreground transition-all duration-300 hover:border-foreground/20 hover:bg-foreground/10 "
 	>
 		<i class="fa-brands fa-github text-lg"></i>
 		{label}

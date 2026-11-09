@@ -7,8 +7,8 @@
 	interface Props {
 		headers: Array<{ level: number; text: string; id: string }>;
 		hasContent: boolean;
-		emptyTitle?: string;
-		emptyDescription?: string;
+		emptyTitle: string;
+		emptyDescription: string;
 		emptyIcon?: SvelteComponent;
 		leftSidebar?: Snippet;
 		children: Snippet;
@@ -17,8 +17,8 @@
 	let {
 		headers,
 		hasContent,
-		emptyTitle = 'Under construction...',
-		emptyDescription = 'Content is currently being written.',
+		emptyTitle,
+		emptyDescription,
 		emptyIcon: EmptyIcon = HardHat,
 		leftSidebar,
 		children

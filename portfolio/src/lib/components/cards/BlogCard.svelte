@@ -69,7 +69,7 @@
 							{#each blog.parsedLabels as label (label)}
 								<Badge
 									variant="secondary"
-									class="border-none bg-white/10 px-3.5 py-1 text-xs text-white hover:bg-white/20"
+									class="border-none bg-foreground/10 px-3.5 py-1 text-xs text-foreground hover:bg-foreground/20"
 								>
 									{label}
 								</Badge>
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					{#if blog.date}
-						<span class="shrink-0 font-sans text-xs font-medium text-white/40">
+						<span class="shrink-0 font-sans text-xs font-medium text-foreground/40">
 							<i class="fa-regular fa-calendar mr-1"></i>
 							{formatBlogDate(blog.date)}
 						</span>

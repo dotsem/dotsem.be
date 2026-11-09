@@ -24,9 +24,9 @@
 	class="group block text-inherit no-underline"
 >
 	<Card.Root
-		class="m-0! flex! h-96 w-80 flex-col gap-2 overflow-hidden border-white/10! bg-white/5! 
+		class="m-0! flex! h-96 w-80 flex-col gap-2 overflow-hidden border-foreground/10! bg-foreground/5! 
                 transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)]
-                has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10! "
+                has-hover:hover:-translate-y-1.5 has-hover:hover:border-foreground/20! has-hover:hover:bg-foreground/10! "
 	>
 		<CardImage src={project.image} alt={project.title} class="h-48" paddingClass="p-4" />
 

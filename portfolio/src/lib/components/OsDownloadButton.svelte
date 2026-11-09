@@ -63,12 +63,12 @@
 {#if platforms.length > 0}
 	<Card
 		id="download-here"
-		class="relative my-8 flex flex-col gap-6 overflow-hidden p-6 transition-all duration-300 hover:border-white/20 md:p-8"
+		class="relative my-8 flex flex-col gap-6 overflow-hidden p-6 transition-all duration-300 hover:border-foreground/20 md:p-8"
 	>
 		<div class="relative flex flex-col justify-between gap-6 md:flex-row md:items-center">
 			<div class="flex items-center gap-5">
 				<div
-					class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-3xl shadow-inner transition-all duration-300"
+					class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-foreground/10 bg-foreground/5 text-3xl shadow-inner transition-all duration-300"
 				>
 					{#if activePlatform}
 						<i class="{activePlatform.icon} {activePlatform.colorClass}"></i>
@@ -78,7 +78,7 @@
 				</div>
 
 				<div>
-					<h3 class="m-0 text-xl font-bold tracking-tight text-white">
+					<h3 class="m-0 text-xl font-bold tracking-tight text-foreground">
 						{title}
 					</h3>
 				</div>
@@ -102,7 +102,7 @@
 		<!-- Other Available Platforms -->
 		{#if otherPlatforms.length > 0}
 			<div
-				class="relative mt-6 flex flex-col justify-between gap-4 border-t border-white/5 pt-6 sm:flex-row sm:items-center"
+				class="relative mt-6 flex flex-col justify-between gap-4 border-t border-foreground/5 pt-6 sm:flex-row sm:items-center"
 			>
 				<span class="text-xs font-semibold tracking-wider text-foreground/40 uppercase">
 					{m.download_other_platforms()}
@@ -113,7 +113,7 @@
 							href={platform.url}
 							variant="outline"
 							size="default"
-							class="h-auto cursor-pointer gap-2.5 rounded-xl border border-white/5 bg-white/5 px-4 py-2.5 text-foreground/80 shadow-none transition-all hover:border-white/10 hover:bg-white/10 hover:text-white"
+							class="h-auto cursor-pointer gap-2.5 rounded-xl border border-foreground/5 bg-foreground/5 px-4 py-2.5 text-foreground/80 shadow-none transition-all hover:border-foreground/10 hover:bg-foreground/10 hover:text-foreground"
 						>
 							<i class="{platform.icon} {platform.colorClass}"></i>
 							{platform.name}

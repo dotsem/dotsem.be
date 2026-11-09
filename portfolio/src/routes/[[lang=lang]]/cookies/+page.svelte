@@ -10,7 +10,7 @@
 
 <div class="container mx-auto max-w-4xl px-4 py-12">
 	<div>
-		<h1 class="mb-8 text-4xl font-bold text-white">
+		<h1 class="mb-8 text-4xl font-bold text-foreground">
 			{m.cookie_page_title()}
 		</h1>
 
