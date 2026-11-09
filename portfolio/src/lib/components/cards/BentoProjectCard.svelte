@@ -82,7 +82,7 @@
 		<!-- STATUS BADGE -->
 		{#if project.status}
 			<span
-				class="glossy-tile absolute top-2 left-2 z-10 m-0 rounded-md border border-foreground/10 px-1.5 py-0.5 text-xs font-semibold backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+				class="glossy-tile absolute top-2 left-2 z-10 m-0 rounded-md border border-foreground/10 px-1.5 py-0.5 font-mono text-xs font-semibold backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
 					? ''
 					: 'has-hover:translate-x-[-120%] has-hover:group-hover:translate-x-0'}"

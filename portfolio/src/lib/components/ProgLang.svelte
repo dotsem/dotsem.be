@@ -306,7 +306,7 @@
 	style="background-color: {bgColor}; color: {color}; font-size: {size}rem"
 >
 	<i class="devicon-{iconName}-plain"></i>
-	<span>
+	<span class="font-mono">
 		{fullName}
 	</span>
 </span>

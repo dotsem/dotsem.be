@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					{#if blog.date}
-						<span class="shrink-0 font-sans text-xs font-medium text-foreground/40">
+						<span class="shrink-0 font-mono text-xs font-medium text-foreground/40">
 							<i class="fa-regular fa-calendar mr-1"></i>
 							{formatBlogDate(blog.date)}
 						</span>

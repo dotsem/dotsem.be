@@ -1,3 +1,5 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/jetbrains-mono';
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
@@ -84,9 +86,10 @@ body {
 		'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 		'Segoe UI Symbol', 'Noto Color Emoji';
 	--font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+	--font-heading: 'Bricolage Grotesque Variable', var(--font-sans);
 	--font-mono:
-		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-		monospace;
+		'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		'Liberation Mono', 'Courier New', monospace;
 	--radius: 0.625rem;
 	--shadow-x: 0;
 	--shadow-y: 1px;
@@ -149,6 +152,7 @@ body {
 	--color-sidebar-ring: var(--sidebar-ring);
 
 	--font-sans: var(--font-sans);
+	--font-heading: var(--font-heading);
 	--font-mono: var(--font-mono);
 	--font-serif: var(--font-serif);
 
@@ -207,6 +211,13 @@ body {
 
 	html {
 		height: 100%;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: var(--font-heading);
 	}
 
 	.unselectable {
