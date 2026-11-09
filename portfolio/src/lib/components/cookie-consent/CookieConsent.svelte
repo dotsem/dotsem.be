@@ -57,10 +57,10 @@
 					<i class="fa-solid fa-cookie-bite text-3xl text-secondary"></i>
 				</div>
 				<div>
-					<h2 class="text-2xl font-bold text-white">
+					<h2 class="text-2xl font-bold text-foreground">
 						{m.consent_title()}
 					</h2>
-					<p class="text-sm text-white">
+					<p class="text-sm text-foreground">
 						{m.consent_message()}
 						<a href={resolve(i18n.resolveRoute('/cookies'))}>
 							{m.consent_more()}

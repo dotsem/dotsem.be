@@ -17,7 +17,7 @@
 		);
 		window.location.replace(newUrl);
 	}}
-	class="unselectable relative flex w-[64px] cursor-pointer items-center rounded-full border border-white/10 bg-slate-800/80 p-1 shadow-inner transition-colors hover:bg-slate-700/80"
+	class="unselectable relative flex w-[64px] cursor-pointer items-center rounded-full border border-foreground/10 bg-card p-1 shadow-inner transition-colors hover:bg-muted"
 >
 	<div
 		class="pointer-events-none absolute left-1 h-7 w-7 rounded-full bg-primary/20 shadow-sm transition-transform duration-300 ease-in-out {currentLang ===

@@ -21,9 +21,9 @@
 	class="group block text-inherit no-underline {className}"
 >
 	<Card.Root
-		class="relative m-0! flex! h-64 w-80 flex-col justify-between overflow-hidden border-white/10! bg-white/5! 
+		class="relative m-0! flex! h-64 w-80 flex-col justify-between overflow-hidden border-foreground/10! bg-foreground/5! 
                p-5 transition-all duration-500
-               ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10!"
+               ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-foreground/20! has-hover:hover:bg-foreground/10!"
 	>
 		<div class="space-y-3">
 			<div class="flex items-center justify-between gap-2">
@@ -49,7 +49,7 @@
 					<span class="capitalize">{contribution.status}</span>
 				</span>
 			</div>
-			<div class="flex items-center justify-between gap-3 border-t border-white/5 pt-3">
+			<div class="flex items-center justify-between gap-3 border-t border-foreground/5 pt-3">
 				<ScrollingLangList languages={contribution.languages} class="flex-1" />
 			</div>
 

@@ -31,7 +31,7 @@
 		{/if}
 	</div>
 	<h1
-		class="font-sans text-4xl leading-[1.1] font-black tracking-tight text-white drop-shadow-sm md:text-6xl"
+		class="font-sans text-4xl leading-[1.1] font-black tracking-tight text-foreground drop-shadow-sm md:text-6xl"
 	>
 		{title}
 	</h1>

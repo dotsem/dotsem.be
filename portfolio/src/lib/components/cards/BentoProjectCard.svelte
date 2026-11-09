@@ -21,7 +21,7 @@
 	class="group block h-full w-full text-inherit no-underline"
 >
 	<Card.Root
-		class=" m-0! flex! h-full w-full flex-col gap-2! overflow-hidden border-white/10! bg-white/5! transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-white/20! has-hover:hover:bg-white/10!
+		class=" m-0! flex! h-full w-full flex-col gap-2! overflow-hidden border-foreground/10! bg-foreground/5! transition-all duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] has-hover:hover:-translate-y-1.5 has-hover:hover:border-foreground/20! has-hover:hover:bg-foreground/10!
         {variant === 'wide'
 			? 'md:flex-row md:gap-0! md:pb-0!'
 			: variant === 'full'
@@ -82,7 +82,7 @@
 		<!-- STATUS BADGE -->
 		{#if project.status}
 			<span
-				class="glossy-tile absolute top-2 left-2 z-10 m-0 rounded-md border border-white/10 px-1.5 py-0.5 text-xs font-semibold backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+				class="glossy-tile absolute top-2 left-2 z-10 m-0 rounded-md border border-foreground/10 px-1.5 py-0.5 text-xs font-semibold backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
 					? ''
 					: 'has-hover:translate-x-[-120%] has-hover:group-hover:translate-x-0'}"
