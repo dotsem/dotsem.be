@@ -1,5 +1,5 @@
 import { getProjectsByLang } from '$lib/projects';
-import { getBlogsByLang } from '$lib/blog';
+import { getBlogsByLang, parseBlogDate } from '$lib/blog';
 import { locales } from '$lib/paraglide/runtime';
 import { i18n } from '$lib/i18n';
 import { SITE_URL } from '$lib/site';
@@ -25,7 +25,7 @@ export async function GET() {
 		return alternativePriorities[path] || defaultPriority;
 	};
 
-	const pages: { url: string; path: string }[] = [];
+	const pages: { url: string; path: string; lastmod?: string }[] = [];
 
 	// Add localized versions of constant pages
 	for (const lang of locales) {
@@ -52,9 +52,12 @@ export async function GET() {
 
 		for (const blog of blogs) {
 			const path = `/blog/${blog.slug}`;
+			const modified = parseBlogDate(blog.updated ?? blog.date);
 			pages.push({
 				url: `${baseUrl}${i18n.resolveRoute(path, lang)}`,
-				path
+				path,
+				// only posts have a real date; other pages get no lastmod rather than a made-up one
+				lastmod: modified ? new Date(modified).toISOString().slice(0, 10) : undefined
 			});
 		}
 	}
@@ -68,7 +71,7 @@ export async function GET() {
 			.map((page) => {
 				return `
     <url>
-        <loc>${page.url}</loc>
+        <loc>${page.url}</loc>${page.lastmod ? `\n        <lastmod>${page.lastmod}</lastmod>` : ''}
         <changefreq>weekly</changefreq>
         <priority>${getPriority(page.path)}</priority>
     </url>`;
