@@ -128,13 +128,4 @@
 		opacity: 1;
 		filter: none;
 	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.entry-animation {
-			transition: none !important;
-			opacity: 1 !important;
-			transform: none !important;
-			filter: none !important;
-		}
-	}
 </style>

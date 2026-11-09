@@ -101,3 +101,16 @@ export function readingTime(body: string): number {
 	const words = text.split(/\s+/).filter(Boolean).length;
 	return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
 }
+
+/** True when the visitor asked for reduced motion. Browser only (uses `window`). */
+export function prefersReducedMotion(): boolean {
+	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+/**
+ * `behavior` for scrollTo/scrollIntoView. An explicit 'smooth' ignores the CSS
+ * `scroll-behavior` rule, so JS callers have to check the preference themselves.
+ */
+export function scrollBehavior(): ScrollBehavior {
+	return prefersReducedMotion() ? 'auto' : 'smooth';
+}

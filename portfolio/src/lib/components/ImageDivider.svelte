@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { prefersReducedMotion } from '$lib/utils';
 
 	interface Props {
 		id?: string;
@@ -55,8 +56,7 @@
 	});
 
 	$effect(() => {
-		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		if (scaleOnScroll && isVisible && !reducedMotion) {
+		if (scaleOnScroll && isVisible && !prefersReducedMotion()) {
 			window.addEventListener('scroll', updateScroll, { passive: true });
 			updateScroll();
 			return () => window.removeEventListener('scroll', updateScroll);
