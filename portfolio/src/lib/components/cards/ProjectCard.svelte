@@ -51,7 +51,7 @@
 
 		{#if project.status}
 			<span
-				class="glossy-tile glossy-frost absolute top-1 left-1 z-10 m-0 rounded-md px-1 py-0.5 text-xs transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+				class="glossy-tile glossy-frost absolute top-1 left-1 z-10 m-0 rounded-md px-1 py-0.5 font-mono text-xs transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
                 {project.status.toLowerCase().startsWith('v')
 					? ''
 					: 'has-hover:translate-x-[-110%] has-hover:group-hover:translate-x-0'}"

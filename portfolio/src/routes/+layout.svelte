@@ -6,6 +6,7 @@
 	import { absoluteUrl, canonicalUrl, stripTrailingSlash } from '$lib/site';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.png';
+	import headingFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
 	import 'devicon/devicon.min.css';
 	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
@@ -45,6 +46,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<link rel="preload" as="font" type="font/woff2" href={headingFont} crossorigin="anonymous" />
 	<script
 		src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
 		async

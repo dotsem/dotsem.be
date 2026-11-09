@@ -94,7 +94,7 @@
 		onclick={() => {
 			hamburgerMenuVisible = false;
 		}}
-		class="text-4xl font-bold text-primary no-underline md:text-5xl">dotsem.</a
+		class="font-heading text-4xl font-bold text-primary no-underline md:text-5xl">dotsem.</a
 	>
 
 	<div class="hidden items-center gap-6 min-[901px]:flex">

@@ -25,13 +25,13 @@
 		{/if}
 		{#if validVersion(version)}
 			<span
-				class="rounded-md border border-secondary/30 bg-secondary/10 px-2 py-0.5 text-sm text-secondary"
+				class="rounded-md border border-secondary/30 bg-secondary/10 px-2 py-0.5 font-mono text-sm text-secondary"
 				>{version}</span
 			>
 		{/if}
 	</div>
 	<h1
-		class="font-sans text-4xl leading-[1.1] font-black tracking-tight text-foreground drop-shadow-sm md:text-6xl"
+		class="font-heading text-4xl leading-[1.1] font-extrabold tracking-tight text-foreground drop-shadow-sm md:text-6xl"
 	>
 		{title}
 	</h1>

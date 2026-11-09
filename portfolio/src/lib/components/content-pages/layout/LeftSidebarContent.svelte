@@ -11,5 +11,5 @@
 
 <div class="flex flex-col gap-1">
 	<span class="text-xs text-foreground/60">{label}</span>
-	<span class="font-medium text-foreground">{@render children()}</span>
+	<span class="font-mono text-sm font-medium text-foreground">{@render children()}</span>
 </div>

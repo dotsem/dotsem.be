@@ -79,7 +79,7 @@
 	<header class="mb-12 space-y-3 text-center">
 		<h1 class="text-5xl font-bold">{m.projects_title()}</h1>
 		<p class="m-0 text-xl text-muted-foreground">
-			<AnimatedCounter value={projects.length} class="font-semibold text-secondary" />
+			<AnimatedCounter value={projects.length} class="font-mono font-semibold text-secondary" />
 			{m.projects_description()}
 		</p>
 	</header>
