@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import AboutMe from '$lib/components/AboutMe.svelte';
 	import { calculateAge } from '$lib/utils';
 	import * as m from '$lib/paraglide/messages.js';
@@ -34,10 +35,7 @@
 	]);
 </script>
 
-<svelte:head>
-	<title>{m.about_me_title()} | Sem Van Broekhoven</title>
-	<meta name="description" content={m.about_me_page_description()} />
-</svelte:head>
+<Seo title={m.about_me_title()} description={m.about_me_page_description()} />
 
 <section class="container mx-auto flex flex-col items-center justify-center px-4 md:flex-row">
 	<div class="flex-1">

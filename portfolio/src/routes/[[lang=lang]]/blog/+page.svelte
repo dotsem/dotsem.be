@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import BlogCard from '$lib/components/cards/BlogCard.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as m from '$lib/paraglide/messages';
@@ -35,10 +36,7 @@
 	);
 </script>
 
-<svelte:head>
-	<title>{m.blog_title()} - Sem Van Broekhoven</title>
-	<meta name="description" content={m.blog_description()} />
-</svelte:head>
+<Seo title={m.blog_title()} description={m.blog_description()} />
 
 <div class="container mx-auto px-4 py-10">
 	<div class="mb-8">

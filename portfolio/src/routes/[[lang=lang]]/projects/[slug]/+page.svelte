@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import ContentHero from '$lib/components/content-pages/ContentHero.svelte';
 	import ContentLayout from '$lib/components/content-pages/ContentLayout.svelte';
@@ -14,10 +15,11 @@
 	const Component = $derived(data.metadata.component);
 </script>
 
-<svelte:head>
-	<title>{data.metadata.title} - Sem Van Broekhoven</title>
-	<meta name="description" content={data.metadata.description} />
-</svelte:head>
+<Seo
+	title={data.metadata.title}
+	description={data.metadata.description}
+	image={data.metadata.image}
+/>
 
 <ContentHero
 	title={data.metadata.title}

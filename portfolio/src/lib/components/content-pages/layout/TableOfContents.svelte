@@ -36,7 +36,7 @@
 					activeId = firstVisible.id;
 				}
 			},
-			{ rootMargin: '-80px 0px -70% 0px' }
+			{ rootMargin: '-24px 0px -70% 0px' }
 		);
 
 		headers.forEach((header) => {
@@ -63,9 +63,13 @@
 	function scrollToHeader(id: string) {
 		isMobileMenuOpen = false;
 		const element = document.getElementById(id);
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
-		}
+		if (!element) return;
+
+		// Scrolling down hides the navbar (sidebars then sit at top-8 = 32px), scrolling up
+		// shows it (top-24 = 96px). A fixed scroll-padding would leave a gap in the first case.
+		const top = element.getBoundingClientRect().top + window.scrollY;
+		const offset = top > window.scrollY ? 32 : 96;
+		window.scrollTo({ top: top - offset, behavior: 'smooth' });
 	}
 </script>
 

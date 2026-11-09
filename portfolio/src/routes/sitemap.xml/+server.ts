@@ -2,11 +2,12 @@ import { getProjectsByLang } from '$lib/projects';
 import { getBlogsByLang } from '$lib/blog';
 import { locales } from '$lib/paraglide/runtime';
 import { i18n } from '$lib/i18n';
+import { SITE_URL } from '$lib/site';
 
 export const prerender = true;
 
 export async function GET() {
-	const baseUrl = 'https://dotsem.be';
+	const baseUrl = SITE_URL;
 
 	// Constant pages
 	const pathnames = ['/', '/projects', '/blog', '/privacy', '/cookies', '/aboutme', '/cv'];

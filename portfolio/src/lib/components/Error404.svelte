@@ -1,9 +1,12 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import bg from '$lib/assets/404.webp';
 	import Button from '$lib/components/ui/button/button.svelte';
 
 	import * as m from '$lib/paraglide/messages';
 </script>
+
+<Seo title={m.error_404_title()} description={m.error_404_description()} />
 
 <img src={bg} alt="404" class="unselectable absolute top-0 left-0 h-full w-full object-cover" />
 

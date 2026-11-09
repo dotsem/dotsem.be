@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import ContentHero from '$lib/components/content-pages/ContentHero.svelte';
 	import ContentLayout from '$lib/components/content-pages/ContentLayout.svelte';
@@ -15,10 +16,13 @@
 	const Component = $derived(data.blog.component);
 </script>
 
-<svelte:head>
-	<title>{data.blog.title} - Sem Van Broekhoven</title>
-	<meta name="description" content={data.blog.description} />
-</svelte:head>
+<Seo
+	title={data.blog.title}
+	description={data.blog.description}
+	image={data.blog.image}
+	type="article"
+	publishedTime={data.blog.date}
+/>
 
 <ContentHero
 	title={data.blog.title}

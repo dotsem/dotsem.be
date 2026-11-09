@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import Hero from '../../lib/components/Hero.svelte';
 	import Profile from '$lib/components/profile/Profile.svelte';
 	import BentoProjectCard from '$lib/components/cards/BentoProjectCard.svelte';
@@ -81,12 +82,13 @@
 	]);
 </script>
 
+<Seo
+	title="Sem Van Broekhoven | Software Engineer Portfolio"
+	suffix={false}
+	description="Official portfolio of Sem Van Broekhoven, a software engineer specializing in building innovative technology solutions. Studying Digital Innovation at Thomas More. Discover my projects and blog posts."
+/>
+
 <svelte:head>
-	<title>Sem Van Broekhoven | Software Engineer Portfolio</title>
-	<meta
-		name="description"
-		content="Official portfolio of Sem Van Broekhoven, a software engineer specializing in building innovative technology solutions. Studying Digital Innovation at Thomas More. Discover my projects and blog posts."
-	/>
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
