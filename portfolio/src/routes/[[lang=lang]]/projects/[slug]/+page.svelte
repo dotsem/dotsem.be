@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
+	import { ogImagePath } from '$lib/site';
 	import * as m from '$lib/paraglide/messages';
 	import { resolve } from '$app/paths';
 	import { i18n } from '$lib/i18n';
@@ -21,7 +22,7 @@
 <Seo
 	title={data.metadata.title}
 	description={data.metadata.description}
-	image={data.metadata.image}
+	ogImage={ogImagePath('project', data.lang, data.slug)}
 />
 
 <ContentHero

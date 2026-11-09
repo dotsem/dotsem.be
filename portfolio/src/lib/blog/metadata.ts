@@ -14,6 +14,8 @@ export interface BlogMetadata {
 	project?: string;
 	/** Drafts: keep the entry here but hide the post everywhere */
 	hidden?: boolean;
+	/** Glass tile behind the image in the share card. Default 'dark'; 'light' for dark artwork. */
+	ogPanel?: 'dark' | 'light';
 }
 
 // The post text (title + description) lives in src/content/blog/<lang>/<slug>.svx

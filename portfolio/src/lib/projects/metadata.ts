@@ -19,6 +19,8 @@ export interface ProjectMetadata {
 	linkOpenInNewTab?: boolean;
 	linkTitle?: string;
 	status?: ProjectStatus | string;
+	/** Glass tile behind the image in the share card. Default 'dark'; 'light' for dark artwork. */
+	ogPanel?: 'dark' | 'light';
 }
 
 export interface Contribution {
@@ -166,7 +168,8 @@ export const projectsMetadata: ProjectMetadata[] = [
 		category: 'di',
 		repo: 'Thomas-More-Digital-Innovation/2526-MOBI-016-I-m-in-tales-project',
 		link: '#download-here',
-		linkTitle: 'Download WhisperTag'
+		linkTitle: 'Download WhisperTag',
+		ogPanel: 'light'
 	},
 	{
 		slug: 'capyplayer',

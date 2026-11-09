@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
+	import { ogImagePath } from '$lib/site';
 	import * as m from '$lib/paraglide/messages';
 	import { resolve } from '$app/paths';
 	import { i18n } from '$lib/i18n';
@@ -27,7 +28,7 @@
 <Seo
 	title={data.blog.title}
 	description={data.blog.description}
-	image={data.blog.image}
+	ogImage={ogImagePath('blog', data.lang, data.blog.slug)}
 	type="article"
 	publishedTime={data.blog.date}
 />

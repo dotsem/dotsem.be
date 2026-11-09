@@ -2,8 +2,8 @@ import { i18n } from '$lib/i18n';
 
 export const SITE_URL = 'https://dotsem.be';
 export const SITE_NAME = 'Sem Van Broekhoven';
-/** 1200x630 share image, served from /static */
-export const DEFAULT_OG_IMAGE = '/og-default.jpg';
+/** 1200x630 share image for pages without their own, generated at build time */
+export const DEFAULT_OG_IMAGE = '/og/default.jpg';
 
 export const stripTrailingSlash = (value: string) => value.replace(/\/$/, '');
 
@@ -18,15 +18,7 @@ export function canonicalUrl(url: URL): string {
 	return stripTrailingSlash(absoluteUrl(i18n.resolveRoute(i18n.route(url.pathname), lang)));
 }
 
-const RASTER = /\.(png|jpe?g|webp)(\?.*)?$/i;
-
-/**
- * Link-preview crawlers (LinkedIn, WhatsApp, Facebook) don't render SVG or GIF, and a
- * small asset may be inlined by Vite as a data: URI. Only raster files are used as-is.
- */
-export function resolveShareImage(image?: string): { url: string; isDefault: boolean } {
-	if (image && !image.startsWith('data:') && RASTER.test(image)) {
-		return { url: absoluteUrl(image), isDefault: false };
-	}
-	return { url: absoluteUrl(DEFAULT_OG_IMAGE), isDefault: true };
+/** Generated share card for a project or blog post (see src/routes/og). */
+export function ogImagePath(type: 'project' | 'blog', lang: string, slug: string): string {
+	return `/og/${lang}/${type}/${slug}.jpg`;
 }
