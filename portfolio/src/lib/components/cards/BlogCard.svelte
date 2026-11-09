@@ -4,7 +4,7 @@
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import { i18n } from '$lib/i18n';
 	import { getLocale } from '$lib/paraglide/runtime';
-	import { card_read_blog } from '$lib/paraglide/messages.js';
+	import { card_read_blog, blog_reading_time } from '$lib/paraglide/messages.js';
 	import { onMount } from 'svelte';
 	import { type BlogMeta, formatBlogDate } from '$lib/blog';
 	import { labelScroller } from '$lib/utils';
@@ -15,6 +15,15 @@
 	}
 
 	let { blog }: Props = $props();
+
+	const meta = $derived(
+		[
+			blog.date ? formatBlogDate(blog.date) : '',
+			blog.readingTime ? blog_reading_time({ minutes: blog.readingTime }) : ''
+		]
+			.filter(Boolean)
+			.join(' · ')
+	);
 
 	let scrollContainer: HTMLElement | undefined = $state();
 	let contentContainer: HTMLElement | undefined = $state();
@@ -76,11 +85,8 @@
 							{/each}
 						</div>
 					</div>
-					{#if blog.date}
-						<span class="shrink-0 font-mono text-xs font-medium text-foreground/40">
-							<i class="fa-regular fa-calendar mr-1"></i>
-							{formatBlogDate(blog.date)}
-						</span>
+					{#if meta}
+						<span class="shrink-0 font-mono text-xs font-medium text-foreground/40">{meta}</span>
 					{/if}
 				</div>
 				<Card.Title class="text-xl font-bold tracking-tight">{blog.title}</Card.Title>

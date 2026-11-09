@@ -1,11 +1,14 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { resolve } from '$app/paths';
+	import { i18n } from '$lib/i18n';
 	import ContentHero from '$lib/components/content-pages/ContentHero.svelte';
 	import ContentLayout from '$lib/components/content-pages/ContentLayout.svelte';
 	import {
 		LeftSidebar,
 		LeftSidebarContent,
+		SidebarLink,
 		ContentPagination
 	} from '$lib/components/content-pages';
 	import { getLocalizedStatus } from '$lib/projects';
@@ -33,16 +36,6 @@
 	status={data.metadata.status}
 	type="project"
 />
-
-{#snippet RepoLink(name: string, label: string)}
-	<a
-		href="https://github.com/{name}"
-		target="_blank"
-		class="block font-medium break-all text-primary no-underline hover:underline"
-	>
-		{label}
-	</a>
-{/snippet}
 
 <ContentLayout
 	headers={data.metadata.headers}
@@ -73,16 +66,24 @@
 							{@const repoPath = typeof r === 'string' ? r : r.path}
 							{@const repoLabel =
 								typeof r === 'string' ? (r.includes('/') ? r.split('/')[1] : r) : r.name}
-							{@render RepoLink(repoPath, repoLabel)}
+							<SidebarLink href="https://github.com/{repoPath}" external>{repoLabel}</SidebarLink>
 						{/each}
 					{:else}
-						{@render RepoLink(
-							data.metadata.repo,
-							data.metadata.repo.includes('/')
+						<SidebarLink href="https://github.com/{data.metadata.repo}" external
+							>{data.metadata.repo.includes('/')
 								? data.metadata.repo.split('/')[1]
-								: data.metadata.repo
-						)}
+								: data.metadata.repo}</SidebarLink
+						>
 					{/if}
+				</LeftSidebarContent>
+			{/if}
+			{#if data.relatedBlogs.length > 0}
+				<LeftSidebarContent label={m.projects_sidebar_blog()}>
+					{#each data.relatedBlogs as blog (blog.slug)}
+						<SidebarLink href={resolve(i18n.resolveRoute('/blog/' + blog.slug, data.lang))}>
+							{blog.title}
+						</SidebarLink>
+					{/each}
 				</LeftSidebarContent>
 			{/if}
 		</LeftSidebar>

@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getLocale } from '$lib/paraglide/runtime.js';
 import { getProjectBySlug, getProjectsByLang } from '$lib/projects';
+import { getBlogsByLang } from '$lib/blog';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params, url, data }) => {
@@ -21,6 +22,10 @@ export const load: PageLoad = async ({ params, url, data }) => {
 		return 0;
 	});
 
+	const relatedBlogs = (await getBlogsByLang(lang))
+		.filter((b) => b.project === params.slug)
+		.map((b) => ({ title: b.title, slug: b.slug }));
+
 	const index = sorted.findIndex((p) => p.slug === params.slug);
 	const prevProject = index > 0 ? sorted[index - 1] : null;
 	const nextProject = index < sorted.length - 1 ? sorted[index + 1] : null;
@@ -30,6 +35,7 @@ export const load: PageLoad = async ({ params, url, data }) => {
 		metadata: project,
 		slug: params.slug,
 		lang,
+		relatedBlogs,
 		prevProject: prevProject ? { title: prevProject.title, slug: prevProject.slug } : null,
 		nextProject: nextProject ? { title: nextProject.title, slug: nextProject.slug } : null
 	};

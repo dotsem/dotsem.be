@@ -86,3 +86,18 @@ export function extractHeaders(body: string): MarkdownHeader[] {
 	}
 	return headers;
 }
+
+// f u fast readers
+const WORDS_PER_MINUTE = 200;
+
+/** Estimated reading time in whole minutes (at least 1) for a markdown/svx body. */
+export function readingTime(body: string): number {
+	const text = body
+		.replace(/```[\s\S]*?```/g, '') // code is skimmed, not read
+		.replace(/<script[\s\S]*?<\/script>/g, '')
+		.replace(/<[^>]+>/g, ' ') // svelte/html tags
+		.replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1') // links and images count as their text
+		.replace(/[#>*_`~|]+/g, ' ');
+	const words = text.split(/\s+/).filter(Boolean).length;
+	return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+}

@@ -1,5 +1,6 @@
 import { getLocale } from '$lib/paraglide/runtime.js';
 import { getBlogBySlug, getBlogsByLang } from '$lib/blog';
+import { getProjectBySlug } from '$lib/projects';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, url }) => {
@@ -10,6 +11,8 @@ export const load = async ({ params, url }) => {
 		throw error(404, 'Blog post not found');
 	}
 
+	const project = blog.project ? await getProjectBySlug(lang, blog.project) : null;
+
 	const allBlogs = await getBlogsByLang(lang);
 	const index = allBlogs.findIndex((b) => b.slug === params.slug);
 	const prevBlog = index > 0 ? allBlogs[index - 1] : null;
@@ -18,6 +21,7 @@ export const load = async ({ params, url }) => {
 	return {
 		blog,
 		lang,
+		project: project ? { title: project.title, slug: project.slug } : null,
 		prevBlog: prevBlog ? { title: prevBlog.title, slug: prevBlog.slug } : null,
 		nextBlog: nextBlog ? { title: nextBlog.title, slug: nextBlog.slug } : null
 	};
