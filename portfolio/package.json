@@ -35,7 +35,7 @@
 		"embla-carousel-svelte": "^8.6.0",
 		"eslint": "^10.14.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.23.1",
+		"eslint-plugin-svelte": "^3.24.0",
 		"formsnap": "^2.1.0",
 		"globals": "^17.14.0",
 		"mdsvex": "^0.12.8",
