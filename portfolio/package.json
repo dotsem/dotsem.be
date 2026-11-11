@@ -39,7 +39,7 @@
 		"formsnap": "^2.1.0",
 		"globals": "^17.14.0",
 		"mdsvex": "^0.12.8",
-		"mermaid": "^12.2.0",
+		"mermaid": "^12.3.0",
 		"prettier": "^3.9.10",
 		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.1",
