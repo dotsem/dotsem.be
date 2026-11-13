@@ -22,7 +22,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/portfolio"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
       time: "04:00"
       timezone: "UTC"
     target-branch: "main"
