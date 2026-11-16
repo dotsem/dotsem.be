@@ -34,7 +34,7 @@
 	<FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
 </div>
 
-<section id="cv" bind:this={pdfRef}>
+<section id="cv" class="pb-16 print:pb-0" bind:this={pdfRef}>
 	<Paper>
 		<header
 			class="flex items-start justify-between border-b-4 border-b-primary pt-paper pr-paper pb-4 pl-paper"
