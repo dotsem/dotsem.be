@@ -104,7 +104,7 @@ Je zou het niet eens merken als het op je server draait.
 Ja, je bent helemaal vrij om het project zelf te hosten. Je kunt de volledige broncode vinden op GitHub.
 
 <script>
-  import ActionLinks from "$lib/components/content-pages/hero/ActionLinks.svelte";
+  import ActionLinks from "#lib/components/content-pages/hero/ActionLinks.svelte";
 </script>
 
 <ActionLinks 

@@ -1,6 +1,6 @@
-import { getProjectsByLang } from '$lib/projects';
-import { enrichProjectsWithVersions } from '$lib/server/github';
-import { getLocale } from '$lib/paraglide/runtime.js';
+import { getProjectsByLang } from '#lib/projects/index.ts';
+import { enrichProjectsWithVersions } from '#lib/server/github.ts';
+import { getLocale } from '#lib/paraglide/runtime.js';
 
 export const load = async ({ url, setHeaders }) => {
 	const lang = url.pathname.split('/').find((s: string) => ['en', 'nl'].includes(s)) || getLocale();

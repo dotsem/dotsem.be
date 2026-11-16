@@ -2,12 +2,12 @@
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import * as m from '$lib/paraglide/messages.js';
-	import { i18n } from '$lib/i18n';
+	import * as m from '#lib/paraglide/messages.js';
+	import { i18n } from '#lib/i18n.ts';
 	import Card from '../ui/card/card.svelte';
 	import Button from '../ui/button/button.svelte';
 	import { CardFooter, CardHeader } from '../ui/card';
-	import { getLocale } from '$lib/paraglide/runtime';
+	import { getLocale } from '#lib/paraglide/runtime.js';
 
 	let visible = $state(false);
 

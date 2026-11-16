@@ -2,8 +2,8 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { Button } from './ui/button';
-	import { footer_copyright, footer_credits, footer_email } from '$lib/paraglide/messages';
-	import { i18n } from '$lib/i18n';
+	import { footer_copyright, footer_credits, footer_email } from '#lib/paraglide/messages.js';
+	import { i18n } from '#lib/i18n.ts';
 	import SocialLinks from './SocialLinks.svelte';
 	import { onMount } from 'svelte';
 

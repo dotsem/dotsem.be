@@ -1,6 +1,6 @@
-import { getProjectsByLang } from '$lib/projects';
-import { enrichProjectsWithVersions } from '$lib/server/github';
-import { getLocale } from '$lib/paraglide/runtime.js';
+import { getProjectsByLang } from '#lib/projects/index.ts';
+import { enrichProjectsWithVersions } from '#lib/server/github.ts';
+import { getLocale } from '#lib/paraglide/runtime.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, setHeaders }) => {

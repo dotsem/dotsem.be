@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ProjectCard from '$lib/components/cards/ProjectCard.svelte';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
-	import RandomDelayGroup from '$lib/components/RandomDelayGroup.svelte';
+	import ProjectCard from '#lib/components/cards/ProjectCard.svelte';
+	import EntryAnimation from '#lib/components/EntryAnimation.svelte';
+	import RandomDelayGroup from '#lib/components/RandomDelayGroup.svelte';
 	import ProjectHeading from './ProjectHeading.svelte';
 
 	let { projects, title, description, id } = $props();

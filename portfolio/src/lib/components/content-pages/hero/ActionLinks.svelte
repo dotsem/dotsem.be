@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import type { ProjectMetadata } from '$lib/projects/metadata';
-	import * as m from '$lib/paraglide/messages';
+	import { Button } from '#lib/components/ui/button/index.ts';
+	import type { ProjectMetadata } from '#lib/projects/metadata.ts';
+	import * as m from '#lib/paraglide/messages.js';
 
 	type Props = Pick<ProjectMetadata, 'repo' | 'link' | 'linkTitle' | 'linkOpenInNewTab'>;
 

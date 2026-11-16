@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { prefersReducedMotion } from '$lib/utils';
+	import { prefersReducedMotion } from '#lib/utils.ts';
 
 	interface Props {
 		id?: string;

@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
-import { renderDefaultCard } from '$lib/server/og';
+import { renderDefaultCard } from '#lib/server/og.ts';
 
 export const prerender = true;
 

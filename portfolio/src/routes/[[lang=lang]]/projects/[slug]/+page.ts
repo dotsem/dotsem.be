@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
-import { getLocale } from '$lib/paraglide/runtime.js';
-import { getProjectBySlug, getProjectsByLang } from '$lib/projects';
-import { getBlogsByLang } from '$lib/blog';
+import { getLocale } from '#lib/paraglide/runtime.js';
+import { getProjectBySlug, getProjectsByLang } from '#lib/projects/index.ts';
+import { getBlogsByLang } from '#lib/blog/index.ts';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params, url, data }) => {

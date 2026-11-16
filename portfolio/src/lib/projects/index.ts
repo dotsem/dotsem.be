@@ -7,8 +7,8 @@ import {
 	type ProjectCategory,
 	type Contribution
 } from './metadata';
-import * as m from '$lib/paraglide/messages';
-import { extractHeaders, type MarkdownHeader } from '$lib/utils';
+import * as m from '#lib/paraglide/messages.js';
+import { extractHeaders, type MarkdownHeader } from '#lib/utils.ts';
 
 export { ProjectStatus, contributions, type ProjectCategory, type Contribution };
 

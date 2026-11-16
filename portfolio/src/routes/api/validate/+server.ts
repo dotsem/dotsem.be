@@ -1,6 +1,5 @@
-import { env } from '$env/dynamic/private';
-import { json } from '@sveltejs/kit';
-import { rateLimit } from '$lib/server/ratelimit';
+import { PRIVATE_TURNSTILE_SECRET_KEY } from '$app/env/private';
+import { rateLimit } from '#lib/server/ratelimit.ts';
 
 const headers = {
 	'Cache-Control': 'no-store, no-cache, must-revalidate'
@@ -17,7 +16,7 @@ export const POST = async ({ request, getClientAddress }) => {
 	// limit to 5 validation requests per minute per IP to prevent spam
 	const limitResult = rateLimit(ip, 5, 60 * 1000);
 	if (!limitResult.success) {
-		return json(
+		return Response.json(
 			{ success: false, message: 'Too many requests' },
 			{
 				status: 429,
@@ -33,35 +32,24 @@ export const POST = async ({ request, getClientAddress }) => {
 	try {
 		formData = await request.formData();
 	} catch {
-		return json(
+		return Response.json(
 			{ success: false, message: 'Invalid request format' },
-			{
-				status: 400,
-				headers: headers
-			}
+			{ status: 400, headers }
 		);
 	}
 
 	const token = formData.get('cf-turnstile-response');
 	if (!token) {
-		return json(
-			{ success: false, message: 'Missing token' },
-			{
-				status: 400,
-				headers: headers
-			}
-		);
+		return Response.json({ success: false, message: 'Missing token' }, { status: 400, headers });
 	}
 
-	const secret = env.PRIVATE_TURNSTILE_SECRET_KEY;
+	const secret = PRIVATE_TURNSTILE_SECRET_KEY;
 	if (!secret) {
 		console.error('TURNSTILE_SECRET_KEY is not set');
-		return json(
+
+		return Response.json(
 			{ success: false, message: 'Server configuration error' },
-			{
-				status: 500,
-				headers: headers
-			}
+			{ status: 500, headers }
 		);
 	}
 
@@ -76,7 +64,7 @@ export const POST = async ({ request, getClientAddress }) => {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				secret: secret,
+				secret,
 				response: token,
 				remoteip: ip !== 'unknown' ? ip : undefined
 			}),
@@ -87,12 +75,10 @@ export const POST = async ({ request, getClientAddress }) => {
 
 		if (!result.success) {
 			console.error('Turnstile validation failed:', result['error-codes']);
-			return json(
+
+			return Response.json(
 				{ success: false, message: 'Token validation failed' },
-				{
-					status: 400,
-					headers: headers
-				}
+				{ status: 400, headers }
 			);
 		}
 
@@ -104,29 +90,19 @@ export const POST = async ({ request, getClientAddress }) => {
 
 		if (!isValidHostname) {
 			console.error('Turnstile hostname mismatch:', hostname);
-			return json(
+
+			return Response.json(
 				{ success: false, message: 'Invalid domain context' },
-				{
-					status: 400,
-					headers: headers
-				}
+				{ status: 400, headers }
 			);
 		}
-
-		return json(
-			{ success: true },
-			{
-				headers: headers
-			}
-		);
+		return Response.json({ success: true }, { headers });
 	} catch (error) {
 		console.error('Turnstile verification error:', error);
-		return json(
+
+		return Response.json(
 			{ success: false, message: 'Internal server error' },
-			{
-				status: 500,
-				headers: headers
-			}
+			{ status: 500, headers }
 		);
 	} finally {
 		clearTimeout(timeoutId);

@@ -4,7 +4,7 @@ description: Een B&B webapplicatie gebouwd met de TALL-stack, uitgerust met een 
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
+  import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Projectoverzicht

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Snippet, Component as SvelteComponent } from 'svelte';
-	import TableOfContents from '$lib/components/content-pages/layout/TableOfContents.svelte';
+	import TableOfContents from '#lib/components/content-pages/layout/TableOfContents.svelte';
 	import HardHat from '@lucide/svelte/icons/hard-hat';
-	import { navbar } from '$lib/navbar.svelte';
+	import { navbar } from '#lib/navbar.svelte.ts';
 
 	interface Props {
 		headers: Array<{ level: number; text: string; id: string }>;

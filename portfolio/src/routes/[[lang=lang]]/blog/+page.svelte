@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import BlogCard from '$lib/components/cards/BlogCard.svelte';
-	import { Badge } from '$lib/components/ui/badge';
-	import * as m from '$lib/paraglide/messages';
+	import Seo from '#lib/components/Seo.svelte';
+	import BlogCard from '#lib/components/cards/BlogCard.svelte';
+	import { Badge } from '#lib/components/ui/badge/index.ts';
+	import * as m from '#lib/paraglide/messages.js';
 	import { resolve } from '$app/paths';
-	import { i18n } from '$lib/i18n';
-	import { getLocale } from '$lib/paraglide/runtime';
+	import { i18n } from '#lib/i18n.ts';
+	import { getLocale } from '#lib/paraglide/runtime.js';
 
 	let { data } = $props();
 

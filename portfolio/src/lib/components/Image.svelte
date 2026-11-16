@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ImageModal from '$lib/components/ui/ImageModal.svelte';
+	import ImageModal from '#lib/components/ui/ImageModal.svelte';
 
 	interface Props {
 		type?: 'blog' | 'projects';

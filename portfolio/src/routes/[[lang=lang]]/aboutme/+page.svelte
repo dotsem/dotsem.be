@@ -1,22 +1,22 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import AboutMe from '$lib/components/AboutMe.svelte';
-	import { calculateAge } from '$lib/utils';
-	import * as m from '$lib/paraglide/messages.js';
-	import MeImage from '$lib/assets/me.webp';
-	import CVImage from '$lib/assets/me2.webp';
-	import DigitalInnovation from '$lib/assets/digital-innovation.webp';
-	import SocialLinks from '$lib/components/SocialLinks.svelte';
-	import ProgLang from '$lib/components/ProgLang.svelte';
-	import InfoCard from '$lib/components/InfoCard.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import TextWithImageContainer from '$lib/components/TextWithImageContainer.svelte';
-	import PLprog from '$lib/components/profile/PLprog.svelte';
-	import PLtools from '$lib/components/profile/PLtools.svelte';
-	import ContactForm from '$lib/components/ContactForm.svelte';
-	import { i18n } from '$lib/i18n';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
-	import RandomDelayGroup from '$lib/components/RandomDelayGroup.svelte';
+	import Seo from '#lib/components/Seo.svelte';
+	import AboutMe from '#lib/components/AboutMe.svelte';
+	import { calculateAge } from '#lib/utils.ts';
+	import * as m from '#lib/paraglide/messages.js';
+	import MeImage from '#lib/assets/me.webp';
+	import CVImage from '#lib/assets/me2.webp';
+	import DigitalInnovation from '#lib/assets/digital-innovation.webp';
+	import SocialLinks from '#lib/components/SocialLinks.svelte';
+	import ProgLang from '#lib/components/ProgLang.svelte';
+	import InfoCard from '#lib/components/InfoCard.svelte';
+	import Button from '#lib/components/ui/button/button.svelte';
+	import TextWithImageContainer from '#lib/components/TextWithImageContainer.svelte';
+	import PLprog from '#lib/components/profile/PLprog.svelte';
+	import PLtools from '#lib/components/profile/PLtools.svelte';
+	import ContactForm from '#lib/components/ContactForm.svelte';
+	import { i18n } from '#lib/i18n.ts';
+	import EntryAnimation from '#lib/components/EntryAnimation.svelte';
+	import RandomDelayGroup from '#lib/components/RandomDelayGroup.svelte';
 
 	let age = calculateAge('2006-08-31');
 

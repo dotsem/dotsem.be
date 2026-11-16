@@ -1,8 +1,8 @@
-import { getProjectsByLang } from '$lib/projects';
-import { getBlogsByLang, parseBlogDate } from '$lib/blog';
-import { locales } from '$lib/paraglide/runtime';
-import { i18n } from '$lib/i18n';
-import { SITE_URL } from '$lib/site';
+import { getProjectsByLang } from '#lib/projects/index.ts';
+import { getBlogsByLang, parseBlogDate } from '#lib/blog/index.ts';
+import { locales } from '#lib/paraglide/runtime.js';
+import { i18n } from '#lib/i18n.ts';
+import { SITE_URL } from '#lib/site.ts';
 
 export const prerender = true;
 

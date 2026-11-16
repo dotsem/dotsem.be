@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import * as m from '$lib/paraglide/messages.js';
-	import { i18n } from '$lib/i18n';
+	import Seo from '#lib/components/Seo.svelte';
+	import * as m from '#lib/paraglide/messages.js';
+	import { i18n } from '#lib/i18n.ts';
 	import { page } from '$app/state';
-	import EnglishDoc from '$lib/content/privacy/en.svx';
-	import DutchDoc from '$lib/content/privacy/nl.svx';
+	import EnglishDoc from '#lib/content/privacy/en.svx';
+	import DutchDoc from '#lib/content/privacy/nl.svx';
 
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 </script>

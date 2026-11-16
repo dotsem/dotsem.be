@@ -4,7 +4,7 @@ description: Mijn portfolio is natuurlijk een project om trots op te zijn. Het b
 ---
 
 <script lang="ts">
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Mijn Portfolio

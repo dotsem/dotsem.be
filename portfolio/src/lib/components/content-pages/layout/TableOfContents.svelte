@@ -2,8 +2,8 @@
 	import List from '@lucide/svelte/icons/list';
 	import { onMount } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
-	import { on_this_page } from '$lib/paraglide/messages';
-	import { scrollBehavior } from '$lib/utils';
+	import { on_this_page } from '#lib/paraglide/messages.js';
+	import { scrollBehavior } from '#lib/utils.ts';
 
 	interface Header {
 		level: number;

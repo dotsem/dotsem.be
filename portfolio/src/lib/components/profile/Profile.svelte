@@ -1,13 +1,13 @@
 <script lang="ts">
-	import MeImage from '$lib/assets/me.webp';
-	import * as m from '$lib/paraglide/messages.js';
-	import { calculateAge } from '$lib/utils';
+	import MeImage from '#lib/assets/me.webp';
+	import * as m from '#lib/paraglide/messages.js';
+	import { calculateAge } from '#lib/utils.ts';
 	import SocialLinks from '../SocialLinks.svelte';
 	import PLprog from './PLprog.svelte';
 	import PLtools from './PLtools.svelte';
 	import './profile.css';
-	import RandomDelayGroup from '$lib/components/RandomDelayGroup.svelte';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
+	import RandomDelayGroup from '#lib/components/RandomDelayGroup.svelte';
+	import EntryAnimation from '#lib/components/EntryAnimation.svelte';
 
 	let experienceContent = $derived([
 		m.profile_experience_content_0(),

@@ -6,8 +6,8 @@ description: A fully declarative, resilient homelab infrastructure powered by
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
-    import Mermaid from '$lib/components/Mermaid.svelte';
+    import Image from '#lib/components/Image.svelte';
+    import Mermaid from '#lib/components/Mermaid.svelte';
 
     const topology = `
 flowchart TD

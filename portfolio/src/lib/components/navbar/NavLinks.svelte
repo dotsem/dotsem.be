@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { i18n } from '$lib/i18n';
+	import { i18n } from '#lib/i18n.ts';
 	import { page } from '$app/state';
 	import {
 		navbar_profile,
@@ -8,7 +8,7 @@
 		navbar_blog,
 		navbar_contact,
 		navbar_aboutme
-	} from '$lib/paraglide/messages.js';
+	} from '#lib/paraglide/messages.js';
 
 	import type { MouseEventHandler } from 'svelte/elements';
 

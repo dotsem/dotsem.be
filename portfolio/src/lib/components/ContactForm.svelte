@@ -14,11 +14,11 @@
 		contact_button_sending,
 		contact_success,
 		contact_error
-	} from '$lib/paraglide/messages.js';
+	} from '#lib/paraglide/messages.js';
 	import { toast } from 'svelte-sonner';
 	import Button from './ui/button/button.svelte';
 	import EntryAnimation from './EntryAnimation.svelte';
-	import { env } from '$env/dynamic/public';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { untrack } from 'svelte';
 
 	let status = $state('idle'); // 'idle' | 'sending' | 'success' | 'error'
@@ -42,7 +42,7 @@
 				if (untrack(() => widgetId)) return;
 
 				widgetId = window.turnstile.render(container, {
-					sitekey: env.PUBLIC_TURNSTILE_SITE_KEY ?? '',
+					sitekey: PUBLIC_TURNSTILE_SITE_KEY ?? '',
 					theme: 'dark',
 					size: 'flexible'
 				});

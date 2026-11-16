@@ -6,7 +6,7 @@ description: A low-power asset tracking system for high-value school equipment,
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Tracking High-Value Equipment with LoRa

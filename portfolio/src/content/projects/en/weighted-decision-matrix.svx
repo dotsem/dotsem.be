@@ -5,7 +5,7 @@ description: A handy website to easily create weighted decision matrices and
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## A simple Weighted Decision Matrix

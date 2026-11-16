@@ -104,7 +104,7 @@ You wouldn't even notice it running on your server.
 Yes, you are free to self-host the project. You can find the complete source code on GitHub.
 
 <script>
-  import ActionLinks from "$lib/components/content-pages/hero/ActionLinks.svelte";
+  import ActionLinks from "#lib/components/content-pages/hero/ActionLinks.svelte";
 </script>
 
 <ActionLinks 

@@ -7,7 +7,7 @@ description: An accessible web application empowering individuals with
 ---
 
 <script>
-	import Image from '$lib/components/Image.svelte';
+	import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Empowering Inclusive Career Exploration

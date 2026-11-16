@@ -5,7 +5,7 @@ description: In onze STEAM-club deden we mee aan de VEX V5 Robotics-competitie.
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## VEX Robotics

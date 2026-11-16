@@ -6,7 +6,7 @@ description: Een toegankelijke webapplicatie waarmee mensen met een
 ---
 
 <script>
-	import Image from '$lib/components/Image.svelte';
+	import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Toegankelijke Werkinteresses Ontdekken

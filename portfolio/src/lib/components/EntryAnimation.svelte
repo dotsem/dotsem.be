@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { observeInit } from '$lib/observer';
+	import { observeInit } from '#lib/observer.ts';
 	import type { Snippet } from 'svelte';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 
 	interface Props {
 		children: Snippet;

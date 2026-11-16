@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import Error404 from '$lib/components/Error404.svelte';
-	import Seo from '$lib/components/Seo.svelte';
+	import Button from '#lib/components/ui/button/button.svelte';
+	import Error404 from '#lib/components/Error404.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 </script>
 
 {#if page.status === 404}
