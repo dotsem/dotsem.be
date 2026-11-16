@@ -2,18 +2,12 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { Button } from './ui/button';
-	import { footer_copyright, footer_credits, footer_email } from '#lib/paraglide/messages.js';
+	import { about_cv_button, footer_copyright, footer_credits } from '#lib/paraglide/messages.js';
 	import { i18n } from '#lib/i18n.ts';
 	import SocialLinks from './SocialLinks.svelte';
-	import { onMount } from 'svelte';
 
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 	let isContactPage = $derived(page.url.pathname === '/contact');
-
-	let emailHref = $state('');
-	onMount(() => {
-		emailHref = 'mailto:' + ['info', 'dotsem.be'].join('@');
-	});
 </script>
 
 <footer>
@@ -31,7 +25,7 @@
 			{#if !isContactPage}
 				<SocialLinks />
 			{/if}
-			<Button variant="secondary" href={emailHref || null}>{footer_email()}</Button>
+			<Button href={i18n.resolveRoute('/cv')} variant="secondary">{about_cv_button()}</Button>
 		</div>
 		<div class="flex gap-4">
 			<a href={resolve(i18n.resolveRoute('/cookies', currentLang))}>Cookies</a>
