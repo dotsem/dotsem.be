@@ -42,5 +42,8 @@ jobs:
       - name: Run Svelte Check
         run: pnpm check
 
+      - name: Install Chromium system dependencies (CV PDF render)
+        run: pnpm exec playwright install-deps chromium
+
       - name: Build project
         run: pnpm build

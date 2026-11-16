@@ -6,12 +6,17 @@
 	import Section from '#lib/components/cv/Section.svelte';
 	import ListItem from '#lib/components/cv/ListItem.svelte';
 	import FAB from '#lib/components/cv/FAB.svelte';
-	import { handleDownload } from '#lib/components/cv/handleDownload.ts';
 	import Experience from '#lib/components/cv/Experience.svelte';
+	import { page } from '$app/state';
+	import { i18n } from '#lib/i18n.ts';
+	import '@fontsource/gelasio/400.css';
+	import '@fontsource/gelasio/700.css';
 
 	import { onMount } from 'svelte';
 
-	let pdfRef: HTMLElement | undefined = $state();
+	let pdfHref = $derived(
+		`/cv/Sem_Van_Broekhoven_CV_${(i18n.getLanguageFromUrl(page.url) || 'en').toUpperCase()}.pdf`
+	);
 
 	let emailHref = $state('');
 	let emailText = $state('');
@@ -30,11 +35,11 @@
 <Seo title={m.cv_title()} description={m.cv_summary_content()} />
 
 <div class="print-hidden fixed right-0 bottom-0 z-50">
-	<FAB icon="fa-solid fa-download" onclick={() => handleDownload(pdfRef)}>{m.cv_download()}</FAB>
+	<FAB icon="fa-solid fa-download" href={pdfHref}>{m.cv_download()}</FAB>
 	<FAB icon="fa-solid fa-print" onclick={handlePrint}>{m.cv_print()}</FAB>
 </div>
 
-<section id="cv" class="pb-16 print:pb-0" bind:this={pdfRef}>
+<section id="cv" class="pb-16 print:pb-0">
 	<Paper>
 		<header
 			class="flex items-start justify-between border-b-4 border-b-primary pt-paper pr-paper pb-4 pl-paper"
@@ -122,11 +127,11 @@
 					<ul class="mx-4 space-y-1">
 						<li class="flex justify-between gap-2">
 							<span class="font-bold">{m.cv_job_lifeguard_title()}</span>
-							<span class="text-neutral-600">{m.cv_job_lifeguard_date()}</span>
+							<span class="shrink-0 text-neutral-600">{m.cv_job_lifeguard_date()}</span>
 						</li>
 						<li class="flex justify-between gap-2">
 							<span class="font-bold">{m.cv_job_bistro_title()}</span>
-							<span class="text-neutral-600">{m.cv_job_bistro_date()}</span>
+							<span class="shrink-0 text-neutral-600">{m.cv_job_bistro_date()}</span>
 						</li>
 					</ul>
 				</Section>
@@ -211,6 +216,6 @@
 
 <style>
 	.font-serif {
-		font-family: Georgia, serif;
+		font-family: 'Gelasio', Georgia, serif;
 	}
 </style>
