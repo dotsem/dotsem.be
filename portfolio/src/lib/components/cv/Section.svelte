@@ -2,7 +2,7 @@
 	let { title, children, ...restProps } = $props();
 </script>
 
-<section class="space-y-2 {restProps.class}">
+<section class="space-y-2 {restProps.class ?? ''}">
 	<h2 class="border-b border-neutral-200 pb-1 text-xl font-bold uppercase">
 		{title}
 	</h2>
