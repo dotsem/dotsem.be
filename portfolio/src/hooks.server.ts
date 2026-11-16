@@ -1,7 +1,16 @@
-import { i18n } from '$lib/i18n';
-import type { Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit/hooks';
+import * as runtime from '#lib/paraglide/runtime.js';
+import { paraglideMiddleware } from '#lib/paraglide/server.js';
 
-const paraglideHandle = i18n.handle();
+const paraglideHandle: Handle = ({ event, resolve }) =>
+	paraglideMiddleware(event.request, ({ locale }) =>
+		resolve(event, {
+			transformPageChunk: ({ html }) =>
+				html
+					.replace('%paraglide.lang%', locale)
+					.replace('%paraglide.text_dir%', runtime.getTextDirection(locale))
+		})
+	);
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const consent = event.cookies.get('cookie-consent');

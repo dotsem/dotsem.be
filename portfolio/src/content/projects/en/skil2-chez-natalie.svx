@@ -4,7 +4,7 @@ description: A group B&B web application built with the TALL stack, featuring a 
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
+  import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Project Overview

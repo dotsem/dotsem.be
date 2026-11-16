@@ -1,9 +1,9 @@
 import type { RequestHandler } from './$types';
-import { getBlogsByLang, parseBlogDate } from '$lib/blog';
-import { i18n } from '$lib/i18n';
-import * as m from '$lib/paraglide/messages';
-import { absoluteUrl } from '$lib/site';
-import { escapeXml } from '$lib/xml';
+import { getBlogsByLang, parseBlogDate } from '#lib/blog/index.ts';
+import { i18n } from '#lib/i18n.ts';
+import * as m from '#lib/paraglide/messages.js';
+import { absoluteUrl } from '#lib/site.ts';
+import { escapeXml } from '#lib/xml.ts';
 
 export const prerender = true;
 

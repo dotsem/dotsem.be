@@ -1,6 +1,6 @@
 import type { Component } from 'svelte';
-import { getLocale } from '$lib/paraglide/runtime';
-import { extractHeaders, readingTime, type MarkdownHeader } from '$lib/utils';
+import { getLocale } from '#lib/paraglide/runtime.js';
+import { extractHeaders, readingTime, type MarkdownHeader } from '#lib/utils.ts';
 import { blogsMetadata, type BlogMetadata } from './metadata';
 
 export type { BlogMetadata };

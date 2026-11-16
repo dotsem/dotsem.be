@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { i18n } from '$lib/i18n';
+	import { i18n } from '#lib/i18n.ts';
 	import { page } from '$app/state';
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 
-	import enFlag from '$lib/assets/flags/en.webp';
-	import nlFlag from '$lib/assets/flags/nl.webp';
+	import enFlag from '#lib/assets/flags/en.webp';
+	import nlFlag from '#lib/assets/flags/nl.webp';
 </script>
 
 <button

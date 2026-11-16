@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from '$lib/components/ui/card';
-	import ScrollingLangList from '$lib/components/ScrollingLangList.svelte';
-	import type { Contribution } from '$lib/projects';
+	import * as Card from '#lib/components/ui/card/index.ts';
+	import ScrollingLangList from '#lib/components/ScrollingLangList.svelte';
+	import type { Contribution } from '#lib/projects/index.ts';
 
 	interface Props {
 		contribution: Contribution;

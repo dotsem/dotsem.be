@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { scrollBehavior } from '$lib/utils';
+	import { scrollBehavior } from '#lib/utils.ts';
 
 	export interface SectionItem {
 		id: string;

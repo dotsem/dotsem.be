@@ -1,21 +1,21 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import Hero from '../../lib/components/Hero.svelte';
-	import Profile from '$lib/components/profile/Profile.svelte';
-	import BentoProjectCard from '$lib/components/cards/BentoProjectCard.svelte';
-	import ContactForm from '$lib/components/ContactForm.svelte';
-	import * as m from '$lib/paraglide/messages.js';
-	import BgImage from '$lib/assets/bg-dark.webp';
-	import ImageDivider from '$lib/components/ImageDivider.svelte';
-	import AboutMe from '$lib/components/AboutMe.svelte';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
+	import Profile from '#lib/components/profile/Profile.svelte';
+	import BentoProjectCard from '#lib/components/cards/BentoProjectCard.svelte';
+	import ContactForm from '#lib/components/ContactForm.svelte';
+	import * as m from '#lib/paraglide/messages.js';
+	import BgImage from '#lib/assets/bg-dark.webp';
+	import ImageDivider from '#lib/components/ImageDivider.svelte';
+	import AboutMe from '#lib/components/AboutMe.svelte';
+	import EntryAnimation from '#lib/components/EntryAnimation.svelte';
 	import PageSectionIndicator, {
 		type SectionItem
-	} from '$lib/components/PageSectionIndicator.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import { i18n } from '$lib/i18n';
-	import { getLocale } from '$lib/paraglide/runtime';
-	import { sortProjectsByHighlight } from '$lib/projects';
+	} from '#lib/components/PageSectionIndicator.svelte';
+	import { Button } from '#lib/components/ui/button/index.ts';
+	import { i18n } from '#lib/i18n.ts';
+	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { sortProjectsByHighlight } from '#lib/projects/index.ts';
 
 	import { onMount } from 'svelte';
 

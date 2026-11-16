@@ -1,11 +1,11 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getBlogBySlug, getBlogsByLang } from '$lib/blog';
-import { blogsMetadata } from '$lib/blog/metadata';
-import { getProjectBySlug, getProjectsByLang } from '$lib/projects';
-import { projectsMetadata } from '$lib/projects/metadata';
-import { locales } from '$lib/paraglide/runtime';
-import { renderShareCard } from '$lib/server/og';
+import { getBlogBySlug, getBlogsByLang } from '#lib/blog/index.ts';
+import { blogsMetadata } from '#lib/blog/metadata.ts';
+import { getProjectBySlug, getProjectsByLang } from '#lib/projects/index.ts';
+import { projectsMetadata } from '#lib/projects/metadata.ts';
+import { locales } from '#lib/paraglide/runtime.js';
+import { renderShareCard } from '#lib/server/og.ts';
 
 // one card per project/post per language, generated at build time
 export const prerender = true;

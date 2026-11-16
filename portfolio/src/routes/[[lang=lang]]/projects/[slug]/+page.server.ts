@@ -1,6 +1,6 @@
-import { getProjectBySlug } from '$lib/projects';
-import { enrichProjectWithVersion } from '$lib/server/github';
-import { getLocale } from '$lib/paraglide/runtime.js';
+import { getProjectBySlug } from '#lib/projects/index.ts';
+import { enrichProjectWithVersion } from '#lib/server/github.ts';
+import { getLocale } from '#lib/paraglide/runtime.js';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, url, setHeaders }) => {

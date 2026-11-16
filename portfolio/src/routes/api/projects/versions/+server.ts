@@ -1,6 +1,5 @@
-import { json } from '@sveltejs/kit';
-import { projectsMetadata } from '$lib/projects/metadata';
-import { enrichProjectsWithVersions } from '$lib/server/github';
+import { projectsMetadata } from '#lib/projects/metadata.ts';
+import { enrichProjectsWithVersions } from '#lib/server/github.ts';
 import type { RequestHandler } from './$types';
 
 export const prerender = false;
@@ -25,5 +24,5 @@ export const GET: RequestHandler = async ({ setHeaders }) => {
 		{} as Record<string, string>
 	);
 
-	return json({ versions });
+	return Response.json({ versions });
 };

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import ContributionCard from '$lib/components/cards/ContributionCard.svelte';
+	import Seo from '#lib/components/Seo.svelte';
+	import ContributionCard from '#lib/components/cards/ContributionCard.svelte';
 	import PageSectionIndicator, {
 		type SectionItem
-	} from '$lib/components/PageSectionIndicator.svelte';
-	import { contributions, sortProjectsByHighlight } from '$lib/projects';
-	import * as m from '$lib/paraglide/messages';
+	} from '#lib/components/PageSectionIndicator.svelte';
+	import { contributions, sortProjectsByHighlight } from '#lib/projects/index.ts';
+	import * as m from '#lib/paraglide/messages.js';
 	import { onMount } from 'svelte';
-	import { getLocale } from '$lib/paraglide/runtime';
+	import { getLocale } from '#lib/paraglide/runtime.js';
 	import ProjectSection from './components/ProjectSection.svelte';
-	import AnimatedCounter from '$lib/components/AnimatedCounter.svelte';
+	import AnimatedCounter from '#lib/components/AnimatedCounter.svelte';
 	import ProjectHeading from './components/ProjectHeading.svelte';
 
 	let { data } = $props();

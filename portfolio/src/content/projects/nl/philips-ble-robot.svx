@@ -4,7 +4,7 @@ description: Een project gemaakt tijdens mijn stage bij Philips Eindhoven. Hun e
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Stageproject

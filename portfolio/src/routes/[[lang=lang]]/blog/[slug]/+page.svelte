@@ -1,19 +1,19 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import { ogImagePath } from '$lib/site';
-	import * as m from '$lib/paraglide/messages';
+	import Seo from '#lib/components/Seo.svelte';
+	import { ogImagePath } from '#lib/site.ts';
+	import * as m from '#lib/paraglide/messages.js';
 	import { resolve } from '$app/paths';
-	import { i18n } from '$lib/i18n';
-	import ContentHero from '$lib/components/content-pages/ContentHero.svelte';
-	import ContentLayout from '$lib/components/content-pages/ContentLayout.svelte';
+	import { i18n } from '#lib/i18n.ts';
+	import ContentHero from '#lib/components/content-pages/ContentHero.svelte';
+	import ContentLayout from '#lib/components/content-pages/ContentLayout.svelte';
 	import PenTool from '@lucide/svelte/icons/pen-tool';
 	import {
 		LeftSidebar,
 		LeftSidebarContent,
 		SidebarLink,
 		ContentPagination
-	} from '$lib/components/content-pages';
-	import { formatBlogDate, parseBlogDate } from '$lib/blog';
+	} from '#lib/components/content-pages/index.ts';
+	import { formatBlogDate, parseBlogDate } from '#lib/blog/index.ts';
 
 	let { data } = $props();
 

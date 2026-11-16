@@ -1,4 +1,4 @@
-import { i18n } from '$lib/i18n';
+import { i18n } from '#lib/i18n.ts';
 
 export const SITE_URL = 'https://dotsem.be';
 export const SITE_NAME = 'Sem Van Broekhoven';
@@ -13,7 +13,7 @@ export function absoluteUrl(path: string): string {
 }
 
 /** Canonical, locale-aware URL of the page `url` points to (no trailing slash). */
-export function canonicalUrl(url: URL): string {
+export function canonicalUrl(url: Pick<URL, 'href' | 'pathname'>): string {
 	const lang = i18n.getLanguageFromUrl(url);
 	return stripTrailingSlash(absoluteUrl(i18n.resolveRoute(i18n.route(url.pathname), lang)));
 }

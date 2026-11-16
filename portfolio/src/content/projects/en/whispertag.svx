@@ -6,8 +6,8 @@ description: An interactive, tactile storytelling application that brings
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
-      import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
+    import Image from '#lib/components/Image.svelte';
+      import OsDownloadButton from "#lib/components/OsDownloadButton.svelte";
 
   export let latestRelease = "";
 </script>

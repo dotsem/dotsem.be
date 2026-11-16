@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import * as Card from '$lib/components/ui/card';
-	import { i18n } from '$lib/i18n';
-	import { getLocale } from '$lib/paraglide/runtime';
-	import { card_read_more } from '$lib/paraglide/messages.js';
-	import { type ProjectMeta, getLocalizedStatus } from '$lib/projects';
-	import ScrollingLangList from '$lib/components/ScrollingLangList.svelte';
-	import CardImage from '$lib/components/cards/CardImage.svelte';
+	import * as Card from '#lib/components/ui/card/index.ts';
+	import { i18n } from '#lib/i18n.ts';
+	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { card_read_more } from '#lib/paraglide/messages.js';
+	import { type ProjectMeta, getLocalizedStatus } from '#lib/projects/index.ts';
+	import ScrollingLangList from '#lib/components/ScrollingLangList.svelte';
+	import CardImage from '#lib/components/cards/CardImage.svelte';
 
 	interface Props {
 		project: ProjectMeta;

@@ -7,8 +7,8 @@ description: Een volledig declaratieve, veerkrachtige homelab-infrastructuur
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
-    import Mermaid from '$lib/components/Mermaid.svelte';
+    import Image from '#lib/components/Image.svelte';
+    import Mermaid from '#lib/components/Mermaid.svelte';
 
     const topology = `
 flowchart TD

@@ -1,5 +1,5 @@
-import { getLocale } from '$lib/paraglide/runtime.js';
-import { getBlogsByLang } from '$lib/blog';
+import { getLocale } from '#lib/paraglide/runtime.js';
+import { getBlogsByLang } from '#lib/blog/index.ts';
 
 export const load = async ({ url }) => {
 	const lang = url.pathname.split('/').find((s) => ['en', 'nl'].includes(s)) || getLocale();

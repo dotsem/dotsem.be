@@ -5,8 +5,8 @@ description: Een krachtige, local-first planning-applicatie gebouwd met Flutter
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
-  import OsDownloadButton from "$lib/components/OsDownloadButton.svelte";
+  import Image from '#lib/components/Image.svelte';
+  import OsDownloadButton from "#lib/components/OsDownloadButton.svelte";
 
   export let latestRelease = "";
 </script>

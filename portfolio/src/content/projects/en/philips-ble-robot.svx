@@ -4,7 +4,7 @@ description: A project made during my internship at Philips Eindhoven. Combining
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Internship Project

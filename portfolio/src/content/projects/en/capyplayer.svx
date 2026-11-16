@@ -5,7 +5,7 @@ description: A customizable, animated desktop media player widget for Wayland,
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## An Animated Desktop Media Player for Wayland

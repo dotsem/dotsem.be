@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import HeroImage from '$lib/assets/hero.webp';
-	import HeroImageMobile from '$lib/assets/hero-sm.webp';
-	import EntryAnimation from '$lib/components/EntryAnimation.svelte';
-	import Bg from '$lib/assets/bg-dark.webp';
+	import { Button } from '#lib/components/ui/button/index.ts';
+	import HeroImage from '#lib/assets/hero.webp';
+	import HeroImageMobile from '#lib/assets/hero-sm.webp';
+	import EntryAnimation from '#lib/components/EntryAnimation.svelte';
+	import Bg from '#lib/assets/bg-dark.webp';
 
 	import {
 		hero_button_main,
 		hero_button_secondary,
 		hero_subtitle,
 		hero_title
-	} from '$lib/paraglide/messages.js';
+	} from '#lib/paraglide/messages.js';
 </script>
 
 <div id="hero" class="relative overflow-hidden bg-background">

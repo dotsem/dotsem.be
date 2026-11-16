@@ -1,6 +1,5 @@
-import * as runtime from '$lib/paraglide/runtime.js';
-import { paraglideMiddleware } from '$lib/paraglide/server.js';
-import type { Handle, Reroute } from '@sveltejs/kit';
+import type { Reroute } from '@sveltejs/kit/hooks';
+import * as runtime from '#lib/paraglide/runtime.js';
 
 export const i18n = {
 	resolveRoute(path: string, locale?: string): string {
@@ -11,25 +10,14 @@ export const i18n = {
 	route(path: string): string {
 		return runtime.deLocalizeHref(path);
 	},
-	getLanguageFromUrl(url: URL | string): runtime.Locale {
-		return runtime.extractLocaleFromUrl(url) ?? runtime.baseLocale;
+	getLanguageFromUrl(url: Pick<URL, 'href'> | string): runtime.Locale {
+		return (
+			runtime.extractLocaleFromUrl(typeof url === 'string' ? url : url.href) ?? runtime.baseLocale
+		);
 	},
 	reroute(): Reroute {
 		return ({ url }) => {
 			return runtime.deLocalizeUrl(url).pathname;
-		};
-	},
-	handle(): Handle {
-		return ({ event, resolve }) => {
-			return paraglideMiddleware(event.request, ({ locale }) => {
-				return resolve(event, {
-					transformPageChunk: ({ html }) => {
-						return html
-							.replace('%paraglide.lang%', locale)
-							.replace('%paraglide.text_dir%', runtime.getTextDirection(locale));
-					}
-				});
-			});
 		};
 	}
 };

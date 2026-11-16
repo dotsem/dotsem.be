@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import Paper from '$lib/components/cv/Paper.svelte';
-	import pfp from '$lib/assets/me.webp';
-	import * as m from '$lib/paraglide/messages';
-	import Section from '$lib/components/cv/Section.svelte';
-	import ListItem from '$lib/components/cv/ListItem.svelte';
-	import FAB from '$lib/components/cv/FAB.svelte';
-	import { handleDownload } from '$lib/components/cv/handleDownload';
-	import Experience from '$lib/components/cv/Experience.svelte';
+	import Seo from '#lib/components/Seo.svelte';
+	import Paper from '#lib/components/cv/Paper.svelte';
+	import pfp from '#lib/assets/me.webp';
+	import * as m from '#lib/paraglide/messages.js';
+	import Section from '#lib/components/cv/Section.svelte';
+	import ListItem from '#lib/components/cv/ListItem.svelte';
+	import FAB from '#lib/components/cv/FAB.svelte';
+	import { handleDownload } from '#lib/components/cv/handleDownload.ts';
+	import Experience from '#lib/components/cv/Experience.svelte';
 
 	import { onMount } from 'svelte';
 

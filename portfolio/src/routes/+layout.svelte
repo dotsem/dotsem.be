@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { i18n } from '$lib/i18n';
-	import { locales } from '$lib/paraglide/runtime';
+	import { i18n } from '#lib/i18n.ts';
+	import { locales } from '#lib/paraglide/runtime.js';
 	import { page } from '$app/state';
-	import { SITE_NAME, absoluteUrl, canonicalUrl, stripTrailingSlash } from '$lib/site';
+	import { SITE_NAME, absoluteUrl, canonicalUrl, stripTrailingSlash } from '#lib/site.ts';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.png';
+	import favicon from '#lib/assets/favicon.png';
 	import headingFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
 	import 'devicon/devicon.min.css';
 	import '@fortawesome/fontawesome-free/css/all.min.css';
-	import Navbar from '$lib/components/navbar/Navbar.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import Navbar from '#lib/components/navbar/Navbar.svelte';
+	import Footer from '#lib/components/Footer.svelte';
 	import { onNavigate, afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { Toaster } from '$lib/components/ui/sonner';
+	import { Toaster } from '#lib/components/ui/sonner/index.ts';
 
 	let { children } = $props();
 
@@ -21,6 +21,8 @@
 	let canonical = $derived(canonicalUrl(page.url));
 
 	onNavigate((navigation) => {
+		if (navigation.shallow && navigation.type === 'goto') return;
+
 		const toPath = stripTrailingSlash(navigation.to?.url.pathname || '');
 		const fromPath = stripTrailingSlash(navigation.from?.url.pathname || '');
 
@@ -30,7 +32,9 @@
 		}
 	});
 
-	afterNavigate(() => {
+	afterNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		// After any navigation, restore smooth scrolling for in-page links
 		document.documentElement.style.scrollBehavior = 'smooth';
 	});

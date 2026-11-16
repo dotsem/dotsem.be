@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { locales } from '$lib/paraglide/runtime';
-	import { i18n } from '$lib/i18n';
-	import { DEFAULT_OG_IMAGE, SITE_NAME, absoluteUrl, canonicalUrl } from '$lib/site';
+	import { locales } from '#lib/paraglide/runtime.js';
+	import { i18n } from '#lib/i18n.ts';
+	import { DEFAULT_OG_IMAGE, SITE_NAME, absoluteUrl, canonicalUrl } from '#lib/site.ts';
 
 	interface Props {
 		title: string;

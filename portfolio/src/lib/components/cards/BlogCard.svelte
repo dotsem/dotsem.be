@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import * as Card from '$lib/components/ui/card';
-	import Badge from '$lib/components/ui/badge/badge.svelte';
-	import { i18n } from '$lib/i18n';
-	import { getLocale } from '$lib/paraglide/runtime';
-	import { card_read_blog, blog_reading_time } from '$lib/paraglide/messages.js';
+	import * as Card from '#lib/components/ui/card/index.ts';
+	import Badge from '#lib/components/ui/badge/badge.svelte';
+	import { i18n } from '#lib/i18n.ts';
+	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { card_read_blog, blog_reading_time } from '#lib/paraglide/messages.js';
 	import { onMount } from 'svelte';
-	import { type BlogMeta, formatBlogDate } from '$lib/blog';
-	import { labelScroller } from '$lib/utils';
-	import CardImage from '$lib/components/cards/CardImage.svelte';
+	import { type BlogMeta, formatBlogDate } from '#lib/blog/index.ts';
+	import { labelScroller } from '#lib/utils.ts';
+	import CardImage from '#lib/components/cards/CardImage.svelte';
 
 	interface Props {
 		blog: BlogMeta;

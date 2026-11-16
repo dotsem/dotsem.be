@@ -6,7 +6,7 @@ description: Een energiezuinig volgsysteem voor waardevolle schoolkoffers,
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Waardevolle Koffers Volgen met LoRa

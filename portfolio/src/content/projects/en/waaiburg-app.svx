@@ -4,7 +4,7 @@ description: Performance analysis, updates & new features for the Waaiburg mobil
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
+  import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Waaiburg Mobile App

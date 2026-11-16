@@ -6,7 +6,7 @@ description: Een open-source herontwerp van het klassieke GoStrategy bordspel.
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Herontwerp van een Klassieker

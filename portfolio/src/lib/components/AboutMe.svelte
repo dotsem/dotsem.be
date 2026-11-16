@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as m from '$lib/paraglide/messages.js';
-	import { calculateAge } from '$lib/utils';
+	import * as m from '#lib/paraglide/messages.js';
+	import { calculateAge } from '#lib/utils.ts';
 	import InfoCard from './InfoCard.svelte';
 	import RandomDelayGroup from './RandomDelayGroup.svelte';
 

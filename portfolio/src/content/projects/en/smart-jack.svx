@@ -4,7 +4,7 @@ description: An IOT project including an custom blackjack game made with pygame,
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
+  import Image from '#lib/components/Image.svelte';
 
 </script>
 

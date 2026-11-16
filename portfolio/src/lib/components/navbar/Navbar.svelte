@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { i18n } from '$lib/i18n';
-	import LangSwitch from '$lib/components/navbar/LangSwitch.svelte';
-	import NavLinks from '$lib/components/navbar/NavLinks.svelte';
+	import { i18n } from '#lib/i18n.ts';
+	import LangSwitch from '#lib/components/navbar/LangSwitch.svelte';
+	import NavLinks from '#lib/components/navbar/NavLinks.svelte';
 	import HamburgerButton from './HamburgerButton.svelte';
-	import { navbar } from '$lib/navbar.svelte';
+	import { navbar } from '#lib/navbar.svelte.ts';
 
 	let currentLang = $derived(i18n.getLanguageFromUrl(page.url) || 'en');
 	let hamburgerMenuVisible = $state(false);

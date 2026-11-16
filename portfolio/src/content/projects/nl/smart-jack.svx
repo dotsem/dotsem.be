@@ -4,7 +4,7 @@ description: Een IoT-project bestaande uit een aangepast blackjack-spel gemaakt 
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
+  import Image from '#lib/components/Image.svelte';
 
 </script>
 

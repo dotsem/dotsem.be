@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Seo from '$lib/components/Seo.svelte';
-	import CookieItem from '$lib/components/cookie-consent/CookieItem.svelte';
-	import * as m from '$lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
+	import CookieItem from '#lib/components/cookie-consent/CookieItem.svelte';
+	import * as m from '#lib/paraglide/messages.js';
 </script>
 
 <Seo title={m.cookie_page_title()} description={m.cookie_page_description()} />

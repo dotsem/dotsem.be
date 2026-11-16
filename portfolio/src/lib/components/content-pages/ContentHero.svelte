@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ProgLang from '$lib/components/ProgLang.svelte';
+	import ProgLang from '#lib/components/ProgLang.svelte';
 	import { ContentHeroCTA, ContentHeroImage, ContentHeroLabels, ContentHeroTitle } from '.';
 	import ContentHeroActionLinks from './hero/ActionLinks.svelte';
-	import type { ProjectMetadata } from '$lib/projects/metadata';
+	import type { ProjectMetadata } from '#lib/projects/metadata.ts';
 
 	interface Props extends Partial<ProjectMetadata> {
 		title: string;

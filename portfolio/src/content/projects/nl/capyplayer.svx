@@ -4,7 +4,7 @@ description: Een aanpasbare, geanimeerde desktop mediawidget voor Wayland, gebou
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Een Geanimeerde Desktop Mediaspeler voor Wayland

@@ -1,6 +1,6 @@
-import { getLocale } from '$lib/paraglide/runtime.js';
-import { getBlogBySlug, getBlogsByLang } from '$lib/blog';
-import { getProjectBySlug } from '$lib/projects';
+import { getLocale } from '#lib/paraglide/runtime.js';
+import { getBlogBySlug, getBlogsByLang } from '#lib/blog/index.ts';
+import { getProjectBySlug } from '#lib/projects/index.ts';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, url }) => {

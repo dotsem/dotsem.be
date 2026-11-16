@@ -5,7 +5,7 @@ description: Een handige website om eenvoudig gewogen beslissingsmatrices te
 ---
 
 <script>
-    import Image from '$lib/components/Image.svelte';
+    import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Een simpele Gewogen Beslissingsmatrix

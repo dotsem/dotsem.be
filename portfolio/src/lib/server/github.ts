@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { GITHUB_TOKEN } from '$app/env/private';
 
 // Simple in-memory cache for the server instance
 const cache = new Map<string, { version: string; timestamp: number }>();
@@ -19,8 +19,8 @@ export async function getLatestRelease(repo: string): Promise<string | null> {
 		};
 
 		// Optional: Support GITHUB_TOKEN if provided for higher rate limits
-		if (env.GITHUB_TOKEN) {
-			headers['Authorization'] = `token ${env.GITHUB_TOKEN}`;
+		if (GITHUB_TOKEN) {
+			headers['Authorization'] = `token ${GITHUB_TOKEN}`;
 		}
 
 		const res = await fetch(url, { headers });

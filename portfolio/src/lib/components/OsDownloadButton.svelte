@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import * as m from '$lib/paraglide/messages';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import { Card } from '$lib/components/ui/card';
+	import * as m from '#lib/paraglide/messages.js';
+	import Button from '#lib/components/ui/button/button.svelte';
+	import { Card } from '#lib/components/ui/card/index.ts';
 
 	interface Props {
 		windowsUrl?: string;

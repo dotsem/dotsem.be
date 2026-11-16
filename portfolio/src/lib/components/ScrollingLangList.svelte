@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import ProgLang from '$lib/components/ProgLang.svelte';
-	import { labelScroller } from '$lib/utils';
+	import ProgLang from '#lib/components/ProgLang.svelte';
+	import { labelScroller } from '#lib/utils.ts';
 
 	interface Props {
 		languages: string[];

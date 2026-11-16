@@ -8,7 +8,7 @@ description: Niri is a window manager for Linux, written in Rust. It is a tiling
 ---
 
 <script>
-  import Image from '$lib/components/Image.svelte';
+  import Image from '#lib/components/Image.svelte';
 </script>
 
 ## Niri - The best window manager
