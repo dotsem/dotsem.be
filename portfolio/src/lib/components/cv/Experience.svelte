@@ -5,16 +5,23 @@
 		title: string;
 		location?: string;
 		date?: string;
+		stack?: string;
 		children: Snippet;
 		[key: string]: unknown;
 	}
 
-	let { title, location, date, children, ...restProps }: Props = $props();
+	let { title, location, date, stack, children, ...restProps }: Props = $props();
 </script>
 
-<div class="experience mx-2 {restProps.class}">
-	<h3 class="text-md mb-2 border-b border-primary font-bold">
+<div class="experience mx-2 {restProps.class ?? ''}">
+	<h3 class="text-md mb-2 flex justify-between gap-2 border-b border-primary font-bold">
 		{title}
+		{#if stack}
+			<span class="text-sm font-medium text-neutral-600">
+				<i class="fa-solid fa-code mr-1"></i>
+				{stack}
+			</span>
+		{/if}
 	</h3>
 	{#if location || date}
 		<div class="flex justify-between">

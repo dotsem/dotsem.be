@@ -64,7 +64,7 @@
 			</div>
 		</header>
 
-		<main class="grid grid-cols-12 bg-white font-serif text-black">
+		<div class="grid grid-cols-12 bg-white font-serif text-black">
 			<!-- Main Content -->
 			<article class="col-span-8 pt-4 pr-4 pl-paper">
 				<Section title={m.cv_education()} class="mb-4">
@@ -82,41 +82,11 @@
 							location={m.cv_location()}
 							date={m.cv_edu_secondary_date()}
 						>
-							<ul>
-								<li>{m.cv_edu_secondary_item_1()}</li>
-								<li>{m.cv_edu_secondary_item_2()}</li>
-							</ul>
+							{m.cv_edu_secondary_description()}
 						</Experience>
 					</div>
 				</Section>
-				<Section title={m.cv_student_jobs()} class="mb-4">
-					<div class="mx-2">
-						<Experience
-							title={m.cv_job_lifeguard_title()}
-							location={m.cv_location()}
-							date={m.cv_job_lifeguard_date()}
-							class="mb-4"
-						>
-							<ul>
-								<li>
-									{m.cv_job_lifeguard_item_1()}
-								</li>
-								<li>
-									{m.cv_job_lifeguard_item_2()}
-								</li>
-								<li>{m.cv_job_lifeguard_item_3()}</li>
-							</ul>
-						</Experience>
-						<Experience
-							title={m.cv_job_bistro_title()}
-							location={m.cv_location_kinrooi()}
-							date={m.cv_job_bistro_date()}
-						>
-							{m.cv_job_bistro_description()}
-						</Experience>
-					</div>
-				</Section>
-				<Section title={m.cv_experience()}>
+				<Section title={m.cv_experience()} class="mb-4">
 					<div class="mx-2">
 						<Experience
 							title={m.cv_internship_philips_title()}
@@ -128,16 +98,37 @@
 						</Experience>
 						<Experience title={m.cv_vex_title()}>
 							{m.cv_vex_description()}
-							<ul>
-								<li>
-									{m.cv_vex_item_1()}
-								</li>
-								<li>
-									{m.cv_vex_item_2()}
-								</li>
-							</ul>
 						</Experience>
 					</div>
+				</Section>
+				<Section title={m.cv_projects()} class="mb-4">
+					<div class="mx-2">
+						<Experience
+							title="GoStrategy"
+							stack="Go, SvelteKit, PostgreSQL, Docker, NixOS"
+							class="mb-4"
+						>
+							{m.cv_project_gostrategy_description()}
+						</Experience>
+						<Experience title="World Wide Bulb" stack="Go, Svelte, SQLite, Docker" class="mb-4">
+							{m.cv_project_wwb_description()}
+						</Experience>
+						<Experience title="Carpe Diem" stack="Flutter, Dart">
+							{m.cv_project_carpe_diem_description()}
+						</Experience>
+					</div>
+				</Section>
+				<Section title={m.cv_student_jobs()}>
+					<ul class="mx-4 space-y-1">
+						<li class="flex justify-between gap-2">
+							<span class="font-bold">{m.cv_job_lifeguard_title()}</span>
+							<span class="text-neutral-600">{m.cv_job_lifeguard_date()}</span>
+						</li>
+						<li class="flex justify-between gap-2">
+							<span class="font-bold">{m.cv_job_bistro_title()}</span>
+							<span class="text-neutral-600">{m.cv_job_bistro_date()}</span>
+						</li>
+					</ul>
 				</Section>
 			</article>
 
@@ -150,24 +141,21 @@
 				</Section>
 				<Section title={m.cv_skills_title()} class="mt-4">
 					<ul class="space-y-1">
-						<ListItem icon="fa-brands fa-python">Python</ListItem>
 						<ListItem icon="fa-brands fa-flutter">Flutter (Dart)</ListItem>
-						<ListItem icon="fa-brands fa-svelte">Svelte & SvelteKit</ListItem>
+						<ListItem icon="fa-brands fa-svelte">Typescript & SvelteKit</ListItem>
 						<ListItem icon="fa-brands fa-golang">Go</ListItem>
-						<ListItem icon="fa-brands fa-typescript">TypeScript</ListItem>
+						<ListItem icon="fa-brands fa-python">Python</ListItem>
 						<ListItem icon="fa-brands fa-rust">Rust</ListItem>
 						<ListItem icon="fa-brands fa-postgresql">PostgreSQL</ListItem>
-						<ListItem icon="fa-brands fa-linux">Linux</ListItem>
 						<ListItem icon="fa-brands fa-docker">Docker</ListItem>
-						<ListItem icon="fa-brands fa-figma">Figma</ListItem>
-						<ListItem icon="fa-brands fa-github">GitHub</ListItem>
+						<ListItem icon="fa-brands fa-linux">Linux</ListItem>
+						<ListItem icon="fa-brands fa-github">GitHub & GitHub Actions</ListItem>
 					</ul>
 				</Section>
 				<Section title={m.cv_hobbies_title()} class="mt-4">
 					<ul class="space-y-1">
 						<ListItem icon="fa-solid fa-guitar">{m.cv_hobby_guitar()}</ListItem>
 						<ListItem icon="fa-solid fa-water">{m.cv_hobby_swimming()}</ListItem>
-						<ListItem icon="fa-solid fa-code">{m.cv_hobby_coding()}</ListItem>
 					</ul>
 				</Section>
 
@@ -203,13 +191,21 @@
 								class="text-neutral-900 no-underline hover:underline">Sem Van Broekhoven</a
 							>
 						</ListItem>
-						<ListItem icon="fa-solid fa-location-dot">
-							{m.cv_location()}
+						<ListItem icon="fa-brands fa-github">
+							<a
+								href="https://github.com/dotsem"
+								class="text-neutral-900 no-underline hover:underline">github.com/dotsem</a
+							>
+						</ListItem>
+						<ListItem icon="fa-solid fa-globe">
+							<a href="https://dotsem.be" class="text-neutral-900 no-underline hover:underline"
+								>dotsem.be</a
+							>
 						</ListItem>
 					</ul>
 				</Section>
 			</aside>
-		</main>
+		</div>
 	</Paper>
 </section>
 
