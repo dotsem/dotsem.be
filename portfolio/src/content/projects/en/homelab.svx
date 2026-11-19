@@ -19,13 +19,13 @@ flowchart TD
         direction TB
 
         subgraph Edge["Edge & Networking"]
-            BattleBus["battle-bus<br/>Cloudflare Tunnel & Nginx"]
+            BattleBus["battle-bus (x2)<br/>Cloudflare Tunnel & Nginx"]
             Tailscale["tailscale<br/>Subnet Router & Mesh"]
         end
 
         subgraph Core["Core & Observability"]
-            AdGuard["adguard-home<br/>Redundant DNS Sync"]
-            Lobby["lobby<br/>Homepage & Gatus"]
+            AdGuard["adguard-home (x2)<br/>Redundant Local DNS"]
+            Lobby["lobby<br/>Homepage, Gatus & Wake-on-LAN"]
             LonelyLodge["lonely-lodge<br/>Grafana & Prometheus"]
         end
 
@@ -34,6 +34,7 @@ flowchart TD
             SaltySprings["salty-springs<br/>Staging Apps"]
             GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
             RiskyReels["risky-reels<br/>Jellyfin VA-API"]
+            TheVault["the-vault<br/>PrivateBin"]
         end
 
         Edge --> Core
@@ -66,7 +67,8 @@ and restorable from scratch in minutes.
   servers, traditional hypervisor backups were an impractical luxury. A dead
   drive or broken configuration update would mean hours of manual rebuilding.
 * **The Solution:** Fully declarative GitOps using **Nix Flakes**, **Disko**,
-  and **sops-nix**. System states, package sets, firewall rules, and container
+  and **sops-nix**. Servers track NixOS stable and workstations track unstable.
+  System states, package sets, firewall rules, and container
   definitions are tracked in a single Git repository and easily sharable between
   systems.
 * **Instant Recovery:** Disk partitioning and filesystems are defined as code
@@ -120,11 +122,13 @@ clusters:
 
 <Mermaid code={topology} aspectRatio="1:1" startingScale={1.5} />
 
-* **Core Infrastructure & DNS (`adguard-home`):** Redundant dual AdGuard Home
-  instances providing local split-horizon DNS resolution, malware filtering, and
-  ad-blocking.
-* **Edge Ingress (`battle-bus`):** Reverse proxy gateway managing Nginx and
-  routing traffic through encrypted Cloudflare Tunnels.
+* **Core Infrastructure & DNS (`adguard-home`):** Two AdGuard Home instances,
+  both on a separate Proxmox host. Both generate their local `*.home` records from the same
+  `lib/hosts.nix`, so adding a host automatically adds its DNS name and the two
+  never drift apart. Everything else is forwarded over DNS-over-HTTPS, with
+  malware and ad filtering on top.
+* **Edge Ingress (`battle-bus`):** Reverse proxy gateways (on separate Proxmox hosts)
+  managing Nginx and routing traffic through encrypted Cloudflare Tunnels.
 * **Telemetry & Observability (`lonely-lodge` & `lobby`):** Centralized
   telemetry stack running Dockerized Grafana, Loki, Promtail, and Prometheus,
   complemented by a Homepage dashboard and automated health checks via Gatus and
@@ -135,6 +139,37 @@ clusters:
 * **Application Environments (`retail-row` & `salty-springs`):** Dedicated
   production and staging environments hosting full-stack applications running in
   Docker containers.
+* **Secret Sharing (`the-vault`):** A self-hosted PrivateBin for
+  zero-knowledge, burn-after-reading secrets.
+
+### 5. Wake-on-LAN for the Workstation
+
+My desktop is accessible from anywhere in the world (by me). A small Go service (`scripts/wake`) runs on `lobby`
+and sends a Wake-on-LAN packet to it. It is wired into the Homepage dashboard
+behind an Nginx route on `battle-bus`, so the PC can be switched on from
+anywhere with one click, and its status shows up next to the other services. The
+service, its secrets (via sops) and the route are all declared in the
+repository.
+
+### 6. Supply Chain & Continuous Verification
+
+Every push and pull request is checked by GitHub Actions, and a few jobs run on
+a schedule to catch problems before a deploy does:
+
+* **Evaluate every host:** each pull request evaluates all NixOS configurations,
+  and `flake-checker` fails on stale or end-of-life nixpkgs.
+* **Automated flake updates:** weekly pull requests bump the lock file. Servers
+  (`nixpkgs-stable`) and everything else are bumped separately, so a break on
+  unstable never blocks a security fix for the servers. A lock that doesn't
+  evaluate never becomes a pull request.
+* **Nightly vulnerability scanning:** `flakevuln` scans the full closure of
+  every server configuration and a gate fails the run when a bump would fix a
+  high-severity finding. Findings without a fix yet only warn. **Trivy** scans
+  the repository and the container images of the telemetry and kitchen stacks.
+* **Dependabot** keeps GitHub Actions, Go modules and docker-compose images
+  current, and all actions are pinned to commit hashes.
+* **Pre-commit hooks** (Lefthook) encrypt any plaintext SOPS file and verify
+  `lib/hosts.nix` before a commit is created.
 
 --------------------------------------------------------------------------------
 
@@ -146,8 +181,11 @@ encrypted secrets can be executed locally or remotely with a single command:
 
 ```bash
 # Rebuild all homelab targets in parallel
-just rebuild-all --parallel
+just rebuild-all true
 
-# Verify and audit Age secret encryption
-just check-secrets
+# Evaluate every host configuration (the same check CI runs)
+just check
+
+# Encrypt any plaintext SOPS secret files
+just encrypt-secrets
 ```

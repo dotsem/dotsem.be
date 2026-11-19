@@ -20,13 +20,13 @@ flowchart TD
         direction TB
 
         subgraph Edge["Edge & Netwerk"]
-            BattleBus["battle-bus<br/>Cloudflare Tunnel & Nginx"]
+            BattleBus["battle-bus (x2)<br/>Cloudflare Tunnel & Nginx"]
             Tailscale["tailscale<br/>Subnet Router & Mesh"]
         end
 
         subgraph Core["Core & Monitoring"]
-            AdGuard["adguard-home<br/>Redundante DNS Sync"]
-            Lobby["lobby<br/>Homepage & Gatus"]
+            AdGuard["adguard-home (x2)<br/>Redundante Lokale DNS"]
+            Lobby["lobby<br/>Homepage, Gatus & Wake-on-LAN"]
             LonelyLodge["lonely-lodge<br/>Grafana & Prometheus"]
         end
 
@@ -35,6 +35,7 @@ flowchart TD
             SaltySprings["salty-springs<br/>Staging Apps"]
             GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
             RiskyReels["risky-reels<br/>Jellyfin VA-API"]
+            TheVault["the-vault<br/>PrivateBin"]
         end
 
         Edge --> Core
@@ -69,7 +70,8 @@ herstelbaar.
   schijf of een mislukte configuratie-update zou urenlang handmatig herstelwerk
   betekenen.
 * **De Oplossing:** Volledig declaratieve GitOps met behulp van **Nix Flakes**,
-  **Disko** en **sops-nix**. De volledige systeemstatus, pakketten,
+  **Disko** en **sops-nix**. Servers volgen NixOS stable en werkstations unstable. De
+  volledige systeemstatus, pakketten,
   firewallregels en containerdefinities worden centraal beheerd in een
   Git-repository en zijn eenvoudig te delen tussen systemen.
 * **Onmiddellijk Herstel:** Schijfindelingen en bestandssystemen zijn als code
@@ -127,11 +129,14 @@ clusters:
 
 <Mermaid code={topology} aspectRatio="1:1" startingScale={1.5} />
 
-* **Basis Infrasctructuur & DNS (`adguard-home`):** Redundante AdGuard Home
-  instanties die zorgen voor lokale split-horizon DNS-resolutie,
-  malwarefiltering en advertentieblokkering.
-* **Edge Ingress (`battle-bus`):** Reverse proxy gateway die Nginx beheert en
-  inkomend verkeer doorstuurt via versleutelde Cloudflare Tunnels.
+* **Basisinfrastructuur & DNS (`adguard-home`):** Twee AdGuard Home instanties,
+  één per Proxmox-host. Beide genereren hun lokale `*.home`-records uit
+  dezelfde `lib/hosts.nix`, zodat een nieuwe host automatisch een DNS-naam krijgt
+  en de twee nooit uit elkaar lopen. Al het andere wordt via DNS-over-HTTPS
+  doorgestuurd, met malware- en advertentiefiltering erbovenop.
+* **Edge Ingress (`battle-bus`):** Reverse proxy gateways (één per Proxmox-host)
+  die Nginx beheren en inkomend verkeer doorsturen via versleutelde Cloudflare
+  Tunnels.
 * **Monitoring & Observability (`lonely-lodge` & `lobby`):** Gecentraliseerde
   telemetriestack met Dockerized Grafana, Loki, Promtail en Prometheus,
   gecombineerd met een Homepage dashboard en geautomatiseerde statuscontroles
@@ -142,6 +147,39 @@ clusters:
 * **Applicatie-omgevingen (`retail-row` & `salty-springs`):** Dedicated
   productie- en staging-omgevingen voor full-stack applicaties die draaien in
   Docker containers.
+* **Geheimen Delen (`the-vault`):** Een zelfgehoste PrivateBin voor
+  zero-knowledge geheimen die na het lezen worden vernietigd.
+
+### 5. Wake-on-LAN voor het Werkstation
+
+Mijn desktop draait niet 24/7. Een kleine Go-service (`scripts/wake`) draait op
+`lobby` en stuurt een Wake-on-LAN-pakket naar de pc. De service hangt aan het
+Homepage-dashboard via een Nginx-route op `battle-bus`, zodat de pc met één klik
+van overal kan worden aangezet en de status naast de andere diensten
+zichtbaar is. De service, de geheimen (via sops) en de route staan allemaal
+declaratief in de repository.
+
+### 6. Supply Chain & Continue Verificatie
+
+Elke push en pull request wordt gecontroleerd door GitHub Actions, en enkele
+taken draaien op schema om problemen te vangen voordat een deploy dat doet:
+
+* **Alle hosts evalueren:** elke pull request evalueert alle
+  NixOS-configuraties, en `flake-checker` faalt bij verouderde of end-of-life
+  nixpkgs.
+* **Geautomatiseerde flake-updates:** wekelijkse pull requests werken het
+  lockbestand bij. Servers (`nixpkgs-stable`) en de rest worden apart
+  bijgewerkt, zodat een probleem op unstable nooit een beveiligingsfix voor de
+  servers blokkeert. Een lock die niet evalueert wordt nooit een pull request.
+* **Nachtelijke kwetsbaarheidsscans:** `flakevuln` scant de volledige closure
+  van elke serverconfiguratie en een gate laat de run falen wanneer een update
+  een kwetsbaarheid met hoge ernst oplost. Bevindingen zonder fix geven alleen
+  een waarschuwing. **Trivy** scant de repository en de containerimages van de
+  telemetrie- en keukenstacks.
+* **Dependabot** houdt GitHub Actions, Go-modules en docker-compose-images
+  actueel, en alle actions zijn vastgepind op commit-hashes.
+* **Pre-commit hooks** (Lefthook) versleutelen elk onversleuteld SOPS-bestand en
+  controleren `lib/hosts.nix` voordat een commit wordt aangemaakt.
 
 --------------------------------------------------------------------------------
 
@@ -153,8 +191,11 @@ geheimen controleren gebeurt met één commando:
 
 ```bash
 # Alle homelab servers parallel opnieuw bouwen
-just rebuild-all --parallel
+just rebuild-all true
 
-# Versleuteling van Age-geheimen controleren
-just check-secrets
+# Alle hostconfiguraties evalueren (dezelfde check als in CI)
+just check
+
+# Onversleutelde SOPS-geheimen versleutelen
+just encrypt-secrets
 ```
