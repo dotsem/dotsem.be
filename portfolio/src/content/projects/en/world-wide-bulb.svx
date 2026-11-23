@@ -5,6 +5,7 @@ description: A real-time, globally synchronized digital light switch exposing a 
 
 <script>
     import Image from '#lib/components/Image.svelte';
+    import WwbState from '#lib/components/WwbState.svelte';
 </script>
 
 ## A Globally Synchronized Digital Light Switch
@@ -13,6 +14,7 @@ World Wide Bulb (WWB) is a real-time web application where visitors from anywher
 
 While simple in concept, the project is engineered as an overkill, production-grade application featuring rate limiting, privacy-preserving IP hashing, real-time viewer counting, infinite-scroll history tracking, and single-binary deployment.
 
+<WwbState />
 ---
 
 ## Technical Architecture & Key Features
