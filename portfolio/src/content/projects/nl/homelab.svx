@@ -12,7 +12,7 @@ description: Een volledig declaratieve, veerkrachtige homelab-infrastructuur
 
     const topology = `
 flowchart TD
-    WAN["Internet / WAN"] --> Router["Dell Laptop: OPNsense Router<br/><i>3e Quorum Device (Batterij Verwijderd)</i>"]
+    WAN["Internet / WAN"] --> Router["Dell Laptop: OPNsense Router<br/><i>3e Cluster Quorum Node (Geen Batterij)</i>"]
 
     Router --> Edge
 
@@ -21,7 +21,7 @@ flowchart TD
 
         subgraph Edge["Edge & Netwerk"]
             BattleBus["battle-bus (x2)<br/>Cloudflare Tunnel & Nginx"]
-            Tailscale["tailscale<br/>Subnet Router & Mesh"]
+            Tailscale["tailscale<br/>Private Mesh Access"]
         end
 
         subgraph Core["Core & Monitoring"]
@@ -33,7 +33,7 @@ flowchart TD
         subgraph Workloads["Apps & Media Services"]
             RetailRow["retail-row<br/>GoStrategy & WWB"]
             SaltySprings["salty-springs<br/>Staging Apps"]
-            GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
+            GreasyGrove["greasy-grove<br/>Homebox, KitchenOwl & Grocy"]
             RiskyReels["risky-reels<br/>Jellyfin VA-API"]
             TheVault["the-vault<br/>PrivateBin"]
         end
@@ -63,22 +63,26 @@ herstelbaar.
 
 ## Architecturale Uitdagingen & Declaratieve Oplossingen
 
-### 1. Het Geen-Back-ups Dilemma: Declaratieve GitOps met NixOS
+### 1. Het Geen-Back-ups Dilemma: Declaratieve Infrastructuur met NixOS
 
-* **Het Probleem:** Zonder een enterprise NAS of externe back-upserver waren
-  traditionele virtuele-machineback-ups een onpraktische luxe. Een defecte
-  schijf of een mislukte configuratie-update zou urenlang handmatig herstelwerk
-  betekenen.
-* **De Oplossing:** Volledig declaratieve GitOps met behulp van **Nix Flakes**,
-  **Disko** en **sops-nix**. Servers volgen NixOS stable en werkstations unstable. De
-  volledige systeemstatus, pakketten,
-  firewallregels en containerdefinities worden centraal beheerd in een
-  Git-repository en zijn eenvoudig te delen tussen systemen.
-* **Onmiddellijk Herstel:** Schijfindelingen en bestandssystemen zijn als code
-  vastgelegd via Disko. Gevoelige gegevens en geheimen zijn versleuteld met
-  Age-sleutels en veilig opgeslagen in Git. Mocht een node hardwarematig falen,
-  dan volstaat een enkel `nixos-anywhere` commando om een identieke vervanger op
-  te zetten.
+* **Het Probleem:** Zonder enterprise NAS-appliances of secundaire offsite
+  back-upservers waren traditionele hypervisorback-ups een onpraktische luxe.
+  Een defecte schijf of een mislukte configuratie-update zou urenlang handmatig
+  herstelwerk betekenen.
+* **De Oplossing:** Volledig declaratieve configuratie met behulp van **Nix
+  Flakes**, **Disko** en **sops-nix**. Servers volgen NixOS stable en
+  workstations volgen unstable. Systeemstatussen, package sets, firewallregels
+  en containerdefinities worden bijgehouden in één Git-repository en zijn
+  eenvoudig te delen tussen systemen.
+* **Instant Recovery:** Geheimen zijn versleuteld met Age-keys en veilig
+  gecommit naar Git. Recovery hangt af van het type machine:
+  * **VM’s en bare metal:** Disk partitioning en filesystems zijn als code
+    gedefinieerd via Disko. Een identieke vervanger opzetten vereist dus slechts
+    één `nixos-anywhere`-commando.
+  * **LXC-containers:** Een vooraf gebouwde NixOS LXC-template (`just
+    build-template`) bevat de gedeelde baseline al (users, SSH en server
+    hardening). Maak hiermee een container aan in Proxmox, voer `just <host>` uit
+    en de LXC draait als die host.
 
 ### 2. Hardware-evolutie: ThinkCentres, Batterijloze Laptop & 3-Node Quorum
 
@@ -89,12 +93,12 @@ herstelbaar.
   een reëel risico op opzwellen en brandgevaar.
 * **De Oplossing:** De primaire rekentaken werden overgeheveld naar compacte
   **Lenovo ThinkCentre** mini-pc's met hardwarematige herstart bij
-  stroomherstel, die de kern van het rekenwerk vormen.
+  stroomherstel. Zij vormen de kern van het rekenwerk.
 * **Laptop Zonder Batterij als 3e Quorum-node & Router:** Een oudere Dell laptop
   werd hergebruikt, waarbij de **batterij fysiek werd verwijderd** om
-  brandgevaar uit te sluiten. In plaats van een losse router draait de laptop nu
+  brandgevaar uit te sluiten. In plaats van bare-metal draait de laptop nu
   **Proxmox VE** als volwaardige derde fysieke cluster-node. Deze levert de
-  essentiële oneven stem voor **Corosync quorum**, wat split-brain situaties
+  essentiële oneven stem voor **Corosync quorum**, wat split-brain-situaties
   tussen de ThinkCentres voorkomt. Binnen deze node draait **OPNsense**
   gevirtualiseerd in een dedicated VM voor geïsoleerde routing en firewalling.
   Het was bovendien een laptop die "Power On After AC Loss" ondersteunt, ideaal
@@ -103,25 +107,25 @@ herstelbaar.
 ### 3. Beveiliging & Schadebeperking: Netwerkisolatie & Geen Open Poorten
 
 * **Het Probleem:** Het hosten van publiek toegankelijke applicaties (zoals
-  GoStrategy en World Wide Bulb) naast interne experimentservices brengt
-  risico's met zich mee wanneer het netwerk niet gescheiden is van
-  privéapparaten.
+  GoStrategy en World Wide Bulb) naast interne experimentservices brengt risico’s
+  met zich mee wanneer het netwerk niet gescheiden is van privéapparaten.
 * **De Oplossing:** Fysieke en logische netwerksegmentatie via OPNsense. Het
   volledige homelab draait in een afgezonderd subnet (`192.168.10.0/24`),
-  gescheiden van mijn thuisnetwerk.
+  gescheiden van mijn thuisnetwerk (`192.168.0.0/24`). De router is de enige
+  verbinding tussen beide.
 * **Zero-Trust Toegang:** Er worden geen routerpoorten doorgestuurd naar het
   publieke internet:
-  * **Publieke Ingress:** Verkeer voor publieke diensten loopt veilig via Nginx
-    edge gateways en versleutelde Cloudflare Tunnels.
-  * **Beheer op Afstand:** Administratieve dashboards en interne nodes zijn
-    uitsluitend bereikbaar via een versleutelde **Tailscale** mesh subnet
-    router, voor veilige toegang op WireGuard-snelheid vanaf elke locatie.
+  * **Publieke Ingress:** Verkeer voor publieke diensten loopt via edge gateways
+    met Nginx en versleutelde Cloudflare Tunnels.
+  * **Beheer op Afstand:** Admin interfaces en interne nodes zijn bereikbaar via
+    een versleutelde **Tailscale** mesh, voor veilige WireGuard-speed toegang
+    vanaf elke locatie.
 
-### 4. Werkloaddichtheid & Het Fortnite Ecosysteem
+### 4. Workloaddichtheid & Het Fortnite Ecosysteem
 
-Om rekenkracht en geheugen optimaal te benutten, zijn workloads verdeeld tussen
-extreem lichte **NixOS LXC-containers** (voor microservices en daemons) en
-volledige **KVM Virtual Machines** (voor productie-isolatie en niet-Linux
+Om CPU-efficiëntie en geheugengebruik in het cluster optimaal te benutten, zijn
+workloads verdeeld tussen lichte **NixOS LXC-containers** (voor core daemons) en
+dedicated **KVM Virtual Machines** (voor productie-isolatie en niet-Linux
 systemen).
 
 Alle servers zijn vernoemd naar Fortnite POI's, gestructureerd in functionele
@@ -130,56 +134,61 @@ clusters:
 <Mermaid code={topology} aspectRatio="1:1" startingScale={1.5} />
 
 * **Basisinfrastructuur & DNS (`adguard-home`):** Twee AdGuard Home instanties,
-  één per Proxmox-host. Beide genereren hun lokale `*.home`-records uit
-  dezelfde `lib/hosts.nix`, zodat een nieuwe host automatisch een DNS-naam krijgt
-  en de twee nooit uit elkaar lopen. Al het andere wordt via DNS-over-HTTPS
+  één per Proxmox-host. Beide genereren hun lokale `*.home`-records uit dezelfde
+  `lib/hosts.nix`, zodat een nieuwe host automatisch een DNS-naam krijgt en de
+  twee nooit uit elkaar lopen. Al het andere wordt via DNS-over-HTTPS
   doorgestuurd, met malware- en advertentiefiltering erbovenop.
-* **Edge Ingress (`battle-bus`):** Reverse proxy gateways (één per Proxmox-host)
-  die Nginx beheren en inkomend verkeer doorsturen via versleutelde Cloudflare
-  Tunnels.
+* **Edge Ingress (`battle-bus`):** Reverse proxy gateways (op afzonderlijke
+  Proxmox-hosts) die Nginx beheren en inkomend verkeer via versleutelde
+  Cloudflare Tunnels routeren.
 * **Monitoring & Observability (`lonely-lodge` & `lobby`):** Gecentraliseerde
-  telemetriestack met Dockerized Grafana, Loki, Promtail en Prometheus,
+  telemetry stack met Dockerized Grafana, Loki, Promtail en Prometheus,
   gecombineerd met een Homepage dashboard en geautomatiseerde statuscontroles
   via Gatus en `ntfy`.
 * **Interne Logistiek & Media (`greasy-grove` & `risky-reels`):** Voorraadbeheer
-  en keukenlogistiek via KitchenOwl en Homebox, plus mediastreaming met
+  en keukenlogistiek via KitchenOwl, Homebox en Grocy, plus mediastreaming met
   Jellyfin.
 * **Applicatie-omgevingen (`retail-row` & `salty-springs`):** Dedicated
   productie- en staging-omgevingen voor full-stack applicaties die draaien in
   Docker containers.
-* **Geheimen Delen (`the-vault`):** Een zelfgehoste PrivateBin voor
+* **Geheimen Delen (`the-vault`):** Een self-hosted PrivateBin voor
   zero-knowledge geheimen die na het lezen worden vernietigd.
 
 ### 5. Wake-on-LAN voor het Werkstation
 
-Mijn desktop draait niet 24/7. Een kleine Go-service (`scripts/wake`) draait op
-`lobby` en stuurt een Wake-on-LAN-pakket naar de pc. De service hangt aan het
-Homepage-dashboard via een Nginx-route op `battle-bus`, zodat de pc met één klik
-van overal kan worden aangezet en de status naast de andere diensten
-zichtbaar is. De service, de geheimen (via sops) en de route staan allemaal
-declaratief in de repository.
+Mijn desktop is van overal ter wereld bereikbaar (door mij). Een kleine Go
+service (`scripts/wake`) draait op `lobby` en stuurt een Wake-on-LAN-pakket naar
+de desktop. De service hangt aan het Homepage dashboard via een Nginx-route op
+`battle-bus`, zodat de pc met één klik van overal kan worden aangezet en de
+status naast de andere diensten zichtbaar is. De service, de geheimen (via sops)
+en de route staan allemaal declaratief in de repository.
 
 ### 6. Supply Chain & Continue Verificatie
 
 Elke push en pull request wordt gecontroleerd door GitHub Actions, en enkele
-taken draaien op schema om problemen te vangen voordat een deploy dat doet:
+jobs draaien op schema om problemen te vangen voordat een deploy dat doet:
 
-* **Alle hosts evalueren:** elke pull request evalueert alle
-  NixOS-configuraties, en `flake-checker` faalt bij verouderde of end-of-life
-  nixpkgs.
-* **Geautomatiseerde flake-updates:** wekelijkse pull requests werken het
-  lockbestand bij. Servers (`nixpkgs-stable`) en de rest worden apart
-  bijgewerkt, zodat een probleem op unstable nooit een beveiligingsfix voor de
-  servers blokkeert. Een lock die niet evalueert wordt nooit een pull request.
-* **Nachtelijke kwetsbaarheidsscans:** `flakevuln` scant de volledige closure
-  van elke serverconfiguratie en een gate laat de run falen wanneer een update
-  een kwetsbaarheid met hoge ernst oplost. Bevindingen zonder fix geven alleen
-  een waarschuwing. **Trivy** scant de repository en de containerimages van de
-  telemetrie- en keukenstacks.
+* **Alle hosts evalueren:** Elke pull request evalueert alle NixOS-configuraties,
+  en `flake-checker` faalt bij verouderde of end-of-life nixpkgs.
+* **Elke server bouwen:** Evalueren bewijst alleen dat een config kan worden
+  verwerkt. Een lock bump kan nog steeds een package build breken. Daarom bouwt
+  elke pull request die `flake.lock` aanraakt de volledige system closure van
+  elke server.
+* **Geautomatiseerde flake-updates:** Wekelijkse pull requests bumpen het
+  lockbestand. Servers (`nixpkgs-stable`) en de rest worden apart bijgewerkt,
+  zodat een break op unstable nooit een security fix voor de servers blokkeert.
+  Een lock die niet evalueert wordt nooit een pull request.
+* **Nachtelijke kwetsbaarheidsscans:** `flakevuln` scant de volledige closure van
+  elke distincte serverconfiguratie (hosts die dezelfde config delen worden
+  overgeslagen). Een gate laat de run falen wanneer een bump een high-severity
+  finding zou oplossen. Findings zonder fix geven alleen een waarschuwing.
+  **Trivy** scant de repository en de containerimages van de telemetry- en
+  kitchen stacks.
 * **Dependabot** houdt GitHub Actions, Go-modules en docker-compose-images
   actueel, en alle actions zijn vastgepind op commit-hashes.
-* **Pre-commit hooks** (Lefthook) versleutelen elk onversleuteld SOPS-bestand en
-  controleren `lib/hosts.nix` voordat een commit wordt aangemaakt.
+* **Pre-commit hooks** (Lefthook) encrypten elk plaintext SOPS-bestand en
+  controleren of `hosts.env` niet is afgeweken van `lib/hosts.nix` voordat een
+  commit wordt aangemaakt.
 
 --------------------------------------------------------------------------------
 
@@ -187,7 +196,7 @@ taken draaien op schema om problemen te vangen voordat een deploy dat doet:
 
 Het dagelijks onderhoud is geautomatiseerd met een centrale `justfile`. Updates
 uitrollen over het hele serverpark, specifieke LXC-containers opnieuw bouwen of
-geheimen controleren gebeurt met één commando:
+geheimen encrypten gebeurt lokaal of remote met één commando:
 
 ```bash
 # Alle homelab servers parallel opnieuw bouwen
@@ -196,6 +205,6 @@ just rebuild-all true
 # Alle hostconfiguraties evalueren (dezelfde check als in CI)
 just check
 
-# Onversleutelde SOPS-geheimen versleutelen
+# Onversleutelde SOPS-geheimen encrypten
 just encrypt-secrets
 ```

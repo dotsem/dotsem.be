@@ -1,8 +1,8 @@
 ---
 title: Homelab
 description: A fully declarative, resilient homelab infrastructure powered by
-  NixOS, Proxmox VE, and OPNsense. Eliminates configuration drift with GitOps,
-  isolates workloads across dedicated subnets, and provides zero-trust remote access.
+  NixOS, Proxmox VE, and OPNsense. Isolates workloads across dedicated subnets
+  and provides zero-trust remote access.
 ---
 
 <script>
@@ -20,7 +20,7 @@ flowchart TD
 
         subgraph Edge["Edge & Networking"]
             BattleBus["battle-bus (x2)<br/>Cloudflare Tunnel & Nginx"]
-            Tailscale["tailscale<br/>Subnet Router & Mesh"]
+            Tailscale["tailscale<br/>Private Mesh Access"]
         end
 
         subgraph Core["Core & Observability"]
@@ -32,7 +32,7 @@ flowchart TD
         subgraph Workloads["Apps & Media Services"]
             RetailRow["retail-row<br/>GoStrategy & WWB"]
             SaltySprings["salty-springs<br/>Staging Apps"]
-            GreasyGrove["greasy-grove<br/>Homebox & KitchenOwl"]
+            GreasyGrove["greasy-grove<br/>Homebox, KitchenOwl & Grocy"]
             RiskyReels["risky-reels<br/>Jellyfin VA-API"]
             TheVault["the-vault<br/>PrivateBin"]
         end
@@ -48,8 +48,8 @@ flowchart TD
 What started on a single discarded laptop running Proxmox VE has evolved into a
 multi-node, reproducible homelab cluster. Instead of relying on brittle manual
 configurations, mental notes, or unversioned backup images, this infrastructure
-is engineered around a core philosophy: **every server, container, and
-configuration must be 100% reproducible from Git.**
+is engineered around a core philosophy: **every NixOS machine must be 100%
+reproducible from Git.**
 
 By pairing **NixOS** and **Proxmox** with a dedicated **OPNsense** router, the
 entire homelab operates like modern cloud infrastructure—declarative, isolated,
@@ -61,20 +61,25 @@ and restorable from scratch in minutes.
 
 ## Architectural Challenges & Declarative Solutions
 
-### 1. The Zero-Backup Dilemma: Declarative GitOps with NixOS
+### 1. The Zero-Backup Dilemma: Declarative Infrastructure with NixOS
 
 * **The Problem:** Without enterprise NAS appliances or secondary offsite backup
   servers, traditional hypervisor backups were an impractical luxury. A dead
   drive or broken configuration update would mean hours of manual rebuilding.
-* **The Solution:** Fully declarative GitOps using **Nix Flakes**, **Disko**,
+* **The Solution:** Fully declarative configuration using **Nix Flakes**, **Disko**,
   and **sops-nix**. Servers track NixOS stable and workstations track unstable.
   System states, package sets, firewall rules, and container
   definitions are tracked in a single Git repository and easily sharable between
   systems.
-* **Instant Recovery:** Disk partitioning and filesystems are defined as code
-  via Disko. Secrets are encrypted with Age keys and safely committed to Git. If
-  any node suffers complete hardware failure, spinning up an identical
-  replacement takes a single `nixos-anywhere` command.
+* **Instant Recovery:** Secrets are encrypted with Age keys and safely
+  committed to Git. Recovery depends on the machine type:
+  * **VMs and bare metal:** disk partitioning and filesystems are defined as
+    code via Disko, so spinning up an identical replacement takes a single
+    `nixos-anywhere` command.
+  * **LXC containers:** a prebuilt NixOS LXC template (`just build-template`)
+    already carries the shared baseline (users, SSH, server hardening). Create a
+    container from it in Proxmox, run `just <host>`, and the LXC is up and
+    running as that host.
 
 ### 2. Hardware Evolution: ThinkCentres, Battery-Less Laptop & 3-Node Quorum
 
@@ -102,12 +107,13 @@ and restorable from scratch in minutes.
   home devices if the network is flat.
 * **The Solution:** Physical and logical network segmentation via OPNsense. The
   entire homelab runs within an isolated subnet (`192.168.10.0/24`), separated
-  from my home network.
+  from my home network (`192.168.0.0/24`). The router is the only link between
+  the two.
 * **Zero-Trust Access:** No router ports are forwarded to the public internet:
   * **Public Ingress:** Handled by edge gateways running Nginx and Cloudflare
     Tunnels.
   * **Private Management:** Admin interfaces and internal nodes are accessed
-    through an encrypted **Tailscale** mesh subnet router, enabling secure,
+    through an encrypted **Tailscale** mesh, enabling secure,
     wireguard-speed access from anywhere in the world.
 
 ### 4. Workload Density & The Fortnite Ecosystem
@@ -123,7 +129,7 @@ clusters:
 <Mermaid code={topology} aspectRatio="1:1" startingScale={1.5} />
 
 * **Core Infrastructure & DNS (`adguard-home`):** Two AdGuard Home instances,
-  both on a separate Proxmox host. Both generate their local `*.home` records from the same
+  each on a different Proxmox host. Both generate their local `*.home` records from the same
   `lib/hosts.nix`, so adding a host automatically adds its DNS name and the two
   never drift apart. Everything else is forwarded over DNS-over-HTTPS, with
   malware and ad filtering on top.
@@ -134,8 +140,8 @@ clusters:
   complemented by a Homepage dashboard and automated health checks via Gatus and
   `ntfy`.
 * **Internal Logistics & Media (`greasy-grove` & `risky-reels`):** Kitchen and
-  inventory management through KitchenOwl and Homebox, alongside media streaming
-  with Jellyfin.
+  inventory management through KitchenOwl, Homebox and Grocy, alongside media
+  streaming with Jellyfin.
 * **Application Environments (`retail-row` & `salty-springs`):** Dedicated
   production and staging environments hosting full-stack applications running in
   Docker containers.
@@ -158,26 +164,30 @@ a schedule to catch problems before a deploy does:
 
 * **Evaluate every host:** each pull request evaluates all NixOS configurations,
   and `flake-checker` fails on stale or end-of-life nixpkgs.
+* **Build every server:** evaluating only proves a config parses, and a lock
+  bump can still break a package build. So any pull request that touches
+  `flake.lock` also builds the full system closure of every server.
 * **Automated flake updates:** weekly pull requests bump the lock file. Servers
   (`nixpkgs-stable`) and everything else are bumped separately, so a break on
   unstable never blocks a security fix for the servers. A lock that doesn't
   evaluate never becomes a pull request.
 * **Nightly vulnerability scanning:** `flakevuln` scans the full closure of
-  every server configuration and a gate fails the run when a bump would fix a
+  every distinct server configuration (hosts that are copies sharing the same
+  config are skipped) and a gate fails the run when a bump would fix a
   high-severity finding. Findings without a fix yet only warn. **Trivy** scans
   the repository and the container images of the telemetry and kitchen stacks.
 * **Dependabot** keeps GitHub Actions, Go modules and docker-compose images
   current, and all actions are pinned to commit hashes.
-* **Pre-commit hooks** (Lefthook) encrypt any plaintext SOPS file and verify
-  `lib/hosts.nix` before a commit is created.
+* **Pre-commit hooks** (Lefthook) encrypt any plaintext SOPS file and check that
+  `hosts.env` has not drifted from `lib/hosts.nix` before a commit is created.
 
 --------------------------------------------------------------------------------
 
 ## Operational Automation with Just
 
 Day-to-day maintenance is automated with a centralized `justfile`. Rolling
-updates across the entire server farm, rebuilding individual LXCs, or checking
-encrypted secrets can be executed locally or remotely with a single command:
+updates across the entire server farm, rebuilding individual LXCs, or encrypting
+secrets can be executed locally or remotely with a single command:
 
 ```bash
 # Rebuild all homelab targets in parallel
